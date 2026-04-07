@@ -1,0 +1,26 @@
+---
+interface Props {
+    level?: 1 | 2 | 3 | 4 | 5 | 6;
+    class?: string;
+    as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+}
+
+const { level = 2, class: className = "", as } = Astro.props;
+
+const Tag = as || `h${level}`;
+
+const sizes = {
+    1: "text-5xl",
+    2: "text-4xl",
+    3: "text-3xl",
+    4: "text-2xl",
+    5: "text-xl",
+    6: "text-base",
+};
+
+const classes = `font-heading font-bold text-text ${sizes[level]} ${className}`;
+---
+
+<Tag class={classes}>
+    <slot />
+</Tag>

@@ -1,5 +1,26 @@
 @import "tailwindcss";
 
+@theme {
+    --color-text: #1c1c1c;
+    --color-background: #f9f8f6;
+    --color-primary: #ff7b00;
+    --color-secondary: #10458e;
+    --color-accent: #f59f0a;
+
+    --color-gray-50: #ffffff;
+    --color-gray-100: #e8e8e8;
+    --color-gray-300: #aaaaaa;
+    --color-gray-400: #888888;
+    --color-gray-700: #333333;
+    --color-gray-900: #000000;
+
+    --color-link: #0066cc;
+    --color-danger: #ff0000;
+
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
 @layer base {
     :root {
         --text: #1c1c1c;
@@ -7,6 +28,18 @@
         --primary: #ff7b00;
         --secondary: #10458e;
         --accent: #f59f0a;
+
+        /* Gray scale */
+        --gray-50: #ffffff;
+        --gray-100: #e8e8e8;
+        --gray-300: #aaaaaa;
+        --gray-400: #888888;
+        --gray-700: #333333;
+        --gray-900: #000000;
+
+        /* Semantic colors */
+        --link: #0066cc;
+        --danger: #ff0000;
     }
 
     .dark {
@@ -15,5 +48,22 @@
         --primary: #ff7b00;
         --secondary: #71a5ef;
         --accent: #f59f0a;
+
+        /* Gray scale for dark mode */
+        --gray-50: #000000;
+        --gray-100: #1a1a1a;
+        --gray-300: #555555;
+        --gray-400: #777777;
+        --gray-700: #cccccc;
+        --gray-900: #ffffff;
+
+        /* Semantic colors */
+        --link: #3399ff;
+        --danger: #ff3333;
+    }
+
+    body {
+        background-color: var(--background);
+        color: var(--text);
     }
 }
