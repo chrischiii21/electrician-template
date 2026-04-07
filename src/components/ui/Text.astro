@@ -1,0 +1,23 @@
+---
+interface Props {
+    size?: "sm" | "base" | "xl";
+    class?: string;
+    as?: "p" | "span" | "div";
+}
+
+const { size = "base", class: className = "", as = "p" } = Astro.props;
+
+const Tag = as;
+
+const sizes = {
+    sm: "text-sm",
+    base: "text-base",
+    xl: "text-xl",
+};
+
+const classes = `font-body text-text ${sizes[size]} ${className}`;
+---
+
+<Tag class={classes}>
+    <slot />
+</Tag>
