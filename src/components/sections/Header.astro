@@ -101,16 +101,9 @@ const serviceCategories = [
         ],
     },
 ];
-
-const socialLinks = [
-    { label: "FACEBOOK", href: "#" },
-    { label: "TWITTER", href: "#" },
-    { label: "INSTAGRAM", href: "#" },
-    { label: "YOUTUBE", href: "#" },
-];
 ---
 
-<header class="bg-gray-50">
+<header class="bg-gray-50 relative z-50">
     <!-- Top Bar - White Background -->
     <div class="bg-gray-50 border-b border-gray-100">
         <Container size="lg">
@@ -139,11 +132,7 @@ const socialLinks = [
                             <div class="relative group">
                                 <a
                                     href={link.href}
-                                    class={`flex items-center gap-1 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-colors ${
-                                        link.isHighlight
-                                            ? "text-danger hover:text-primary"
-                                            : "text-gray-700 hover:text-primary"
-                                    }`}
+                                    class="flex items-center gap-1 px-4 py-2 text-sm font-bold uppercase tracking-wider transition-colors text-gray-700 hover:text-primary"
                                 >
                                     {link.label}
                                     {link.submenu.length > 0 && (
