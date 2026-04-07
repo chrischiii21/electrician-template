@@ -1,0 +1,868 @@
+---
+import Container from "../ui/Container.astro";
+---
+
+<section
+    class="bg-gradient-to-br from-gray-900 via-secondary/20 to-gray-900 py-16 md:py-24 relative overflow-hidden"
+    id="contact"
+>
+    <!-- Animated background effects -->
+    <div
+        class="absolute top-0 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse"
+    >
+    </div>
+    <div
+        class="absolute bottom-0 right-1/4 w-96 h-96 bg-accent/20 rounded-full blur-3xl animate-pulse"
+        style="animation-delay: 1s;"
+    >
+    </div>
+
+    <!-- Electric bolts decoration -->
+    <div class="absolute top-10 left-10 text-6xl opacity-10 animate-pulse">
+        ⚡
+    </div>
+    <div
+        class="absolute bottom-10 right-10 text-6xl opacity-10 animate-pulse"
+        style="animation-delay: 0.5s;"
+    >
+        ⚡
+    </div>
+
+    <Container size="lg">
+        <div class="max-w-4xl mx-auto px-6">
+            <!-- Section Header -->
+            <div class="text-center mb-12 relative z-10">
+                <div class="inline-flex items-center gap-2 mb-4">
+                    <span class="text-4xl">⚡</span>
+                    <h2
+                        class="font-heading font-bold text-3xl md:text-4xl text-gray-50"
+                    >
+                        High Voltage Lead Magnet
+                    </h2>
+                    <span class="text-4xl">⚡</span>
+                </div>
+                <p
+                    class="font-body text-lg text-gray-300 max-w-2xl mx-auto mb-2"
+                >
+                    Get your custom quote in 60 seconds
+                </p>
+                <p class="font-body text-sm text-accent font-bold">
+                    Join 500+ homeowners who stopped worrying about their wiring
+                </p>
+            </div>
+
+            <!-- Multi-Step Form -->
+            <div
+                class="bg-gray-900 border-2 border-primary rounded-2xl shadow-2xl shadow-primary/20 overflow-hidden relative"
+            >
+                <!-- Progress Bar -->
+                <div class="bg-gray-900 border-b-2 border-gray-700 p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="flex items-center gap-3">
+                            <div class="step-indicator active" data-step="1">
+                                <span class="step-number">1</span>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="step-indicator" data-step="2">
+                                <span class="step-number">2</span>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="step-indicator" data-step="3">
+                                <span class="step-number">3</span>
+                            </div>
+                            <div class="step-line"></div>
+                            <div class="step-indicator" data-step="4">
+                                <span class="step-number">4</span>
+                            </div>
+                        </div>
+                        <div class="font-body text-sm text-gray-400">
+                            Step <span id="current-step">1</span> of 4
+                        </div>
+                    </div>
+                    <div class="progress-bar-container">
+                        <div class="progress-bar" id="progress-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Form Steps -->
+                <div class="p-8 md:p-12">
+                    <form id="project-calculator" class="space-y-8">
+                        <!-- Step 1: Project Type -->
+                        <div class="form-step active" data-step="1">
+                            <h3
+                                class="font-heading font-bold text-2xl text-gray-50 mb-3 text-center"
+                            >
+                                What's your project?
+                            </h3>
+                            <p class="font-body text-gray-400 text-center mb-8">
+                                Select the type of electrical service you need
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="project-type"
+                                        value="residential"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🏠</div>
+                                        <div
+                                            class="font-heading font-bold text-xl text-gray-50 mb-2"
+                                        >
+                                            Residential
+                                        </div>
+                                        <p
+                                            class="font-body text-sm text-gray-400"
+                                        >
+                                            Home electrical services
+                                        </p>
+                                    </div>
+                                </label>
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="project-type"
+                                        value="commercial"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🏢</div>
+                                        <div
+                                            class="font-heading font-bold text-xl text-gray-50 mb-2"
+                                        >
+                                            Commercial
+                                        </div>
+                                        <p
+                                            class="font-body text-sm text-gray-400"
+                                        >
+                                            Business electrical services
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 2: Service Needed -->
+                        <div class="form-step" data-step="2">
+                            <h3
+                                class="font-heading font-bold text-2xl text-gray-50 mb-3 text-center"
+                            >
+                                What service do you need?
+                            </h3>
+                            <p class="font-body text-gray-400 text-center mb-8">
+                                Choose the service that best fits your needs
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="service-type"
+                                        value="panel-upgrade"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">⚡</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            Panel Upgrade
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            Modernize your electrical panel
+                                        </p>
+                                    </div>
+                                </label>
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="service-type"
+                                        value="wiring"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🔌</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            Wiring/Rewiring
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            New or replacement wiring
+                                        </p>
+                                    </div>
+                                </label>
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="service-type"
+                                        value="ev-charger"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🚗</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            EV Charger
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            Electric vehicle charging station
+                                        </p>
+                                    </div>
+                                </label>
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="service-type"
+                                        value="other"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🛠️</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            Other Service
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            Something else
+                                        </p>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Urgency -->
+                        <div class="form-step" data-step="3">
+                            <h3
+                                class="font-heading font-bold text-2xl text-gray-50 mb-3 text-center"
+                            >
+                                How urgent is your project?
+                            </h3>
+                            <p class="font-body text-gray-400 text-center mb-8">
+                                Help us prioritize your service request
+                            </p>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="urgency"
+                                        value="emergency"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🚨</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            Emergency
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            Need help now
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-danger font-bold"
+                                        >
+                                            Same Day
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="urgency"
+                                        value="this-week"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">📅</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            This Week
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            Within 7 days
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-accent font-bold"
+                                        >
+                                            Priority
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="option-card cursor-pointer">
+                                    <input
+                                        type="radio"
+                                        name="urgency"
+                                        value="flexible"
+                                        class="hidden"
+                                        required
+                                    />
+                                    <div class="option-content">
+                                        <div class="text-4xl mb-3">🗓️</div>
+                                        <div
+                                            class="font-heading font-bold text-lg text-gray-50 mb-2"
+                                        >
+                                            Flexible
+                                        </div>
+                                        <p
+                                            class="font-body text-xs text-gray-400"
+                                        >
+                                            Planning ahead
+                                        </p>
+                                        <div
+                                            class="mt-2 text-xs text-secondary font-bold"
+                                        >
+                                            Standard
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Contact Info -->
+                        <div class="form-step" data-step="4">
+                            <h3
+                                class="font-heading font-bold text-2xl text-gray-50 mb-3 text-center"
+                            >
+                                Get Your Special Promotion
+                            </h3>
+                            <p class="font-body text-gray-400 text-center mb-8">
+                                Enter your details to receive a custom quote and
+                                exclusive offer
+                            </p>
+                            <div class="space-y-4 max-w-md mx-auto">
+                                <div>
+                                    <label
+                                        class="font-body text-sm text-gray-300 mb-2 block"
+                                        >Full Name</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        required
+                                        class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-lg text-gray-50 font-body focus:border-primary focus:outline-none transition-colors"
+                                        placeholder="John Doe"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        class="font-body text-sm text-gray-300 mb-2 block"
+                                        >Email Address</label
+                                    >
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        required
+                                        class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-lg text-gray-50 font-body focus:border-primary focus:outline-none transition-colors"
+                                        placeholder="john@example.com"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        class="font-body text-sm text-gray-300 mb-2 block"
+                                        >Phone Number</label
+                                    >
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        required
+                                        class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-lg text-gray-50 font-body focus:border-primary focus:outline-none transition-colors"
+                                        placeholder="(555) 123-4567"
+                                    />
+                                </div>
+                                <div>
+                                    <label
+                                        class="font-body text-sm text-gray-300 mb-2 block"
+                                        >Zip Code</label
+                                    >
+                                    <input
+                                        type="text"
+                                        name="zip"
+                                        required
+                                        pattern="[0-9]{5}"
+                                        class="w-full px-4 py-3 bg-gray-900 border-2 border-gray-700 rounded-lg text-gray-50 font-body focus:border-primary focus:outline-none transition-colors"
+                                        placeholder="12345"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Navigation Buttons -->
+                        <div
+                            class="flex items-center justify-between pt-6 border-t-2 border-gray-700"
+                        >
+                            <button
+                                type="button"
+                                id="prev-btn"
+                                class="btn-secondary hidden"
+                            >
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M15 19l-7-7 7-7"></path>
+                                </svg>
+                                <span>Previous</span>
+                            </button>
+                            <div class="flex-1"></div>
+                            <button
+                                type="button"
+                                id="next-btn"
+                                class="btn-primary"
+                            >
+                                <span>Next Step</span>
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </button>
+                            <button
+                                type="submit"
+                                id="submit-btn"
+                                class="btn-primary hidden"
+                            >
+                                <span>Get My Quote</span>
+                                <svg
+                                    class="w-5 h-5"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Success Message -->
+                    <div id="success-message" class="hidden text-center py-12">
+                        <div class="text-6xl mb-4">✓</div>
+                        <h3
+                            class="font-heading font-bold text-3xl text-gray-50 mb-4"
+                        >
+                            Success! We've Got Your Request
+                        </h3>
+                        <p class="font-body text-gray-300 mb-6">
+                            Our team will contact you within 15 minutes with
+                            your custom quote and special promotion.
+                        </p>
+                        <div
+                            class="inline-flex items-center gap-2 bg-primary/10 border-2 border-primary rounded-lg px-6 py-4"
+                        >
+                            <span class="text-2xl">🎉</span>
+                            <div class="text-left">
+                                <div
+                                    class="font-heading font-bold text-primary"
+                                >
+                                    Special Offer Applied!
+                                </div>
+                                <div class="font-body text-sm text-gray-300">
+                                    15% off your first service
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div
+                class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6 text-center"
+            >
+                <div class="trust-indicator">
+                    <div class="text-3xl mb-2">⚡</div>
+                    <div class="font-heading font-bold text-2xl text-primary">
+                        500+
+                    </div>
+                    <div class="font-body text-sm text-gray-400">
+                        Happy Customers
+                    </div>
+                </div>
+                <div class="trust-indicator">
+                    <div class="text-3xl mb-2">⏱️</div>
+                    <div class="font-heading font-bold text-2xl text-accent">
+                        15 Min
+                    </div>
+                    <div class="font-body text-sm text-gray-400">
+                        Response Time
+                    </div>
+                </div>
+                <div class="trust-indicator">
+                    <div class="text-3xl mb-2">✓</div>
+                    <div class="font-heading font-bold text-2xl text-secondary">
+                        100%
+                    </div>
+                    <div class="font-body text-sm text-gray-400">
+                        Satisfaction Rate
+                    </div>
+                </div>
+                <div class="trust-indicator">
+                    <div class="text-3xl mb-2">🏆</div>
+                    <div class="font-heading font-bold text-2xl text-primary">
+                        Licensed
+                    </div>
+                    <div class="font-body text-sm text-gray-400">& Insured</div>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
+
+<script>
+    let currentStep = 1;
+    const totalSteps = 4;
+
+    const formSteps = document.querySelectorAll(".form-step");
+    const stepIndicators = document.querySelectorAll(".step-indicator");
+    const progressBar = document.getElementById("progress-bar");
+    const currentStepText = document.getElementById("current-step");
+    const prevBtn = document.getElementById("prev-btn");
+    const nextBtn = document.getElementById("next-btn");
+    const submitBtn = document.getElementById("submit-btn");
+    const form = document.getElementById("project-calculator");
+    const successMessage = document.getElementById("success-message");
+
+    function updateStep(step: number) {
+        currentStep = step;
+
+        // Update form steps
+        formSteps.forEach((formStep, index) => {
+            if (index + 1 === step) {
+                formStep.classList.add("active");
+            } else {
+                formStep.classList.remove("active");
+            }
+        });
+
+        // Update step indicators
+        stepIndicators.forEach((indicator, index) => {
+            if (index + 1 <= step) {
+                indicator.classList.add("active");
+            } else {
+                indicator.classList.remove("active");
+            }
+        });
+
+        // Update progress bar
+        const progress = ((step - 1) / (totalSteps - 1)) * 100;
+        if (progressBar) {
+            progressBar.style.width = `${progress}%`;
+        }
+
+        // Update step text
+        if (currentStepText) {
+            currentStepText.textContent = step.toString();
+        }
+
+        // Update buttons
+        if (prevBtn) {
+            if (step === 1) {
+                prevBtn.classList.add("hidden");
+            } else {
+                prevBtn.classList.remove("hidden");
+            }
+        }
+
+        if (nextBtn && submitBtn) {
+            if (step === totalSteps) {
+                nextBtn.classList.add("hidden");
+                submitBtn.classList.remove("hidden");
+            } else {
+                nextBtn.classList.remove("hidden");
+                submitBtn.classList.add("hidden");
+            }
+        }
+    }
+
+    function validateStep(step: number): boolean {
+        const currentFormStep = document.querySelector(
+            `.form-step[data-step="${step}"]`,
+        );
+        if (!currentFormStep) return false;
+
+        const inputs = currentFormStep.querySelectorAll("input[required]");
+        let isValid = true;
+
+        inputs.forEach((input) => {
+            const inputElement = input as HTMLInputElement;
+            if (inputElement.type === "radio") {
+                const radioGroup = currentFormStep.querySelectorAll(
+                    `input[name="${inputElement.name}"]`,
+                );
+                const isChecked = Array.from(radioGroup).some(
+                    (radio) => (radio as HTMLInputElement).checked,
+                );
+                if (!isChecked) {
+                    isValid = false;
+                }
+            } else if (!inputElement.value.trim()) {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+    // Next button
+    nextBtn?.addEventListener("click", () => {
+        if (validateStep(currentStep)) {
+            if (currentStep < totalSteps) {
+                updateStep(currentStep + 1);
+            }
+        } else {
+            alert("Please select an option to continue");
+        }
+    });
+
+    // Previous button
+    prevBtn?.addEventListener("click", () => {
+        if (currentStep > 1) {
+            updateStep(currentStep - 1);
+        }
+    });
+
+    // Auto-advance on option selection (steps 1-3)
+    document
+        .querySelectorAll('.option-card input[type="radio"]')
+        .forEach((input) => {
+            input.addEventListener("change", () => {
+                setTimeout(() => {
+                    if (
+                        currentStep < totalSteps - 1 &&
+                        validateStep(currentStep)
+                    ) {
+                        updateStep(currentStep + 1);
+                    }
+                }, 300);
+            });
+        });
+
+    // Form submission
+    form?.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        if (validateStep(currentStep)) {
+            // Hide form, show success message
+            form.classList.add("hidden");
+            successMessage?.classList.remove("hidden");
+
+            // Here you would normally send the form data to your backend
+            console.log("Form submitted:", new FormData(form));
+        } else {
+            alert("Please fill in all required fields");
+        }
+    });
+
+    // Initialize
+    updateStep(1);
+</script>
+
+<style>
+    /* Progress bar */
+    .progress-bar-container {
+        width: 100%;
+        height: 4px;
+        background: var(--gray-700);
+        border-radius: 2px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        transition: width 0.3s ease;
+        width: 0%;
+    }
+
+    /* Step indicators */
+    .step-indicator {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--gray-700);
+        border: 2px solid var(--gray-700);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+
+    .step-indicator.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        box-shadow: 0 0 20px rgba(255, 123, 0, 0.5);
+    }
+
+    .step-number {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        color: var(--gray-50);
+        font-size: 1rem;
+    }
+
+    .step-line {
+        width: 40px;
+        height: 2px;
+        background: var(--gray-700);
+    }
+
+    /* Form steps */
+    .form-step {
+        display: none;
+        animation: fadeIn 0.5s ease;
+    }
+
+    .form-step.active {
+        display: block;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Option cards */
+    .option-card {
+        display: block;
+    }
+
+    .option-content {
+        padding: 2rem;
+        background: var(--gray-900);
+        border: 2px solid var(--gray-700);
+        border-radius: 1rem;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .option-card:hover .option-content {
+        border-color: var(--primary);
+        transform: translateY(-4px);
+        box-shadow: 0 10px 30px rgba(255, 123, 0, 0.2);
+    }
+
+    .option-card input:checked + .option-content {
+        border-color: var(--primary);
+        background: linear-gradient(
+            135deg,
+            var(--gray-900),
+            rgba(255, 123, 0, 0.1)
+        );
+        box-shadow: 0 0 30px rgba(255, 123, 0, 0.3);
+    }
+
+    /* Buttons */
+    .btn-primary,
+    .btn-secondary {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--font-heading);
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        padding: 1rem 2rem;
+        border-radius: 0.5rem;
+        transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+        background: var(--primary);
+        color: var(--gray-50);
+        box-shadow: 0 4px 14px rgba(255, 123, 0, 0.3);
+    }
+
+    .btn-primary:hover {
+        background: rgba(255, 123, 0, 0.9);
+        box-shadow: 0 6px 20px rgba(255, 123, 0, 0.5);
+        transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+        background: transparent;
+        color: var(--gray-300);
+        border: 2px solid var(--gray-700);
+    }
+
+    .btn-secondary:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+    }
+
+    /* Trust indicators */
+    .trust-indicator {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    .trust-indicator:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+    .trust-indicator:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+    .trust-indicator:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+    .trust-indicator:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

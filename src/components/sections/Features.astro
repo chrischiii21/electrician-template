@@ -1,90 +1,210 @@
 ---
 import Container from "../ui/Container.astro";
 
-const features = [
+const stats = [
     {
-        icon: "shield",
-        label: "Features",
-        title: "Safety Installation & Best Service",
-        description:
-            "Licensed and insured professionals ensuring code-compliant installations",
+        label: "Total Power Restored This Month",
+        value: 412,
+        suffix: "Homes",
+        icon: "⚡",
     },
     {
-        icon: "tools",
-        label: "Features",
-        title: "Expert Mechanics & Best Efforts",
-        description:
-            "Certified electricians with years of experience in residential and commercial work",
+        label: "Average Response Time",
+        value: 45,
+        suffix: "Minutes",
+        icon: "⏱️",
     },
     {
-        icon: "support",
-        label: "Features",
-        title: "Budget Friendly & 24/7 Support",
-        description:
-            "Competitive pricing with emergency services available around the clock",
+        label: "Certified Safety Rating",
+        value: 100,
+        suffix: "%",
+        icon: "✓",
     },
 ];
 ---
 
-<section class="bg-background py-0 relative -mt-12 z-10">
+<section class="bg-gray-900 py-0 relative -mt-12 z-10 overflow-hidden">
     <Container size="lg">
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-12">
+        <!-- Live Circuit Stats Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 px-6 md:px-12">
             {
-                features.map((feature) => (
-                    <div class="bg-gray-50 flex items-stretch overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-                        {/* Orange accent bar */}
-                        <div class="bg-primary w-24 flex-shrink-0 flex items-center justify-center">
-                            {feature.icon === "shield" && (
-                                <svg
-                                    class="w-12 h-12 text-gray-50"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                                </svg>
-                            )}
-                            {feature.icon === "tools" && (
-                                <svg
-                                    class="w-12 h-12 text-gray-50"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                    <path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                </svg>
-                            )}
-                            {feature.icon === "support" && (
-                                <svg
-                                    class="w-12 h-12 text-gray-50"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                    viewBox="0 0 24 24"
-                                >
-                                    <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                            )}
+                stats.map((stat, index) => (
+                    <div class="bg-gray-900 border-2 border-primary/30 flex items-stretch overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/20 transition-all duration-300 hover:border-primary/60 group">
+                        {/* Icon bar with electric effect */}
+                        <div class="bg-gradient-to-b from-primary to-accent w-20 shrink-0 flex items-center justify-center relative overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-t from-transparent via-gray-50/10 to-transparent animate-pulse" />
+                            <span class="text-4xl relative z-10 group-hover:scale-110 transition-transform duration-300">
+                                {stat.icon}
+                            </span>
                         </div>
 
                         {/* Content */}
-                        <div class="flex-1 p-6 bg-gray-900">
-                            <div class="text-xs text-gray-300 uppercase tracking-wider mb-2">
-                                {feature.label}
+                        <div class="flex-1 p-6 bg-gray-900 relative">
+                            {/* Live indicator */}
+                            <div class="flex items-center gap-2 mb-3">
+                                <span class="relative flex h-2 w-2">
+                                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                                    <span class="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                                </span>
+                                <span class="text-xs text-accent uppercase tracking-wider font-bold">
+                                    Live
+                                </span>
                             </div>
-                            <h3 class="text-xl font-bold text-gray-50 mb-3 leading-tight">
-                                {feature.title}
-                            </h3>
-                            <p class="text-sm text-gray-300 leading-relaxed">
-                                {feature.description}
+
+                            {/* Counter */}
+                            <div class="mb-2">
+                                <span
+                                    class="font-heading font-bold text-4xl text-gray-50 counter"
+                                    data-target={stat.value}
+                                    data-suffix={stat.suffix}
+                                >
+                                    0
+                                </span>
+                                <span class="font-heading font-bold text-2xl text-primary ml-2">
+                                    {stat.suffix}
+                                </span>
+                            </div>
+
+                            {/* Label */}
+                            <p class="font-body text-sm text-gray-300 leading-tight">
+                                {stat.label}
                             </p>
+
+                            {/* Electric glow effect */}
+                            <div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                         </div>
                     </div>
                 ))
             }
         </div>
+
+        {/* Horizontal Scrolling Ticker */}
+        <div
+            class="mt-8 bg-gradient-to-r from-secondary via-primary to-secondary py-4 overflow-hidden relative"
+        >
+            <div class="ticker-wrapper">
+                <div class="ticker-content">
+                    <span class="ticker-item">
+                        ⚡ 24/7 Emergency Service Available
+                    </span>
+                    <span class="ticker-item">
+                        ✓ Licensed & Insured Professionals
+                    </span>
+                    <span class="ticker-item"> 🏆 5-Star Customer Rating </span>
+                    <span class="ticker-item">
+                        ⚡ Same-Day Service Available
+                    </span>
+                    <span class="ticker-item">
+                        ✓ 100% Satisfaction Guaranteed
+                    </span>
+                    <span class="ticker-item">
+                        🏆 Certified Safety Experts
+                    </span>
+                    {/* Duplicate for seamless loop */}
+                    <span class="ticker-item">
+                        ⚡ 24/7 Emergency Service Available
+                    </span>
+                    <span class="ticker-item">
+                        ✓ Licensed & Insured Professionals
+                    </span>
+                    <span class="ticker-item"> 🏆 5-Star Customer Rating </span>
+                    <span class="ticker-item">
+                        ⚡ Same-Day Service Available
+                    </span>
+                    <span class="ticker-item">
+                        ✓ 100% Satisfaction Guaranteed
+                    </span>
+                    <span class="ticker-item">
+                        🏆 Certified Safety Experts
+                    </span>
+                </div>
+            </div>
+        </div>
     </Container>
 </section>
+
+<script>
+    // Animated counter functionality
+    function animateCounter(element: HTMLElement) {
+        const target = parseInt(element.getAttribute("data-target") || "0");
+        const suffix = element.getAttribute("data-suffix") || "";
+        const duration = 2000; // 2 seconds
+        const steps = 60;
+        const increment = target / steps;
+        let current = 0;
+        let step = 0;
+
+        const timer = setInterval(() => {
+            step++;
+            current = Math.min(Math.floor(increment * step), target);
+            element.textContent = current.toString();
+
+            if (step >= steps) {
+                clearInterval(timer);
+                element.textContent = target.toString();
+            }
+        }, duration / steps);
+    }
+
+    // Intersection Observer for counter animation
+    const observerOptions = {
+        threshold: 0.5,
+        rootMargin: "0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                const counter = entry.target as HTMLElement;
+                if (!counter.classList.contains("animated")) {
+                    counter.classList.add("animated");
+                    animateCounter(counter);
+                }
+            }
+        });
+    }, observerOptions);
+
+    // Observe all counters
+    document.querySelectorAll(".counter").forEach((counter) => {
+        observer.observe(counter);
+    });
+</script>
+
+<style>
+    /* Ticker animation */
+    .ticker-wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .ticker-content {
+        display: flex;
+        animation: ticker 30s linear infinite;
+        will-change: transform;
+    }
+
+    .ticker-item {
+        font-family: var(--font-heading);
+        font-weight: 700;
+        font-size: 1rem;
+        color: var(--gray-50);
+        white-space: nowrap;
+        padding: 0 3rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+    }
+
+    @keyframes ticker {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Pause on hover */
+    .ticker-wrapper:hover .ticker-content {
+        animation-play-state: paused;
+    }
+</style>

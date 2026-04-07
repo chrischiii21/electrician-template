@@ -1,110 +1,282 @@
 ---
 import Button from "../ui/Button.astro";
 
-// Placeholder images - replace with actual electrician/construction images
-const carouselImages = [
-    "https://33hb9xdnm4.ucarecd.net/10381cf7-194e-422f-bcc7-50df3498bff8/photo162190525191848416bd8575a", // Electrician working
-    "https://33hb9xdnm4.ucarecd.net/cc7a1cf1-45a7-4dab-b0ac-f704b5a47b18/photo1473341304170971dccb5ac1e", // Construction site
-    "https://33hb9xdnm4.ucarecd.net/e48c2232-5d04-4524-bbb9-685c07f82e5d/photo150430765125435680f356dfd", // Building architecture
-];
+// High-quality electrical project images
+const heroImage =
+    "https://33hb9xdnm4.ucarecd.net/10381cf7-194e-422f-bcc7-50df3498bff8/photo162190525191848416bd8575a";
 ---
 
 <section
-    class="relative bg-linear-to-br from-secondary to-secondary/90 text-gray-50 -mt-4 pt-20 min-h-screen flex items-center overflow-hidden z-0"
+    class="relative bg-gray-900 text-gray-50 -mt-4 pt-20 min-h-screen flex items-center overflow-hidden z-0"
 >
-    <!-- Carousel Background -->
-    <div class="absolute inset-0 carousel-container">
-        {
-            carouselImages.map((image, index) => (
-                <div
-                    class={`carousel-slide absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ${index === 0 ? "opacity-100" : "opacity-0"}`}
-                    style={`background-image: url('${image}');`}
-                    data-slide={index}
-                />
-            ))
-        }
-    </div>
-
-    <!-- Dark Overlay -->
-    <div class="absolute inset-0 bg-gray-900/60"></div>
-
-    <!-- Content -->
-    <div class="relative z-10 max-w-4xl mx-auto px-6 text-center w-full">
-        <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-6">
-            The Leader in<br />
-            Sophisticated<br />
-            Custom Homes
-        </h1>
-
-        <p
-            class="text-lg md:text-xl text-gray-100 mb-8 max-w-2xl mx-auto leading-relaxed"
+    <!-- Background Image with Cutout Effect -->
+    <div class="absolute inset-0">
+        <div
+            class="absolute inset-0 bg-cover bg-center opacity-30"
+            style={`background-image: url('${heroImage}');`}
         >
-            Elite team of experienced construction professionals delivers
-            excellence in design-build, design assist and specialty contracting
-            for metal structures, concrete foundations and metal roofing.
-        </p>
-
-        <div class="flex items-center justify-center gap-4 flex-wrap">
-            <Button
-                href="/contact"
-                variant="primary"
-                size="lg"
-                class="uppercase tracking-wider"
-            >
-                Schedule With Us
-            </Button>
-
-            <span class="text-gray-300 font-medium">or</span>
-
-            <Button
-                href="/news"
-                variant="outline"
-                size="lg"
-                class="uppercase tracking-wider border-gray-50 text-gray-50 hover:bg-gray-50 hover:text-secondary"
-            >
-                Recent News
-            </Button>
+        </div>
+        <!-- Dark gradient overlay -->
+        <div
+            class="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-900/95 to-secondary/40"
+        >
         </div>
     </div>
 
-    <!-- Decorative Elements -->
+    <!-- Animated Electric Glow Effect -->
+    <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="electric-glow"></div>
+        <div class="electric-glow-2"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-6xl mx-auto px-6 w-full py-20">
+        <div class="max-w-3xl">
+            <h1
+                class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-tight mb-6 text-gray-50"
+            >
+                Wiring the Future of <span class="text-primary glow-text"
+                    >Your Service Area</span
+                >
+            </h1>
+
+            <p
+                class="font-body text-lg md:text-xl text-gray-300 mb-8 leading-relaxed max-w-2xl"
+            >
+                From emergency sparks to smart home transformations. Fast, safe,
+                and sales-focused electrical solutions.
+            </p>
+
+            <div class="flex items-center gap-4 flex-wrap">
+                <Button
+                    href="#contact"
+                    variant="primary"
+                    size="lg"
+                    class="uppercase tracking-wider font-bold shadow-lg shadow-primary/50 hover:shadow-primary/70 transition-shadow"
+                >
+                    Get a Fast Quote
+                </Button>
+
+                <Button
+                    href="#specials"
+                    variant="outline"
+                    size="lg"
+                    class="uppercase tracking-wider font-bold border-2 border-accent text-accent hover:bg-accent hover:text-gray-900 transition-all"
+                >
+                    View Special Promotions
+                </Button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom gradient fade -->
     <div
-        class="absolute bottom-0 left-0 w-full h-32 bg-linear-to-t from-gray-900/20 to-transparent"
+        class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-background to-transparent"
     >
     </div>
 </section>
 
+<!-- Flash Modal -->
+<div
+    id="flash-modal"
+    class="fixed inset-0 bg-gray-900/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+>
+    <div
+        class="bg-gray-900 border-2 border-primary rounded-lg shadow-2xl shadow-primary/50 max-w-md w-full p-8 relative transform scale-95 transition-transform duration-300"
+        id="modal-content"
+    >
+        <!-- Close button -->
+        <button
+            id="close-modal"
+            class="absolute top-4 right-4 text-gray-400 hover:text-gray-50 transition-colors"
+            aria-label="Close modal"
+        >
+            <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <!-- Modal content -->
+        <div class="text-center">
+            <div class="mb-4">
+                <span
+                    class="inline-block text-5xl mb-2 animate-pulse text-primary"
+                    >⚡</span
+                >
+            </div>
+            <h2
+                class="font-heading font-bold text-2xl md:text-3xl mb-4 text-gray-50"
+            >
+                Need Power Now?
+            </h2>
+            <p class="font-body text-lg text-gray-300 mb-6">
+                <span class="text-primary font-bold text-xl">15% Off</span> Emergency
+                Repairs for First-Time Customers
+            </p>
+            <Button
+                href="#contact"
+                variant="primary"
+                size="lg"
+                class="w-full uppercase tracking-wider font-bold shadow-lg shadow-primary/50 hover:shadow-primary/70"
+                id="claim-coupon"
+            >
+                Claim Coupon
+            </Button>
+        </div>
+    </div>
+</div>
+
 <script>
-    // Simple carousel functionality
-    const slides = document.querySelectorAll(".carousel-slide");
-    let currentSlide = 0;
+    // Flash Modal functionality
+    const modal = document.getElementById("flash-modal");
+    const modalContent = document.getElementById("modal-content");
+    const closeBtn = document.getElementById("close-modal");
+    const claimBtn = document.getElementById("claim-coupon");
 
-    function nextSlide() {
-        slides[currentSlide].classList.remove("opacity-100");
-        slides[currentSlide].classList.add("opacity-0");
+    // Check if modal has been shown before
+    const hasSeenModal = sessionStorage.getItem("hasSeenFlashModal");
 
-        currentSlide = (currentSlide + 1) % slides.length;
+    if (!hasSeenModal) {
+        // Show modal after a short delay
+        setTimeout(() => {
+            if (modal && modalContent) {
+                modal.classList.remove("opacity-0", "pointer-events-none");
+                modalContent.classList.remove("scale-95");
+                modalContent.classList.add("scale-100");
+            }
+        }, 1000);
 
-        slides[currentSlide].classList.remove("opacity-0");
-        slides[currentSlide].classList.add("opacity-100");
+        // Mark as seen
+        sessionStorage.setItem("hasSeenFlashModal", "true");
     }
 
-    // Change slide every 5 seconds
-    setInterval(nextSlide, 5000);
+    // Close modal function
+    function closeModal() {
+        if (modal && modalContent) {
+            modal.classList.add("opacity-0", "pointer-events-none");
+            modalContent.classList.remove("scale-100");
+            modalContent.classList.add("scale-95");
+        }
+    }
+
+    // Close button click
+    closeBtn?.addEventListener("click", closeModal);
+
+    // Click outside modal to close
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+
+    // Claim coupon button - scroll to contact form
+    claimBtn?.addEventListener("click", (e) => {
+        closeModal();
+        // Smooth scroll will happen via the href="#contact"
+    });
+
+    // Close on Escape key
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            closeModal();
+        }
+    });
 </script>
 
 <style>
-    .carousel-slide {
-        animation: kenburns 20s ease-in-out infinite;
+    /* Electric glow animations */
+    .electric-glow {
+        position: absolute;
+        top: -50%;
+        right: -20%;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+            circle,
+            rgba(255, 123, 0, 0.15) 0%,
+            rgba(255, 123, 0, 0.05) 40%,
+            transparent 70%
+        );
+        animation: pulse-glow 4s ease-in-out infinite;
+        border-radius: 50%;
     }
 
-    @keyframes kenburns {
+    .electric-glow-2 {
+        position: absolute;
+        bottom: -30%;
+        left: -10%;
+        width: 600px;
+        height: 600px;
+        background: radial-gradient(
+            circle,
+            rgba(16, 69, 142, 0.2) 0%,
+            rgba(16, 69, 142, 0.08) 40%,
+            transparent 70%
+        );
+        animation: pulse-glow 6s ease-in-out infinite reverse;
+        border-radius: 50%;
+    }
+
+    @keyframes pulse-glow {
         0%,
         100% {
             transform: scale(1);
+            opacity: 0.5;
         }
         50% {
-            transform: scale(1.1);
+            transform: scale(1.2);
+            opacity: 0.8;
+        }
+    }
+
+    /* Text glow effect */
+    .glow-text {
+        text-shadow:
+            0 0 10px rgba(255, 123, 0, 0.5),
+            0 0 20px rgba(255, 123, 0, 0.3),
+            0 0 30px rgba(255, 123, 0, 0.2);
+        animation: text-glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes text-glow {
+        from {
+            text-shadow:
+                0 0 10px rgba(255, 123, 0, 0.5),
+                0 0 20px rgba(255, 123, 0, 0.3),
+                0 0 30px rgba(255, 123, 0, 0.2);
+        }
+        to {
+            text-shadow:
+                0 0 15px rgba(255, 123, 0, 0.7),
+                0 0 30px rgba(255, 123, 0, 0.5),
+                0 0 45px rgba(255, 123, 0, 0.3);
+        }
+    }
+
+    /* Modal animations */
+    #modal-content {
+        animation: modal-glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes modal-glow {
+        from {
+            box-shadow:
+                0 0 20px rgba(255, 123, 0, 0.3),
+                0 0 40px rgba(255, 123, 0, 0.2);
+        }
+        to {
+            box-shadow:
+                0 0 30px rgba(255, 123, 0, 0.5),
+                0 0 60px rgba(255, 123, 0, 0.3);
         }
     }
 </style>

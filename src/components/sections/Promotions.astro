@@ -1,0 +1,375 @@
+---
+import Container from "../ui/Container.astro";
+
+const coupons = [
+    {
+        id: "panel-upgrade",
+        title: "$50 OFF",
+        subtitle: "Full Panel Upgrades",
+        description:
+            "Upgrade your electrical panel for safer, more efficient power distribution",
+        code: "PANEL50",
+        icon: "⚡",
+        color: "primary",
+        isFlashSale: false,
+    },
+    {
+        id: "safety-inspection",
+        title: "FREE",
+        subtitle: "Safety Inspection",
+        description: "Complimentary safety inspection with any repair service",
+        code: "SAFEFREE",
+        icon: "🛡️",
+        color: "secondary",
+        isFlashSale: true,
+        flashEndTime: Date.now() + 24 * 60 * 60 * 1000, // 24 hours from now
+    },
+    {
+        id: "ev-charger",
+        title: "10% OFF",
+        subtitle: "EV Charger Installations",
+        description:
+            "Professional installation of electric vehicle charging stations",
+        code: "EV10OFF",
+        icon: "🔌",
+        color: "accent",
+        isFlashSale: false,
+    },
+];
+---
+
+<section class="bg-background py-16 md:py-24 relative" id="specials">
+    <Container size="lg">
+        <!-- Section Header -->
+        <div class="text-center mb-12">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <span class="text-4xl">⚡</span>
+                <h2
+                    class="font-heading font-bold text-3xl md:text-4xl text-text"
+                >
+                    Power-Up Promotions
+                </h2>
+                <span class="text-4xl">⚡</span>
+            </div>
+            <p class="font-body text-lg text-gray-700 max-w-2xl mx-auto">
+                Exclusive offers to keep your home powered and protected.
+                Limited time deals!
+            </p>
+        </div>
+
+        <!-- Coupon Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 px-6">
+            {
+                coupons.map((coupon) => (
+                    <div class="coupon-card group">
+                        {/* Perforated edge effect */}
+                        <div class="perforated-edge" />
+
+                        {/* Card content */}
+                        <div
+                            class={`coupon-content bg-gray-50 border-2 ${
+                                coupon.color === "primary"
+                                    ? "border-primary"
+                                    : coupon.color === "secondary"
+                                      ? "border-secondary"
+                                      : "border-accent"
+                            } relative overflow-hidden`}
+                        >
+                            {/* Flash Sale Badge */}
+                            {coupon.isFlashSale && (
+                                <div class="absolute top-4 right-4 z-10">
+                                    <div class="bg-danger text-gray-50 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider animate-pulse">
+                                        Flash Sale
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Icon circle */}
+                            <div
+                                class={`w-20 h-20 rounded-full mx-auto mb-4 flex items-center justify-center text-4xl ${
+                                    coupon.color === "primary"
+                                        ? "bg-primary/10"
+                                        : coupon.color === "secondary"
+                                          ? "bg-secondary/10"
+                                          : "bg-accent/10"
+                                } group-hover:scale-110 transition-transform duration-300`}
+                            >
+                                {coupon.icon}
+                            </div>
+
+                            {/* Title */}
+                            <div class="text-center mb-4">
+                                <div
+                                    class={`font-heading font-bold text-5xl mb-2 ${
+                                        coupon.color === "primary"
+                                            ? "text-primary"
+                                            : coupon.color === "secondary"
+                                              ? "text-secondary"
+                                              : "text-accent"
+                                    }`}
+                                >
+                                    {coupon.title}
+                                </div>
+                                <div class="font-heading font-bold text-xl text-text">
+                                    {coupon.subtitle}
+                                </div>
+                            </div>
+
+                            {/* Description */}
+                            <p class="font-body text-sm text-gray-700 text-center mb-6 px-4 min-h-[3rem]">
+                                {coupon.description}
+                            </p>
+
+                            {/* Countdown Timer (Flash Sale only) */}
+                            {coupon.isFlashSale && (
+                                <div class="mb-4 px-4">
+                                    <div class="bg-danger/10 border border-danger/30 rounded-lg p-3">
+                                        <div class="text-xs text-danger font-bold uppercase tracking-wider text-center mb-2">
+                                            Offer Ends In
+                                        </div>
+                                        <div
+                                            class="countdown-timer flex justify-center gap-2 text-center"
+                                            data-end-time={coupon.flashEndTime}
+                                        >
+                                            <div class="countdown-unit">
+                                                <div class="countdown-value font-heading font-bold text-2xl text-danger">
+                                                    00
+                                                </div>
+                                                <div class="countdown-label text-xs text-gray-700">
+                                                    Hours
+                                                </div>
+                                            </div>
+                                            <div class="countdown-separator font-bold text-2xl text-danger">
+                                                :
+                                            </div>
+                                            <div class="countdown-unit">
+                                                <div class="countdown-value font-heading font-bold text-2xl text-danger">
+                                                    00
+                                                </div>
+                                                <div class="countdown-label text-xs text-gray-700">
+                                                    Mins
+                                                </div>
+                                            </div>
+                                            <div class="countdown-separator font-bold text-2xl text-danger">
+                                                :
+                                            </div>
+                                            <div class="countdown-unit">
+                                                <div class="countdown-value font-heading font-bold text-2xl text-danger">
+                                                    00
+                                                </div>
+                                                <div class="countdown-label text-xs text-gray-700">
+                                                    Secs
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+
+                            {/* Coupon Code */}
+                            <div class="px-4 mb-4">
+                                <div class="bg-gray-900 border-2 border-dashed border-gray-700 rounded-lg p-4 relative">
+                                    <div class="text-xs text-gray-300 uppercase tracking-wider text-center mb-2">
+                                        Coupon Code
+                                    </div>
+                                    <div class="font-heading font-bold text-2xl text-gray-50 text-center tracking-wider coupon-code">
+                                        {coupon.code}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Copy Button */}
+                            <div class="px-4 pb-6">
+                                <button
+                                    class={`copy-button w-full font-heading font-bold uppercase tracking-wider py-3 px-6 rounded-lg transition-all duration-300 ${
+                                        coupon.color === "primary"
+                                            ? "bg-primary hover:bg-primary/90 text-gray-50"
+                                            : coupon.color === "secondary"
+                                              ? "bg-secondary hover:bg-secondary/90 text-gray-50"
+                                              : "bg-accent hover:bg-accent/90 text-gray-900"
+                                    } shadow-lg hover:shadow-xl hover:scale-105`}
+                                    data-code={coupon.code}
+                                >
+                                    <span class="button-text">
+                                        Click to Copy Code
+                                    </span>
+                                    <span class="button-copied hidden">
+                                        ✓ Copied!
+                                    </span>
+                                </button>
+                            </div>
+
+                            {/* Decorative corner cuts */}
+                            <div
+                                class={`corner-cut top-left ${
+                                    coupon.color === "primary"
+                                        ? "bg-primary"
+                                        : coupon.color === "secondary"
+                                          ? "bg-secondary"
+                                          : "bg-accent"
+                                }`}
+                            />
+                            <div
+                                class={`corner-cut bottom-right ${
+                                    coupon.color === "primary"
+                                        ? "bg-primary"
+                                        : coupon.color === "secondary"
+                                          ? "bg-secondary"
+                                          : "bg-accent"
+                                }`}
+                            />
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        {/* Call to Action */}
+        <div class="text-center mt-12">
+            <p class="font-body text-gray-700 mb-4">
+                Questions about our promotions? <a
+                    href="#contact"
+                    class="text-primary font-bold hover:underline"
+                    >Contact us today!</a
+                >
+            </p>
+        </div>
+    </Container>
+</section>
+
+<script>
+    // Copy to clipboard functionality
+    document.querySelectorAll(".copy-button").forEach((button) => {
+        button.addEventListener("click", async () => {
+            const code = button.getAttribute("data-code");
+            const buttonText = button.querySelector(".button-text");
+            const buttonCopied = button.querySelector(".button-copied");
+
+            if (code && buttonText && buttonCopied) {
+                try {
+                    await navigator.clipboard.writeText(code);
+
+                    // Show copied state
+                    buttonText.classList.add("hidden");
+                    buttonCopied.classList.remove("hidden");
+
+                    // Reset after 2 seconds
+                    setTimeout(() => {
+                        buttonText.classList.remove("hidden");
+                        buttonCopied.classList.add("hidden");
+                    }, 2000);
+                } catch (err) {
+                    console.error("Failed to copy:", err);
+                }
+            }
+        });
+    });
+
+    // Countdown timer functionality
+    function updateCountdown(timer: Element) {
+        const endTime = parseInt(timer.getAttribute("data-end-time") || "0");
+        const now = Date.now();
+        const remaining = Math.max(0, endTime - now);
+
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor(
+            (remaining % (1000 * 60 * 60)) / (1000 * 60),
+        );
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        const values = timer.querySelectorAll(".countdown-value");
+        if (values.length >= 3) {
+            values[0].textContent = hours.toString().padStart(2, "0");
+            values[1].textContent = minutes.toString().padStart(2, "0");
+            values[2].textContent = seconds.toString().padStart(2, "0");
+        }
+
+        if (remaining > 0) {
+            setTimeout(() => updateCountdown(timer), 1000);
+        }
+    }
+
+    // Initialize all countdown timers
+    document.querySelectorAll(".countdown-timer").forEach((timer) => {
+        updateCountdown(timer);
+    });
+</script>
+
+<style>
+    .coupon-card {
+        position: relative;
+        transition: transform 0.3s ease;
+    }
+
+    .coupon-card:hover {
+        transform: translateY(-8px);
+    }
+
+    /* Perforated edge effect */
+    .perforated-edge {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: repeating-linear-gradient(
+            90deg,
+            var(--gray-700) 0px,
+            var(--gray-700) 8px,
+            transparent 8px,
+            transparent 16px
+        );
+        z-index: 1;
+    }
+
+    .coupon-content {
+        position: relative;
+        padding-top: 2rem;
+        border-radius: 0.5rem;
+        box-shadow:
+            0 4px 6px -1px rgba(0, 0, 0, 0.1),
+            0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: box-shadow 0.3s ease;
+    }
+
+    .coupon-card:hover .coupon-content {
+        box-shadow:
+            0 20px 25px -5px rgba(0, 0, 0, 0.1),
+            0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+
+    /* Corner cuts */
+    .corner-cut {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        opacity: 0.2;
+    }
+
+    .corner-cut.top-left {
+        top: 0;
+        left: 0;
+        clip-path: polygon(0 0, 100% 0, 0 100%);
+    }
+
+    .corner-cut.bottom-right {
+        bottom: 0;
+        right: 0;
+        clip-path: polygon(100% 0, 100% 100%, 0 100%);
+    }
+
+    /* Countdown animation */
+    .countdown-value {
+        animation: pulse-number 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse-number {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+</style>

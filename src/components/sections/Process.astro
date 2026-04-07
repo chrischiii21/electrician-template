@@ -1,0 +1,388 @@
+---
+import Container from "../ui/Container.astro";
+
+const steps = [
+    {
+        number: "01",
+        title: "Instant Contact",
+        subtitle: "You call, we answer",
+        description:
+            "No phone trees, no waiting. Speak directly with our expert team and get immediate assistance for your electrical needs.",
+        icon: "📞",
+        features: [
+            "Live person answers",
+            "24/7 availability",
+            "Emergency dispatch",
+        ],
+        color: "primary",
+    },
+    {
+        number: "02",
+        title: "Flat-Rate Diagnostic",
+        subtitle: "No hourly surprises",
+        description:
+            "Transparent, upfront pricing before we start. You'll know exactly what you're paying—no hidden fees, no hourly rate shocks.",
+        icon: "💰",
+        features: ["Fixed pricing", "Written estimates", "No hidden costs"],
+        color: "secondary",
+    },
+    {
+        number: "03",
+        title: "The Fix",
+        subtitle: "100% Guaranteed workmanship",
+        description:
+            "Expert installation with lifetime warranty. Our certified electricians deliver quality work that stands the test of time.",
+        icon: "✓",
+        features: ["Licensed pros", "Quality materials", "Lifetime warranty"],
+        color: "accent",
+    },
+];
+---
+
+<section class="bg-background py-16 md:py-24 relative overflow-hidden">
+    <!-- Decorative circuit pattern background -->
+    <div class="absolute inset-0 opacity-5">
+        <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
+            <pattern
+                id="circuit"
+                x="0"
+                y="0"
+                width="100"
+                height="100"
+                patternUnits="userSpaceOnUse"
+            >
+                <circle cx="50" cy="50" r="2" fill="currentColor"></circle>
+                <line
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="50"
+                    stroke="currentColor"
+                    stroke-width="1"></line>
+                <line
+                    x1="50"
+                    y1="50"
+                    x2="100"
+                    y2="50"
+                    stroke="currentColor"
+                    stroke-width="1"></line>
+            </pattern>
+            <rect width="100%" height="100%" fill="url(#circuit)"></rect>
+        </svg>
+    </div>
+
+    <Container size="lg">
+        <!-- Section Header -->
+        <div class="text-center mb-16 relative z-10">
+            <div class="inline-flex items-center gap-2 mb-4">
+                <span class="text-4xl">⚡</span>
+                <h2
+                    class="font-heading font-bold text-3xl md:text-4xl text-text"
+                >
+                    No-Shock Pricing & Process
+                </h2>
+                <span class="text-4xl">⚡</span>
+            </div>
+            <p class="font-body text-lg text-gray-700 max-w-2xl mx-auto">
+                Transparent pricing, guaranteed results. No hidden costs, no
+                surprises—just honest electrical service.
+            </p>
+        </div>
+
+        <!-- Process Timeline -->
+        <div class="max-w-4xl mx-auto px-6 relative">
+            <!-- Vertical Wiring Diagram Line -->
+            <div
+                class="absolute left-1/2 top-0 bottom-0 w-1 -ml-0.5 hidden md:block"
+            >
+                <div
+                    class="wiring-line h-full bg-gradient-to-b from-primary via-secondary to-accent"
+                >
+                </div>
+
+                <!-- Animated current flow -->
+                <div class="current-flow"></div>
+            </div>
+
+            <!-- Steps -->
+            <div class="space-y-12 md:space-y-24 relative">
+                {
+                    steps.map((step, index) => (
+                        <div
+                            class={`process-step flex flex-col md:flex-row items-center gap-8 ${
+                                index % 2 === 0
+                                    ? "md:flex-row"
+                                    : "md:flex-row-reverse"
+                            }`}
+                            style={`animation-delay: ${index * 0.2}s`}
+                        >
+                            {/* Content Card */}
+                            <div
+                                class={`flex-1 ${index % 2 === 0 ? "md:text-right" : "md:text-left"}`}
+                            >
+                                <div
+                                    class={`process-card bg-gray-50 rounded-2xl p-8 shadow-lg border-2 ${
+                                        step.color === "primary"
+                                            ? "border-primary"
+                                            : step.color === "secondary"
+                                              ? "border-secondary"
+                                              : "border-accent"
+                                    } hover:shadow-2xl transition-all duration-300 group`}
+                                >
+                                    {/* Step Number */}
+                                    <div
+                                        class={`inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 font-heading font-bold text-xl ${
+                                            step.color === "primary"
+                                                ? "bg-primary/10 text-primary"
+                                                : step.color === "secondary"
+                                                  ? "bg-secondary/10 text-secondary"
+                                                  : "bg-accent/10 text-accent"
+                                        } ${index % 2 === 0 ? "md:float-right md:ml-4" : "md:float-left md:mr-4"}`}
+                                    >
+                                        {step.number}
+                                    </div>
+
+                                    {/* Title */}
+                                    <h3 class="font-heading font-bold text-2xl md:text-3xl text-text mb-2">
+                                        {step.title}
+                                    </h3>
+
+                                    {/* Subtitle */}
+                                    <div
+                                        class={`font-body text-lg font-bold mb-4 ${
+                                            step.color === "primary"
+                                                ? "text-primary"
+                                                : step.color === "secondary"
+                                                  ? "text-secondary"
+                                                  : "text-accent"
+                                        }`}
+                                    >
+                                        {step.subtitle}
+                                    </div>
+
+                                    {/* Description */}
+                                    <p class="font-body text-gray-700 mb-6 leading-relaxed">
+                                        {step.description}
+                                    </p>
+
+                                    {/* Features */}
+                                    <div
+                                        class={`flex flex-wrap gap-3 ${index % 2 === 0 ? "md:justify-end" : "md:justify-start"}`}
+                                    >
+                                        {step.features.map((feature) => (
+                                            <div
+                                                class={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-bold ${
+                                                    step.color === "primary"
+                                                        ? "bg-primary/10 text-primary"
+                                                        : step.color ===
+                                                            "secondary"
+                                                          ? "bg-secondary/10 text-secondary"
+                                                          : "bg-accent/10 text-accent"
+                                                }`}
+                                            >
+                                                <span>✓</span>
+                                                <span>{feature}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+
+                                    {/* Hover glow effect */}
+                                    <div
+                                        class={`absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none ${
+                                            step.color === "primary"
+                                                ? "bg-gradient-to-br from-primary/5 to-transparent"
+                                                : step.color === "secondary"
+                                                  ? "bg-gradient-to-br from-secondary/5 to-transparent"
+                                                  : "bg-gradient-to-br from-accent/5 to-transparent"
+                                        }`}
+                                    />
+                                </div>
+                            </div>
+
+                            {/* Center Node (Icon) */}
+                            <div class="relative z-10 shrink-0">
+                                <div
+                                    class={`w-20 h-20 md:w-24 md:h-24 rounded-full flex items-center justify-center text-4xl md:text-5xl shadow-2xl border-4 border-background ${
+                                        step.color === "primary"
+                                            ? "bg-gradient-to-br from-primary to-primary/80 shadow-primary/30"
+                                            : step.color === "secondary"
+                                              ? "bg-gradient-to-br from-secondary to-secondary/80 shadow-secondary/30"
+                                              : "bg-gradient-to-br from-accent to-accent/80 shadow-accent/30"
+                                    } node-pulse`}
+                                >
+                                    {step.icon}
+                                </div>
+
+                                {/* Connection dots */}
+                                <div
+                                    class={`absolute top-1/2 -translate-y-1/2 w-8 h-0.5 ${
+                                        index % 2 === 0 ? "-right-8" : "-left-8"
+                                    } hidden md:block ${
+                                        step.color === "primary"
+                                            ? "bg-primary"
+                                            : step.color === "secondary"
+                                              ? "bg-secondary"
+                                              : "bg-accent"
+                                    }`}
+                                />
+                            </div>
+
+                            {/* Spacer for alternating layout */}
+                            <div class="flex-1 hidden md:block" />
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        {/* Bottom Guarantee Badge */}
+        <div class="mt-16 text-center relative z-10">
+            <div
+                class="inline-block bg-gray-900 border-2 border-primary rounded-2xl p-8 shadow-2xl shadow-primary/20"
+            >
+                <div class="flex flex-col md:flex-row items-center gap-6">
+                    <div
+                        class="w-20 h-20 rounded-full bg-primary flex items-center justify-center text-4xl shrink-0"
+                    >
+                        🛡️
+                    </div>
+                    <div class="text-center md:text-left">
+                        <h3
+                            class="font-heading font-bold text-2xl text-gray-50 mb-2"
+                        >
+                            Our No-Shock Guarantee
+                        </h3>
+                        <p class="font-body text-gray-300 max-w-2xl">
+                            If you're not 100% satisfied with our pricing
+                            transparency or workmanship quality, we'll make it
+                            right—no questions asked.
+                        </p>
+                    </div>
+                    <a
+                        href="#contact"
+                        class="shrink-0 font-heading font-bold uppercase tracking-wider px-8 py-4 bg-primary text-gray-50 rounded-lg hover:bg-primary/90 transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                    >
+                        Get Started
+                    </a>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
+
+<style>
+    /* Wiring line animation */
+    .wiring-line {
+        position: relative;
+        box-shadow: 0 0 10px rgba(255, 123, 0, 0.3);
+    }
+
+    /* Animated current flow */
+    .current-flow {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 8px;
+        height: 8px;
+        background: var(--primary);
+        border-radius: 50%;
+        box-shadow:
+            0 0 10px var(--primary),
+            0 0 20px var(--primary),
+            0 0 30px var(--primary);
+        animation: flow 4s ease-in-out infinite;
+    }
+
+    @keyframes flow {
+        0% {
+            top: 0%;
+            opacity: 0;
+        }
+        10% {
+            opacity: 1;
+        }
+        90% {
+            opacity: 1;
+        }
+        100% {
+            top: 100%;
+            opacity: 0;
+        }
+    }
+
+    /* Node pulse animation */
+    .node-pulse {
+        animation: pulse-node 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-node {
+        0%,
+        100% {
+            transform: scale(1);
+            box-shadow: 0 0 20px currentColor;
+        }
+        50% {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px currentColor;
+        }
+    }
+
+    /* Process step fade-in animation */
+    .process-step {
+        animation: fadeInScale 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.9);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    /* Process card relative positioning for hover effect */
+    .process-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 767px) {
+        .process-step {
+            flex-direction: column !important;
+        }
+
+        .process-card {
+            text-align: center !important;
+        }
+
+        .process-card > div {
+            float: none !important;
+            margin: 0 auto 1rem !important;
+        }
+
+        .process-card .flex {
+            justify-content: center !important;
+        }
+    }
+
+    /* Connection line glow on hover */
+    .process-step:hover .node-pulse {
+        animation: pulse-node-fast 1s ease-in-out infinite;
+    }
+
+    @keyframes pulse-node-fast {
+        0%,
+        100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+</style>
