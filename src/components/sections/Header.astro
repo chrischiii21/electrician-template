@@ -1,6 +1,26 @@
 ---
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
+import { getCollection } from "astro:content";
+
+// Get service categories from content collection
+const servicesEntries = await getCollection("services");
+const serviceCategories = servicesEntries
+    .sort((a, b) => a.data.order - b.data.order)
+    .map((entry) => ({
+        label: entry.data.category,
+        href: entry.data.href,
+        services: entry.data.services,
+    }));
+
+// Get service areas from content collection
+const serviceAreasEntries = await getCollection("serviceAreas");
+const serviceAreasSubmenu = serviceAreasEntries
+    .sort((a, b) => a.data.order - b.data.order)
+    .map((entry) => ({
+        label: entry.data.name,
+        href: entry.data.href,
+    }));
 
 const mainNavLinks = [
     {
@@ -20,14 +40,7 @@ const mainNavLinks = [
     {
         label: "Service Area",
         href: "/service-area",
-        submenu: [
-            { label: "Los Angeles", href: "/service-area/los-angeles" },
-            { label: "San Diego", href: "/service-area/san-diego" },
-            { label: "San Francisco", href: "/service-area/san-francisco" },
-            { label: "Sacramento", href: "/service-area/sacramento" },
-            { label: "Fresno", href: "/service-area/fresno" },
-            { label: "Oakland", href: "/service-area/oakland" },
-        ],
+        submenu: serviceAreasSubmenu,
     },
     {
         label: "Contact Us",
@@ -39,67 +52,6 @@ const mainNavLinks = [
 const secondaryNavLinks = [
     { label: "Specials / Coupons", href: "/specials" },
     { label: "Financing", href: "/financing" },
-];
-
-const serviceCategories = [
-    {
-        label: "Commercial Electrical Services",
-        href: "/commercial",
-        services: [
-            {
-                label: "Ground-up Electrical Construction",
-                href: "/commercial/construction",
-            },
-            {
-                label: "Emergency & Standby Power Generating Systems",
-                href: "/commercial/power-systems",
-            },
-            { label: "Commercial HVAC Electrical", href: "/commercial/hvac" },
-            {
-                label: "Commercial Electrical Panels",
-                href: "/commercial/panels",
-            },
-        ],
-    },
-    {
-        label: "Residential Electrical Services",
-        href: "/residential",
-        services: [
-            {
-                label: "Car Charging Stations/ EV",
-                href: "/residential/ev-charging",
-            },
-            { label: "Ceiling Fan", href: "/residential/ceiling-fan" },
-            { label: "GFCI Outlets", href: "/residential/gfci" },
-            { label: "Backup Generators", href: "/residential/generators" },
-        ],
-    },
-    {
-        label: "Specialty Services",
-        href: "/specialty",
-        services: [
-            {
-                label: "Holiday Lighting Installation Services",
-                href: "/specialty/holiday-lighting",
-            },
-            { label: "Landscape Lighting", href: "/specialty/landscape" },
-            { label: "Pool & Spa Electrical", href: "/specialty/pool-spa" },
-            {
-                label: "Property Management",
-                href: "/specialty/property-management",
-            },
-        ],
-    },
-    {
-        label: "Emergency",
-        href: "/emergency",
-        services: [
-            { label: "24-hour Emergency Service", href: "/emergency/24-hour" },
-            { label: "HVAC", href: "/emergency/hvac" },
-            { label: "Heating", href: "/emergency/heating" },
-            { label: "Water Heater", href: "/emergency/water-heater" },
-        ],
-    },
 ];
 ---
 
