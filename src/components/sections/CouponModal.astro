@@ -12,6 +12,7 @@ interface Props {
     dismissText?: string;
     ctaLink?: string;
     expiresIn?: string;
+    autoOpen?: boolean;
 }
 
 const {
@@ -25,6 +26,7 @@ const {
     dismissText = "No thanks, I'll pass",
     ctaLink = "#contact",
     expiresIn = "47:59:59",
+    autoOpen = false,
 } = Astro.props;
 
 const discountSymbol = discountType === "percentage" ? "%" : "$";
@@ -38,6 +40,7 @@ const discountSize = discountType === "percentage" ? "text-8xl" : "text-6xl";
     role="dialog"
     aria-labelledby="coupon-title"
     style="display:none"
+    data-auto-open={autoOpen ? "true" : "false"}
 >
     <!-- Backdrop -->
     <div
@@ -218,6 +221,9 @@ const discountSize = discountType === "percentage" ? "text-8xl" : "text-6xl";
         close: closeModal,
     };
 
-    // Auto-open after delay (2 seconds by default)
-    setTimeout(openModal, 2000);
+    // Only auto-open if explicitly enabled via data attribute
+    const autoOpen = modal?.getAttribute("data-auto-open");
+    if (autoOpen === "true") {
+        setTimeout(openModal, 2000);
+    }
 </script>
