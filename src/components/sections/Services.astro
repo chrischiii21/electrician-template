@@ -1,0 +1,253 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+const services = [
+    {
+        id: "commercial",
+        label: "Commercial",
+        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
+        badge: "Most Popular",
+        tagline: "Built for Business. Engineered for Scale.",
+        description: "Whether you're breaking ground on a new facility or upgrading aging infrastructure, our commercial electrical team handles projects of every size. We work around your schedule to minimize downtime and keep your operations running.",
+        pitch: "From high-rise construction to industrial power systems, we bring the expertise and manpower to deliver on time and on budget — every single time.",
+        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80",
+        services: [
+            "Ground-up Electrical Construction",
+            "Emergency & Standby Power Systems",
+            "Commercial HVAC Electrical",
+            "Commercial Electrical Panels",
+        ],
+        cta: { label: "Get a Commercial Quote", href: "/commercial" },
+    },
+    {
+        id: "residential",
+        label: "Residential",
+        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+        badge: null,
+        tagline: "Your Home Deserves the Best.",
+        description: "We treat every home like our own. From EV charger installs to full panel upgrades, our licensed electricians deliver clean, code-compliant work with zero mess left behind.",
+        pitch: "Upgrade your home's electrical system and add real value to your property. Our residential team is fast, friendly, and fully insured.",
+        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
+        services: [
+            "EV Car Charging Stations",
+            "Ceiling Fan Installation",
+            "GFCI Outlet Upgrades",
+            "Backup Generator Install",
+        ],
+        cta: { label: "Book a Home Visit", href: "/residential" },
+    },
+    {
+        id: "specialty",
+        label: "Specialty",
+        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
+        badge: null,
+        tagline: "Beyond the Basics. Above Expectations.",
+        description: "Stand out from the neighborhood. Our specialty electrical services add beauty, safety, and functionality to your outdoor spaces, pools, and seasonal setups.",
+        pitch: "From resort-style pool lighting to stunning landscape designs, we turn ordinary properties into extraordinary ones.",
+        image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80",
+        services: [
+            "Holiday Lighting Installation",
+            "Landscape & Outdoor Lighting",
+            "Pool & Spa Electrical",
+            "Property Management Services",
+        ],
+        cta: { label: "Explore Specialty Services", href: "/specialty" },
+    },
+    {
+        id: "emergency",
+        label: "Emergency",
+        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,
+        badge: "24/7",
+        tagline: "Power Out? We're On Our Way.",
+        description: "Electrical emergencies don't wait for business hours — and neither do we. Our emergency response team is available 24/7, 365 days a year to restore your power fast and safely.",
+        pitch: "Don't risk your family's safety or your business's bottom line. One call and a licensed electrician is dispatched immediately.",
+        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&q=80",
+        services: [
+            "24-Hour Emergency Response",
+            "Emergency HVAC Electrical",
+            "Heating System Repairs",
+            "Water Heater Electrical",
+        ],
+        cta: { label: "Call Now — We're Ready", href: "tel:+15550000000" },
+    },
+];
+---
+
+<section class="bg-white py-20" id="services">
+    <Container size="lg">
+
+        <!-- Header -->
+        <div class="text-center mb-10 scroll-animate">
+            <Badge variant="primary" class="mb-3">What We Do</Badge>
+            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+                Every Electrical Need. <span class="text-primary">One Trusted Team.</span>
+            </Heading>
+            <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
+                From emergency callouts to full commercial builds — we've got the crew, the tools, and the track record.
+            </Text>
+        </div>
+
+        <!-- Pill Tab Nav -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10 scroll-animate" role="tablist">
+            {services.map((s, i) => (
+                <button
+                    role="tab"
+                    aria-selected={i === 0}
+                    aria-controls={`panel-${s.id}`}
+                    data-tab={s.id}
+                    class:list={[
+                        "services-tab inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-heading border transition-all duration-200 whitespace-nowrap",
+                        i === 0
+                            ? "bg-primary text-white border-primary"
+                            : "bg-white text-gray-500 border-gray-200 hover:border-primary hover:text-primary",
+                    ]}
+                >
+                    <span set:html={s.icon} />
+                    {s.label}
+                    {s.badge && (
+                        <span class:list={[
+                            "tab-badge text-xs font-bold px-1.5 py-0.5 leading-none",
+                            i === 0 ? "bg-gray-900 text-white" : "bg-primary text-white"
+                        ]}>
+                            {s.badge}
+                        </span>
+                    )}
+                </button>
+            ))}
+        </div>
+
+        <!-- Panels -->
+        <div class="panels-wrapper scroll-animate">
+            {services.map((s, i) => (
+                <div
+                    id={`panel-${s.id}`}
+                    role="tabpanel"
+                    data-panel={s.id}
+                    class:list={["services-panel", i === 0 ? "is-active" : "is-inactive"]}
+                    aria-hidden={i !== 0}
+                >
+                    <div class="grid md:grid-cols-2 border border-gray-200">
+                        <!-- Image -->
+                        <div class="relative overflow-hidden h-72 md:h-auto">
+                            <img
+                                src={s.image}
+                                alt={s.label}
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                            />
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-8 md:p-10 flex flex-col justify-center bg-white">
+                            <Badge variant="primary" class="mb-4 self-start">{s.label} Services</Badge>
+                            <Heading level={3} class="mb-3">{s.tagline}</Heading>
+                            <Text class="text-gray-700 mb-2">{s.description}</Text>
+                            <Text size="sm" class="text-gray-400 mb-6 italic">{s.pitch}</Text>
+
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-8">
+                                {s.services.map((item) => (
+                                    <li class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                        </svg>
+                                        <Text size="sm" class="text-gray-700" as="span">{item}</Text>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            <div class="self-start">
+                                <Button
+                                    href={s.cta.href}
+                                    variant="primary"
+                                    size="md"
+                                    class="uppercase tracking-wider font-bold inline-flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/30 transition-all duration-200"
+                                >
+                                    {s.cta.label}
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                                    </svg>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+    </Container>
+</section>
+
+<script>
+    const tabs = document.querySelectorAll<HTMLButtonElement>(".services-tab");
+    const panels = document.querySelectorAll<HTMLElement>(".services-panel");
+
+    tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+            const target = tab.dataset.tab;
+            const current = document.querySelector<HTMLElement>(".services-panel.is-active");
+            const next = document.querySelector<HTMLElement>(`.services-panel[data-panel="${target}"]`);
+
+            if (!next || current === next) return;
+
+            // Update tab pill styles
+            tabs.forEach((t) => {
+                const active = t.dataset.tab === target;
+                t.setAttribute("aria-selected", String(active));
+
+                if (active) {
+                    t.classList.add("bg-primary", "text-white", "border-primary");
+                    t.classList.remove("bg-white", "text-gray-500", "border-gray-200");
+                } else {
+                    t.classList.remove("bg-primary", "text-white", "border-primary");
+                    t.classList.add("bg-white", "text-gray-500", "border-gray-200");
+                }
+
+                // Badge inside tab: dark bg when tab is active so it's visible on primary
+                const badge = t.querySelector<HTMLElement>(".tab-badge");
+                if (badge) {
+                    badge.classList.toggle("bg-gray-900", active);
+                    badge.classList.toggle("bg-primary", !active);
+                }
+            });
+
+            // Swap panels
+            current?.classList.replace("is-active", "is-inactive");
+            current?.setAttribute("aria-hidden", "true");
+            next.classList.replace("is-inactive", "is-active");
+            next.setAttribute("aria-hidden", "false");
+        });
+    });
+</script>
+
+<style>
+    .panels-wrapper {
+        position: relative;
+    }
+
+    .services-panel {
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        will-change: opacity, transform;
+    }
+
+    .services-panel.is-active {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+        position: relative;
+    }
+
+    .services-panel.is-inactive {
+        opacity: 0;
+        transform: translateY(10px);
+        pointer-events: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        visibility: hidden;
+    }
+</style>
