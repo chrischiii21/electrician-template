@@ -1,0 +1,239 @@
+---
+import Container from "../ui/Container.astro";
+
+const trustItems = [
+    {
+        name: "BBB Accredited",
+        rating: "A+ Rating",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Better Business Bureau">
+            <rect width="80" height="40" rx="4" fill="#003f87"/>
+            <text x="40" y="16" font-family="Arial,sans-serif" font-size="11" font-weight="bold" fill="white" text-anchor="middle">BBB</text>
+            <text x="40" y="28" font-family="Arial,sans-serif" font-size="7" fill="#f0c040" text-anchor="middle">ACCREDITED</text>
+            <text x="40" y="37" font-family="Arial,sans-serif" font-size="7" fill="white" text-anchor="middle">BUSINESS</text>
+        </svg>`,
+    },
+    {
+        name: "Angi",
+        rating: "Super Service Award",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Angi">
+            <rect width="80" height="40" rx="4" fill="#FF6153"/>
+            <text x="40" y="26" font-family="Georgia,serif" font-size="22" font-weight="bold" fill="white" text-anchor="middle">Angi</text>
+        </svg>`,
+    },
+    {
+        name: "HomeAdvisor",
+        rating: "Top Rated Pro",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="HomeAdvisor">
+            <rect width="80" height="40" rx="4" fill="#f5a623"/>
+            <text x="40" y="15" font-family="Arial,sans-serif" font-size="7" font-weight="bold" fill="white" text-anchor="middle">HOME</text>
+            <text x="40" y="25" font-family="Arial,sans-serif" font-size="7" font-weight="bold" fill="white" text-anchor="middle">ADVISOR</text>
+            <text x="40" y="35" font-family="Arial,sans-serif" font-size="6" fill="white" text-anchor="middle">TOP RATED PRO</text>
+        </svg>`,
+    },
+    {
+        name: "Yelp",
+        rating: "5 Stars",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Yelp">
+            <rect width="80" height="40" rx="4" fill="#d32323"/>
+            <text x="40" y="27" font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="white" text-anchor="middle">yelp</text>
+        </svg>`,
+    },
+    {
+        name: "Google",
+        rating: "4.9 ★ Reviews",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Google Reviews">
+            <rect width="80" height="40" rx="4" fill="#fff" stroke="#e0e0e0"/>
+            <text x="8" y="26" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4285F4">G</text>
+            <text x="22" y="26" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#EA4335">o</text>
+            <text x="34" y="26" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#FBBC05">o</text>
+            <text x="46" y="26" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#4285F4">g</text>
+            <text x="57" y="26" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#34A853">l</text>
+            <text x="63" y="26" font-family="Arial,sans-serif" font-size="18" font-weight="bold" fill="#EA4335">e</text>
+        </svg>`,
+    },
+    {
+        name: "Licensed & Insured",
+        rating: "State Certified",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Licensed and Insured">
+            <rect width="80" height="40" rx="4" fill="#1a3a5c"/>
+            <path d="M40 6 L46 10 L46 18 C46 22 43 25 40 27 C37 25 34 22 34 18 L34 10 Z" fill="#f0c040"/>
+            <text x="40" y="35" font-family="Arial,sans-serif" font-size="6.5" font-weight="bold" fill="white" text-anchor="middle">LICENSED &amp; INSURED</text>
+        </svg>`,
+    },
+    {
+        name: "NECA Member",
+        rating: "Certified",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="NECA Member">
+            <rect width="80" height="40" rx="4" fill="#002868"/>
+            <text x="40" y="20" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#f0c040" text-anchor="middle">NECA</text>
+            <text x="40" y="33" font-family="Arial,sans-serif" font-size="6.5" fill="white" text-anchor="middle">MEMBER CONTRACTOR</text>
+        </svg>`,
+    },
+    {
+        name: "IBEW",
+        rating: "Union Electricians",
+        svg: `<svg viewBox="0 0 80 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="IBEW">
+            <rect width="80" height="40" rx="4" fill="#1a1a1a"/>
+            <text x="40" y="20" font-family="Arial,sans-serif" font-size="14" font-weight="bold" fill="#f0c040" text-anchor="middle">IBEW</text>
+            <text x="40" y="33" font-family="Arial,sans-serif" font-size="6" fill="#ccc" text-anchor="middle">UNION ELECTRICIANS</text>
+        </svg>`,
+    },
+];
+
+const duplicated = [...trustItems, ...trustItems];
+---
+
+<section class="bg-background py-8 border-y border-gray-100 overflow-hidden">
+    <Container size="lg">
+        <div class="text-center mb-6 scroll-animate">
+            <p class="font-body text-sm text-gray-400 uppercase tracking-wider">
+                Trusted by thousands of homeowners &amp; businesses
+            </p>
+        </div>
+
+        <!-- Scrolling Logos -->
+        <div class="relative">
+            <div
+                class="absolute left-0 top-0 bottom-0 w-20 bg-linear-to-r from-background to-transparent z-10 pointer-events-none"
+            >
+            </div>
+            <div
+                class="absolute right-0 top-0 bottom-0 w-20 bg-linear-to-l from-background to-transparent z-10 pointer-events-none"
+            >
+            </div>
+
+            <div class="logo-track">
+                <div class="logo-track-inner">
+                    {
+                        duplicated.map((item) => (
+                            <div class="logo-item" title={item.name}>
+                                <div class="logo-card">
+                                    <div class="logo-svg" set:html={item.svg} />
+                                    <div class="logo-meta">
+                                        <div class="font-body text-xs font-semibold text-text leading-tight">
+                                            {item.name}
+                                        </div>
+                                        <div class="font-body text-xs text-gray-400">
+                                            {item.rating}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 scroll-stagger">
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl text-primary mb-1">
+                    15+
+                </div>
+                <div class="font-body text-sm text-gray-400">
+                    Years Experience
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl text-primary mb-1">
+                    5,000+
+                </div>
+                <div class="font-body text-sm text-gray-400">
+                    Projects Completed
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl text-primary mb-1">
+                    100%
+                </div>
+                <div class="font-body text-sm text-gray-400">
+                    Satisfaction Rate
+                </div>
+            </div>
+            <div class="text-center">
+                <div class="font-heading font-bold text-3xl text-primary mb-1">
+                    24/7
+                </div>
+                <div class="font-body text-sm text-gray-400">
+                    Emergency Service
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
+
+<style>
+    .logo-track {
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .logo-track-inner {
+        display: flex;
+        gap: 1.25rem;
+        animation: scroll-left 35s linear infinite;
+        width: fit-content;
+    }
+
+    .logo-track:hover .logo-track-inner {
+        animation-play-state: paused;
+    }
+
+    @keyframes scroll-left {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .logo-item {
+        flex-shrink: 0;
+        width: 210px;
+    }
+
+    .logo-card {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem 1rem;
+        background: white;
+        border: 1px solid #f0f0f0;
+        border-radius: 0.75rem;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        transition:
+            box-shadow 0.2s ease,
+            transform 0.2s ease;
+    }
+
+    .logo-card:hover {
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        transform: translateY(-2px);
+    }
+
+    .logo-svg {
+        flex-shrink: 0;
+        width: 56px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+    }
+
+    .logo-svg svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .logo-meta {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .logo-meta > div {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+</style>

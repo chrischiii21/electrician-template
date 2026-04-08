@@ -37,5 +37,33 @@ const {
             <slot />
         </main>
         <Footer />
+
+        <!-- Scroll Animation Script -->
+        <script>
+            // Intersection Observer for scroll animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: "0px 0px -100px 0px",
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("animate-in");
+                        // Optional: unobserve after animation to improve performance
+                        // observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all elements with scroll animation classes
+            document.addEventListener("DOMContentLoaded", () => {
+                const animatedElements = document.querySelectorAll(
+                    ".scroll-animate, .scroll-fade-left, .scroll-fade-right, .scroll-scale, .scroll-stagger",
+                );
+
+                animatedElements.forEach((el) => observer.observe(el));
+            });
+        </script>
     </body>
 </html>

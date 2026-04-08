@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-    --color-text: #1c1c1c;
-    --color-background: #f9f8f6;
-    --color-primary: #ff7b00;
-    --color-secondary: #10458e;
+    --color-text: #1d283a;
+    --color-background: #ffffff;
+    --color-primary: #F96939;
+    --color-secondary: #f8fafc;
     --color-accent: #f59f0a;
 
-    --color-gray-50: #ffffff;
-    --color-gray-100: #e8e8e8;
-    --color-gray-300: #aaaaaa;
-    --color-gray-400: #888888;
-    --color-gray-700: #333333;
-    --color-gray-900: #000000;
+    --color-gray-50: #f9fafb;
+    --color-gray-100: #f3f4f6;
+    --color-gray-300: #d1d5db;
+    --color-gray-400: #9ca3af;
+    --color-gray-700: #374151;
+    --color-gray-900: #111827;
 
-    --color-link: #0066cc;
+    --color-link: #1d283a;
     --color-danger: #ff0000;
 
     --font-heading: 'Poppins', sans-serif;
@@ -23,29 +23,29 @@
 
 @layer base {
     :root {
-        --text: #1c1c1c;
-        --background: #f9f8f6;
-        --primary: #ff7b00;
-        --secondary: #10458e;
+        --text: #1d283a;
+        --background: #ffffff;
+        --primary: #33bcf7;
+        --secondary: #f8fafc;
         --accent: #f59f0a;
 
         /* Gray scale */
-        --gray-50: #ffffff;
-        --gray-100: #e8e8e8;
-        --gray-300: #aaaaaa;
-        --gray-400: #888888;
-        --gray-700: #333333;
-        --gray-900: #000000;
+        --gray-50: #f9fafb;
+        --gray-100: #f3f4f6;
+        --gray-300: #d1d5db;
+        --gray-400: #9ca3af;
+        --gray-700: #374151;
+        --gray-900: #111827;
 
         /* Semantic colors */
-        --link: #0066cc;
+        --link: #1d283a;
         --danger: #ff0000;
     }
 
     .dark {
         --text: #e3e3e3;
         --background: #090806;
-        --primary: #ff7b00;
+        --primary: #33bcf7;
         --secondary: #71a5ef;
         --accent: #f59f0a;
 
@@ -65,5 +65,100 @@
     body {
         background-color: var(--background);
         color: var(--text);
+    }
+}
+
+/* Scroll Animation Utilities */
+@layer utilities {
+
+    /* Elements start hidden and animate in */
+    .scroll-animate {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scroll-animate.animate-in {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    /* Fade in from left */
+    .scroll-fade-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-fade-left.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Fade in from right */
+    .scroll-fade-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+
+    .scroll-fade-right.animate-in {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    /* Scale up animation */
+    .scroll-scale {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .scroll-scale.animate-in {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    /* Staggered children animation */
+    .scroll-stagger>* {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+    }
+
+    .scroll-stagger.animate-in>*:nth-child(1) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.1s;
+    }
+
+    .scroll-stagger.animate-in>*:nth-child(2) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+    }
+
+    .scroll-stagger.animate-in>*:nth-child(3) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
+    }
+
+    .scroll-stagger.animate-in>*:nth-child(4) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.4s;
+    }
+
+    .scroll-stagger.animate-in>*:nth-child(5) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.5s;
+    }
+
+    .scroll-stagger.animate-in>*:nth-child(6) {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.6s;
     }
 }
