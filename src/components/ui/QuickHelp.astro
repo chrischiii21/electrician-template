@@ -1,24 +1,46 @@
 ---
-const options = [
+const faqs = [
     {
+        id: "emergency",
         emoji: "🚨",
-        label: "I have an electrical emergency",
-        href: "tel:+15550000000",
+        question: "What should I do in an electrical emergency?",
+        answer: "Turn off the main breaker if it's safe to do so, avoid touching wet areas, and call us immediately at (555) 000-0000. We offer 24/7 emergency response.",
+        followUp: "Still need help?",
     },
     {
+        id: "quote",
         emoji: "💰",
-        label: "I want a free quote",
-        href: "/contact#quote",
+        question: "How do I get a free quote?",
+        answer: "Fill out our online form or call us at (555) 000-0000. We'll assess your project and provide a detailed, no-obligation estimate within 24 hours.",
+        followUp: "Ready to get started?",
     },
     {
+        id: "coupon",
         emoji: "✂️",
-        label: "I want to use a coupon",
-        href: "/#specials",
+        question: "What coupons and discounts are available?",
+        answer: "We offer seasonal promotions, first-time customer discounts, and special rates for seniors and military. Check our Specials page for current offers.",
+        followUp: "Want to book now?",
     },
     {
+        id: "schedule",
         emoji: "📅",
-        label: "I want to schedule a visit",
-        href: "/contact#schedule",
+        question: "How do I schedule a service visit?",
+        answer: "Call us at (555) 000-0000 or use our online booking form. We offer same-day service in most areas and flexible scheduling to fit your needs.",
+        followUp: "Ready to schedule?",
+    },
+    {
+        id: "warranty",
+        emoji: "✅",
+        question: "Do you offer warranties on your work?",
+        answer: "Yes! All our work is backed by a 1-year warranty on labor and parts. We stand behind every job we do.",
+        followUp: "Have more questions?",
+    },
+    {
+        id: "licensed",
+        emoji: "🔒",
+        question: "Are you licensed and insured?",
+        answer: "Absolutely. We're fully licensed, bonded, and insured. All our electricians are certified professionals with years of experience.",
+        followUp: "Need anything else?",
     },
 ];
 ---
@@ -82,22 +104,104 @@ const options = [
                 Quick Help
             </p>
         </div>
-        <p class="text-white/80 text-sm">What do you need today?</p>
+        <p class="text-white/80 text-sm">Ask us anything</p>
     </div>
 
-    <!-- Options -->
-    <div class="p-4 flex flex-col gap-3 bg-gray-50">
-        {
-            options.map((opt) => (
-                <a
-                    href={opt.href}
-                    class="qh-option flex items-center gap-3 bg-white px-4 py-3.5 text-sm font-semibold text-text border border-gray-100 shadow-sm hover:border-primary hover:text-primary hover:shadow-md transition-all duration-200"
+    <!-- Content Area -->
+    <div class="p-4 bg-gray-50 max-h-96 overflow-y-auto">
+        <!-- Questions List (initial view) -->
+        <div id="qh-questions-list" class="flex flex-col gap-2">
+            {
+                faqs.map((faq) => (
+                    <button
+                        class="qh-question-btn flex items-start gap-3 bg-white px-4 py-3 text-left text-sm font-medium text-text border border-gray-100 shadow-sm hover:border-primary hover:bg-primary/5 transition-all duration-200"
+                        data-faq-id={faq.id}
+                    >
+                        <span class="text-lg leading-none shrink-0">
+                            {faq.emoji}
+                        </span>
+                        <span class="flex-1">{faq.question}</span>
+                        <svg
+                            class="w-4 h-4 text-gray-400 shrink-0 mt-0.5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M9 5l7 7-7 7"
+                            />
+                        </svg>
+                    </button>
+                ))
+            }
+        </div>
+
+        <!-- Answer View (hidden initially) -->
+        <div id="qh-answer-view" class="hidden">
+            <!-- Back button -->
+            <button
+                id="qh-back-btn"
+                class="flex items-center gap-2 text-primary text-sm font-semibold mb-4 hover:gap-3 transition-all duration-200"
+            >
+                <svg
+                    class="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                 >
-                    <span class="text-lg leading-none">{opt.emoji}</span>
-                    {opt.label}
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to questions
+            </button>
+
+            <!-- Question -->
+            <div class="mb-4">
+                <div class="flex items-start gap-3 mb-3">
+                    <span id="qh-answer-emoji" class="text-2xl leading-none"
+                        >🚨</span
+                    >
+                    <p
+                        id="qh-answer-question"
+                        class="font-heading font-bold text-text text-base leading-snug"
+                    >
+                        Question here
+                    </p>
+                </div>
+            </div>
+
+            <!-- Answer -->
+            <div class="bg-white border border-gray-100 p-4 mb-4">
+                <p
+                    id="qh-answer-text"
+                    class="text-sm text-gray-700 leading-relaxed"
+                >
+                    Answer here
+                </p>
+            </div>
+
+            <!-- Follow-up -->
+            <div class="space-y-2">
+                <p
+                    id="qh-followup-text"
+                    class="text-xs text-gray-500 font-semibold uppercase tracking-wider"
+                >
+                    Still need help?
+                </p>
+                <a
+                    href="/contact"
+                    class="block w-full bg-primary text-white text-center px-4 py-2.5 text-sm font-bold uppercase tracking-wider hover:opacity-90 transition-opacity duration-200"
+                >
+                    Contact Us
                 </a>
-            ))
-        }
+            </div>
+        </div>
     </div>
 </div>
 
@@ -106,6 +210,51 @@ const options = [
     const panel = document.getElementById("qh-panel");
     const iconChat = document.getElementById("qh-icon-chat");
     const iconClose = document.getElementById("qh-icon-close");
+    const questionsList = document.getElementById("qh-questions-list");
+    const answerView = document.getElementById("qh-answer-view");
+    const backBtn = document.getElementById("qh-back-btn");
+    const questionBtns = document.querySelectorAll(".qh-question-btn");
+
+    // FAQ data
+    const faqData: Record<string, any> = {
+        emergency: {
+            emoji: "🚨",
+            question: "What should I do in an electrical emergency?",
+            answer: "Turn off the main breaker if it's safe to do so, avoid touching wet areas, and call us immediately at (555) 000-0000. We offer 24/7 emergency response.",
+            followUp: "Still need help?",
+        },
+        quote: {
+            emoji: "💰",
+            question: "How do I get a free quote?",
+            answer: "Fill out our online form or call us at (555) 000-0000. We'll assess your project and provide a detailed, no-obligation estimate within 24 hours.",
+            followUp: "Ready to get started?",
+        },
+        coupon: {
+            emoji: "✂️",
+            question: "What coupons and discounts are available?",
+            answer: "We offer seasonal promotions, first-time customer discounts, and special rates for seniors and military. Check our Specials page for current offers.",
+            followUp: "Want to book now?",
+        },
+        schedule: {
+            emoji: "📅",
+            question: "How do I schedule a service visit?",
+            answer: "Call us at (555) 000-0000 or use our online booking form. We offer same-day service in most areas and flexible scheduling to fit your needs.",
+            followUp: "Ready to schedule?",
+        },
+        warranty: {
+            emoji: "✅",
+            question: "Do you offer warranties on your work?",
+            answer: "Yes! All our work is backed by a 1-year warranty on labor and parts. We stand behind every job we do.",
+            followUp: "Have more questions?",
+        },
+        licensed: {
+            emoji: "🔒",
+            question: "Are you licensed and insured?",
+            answer: "Absolutely. We're fully licensed, bonded, and insured. All our electricians are certified professionals with years of experience.",
+            followUp: "Need anything else?",
+        },
+    };
+
     let open = false;
 
     function togglePanel() {
@@ -117,21 +266,60 @@ const options = [
             iconChat?.classList.add("hidden");
             iconClose?.classList.remove("hidden");
         } else {
-            panel?.classList.replace("qh-panel-visible", "qh-panel-hidden");
-            iconChat?.classList.remove("hidden");
-            iconClose?.classList.add("hidden");
+            closePanel();
         }
     }
 
-    trigger?.addEventListener("click", togglePanel);
+    function showAnswer(faqId: string) {
+        const faq = faqData[faqId];
+        if (!faq) return;
 
-    // Close when clicking an option
-    panel?.querySelectorAll(".qh-option").forEach((el) => {
-        el.addEventListener("click", () => {
-            open = false;
-            panel.classList.replace("qh-panel-visible", "qh-panel-hidden");
-            iconChat?.classList.remove("hidden");
-            iconClose?.classList.add("hidden");
+        // Update answer view
+        (
+            document.getElementById("qh-answer-emoji") as HTMLElement
+        ).textContent = faq.emoji;
+        (
+            document.getElementById("qh-answer-question") as HTMLElement
+        ).textContent = faq.question;
+        (document.getElementById("qh-answer-text") as HTMLElement).textContent =
+            faq.answer;
+        (
+            document.getElementById("qh-followup-text") as HTMLElement
+        ).textContent = faq.followUp;
+
+        // Switch views
+        questionsList?.classList.add("hidden");
+        answerView?.classList.remove("hidden");
+    }
+
+    function backToQuestions() {
+        questionsList?.classList.remove("hidden");
+        answerView?.classList.add("hidden");
+    }
+
+    function closePanel() {
+        open = false;
+        panel?.classList.replace("qh-panel-visible", "qh-panel-hidden");
+        iconChat?.classList.remove("hidden");
+        iconClose?.classList.add("hidden");
+        // Reset to questions list
+        questionsList?.classList.remove("hidden");
+        answerView?.classList.add("hidden");
+
+        // Trigger coupon modal after panel closes
+        setTimeout(() => {
+            (window as any).couponModal?.open?.();
+        }, 300);
+    }
+
+    trigger?.addEventListener("click", togglePanel);
+    backBtn?.addEventListener("click", backToQuestions);
+
+    // Question button clicks
+    questionBtns.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const faqId = (btn as HTMLElement).getAttribute("data-faq-id");
+            if (faqId) showAnswer(faqId);
         });
     });
 
@@ -142,16 +330,13 @@ const options = [
             !panel?.contains(e.target as Node) &&
             !trigger?.contains(e.target as Node)
         ) {
-            open = false;
-            panel?.classList.replace("qh-panel-visible", "qh-panel-hidden");
-            iconChat?.classList.remove("hidden");
-            iconClose?.classList.add("hidden");
+            closePanel();
         }
     });
 
     // Close on Escape
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && open) togglePanel();
+        if (e.key === "Escape" && open) closePanel();
     });
 </script>
 
