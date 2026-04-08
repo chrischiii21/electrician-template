@@ -1,5 +1,8 @@
 ---
 import Container from "../ui/Container.astro";
+import Grid from "../ui/Grid.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
 
 const trustItems = [
     {
@@ -126,40 +129,24 @@ const duplicated = [...trustItems, ...trustItems];
         </div>
 
         <!-- Stats -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8 scroll-stagger">
+        <Grid cols={4} gap="md" class="mt-8 scroll-stagger">
             <div class="text-center">
-                <div class="font-heading font-bold text-3xl text-primary mb-1">
-                    15+
-                </div>
-                <div class="font-body text-sm text-gray-400">
-                    Years Experience
-                </div>
+                <Heading level={3} class="text-primary mb-1">15+</Heading>
+                <Text size="sm" class="text-gray-400">Years Experience</Text>
             </div>
             <div class="text-center">
-                <div class="font-heading font-bold text-3xl text-primary mb-1">
-                    5,000+
-                </div>
-                <div class="font-body text-sm text-gray-400">
-                    Projects Completed
-                </div>
+                <Heading level={3} class="text-primary mb-1">5,000+</Heading>
+                <Text size="sm" class="text-gray-400">Projects Completed</Text>
             </div>
             <div class="text-center">
-                <div class="font-heading font-bold text-3xl text-primary mb-1">
-                    100%
-                </div>
-                <div class="font-body text-sm text-gray-400">
-                    Satisfaction Rate
-                </div>
+                <Heading level={3} class="text-primary mb-1">100%</Heading>
+                <Text size="sm" class="text-gray-400">Satisfaction Rate</Text>
             </div>
             <div class="text-center">
-                <div class="font-heading font-bold text-3xl text-primary mb-1">
-                    24/7
-                </div>
-                <div class="font-body text-sm text-gray-400">
-                    Emergency Service
-                </div>
+                <Heading level={3} class="text-primary mb-1">24/7</Heading>
+                <Text size="sm" class="text-gray-400">Emergency Service</Text>
             </div>
-        </div>
+        </Grid>
     </Container>
 </section>
 
@@ -201,7 +188,6 @@ const duplicated = [...trustItems, ...trustItems];
         padding: 0.75rem 1rem;
         background: white;
         border: 1px solid #f0f0f0;
-        border-radius: 0.75rem;
         box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
         transition:
             box-shadow 0.2s ease,

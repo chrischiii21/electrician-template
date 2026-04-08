@@ -15,14 +15,12 @@ const heroImage =
             style={`background-image: url('${heroImage}');`}
         >
         </div>
-        <!-- Solid dark overlay -->
         <div class="absolute inset-0 bg-gray-900/75"></div>
     </div>
 
     <!-- Content -->
     <div class="relative z-10 max-w-6xl mx-auto px-6 w-full py-32">
         <div class="max-w-2xl">
-            <!-- Eyebrow label -->
             <p
                 class="text-primary font-semibold text-sm uppercase tracking-widest mb-5 hero-eyebrow"
             >
@@ -64,70 +62,68 @@ const heroImage =
             </div>
 
             <!-- Trust signals -->
-            <div class="flex items-center gap-6 mt-10 hero-trust">
-                <div class="flex items-center gap-2 text-gray-400 text-sm">
-                    <svg
-                        class="w-4 h-4 text-primary shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Same-day service</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-400 text-sm">
-                    <svg
-                        class="w-4 h-4 text-primary shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>Upfront pricing</span>
-                </div>
-                <div class="flex items-center gap-2 text-gray-400 text-sm">
-                    <svg
-                        class="w-4 h-4 text-primary shrink-0"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                    >
-                        <path
-                            fill-rule="evenodd"
-                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    <span>100% satisfaction guarantee</span>
-                </div>
+            <div class="flex items-center gap-6 mt-10 flex-wrap hero-trust">
+                {
+                    [
+                        "Same-day service",
+                        "Upfront pricing",
+                        "100% satisfaction guarantee",
+                    ].map((item) => (
+                        <div class="flex items-center gap-2 text-gray-400 text-sm">
+                            <svg
+                                class="w-4 h-4 text-primary shrink-0"
+                                fill="currentColor"
+                                viewBox="0 0 20 20"
+                            >
+                                <path
+                                    fill-rule="evenodd"
+                                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                    clip-rule="evenodd"
+                                />
+                            </svg>
+                            <span>{item}</span>
+                        </div>
+                    ))
+                }
             </div>
         </div>
     </div>
 
-    <!-- Bottom fade into page -->
     <div
         class="absolute bottom-0 left-0 w-full h-24 bg-linear-to-t from-background to-transparent"
     >
     </div>
 </section>
 
-<!-- Flash Modal -->
+<!-- Welcome Coupon Modal -->
 <div
-    id="flash-modal"
-    class="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 pointer-events-none transition-opacity duration-300"
+    id="coupon-modal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    aria-modal="true"
+    role="dialog"
+    aria-labelledby="coupon-title"
+    style="display:none"
 >
+    <!-- Backdrop -->
     <div
-        class="bg-white border border-gray-100 rounded-xl shadow-2xl max-w-md w-full p-8 relative transform scale-95 transition-transform duration-300"
-        id="modal-content"
+        id="coupon-backdrop"
+        class="absolute inset-0 bg-gray-900/70 backdrop-blur-sm"
     >
+    </div>
+
+    <!-- Card -->
+    <div
+        id="coupon-card"
+        class="relative w-full max-w-2xl bg-white shadow-2xl overflow-hidden"
+    >
+        <!-- Top accent bar -->
+        <div class="h-2 bg-primary w-full"></div>
+
+        <!-- Close -->
         <button
-            id="close-modal"
-            class="absolute top-4 right-4 text-gray-400 hover:text-gray-700 transition-colors"
-            aria-label="Close modal"
+            id="coupon-close"
+            class="absolute top-4 right-4 text-gray-400 hover:text-text transition-colors z-10"
+            aria-label="Close"
         >
             <svg
                 class="w-5 h-5"
@@ -143,52 +139,197 @@ const heroImage =
             </svg>
         </button>
 
-        <div class="text-center">
-            <span class="inline-block text-4xl mb-3">⚡</span>
-            <h2 class="font-heading font-bold text-2xl mb-3 text-text">
-                Need Power Now?
-            </h2>
-            <p class="font-body text-gray-600 mb-6">
-                <span class="text-primary font-bold text-xl">15% Off</span> emergency
-                repairs for first-time customers.
-            </p>
-            <Button
-                href="#contact"
-                variant="primary"
-                size="lg"
-                class="w-full uppercase tracking-wider font-bold"
+        <div class="grid md:grid-cols-2">
+            <!-- Left: big offer -->
+            <div
+                class="bg-gray-900 p-8 flex flex-col justify-center items-center text-center"
             >
-                Claim Offer
-            </Button>
+                <p
+                    class="text-primary font-semibold text-xs uppercase tracking-widest mb-3"
+                >
+                    Limited Time Offer
+                </p>
+                <div class="font-heading font-bold leading-none mb-1">
+                    <span class="text-white text-8xl">15</span><span
+                        class="text-primary text-5xl">%</span
+                    >
+                </div>
+                <div class="text-white font-heading font-bold text-3xl mb-5">
+                    OFF
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    Your first electrical service — residential or commercial.
+                </p>
+
+                <!-- Dashed coupon code -->
+                <div
+                    class="border border-dashed border-primary/50 px-5 py-3 w-full"
+                >
+                    <p
+                        class="text-gray-500 text-xs uppercase tracking-widest mb-1"
+                    >
+                        Use code
+                    </p>
+                    <p
+                        class="text-primary font-heading font-bold text-2xl tracking-[0.2em]"
+                    >
+                        POWER15
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: details -->
+            <div class="p-8 flex flex-col justify-between">
+                <div>
+                    <p
+                        class="text-primary font-semibold text-xs uppercase tracking-widest mb-2"
+                    >
+                        Welcome Offer
+                    </p>
+                    <h2
+                        id="coupon-title"
+                        class="font-heading font-bold text-2xl text-text mb-3 leading-tight"
+                    >
+                        Save on Your First Service Call
+                    </h2>
+                    <p class="text-gray-700 text-sm leading-relaxed mb-5">
+                        Panel upgrade, EV charger install, or emergency repair —
+                        get 15% off when you book today.
+                    </p>
+
+                    <ul class="space-y-2 mb-6">
+                        {
+                            [
+                                "New customers only",
+                                "All service types included",
+                                "No minimum spend",
+                                "Expires in 48 hours",
+                            ].map((item) => (
+                                <li class="flex items-center gap-2 text-sm text-gray-700">
+                                    <svg
+                                        class="w-4 h-4 text-primary shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <Button
+                        href="#contact"
+                        variant="primary"
+                        size="md"
+                        class="w-full uppercase tracking-wider font-bold coupon-cta-btn"
+                    >
+                        Claim My 15% Off
+                    </Button>
+                    <button
+                        id="coupon-dismiss"
+                        class="w-full text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-1"
+                    >
+                        No thanks, I'll pay full price
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Countdown bar -->
+        <div
+            class="bg-gray-50 border-t border-gray-100 px-8 py-3 flex items-center justify-between"
+        >
+            <p class="text-xs text-gray-400 uppercase tracking-wider">
+                Offer expires in
+            </p>
+            <p
+                class="font-heading font-bold text-primary text-sm tabular-nums"
+                id="coupon-timer"
+            >
+                47:59:59
+            </p>
         </div>
     </div>
 </div>
 
 <script>
-    const modal = document.getElementById("flash-modal");
-    const modalContent = document.getElementById("modal-content");
-    const closeBtn = document.getElementById("close-modal");
+    // --- Coupon Modal ---
+    const modal = document.getElementById("coupon-modal") as HTMLElement;
+    const card = document.getElementById("coupon-card") as HTMLElement;
+    const backdrop = document.getElementById("coupon-backdrop") as HTMLElement;
+    const closeBtn = document.getElementById("coupon-close");
+    const dismissBtn = document.getElementById("coupon-dismiss");
+    const ctaBtn = document.querySelector(".coupon-cta-btn");
+    const timerEl = document.getElementById("coupon-timer");
 
-    if (!sessionStorage.getItem("hasSeenFlashModal")) {
-        setTimeout(() => {
-            modal?.classList.remove("opacity-0", "pointer-events-none");
-            modalContent?.classList.replace("scale-95", "scale-100");
-        }, 1000);
-        sessionStorage.setItem("hasSeenFlashModal", "true");
+    function openModal() {
+        modal.style.display = "flex";
+        // Force reflow before animating
+        modal.offsetHeight;
+        backdrop.style.opacity = "1";
+        card.style.opacity = "1";
+        card.style.transform = "translateY(0)";
     }
 
     function closeModal() {
-        modal?.classList.add("opacity-0", "pointer-events-none");
-        modalContent?.classList.replace("scale-100", "scale-95");
+        backdrop.style.opacity = "0";
+        card.style.opacity = "0";
+        card.style.transform = "translateY(16px)";
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    }
+
+    // Set initial card state for animation
+    card.style.opacity = "0";
+    card.style.transform = "translateY(16px)";
+    card.style.transition =
+        "opacity 0.35s ease, transform 0.35s cubic-bezier(0.22,1,0.36,1)";
+    backdrop.style.opacity = "0";
+    backdrop.style.transition = "opacity 0.3s ease";
+
+    if (!sessionStorage.getItem("couponSeen")) {
+        setTimeout(openModal, 800);
+        sessionStorage.setItem("couponSeen", "true");
     }
 
     closeBtn?.addEventListener("click", closeModal);
-    modal?.addEventListener("click", (e) => {
-        if (e.target === modal) closeModal();
-    });
+    dismissBtn?.addEventListener("click", closeModal);
+    ctaBtn?.addEventListener("click", closeModal);
+    backdrop?.addEventListener("click", closeModal);
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeModal();
     });
+
+    // --- Countdown timer (48h from first visit) ---
+    const STORAGE_KEY = "couponExpiry";
+    const DURATION = 48 * 60 * 60 * 1000;
+
+    let expiry = parseInt(sessionStorage.getItem(STORAGE_KEY) || "0");
+    if (!expiry) {
+        expiry = Date.now() + DURATION;
+        sessionStorage.setItem(STORAGE_KEY, String(expiry));
+    }
+
+    function updateTimer() {
+        const remaining = Math.max(0, expiry - Date.now());
+        const h = Math.floor(remaining / 3600000);
+        const m = Math.floor((remaining % 3600000) / 60000);
+        const s = Math.floor((remaining % 60000) / 1000);
+        if (timerEl) {
+            timerEl.textContent = `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+        }
+        if (remaining > 0) requestAnimationFrame(updateTimer);
+    }
+    updateTimer();
 </script>
 
 <style>
