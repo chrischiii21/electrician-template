@@ -11,12 +11,21 @@ const heroImage =
 >
     <!-- Background Image -->
     <div class="absolute inset-0">
+        <!-- Mobile: Solid color background -->
         <div
-            class="absolute inset-0 bg-cover bg-center hero-image"
-            style={`background-image: url('${heroImage}');`}
+            class="absolute inset-0 md:hidden bg-gradient-to-br from-gray-900 to-gray-800"
         >
         </div>
-        <div class="absolute inset-0 bg-gray-900/75"></div>
+
+        <!-- Desktop: Background Image -->
+        <div class="hidden md:block absolute inset-0">
+            <div
+                class="absolute inset-0 bg-cover bg-center hero-image"
+                style={`background-image: url('${heroImage}');`}
+            >
+            </div>
+            <div class="absolute inset-0 bg-gray-900/75"></div>
+        </div>
     </div>
 
     <!-- Content -->
