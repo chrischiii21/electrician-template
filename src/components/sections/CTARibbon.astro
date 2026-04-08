@@ -1,0 +1,60 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section class="bg-primary py-12 scroll-animate">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+            class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+            <!-- Left: message -->
+            <div class="flex items-center gap-5">
+                <div
+                    class="w-12 h-12 bg-white/15 flex items-center justify-center shrink-0"
+                >
+                    <svg
+                        class="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p
+                        class="font-heading font-bold text-white text-xl md:text-2xl leading-tight"
+                    >
+                        Ready to Get Started? Let's Talk.
+                    </p>
+                    <p class="text-white/75 text-sm mt-0.5">
+                        Same-day service available. Free estimates. No
+                        obligation.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: CTAs -->
+            <div class="flex items-center gap-3 shrink-0">
+                <Button
+                    href="tel:+15550000000"
+                    variant="secondary"
+                    size="lg"
+                    class="uppercase tracking-wider font-bold bg-white text-primary hover:bg-gray-100 border-0"
+                >
+                    Call Now
+                </Button>
+                <Button
+                    href="#contact"
+                    variant="outline"
+                    size="lg"
+                    class="uppercase tracking-wider font-bold border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-200"
+                >
+                    Get a Free Quote
+                </Button>
+            </div>
+        </div>
+    </div>
+</section>

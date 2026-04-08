@@ -1,5 +1,6 @@
 ---
 import Button from "../ui/Button.astro";
+import CouponModal from "./CouponModal.astro";
 
 const heroImage =
     "https://33hb9xdnm4.ucarecd.net/10381cf7-194e-422f-bcc7-50df3498bff8/photo162190525191848416bd8575a";
@@ -96,169 +97,23 @@ const heroImage =
 </section>
 
 <!-- Welcome Coupon Modal -->
-<div
-    id="coupon-modal"
-    class="fixed inset-0 z-50 flex items-center justify-center p-4"
-    aria-modal="true"
-    role="dialog"
-    aria-labelledby="coupon-title"
-    style="display:none"
->
-    <!-- Backdrop -->
-    <div
-        id="coupon-backdrop"
-        class="absolute inset-0 bg-gray-900/70 backdrop-blur-sm"
-    >
-    </div>
-
-    <!-- Card -->
-    <div
-        id="coupon-card"
-        class="relative w-full max-w-2xl bg-white shadow-2xl overflow-hidden"
-    >
-        <!-- Top accent bar -->
-        <div class="h-2 bg-primary w-full"></div>
-
-        <!-- Close -->
-        <button
-            id="coupon-close"
-            class="absolute top-4 right-4 text-gray-400 hover:text-text transition-colors z-10"
-            aria-label="Close"
-        >
-            <svg
-                class="w-5 h-5"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-            >
-                <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
-
-        <div class="grid md:grid-cols-2">
-            <!-- Left: big offer -->
-            <div
-                class="bg-gray-900 p-8 flex flex-col justify-center items-center text-center"
-            >
-                <p
-                    class="text-primary font-semibold text-xs uppercase tracking-widest mb-3"
-                >
-                    Limited Time Offer
-                </p>
-                <div class="font-heading font-bold leading-none mb-1">
-                    <span class="text-white text-8xl">15</span><span
-                        class="text-primary text-5xl">%</span
-                    >
-                </div>
-                <div class="text-white font-heading font-bold text-3xl mb-5">
-                    OFF
-                </div>
-                <p class="text-gray-400 text-sm leading-relaxed mb-6">
-                    Your first electrical service — residential or commercial.
-                </p>
-
-                <!-- Dashed coupon code -->
-                <div
-                    class="border border-dashed border-primary/50 px-5 py-3 w-full"
-                >
-                    <p
-                        class="text-gray-500 text-xs uppercase tracking-widest mb-1"
-                    >
-                        Use code
-                    </p>
-                    <p
-                        class="text-primary font-heading font-bold text-2xl tracking-[0.2em]"
-                    >
-                        POWER15
-                    </p>
-                </div>
-            </div>
-
-            <!-- Right: details -->
-            <div class="p-8 flex flex-col justify-between">
-                <div>
-                    <p
-                        class="text-primary font-semibold text-xs uppercase tracking-widest mb-2"
-                    >
-                        Welcome Offer
-                    </p>
-                    <h2
-                        id="coupon-title"
-                        class="font-heading font-bold text-2xl text-text mb-3 leading-tight"
-                    >
-                        Save on Your First Service Call
-                    </h2>
-                    <p class="text-gray-700 text-sm leading-relaxed mb-5">
-                        Panel upgrade, EV charger install, or emergency repair —
-                        get 15% off when you book today.
-                    </p>
-
-                    <ul class="space-y-2 mb-6">
-                        {
-                            [
-                                "New customers only",
-                                "All service types included",
-                                "No minimum spend",
-                                "Expires in 48 hours",
-                            ].map((item) => (
-                                <li class="flex items-center gap-2 text-sm text-gray-700">
-                                    <svg
-                                        class="w-4 h-4 text-primary shrink-0"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                            clip-rule="evenodd"
-                                        />
-                                    </svg>
-                                    {item}
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-
-                <div class="space-y-3">
-                    <Button
-                        href="#contact"
-                        variant="primary"
-                        size="md"
-                        class="w-full uppercase tracking-wider font-bold coupon-cta-btn"
-                    >
-                        Claim My 15% Off
-                    </Button>
-                    <button
-                        id="coupon-dismiss"
-                        class="w-full text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-1"
-                    >
-                        No thanks, I'll pay full price
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Countdown bar -->
-        <div
-            class="bg-gray-50 border-t border-gray-100 px-8 py-3 flex items-center justify-between"
-        >
-            <p class="text-xs text-gray-400 uppercase tracking-wider">
-                Offer expires in
-            </p>
-            <p
-                class="font-heading font-bold text-primary text-sm tabular-nums"
-                id="coupon-timer"
-            >
-                47:59:59
-            </p>
-        </div>
-    </div>
-</div>
+<CouponModal
+    discount="15"
+    discountType="percentage"
+    code="POWER15"
+    title="Save on Your First Service Call"
+    description="Your first electrical service — residential or commercial."
+    features={[
+        "New customers only",
+        "All service types included",
+        "No minimum spend",
+        "Expires in 48 hours",
+    ]}
+    ctaText="Claim My 15% Off"
+    dismissText="No thanks, I'll pay full price"
+    ctaLink="#contact"
+    expiresIn="47:59:59"
+/>
 
 <script>
     // --- Coupon Modal ---

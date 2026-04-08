@@ -1,0 +1,214 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+const coupons = [
+    {
+        color: "bg-primary",
+        textColor: "text-white",
+        discount: "20% OFF",
+        title: "New Customer Special",
+        description: "First-time customers get 20% off any electrical service over $200.",
+        code: "VOLT20",
+    },
+    {
+        color: "bg-gray-900",
+        textColor: "text-white",
+        discount: "15% OFF",
+        title: "Senior & Military",
+        description: "We honor those who served. Seniors & military get 15% off all services.",
+        code: "HONOR15",
+    },
+    {
+        color: "bg-accent",
+        textColor: "text-gray-900",
+        discount: "$150 OFF",
+        title: "Panel Upgrade",
+        description: "Upgrade your electrical panel for improved safety and capacity.",
+        code: "PANEL150",
+    },
+    {
+        color: "bg-text",
+        textColor: "text-white",
+        discount: "FREE",
+        title: "Free Safety Check",
+        description: "Complete home electrical safety inspection — no purchase necessary.",
+        code: "SAFECHECK",
+    },
+];
+---
+
+<section class="bg-gray-50 py-20" id="specials">
+    <Container size="lg">
+
+        <!-- Flash Sale Banner -->
+        <div class="border border-primary/30 bg-primary/5 px-6 py-4 mb-12 flex flex-col sm:flex-row items-center justify-between gap-4 scroll-animate">
+            <div class="flex items-center gap-4">
+                <div class="w-10 h-10 bg-primary flex items-center justify-center shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                </div>
+                <div>
+                    <p class="font-heading font-bold text-text">⚡ Flash Sale — Ending Soon!</p>
+                    <Text size="sm" class="text-gray-500">Claim your coupon before time runs out. These deals won't last.</Text>
+                </div>
+            </div>
+
+            <!-- Countdown -->
+            <div class="flex items-center gap-2 shrink-0" id="flash-countdown">
+                {["DAYS", "HOURS", "MINS", "SECS"].map((label) => (
+                    <div class="text-center">
+                        <div class="bg-gray-900 text-white font-heading font-bold text-xl w-12 h-12 flex items-center justify-center countdown-unit" data-unit={label.toLowerCase()}>
+                            00
+                        </div>
+                        <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">{label}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+
+        <!-- Header -->
+        <div class="text-center mb-12 scroll-animate">
+            <Badge variant="accent" class="mb-3">Exclusive Savings</Badge>
+            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+                Coupons &amp; <span class="text-primary">Special Offers</span>
+            </Heading>
+            <Text size="xl" class="text-gray-700 max-w-xl mx-auto">
+                Save big on your next electrical project. Print or mention these codes at booking.
+            </Text>
+        </div>
+
+        <!-- Coupon Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 scroll-stagger">
+            {coupons.map((c) => (
+                <div class={`coupon-ticket ${c.color} relative flex flex-col overflow-hidden`}>
+                    <!-- Circuit pattern overlay -->
+                    <div class="circuit-bg absolute inset-0 opacity-10 pointer-events-none"></div>
+
+                    <!-- Top hole punches -->
+                    <div class="relative flex justify-between px-4 pt-3">
+                        <div class="w-3 h-3 punch"></div>
+                        <div class="w-3 h-3 punch"></div>
+                    </div>
+
+                    <!-- Main content -->
+                    <div class="relative px-6 pt-2 pb-4 flex flex-col gap-3 flex-1">
+                        <!-- Lightning bolt + title -->
+                        <div class="flex items-center justify-between">
+                            <span class={`text-xs font-bold uppercase tracking-widest ${c.textColor} opacity-70`}>{c.title}</span>
+                            <svg class={`w-5 h-5 ${c.textColor} opacity-50`} fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+
+                        <!-- Big discount -->
+                        <div class="text-center py-2">
+                            <p class={`font-heading font-bold leading-none ${c.textColor}`} style="font-size: clamp(2.5rem, 5vw, 3.5rem)">{c.discount}</p>
+                        </div>
+
+                        <!-- Description -->
+                        <p class={`text-xs leading-relaxed text-center ${c.textColor} opacity-75`}>{c.description}</p>
+                    </div>
+
+                    <!-- Perforated tear line -->
+                    <div class="relative flex items-center px-0 my-1">
+                        <div class="w-4 h-4 punch -ml-2 shrink-0"></div>
+                        <div class="flex-1 border-t-2 border-dashed border-white/30 mx-1"></div>
+                        <div class="w-4 h-4 punch -mr-2 shrink-0"></div>
+                    </div>
+
+                    <!-- Code stub -->
+                    <div class="relative px-6 py-4 flex flex-col items-center gap-2">
+                        <p class={`text-xs uppercase tracking-widest ${c.textColor} opacity-50`}>Promo Code</p>
+                        <button
+                            class={`coupon-copy w-full py-2.5 font-heading font-bold tracking-[0.2em] text-sm border border-dashed border-white/40 hover:bg-white/15 active:scale-95 transition-all duration-150 ${c.textColor}`}
+                            data-code={c.code}
+                            aria-label={`Copy code ${c.code}`}
+                        >
+                            {c.code}
+                        </button>
+                        <p class={`coupon-copied text-xs opacity-0 transition-opacity duration-200 ${c.textColor}`}>✓ Copied to clipboard!</p>
+                    </div>
+
+                    <!-- Bottom hole punches -->
+                    <div class="relative flex justify-between px-4 pb-3">
+                        <div class="w-3 h-3 punch"></div>
+                        <div class="w-3 h-3 punch"></div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="text-center mt-12 scroll-animate">
+            <Text class="text-gray-400 mb-4">Ready to save? Book your service today and mention your code.</Text>
+            <Button href="#contact" variant="primary" size="lg" class="uppercase tracking-wider font-bold">
+                Book Now &amp; Save
+            </Button>
+        </div>
+
+    </Container>
+</section>
+
+<style>
+    .coupon-ticket {
+        box-shadow: 0 4px 24px rgba(0,0,0,0.18), 0 1px 4px rgba(0,0,0,0.12);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .coupon-ticket:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 36px rgba(0,0,0,0.22), 0 2px 8px rgba(0,0,0,0.14);
+    }
+    /* Hole punches use section bg color so they "cut through" */
+    .coupon-ticket .punch {
+        background-color: #f9fafb; /* gray-50 = section bg */
+    }
+    .circuit-bg {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Cpath d='M10 10h5v5h-5zM30 10h5v5h-5zM50 10h5v5h-5zM10 30h5v5h-5zM30 30h5v5h-5zM50 30h5v5h-5zM10 50h5v5h-5zM30 50h5v5h-5zM50 50h5v5h-5z' fill='white'/%3E%3Cpath d='M12 15v8M12 23h18M30 23v-8M32 15h18M50 15v8M35 32h8M43 32v8M43 40h-8M35 40v8M12 35v8M12 43h8M20 43v8' stroke='white' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+        background-size: 60px 60px;
+    }
+</style>
+
+<script>
+    document.querySelectorAll<HTMLButtonElement>(".coupon-copy").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const code = btn.dataset.code ?? "";
+            navigator.clipboard.writeText(code).catch(() => {});
+            const msg = btn.nextElementSibling as HTMLElement;
+            if (msg) {
+                msg.style.opacity = "1";
+                setTimeout(() => { msg.style.opacity = "0"; }, 2000);
+            }
+        });
+    });
+
+    // --- Flash sale countdown (72h from first visit) ---
+    const KEY = "flashSaleExpiry";
+    const DURATION = 72 * 60 * 60 * 1000;
+    let expiry = parseInt(localStorage.getItem(KEY) ?? "0");
+    if (!expiry || expiry < Date.now()) {
+        expiry = Date.now() + DURATION;
+        localStorage.setItem(KEY, String(expiry));
+    }
+
+    function tick() {
+        const remaining = Math.max(0, expiry - Date.now());
+        const d = Math.floor(remaining / 86400000);
+        const h = Math.floor((remaining % 86400000) / 3600000);
+        const m = Math.floor((remaining % 3600000) / 60000);
+        const s = Math.floor((remaining % 60000) / 1000);
+
+        const units: Record<string, number> = { days: d, hours: h, mins: m, secs: s };
+        Object.entries(units).forEach(([key, val]) => {
+            const el = document.querySelector<HTMLElement>(`[data-unit="${key}"]`);
+            if (el) el.textContent = String(val).padStart(2, "0");
+        });
+
+        if (remaining > 0) setTimeout(tick, 1000);
+    }
+    tick();
+</script>

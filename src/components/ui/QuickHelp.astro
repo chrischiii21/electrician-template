@@ -1,0 +1,175 @@
+---
+const options = [
+    {
+        emoji: "🚨",
+        label: "I have an electrical emergency",
+        href: "tel:+15550000000",
+    },
+    {
+        emoji: "💰",
+        label: "I want a free quote",
+        href: "/contact#quote",
+    },
+    {
+        emoji: "✂️",
+        label: "I want to use a coupon",
+        href: "/#specials",
+    },
+    {
+        emoji: "📅",
+        label: "I want to schedule a visit",
+        href: "/contact#schedule",
+    },
+];
+---
+
+<!-- Floating trigger button -->
+<button
+    id="qh-trigger"
+    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-primary text-white shadow-lg shadow-primary/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-primary/60"
+    aria-label="Quick Help"
+    aria-expanded="false"
+    aria-controls="qh-panel"
+>
+    <!-- Chat icon (default) -->
+    <svg
+        id="qh-icon-chat"
+        class="w-6 h-6"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+    >
+        <path
+            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
+        ></path>
+    </svg>
+    <!-- Close icon (when open) -->
+    <svg
+        id="qh-icon-close"
+        class="w-6 h-6 hidden"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+    >
+        <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2.5"
+            d="M6 18L18 6M6 6l12 12"></path>
+    </svg>
+</button>
+
+<!-- Panel -->
+<div
+    id="qh-panel"
+    class="fixed bottom-24 right-6 z-50 w-80 bg-white shadow-2xl overflow-hidden qh-panel-hidden"
+    role="dialog"
+    aria-label="Quick Help"
+>
+    <!-- Header -->
+    <div class="bg-primary px-5 py-4">
+        <div class="flex items-center gap-2 mb-0.5">
+            <svg
+                class="w-4 h-4 text-white"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+            >
+                <path
+                    fill-rule="evenodd"
+                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <p class="text-white font-heading font-bold text-base">
+                Quick Help
+            </p>
+        </div>
+        <p class="text-white/80 text-sm">What do you need today?</p>
+    </div>
+
+    <!-- Options -->
+    <div class="p-4 flex flex-col gap-3 bg-gray-50">
+        {
+            options.map((opt) => (
+                <a
+                    href={opt.href}
+                    class="qh-option flex items-center gap-3 bg-white px-4 py-3.5 text-sm font-semibold text-text border border-gray-100 shadow-sm hover:border-primary hover:text-primary hover:shadow-md transition-all duration-200"
+                >
+                    <span class="text-lg leading-none">{opt.emoji}</span>
+                    {opt.label}
+                </a>
+            ))
+        }
+    </div>
+</div>
+
+<script>
+    const trigger = document.getElementById("qh-trigger");
+    const panel = document.getElementById("qh-panel");
+    const iconChat = document.getElementById("qh-icon-chat");
+    const iconClose = document.getElementById("qh-icon-close");
+    let open = false;
+
+    function togglePanel() {
+        open = !open;
+        trigger?.setAttribute("aria-expanded", String(open));
+
+        if (open) {
+            panel?.classList.replace("qh-panel-hidden", "qh-panel-visible");
+            iconChat?.classList.add("hidden");
+            iconClose?.classList.remove("hidden");
+        } else {
+            panel?.classList.replace("qh-panel-visible", "qh-panel-hidden");
+            iconChat?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+        }
+    }
+
+    trigger?.addEventListener("click", togglePanel);
+
+    // Close when clicking an option
+    panel?.querySelectorAll(".qh-option").forEach((el) => {
+        el.addEventListener("click", () => {
+            open = false;
+            panel.classList.replace("qh-panel-visible", "qh-panel-hidden");
+            iconChat?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+        });
+    });
+
+    // Close on outside click
+    document.addEventListener("click", (e) => {
+        if (
+            open &&
+            !panel?.contains(e.target as Node) &&
+            !trigger?.contains(e.target as Node)
+        ) {
+            open = false;
+            panel?.classList.replace("qh-panel-visible", "qh-panel-hidden");
+            iconChat?.classList.remove("hidden");
+            iconClose?.classList.add("hidden");
+        }
+    });
+
+    // Close on Escape
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && open) togglePanel();
+    });
+</script>
+
+<style>
+    .qh-panel-hidden {
+        opacity: 0;
+        transform: translateY(12px) scale(0.97);
+        pointer-events: none;
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .qh-panel-visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        pointer-events: auto;
+        transition:
+            opacity 0.25s ease,
+            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+</style>

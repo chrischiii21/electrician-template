@@ -1,0 +1,89 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+
+const steps = [
+    {
+        number: "01",
+        title: "Design & Engineering",
+        description: "Collaborate with architects and engineers to design complete electrical systems for new construction. Load calculations, panel sizing, and code compliance planning.",
+        details: ["Electrical design", "Load analysis", "Panel sizing", "Code review"],
+    },
+    {
+        number: "02",
+        title: "Foundation & Rough-In",
+        description: "Install conduit, cable trays, and underground utilities during foundation phase. Rough-in all wiring during framing for optimal placement and efficiency.",
+        details: ["Underground utilities", "Conduit installation", "Cable routing", "Panel placement"],
+    },
+    {
+        number: "03",
+        title: "Trim-Out & Connections",
+        description: "Install outlets, switches, fixtures, and equipment after walls are closed. Final connections and device installation with precision and attention to detail.",
+        details: ["Device installation", "Equipment wiring", "Fixture connections", "Final testing"],
+    },
+    {
+        number: "04",
+        title: "Inspection & Commissioning",
+        description: "Comprehensive system testing, code inspections, and full commissioning. Complete documentation and handoff to building owner.",
+        details: ["System testing", "Code inspection", "Commissioning", "Documentation"],
+    },
+];
+---
+
+<section class="bg-white py-20" id="construction-process">
+    <Container size="lg">
+        <!-- Header -->
+        <div class="text-center mb-16 scroll-animate">
+            <Badge variant="primary" class="mb-3">Our Process</Badge>
+            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+                Ground-up Construction <span class="text-primary">Process</span>
+            </Heading>
+            <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
+                From design through commissioning, we manage every phase of new electrical construction with precision and expertise.
+            </Text>
+        </div>
+
+        <!-- Timeline -->
+        <div class="relative scroll-stagger">
+            <!-- Vertical line -->
+            <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary to-transparent md:transform md:-translate-x-1/2"></div>
+
+            <!-- Steps -->
+            <div class="space-y-12 md:space-y-16">
+                {steps.map((step, index) => (
+                    <div class={`relative md:flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
+                        <!-- Content -->
+                        <div class={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"} pl-12 md:pl-0`}>
+                            <div class="bg-gray-50 border border-gray-200 p-6 hover:border-primary hover:shadow-lg transition-all duration-300">
+                                <div class="flex items-start gap-4 mb-4">
+                                    <div class="text-4xl font-bold text-primary/20">{step.number}</div>
+                                    <div class="flex-grow">
+                                        <Heading level={4} class="mb-1">{step.title}</Heading>
+                                        <Text size="sm" class="text-gray-600">{step.description}</Text>
+                                    </div>
+                                </div>
+
+                                <!-- Details -->
+                                <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-gray-200">
+                                    {step.details.map((detail) => (
+                                        <div class="flex items-center gap-2">
+                                            <svg class="w-3 h-3 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                            </svg>
+                                            <Text size="xs" class="text-gray-700">{detail}</Text>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Timeline dot -->
+                        <div class="absolute left-0 md:left-1/2 top-6 md:top-8 w-4 h-4 bg-white border-4 border-primary md:transform md:-translate-x-1/2 md:-translate-x-2"></div>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </Container>
+</section>

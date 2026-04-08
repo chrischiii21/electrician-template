@@ -1,0 +1,252 @@
+---
+import Button from "../ui/Button.astro";
+
+interface Props {
+    discount: string;
+    discountType: "percentage" | "amount";
+    code: string;
+    title: string;
+    subtitle?: string;
+    description: string;
+    features: string[];
+    ctaText?: string;
+    dismissText?: string;
+    ctaLink?: string;
+    expiresIn?: string;
+}
+
+const {
+    discount,
+    discountType,
+    code,
+    title,
+    subtitle,
+    description,
+    features,
+    ctaText = "Claim My Offer",
+    dismissText = "No thanks",
+    ctaLink = "#contact",
+    expiresIn = "47:59:59",
+} = Astro.props;
+
+const discountSymbol = discountType === "percentage" ? "%" : "$";
+const discountSize = discountType === "percentage" ? "text-7xl" : "text-5xl";
+---
+
+<div
+    id="exit-modal"
+    class="fixed inset-0 z-50 flex items-center justify-center p-4"
+    aria-modal="true"
+    role="dialog"
+    aria-labelledby="exit-title"
+    style="display:none"
+>
+    <!-- Backdrop -->
+    <div
+        id="exit-backdrop"
+        class="absolute inset-0 bg-gray-900/70 backdrop-blur-sm"
+    >
+    </div>
+
+    <!-- Card -->
+    <div
+        id="exit-card"
+        class="relative w-full max-w-2xl bg-white shadow-2xl overflow-hidden"
+    >
+        <!-- Top accent bar -->
+        <div class="h-2 bg-primary w-full"></div>
+
+        <!-- Close -->
+        <button
+            id="exit-close"
+            class="absolute top-4 right-4 text-gray-400 hover:text-text transition-colors z-10"
+            aria-label="Close"
+        >
+            <svg
+                class="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+
+        <div class="grid md:grid-cols-2">
+            <!-- Left: big offer -->
+            <div
+                class="bg-gray-900 p-8 flex flex-col justify-center items-center text-center"
+            >
+                <p
+                    class="text-primary font-semibold text-xs uppercase tracking-widest mb-2"
+                >
+                    Wait — Exclusive Offer
+                </p>
+                <div class="font-heading font-bold leading-none mb-2">
+                    <span class={`text-white ${discountSize}`}>{discount}</span
+                    ><span class="text-primary text-4xl">{discountSymbol}</span>
+                </div>
+                <div class="text-white font-heading font-bold text-2xl mb-4">
+                    OFF
+                </div>
+                <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                    {description}
+                </p>
+
+                <!-- Dashed coupon code -->
+                <div
+                    class="border border-dashed border-primary/50 px-5 py-3 w-full"
+                >
+                    <p
+                        class="text-gray-500 text-xs uppercase tracking-widest mb-1"
+                    >
+                        One-time code
+                    </p>
+                    <p
+                        class="text-primary font-heading font-bold text-xl tracking-[0.2em]"
+                    >
+                        {code}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: details -->
+            <div class="p-8 flex flex-col justify-between">
+                <div>
+                    <p
+                        class="text-primary font-semibold text-xs uppercase tracking-widest mb-2"
+                    >
+                        Don't Leave Yet
+                    </p>
+                    <h2
+                        id="exit-title"
+                        class="font-heading font-bold text-2xl text-text mb-1 leading-tight"
+                    >
+                        {title}
+                    </h2>
+                    {
+                        subtitle && (
+                            <p class="text-primary font-semibold text-lg mb-3">
+                                {subtitle}
+                            </p>
+                        )
+                    }
+                    <p class="text-gray-700 text-sm leading-relaxed mb-5">
+                        {description}
+                    </p>
+
+                    <ul class="space-y-2 mb-6">
+                        {
+                            features.map((item) => (
+                                <li class="flex items-center gap-2 text-sm text-gray-700">
+                                    <svg
+                                        class="w-4 h-4 text-primary shrink-0"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    {item}
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <Button
+                        href={ctaLink}
+                        variant="primary"
+                        size="md"
+                        class="w-full uppercase tracking-wider font-bold exit-cta-btn"
+                    >
+                        {ctaText}
+                    </Button>
+                    <button
+                        id="exit-dismiss"
+                        class="w-full text-center text-xs text-gray-400 hover:text-gray-600 transition-colors py-1"
+                    >
+                        {dismissText}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer note -->
+        <div
+            class="bg-gray-50 border-t border-gray-100 px-8 py-3 flex items-center justify-between"
+        >
+            <p class="text-xs text-gray-400 uppercase tracking-wider">
+                Offer expires when you leave this window
+            </p>
+            <p
+                class="font-heading font-bold text-primary text-sm tabular-nums"
+                id="exit-timer"
+            >
+                {expiresIn}
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Exit modal controls
+    const exitModal = document.getElementById("exit-modal");
+    const exitBackdrop = document.getElementById("exit-backdrop");
+    const exitCloseBtn = document.getElementById("exit-close");
+    const exitDismissBtn = document.getElementById("exit-dismiss");
+
+    function closeExitModal() {
+        if (exitModal) {
+            exitModal.style.display = "none";
+        }
+    }
+
+    function openExitModal() {
+        if (exitModal) {
+            exitModal.style.display = "flex";
+        }
+    }
+
+    // Close on button click
+    exitCloseBtn?.addEventListener("click", closeExitModal);
+    exitDismissBtn?.addEventListener("click", closeExitModal);
+    exitBackdrop?.addEventListener("click", closeExitModal);
+
+    // Expose to window for external control
+    (window as any).exitModal = {
+        open: openExitModal,
+        close: closeExitModal,
+    };
+
+    // Detect when user scrolls near footer (80% down the page)
+    let exitModalShown = false;
+
+    window.addEventListener("scroll", () => {
+        if (exitModalShown) return;
+
+        const scrollPercentage =
+            (window.scrollY /
+                (document.documentElement.scrollHeight - window.innerHeight)) *
+            100;
+
+        // Show modal when user scrolls to 80% of page
+        if (scrollPercentage >= 80) {
+            openExitModal();
+            exitModalShown = true;
+        }
+    });
+
+    // Reset flag when page is reloaded or navigated
+    window.addEventListener("beforeunload", () => {
+        exitModalShown = false;
+    });
+</script>

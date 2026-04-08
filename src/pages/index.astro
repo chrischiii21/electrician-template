@@ -3,10 +3,66 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/Hero.astro";
 import TrustBar from "../components/sections/TrustBar.astro";
 import Services from "../components/sections/Services.astro";
+import Specials from "../components/sections/Specials.astro";
+import WhyUs from "../components/sections/WhyUs.astro";
+import Financing from "../components/sections/Financing.astro";
+import CTARibbon from "../components/sections/CTARibbon.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import SafetyQuiz from "../components/sections/SafetyQuiz.astro";
+import ServiceAreas from "../components/sections/ServiceAreas.astro";
+import FinalCTA from "../components/sections/FinalCTA.astro";
+import CouponModal from "../components/sections/CouponModal.astro";
+import ExitModal from "../components/sections/ExitModal.astro";
 ---
 
 <BaseLayout title="Home | Electrician Services">
 	<Hero />
 	<TrustBar />
 	<Services />
+	<SafetyQuiz />
+	<Specials />
+	<WhyUs />
+	<Financing />
+	<CTARibbon />
+	<Testimonials />
+	<ServiceAreas />
+	<FinalCTA />
+
+	<CouponModal
+		discount="15"
+		discountType="percentage"
+		code="POWER15"
+		title="Welcome! Save on Your First Service"
+		description="Get 15% off any electrical service — residential or commercial."
+		features={[
+			"New customers only",
+			"All service types included",
+			"No minimum spend",
+			"Expires in 48 hours",
+		]}
+		ctaText="Claim My 15% Off"
+		dismissText="No thanks, I'll pass"
+		ctaLink="#contact"
+		expiresIn="47:59:59"
+		data-auto-open-delay="2000"
+	/>
+
+	<ExitModal
+		discount="20"
+		discountType="percentage"
+		code="STAY20"
+		title="Don't Leave Without Your Discount"
+		subtitle="20% Off Your Next Service"
+		description="We'd love to help with your electrical needs. Get 20% off when you book today."
+		features={[
+			"Valid on all service types",
+			"No minimum spend required",
+			"Book within 7 days",
+			"Free consultation included",
+		]}
+		ctaText="Claim 20% Off Now"
+		dismissText="No thanks, I'll pass"
+		ctaLink="#contact"
+		expiresIn="47:59:59"
+	/>
 </BaseLayout>
