@@ -1,0 +1,64 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Hero2 from "../components/sections/Hero2.astro";
+import TrustBar from "../components/sections/TrustBar.astro";
+import CommercialProjects from "../components/sections/CommercialProjects.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import Financing from "../components/sections/Financing.astro";
+import CTARibbon from "../components/sections/CTARibbon.astro";
+import CouponModal from "../components/sections/CouponModal.astro";
+import ExitModal from "../components/sections/ExitModal.astro";
+---
+
+<BaseLayout title="Commercial Services | Electrician Services">
+    <Hero2
+        title="Commercial Services"
+        eyebrow="Commercial"
+        description="Professional electrical solutions for your commercial needs"
+        backgroundImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop"
+    />
+
+    <TrustBar />
+    <CommercialProjects />
+    <Testimonials />
+    <Financing />
+    <CTARibbon />
+
+    <CouponModal
+        discount="10"
+        discountType="percentage"
+        code="COMMERCIAL10"
+        title="Commercial Project Special"
+        description="Save 10% on commercial electrical services and construction projects."
+        features={[
+            "All commercial services included",
+            "Design consultation included",
+            "Flexible scheduling",
+            "Valid for 30 days",
+        ]}
+        ctaText="Get Commercial Quote"
+        dismissText="Maybe later"
+        ctaLink="#contact"
+        expiresIn="29:59:59"
+        data-auto-open-delay="2000"
+    />
+
+    <ExitModal
+        discount="15"
+        discountType="percentage"
+        code="COMMERCIAL15"
+        title="Wait! Special Commercial Offer"
+        subtitle="15% Off Commercial Projects"
+        description="Don't miss out on our exclusive commercial electrical services discount."
+        features={[
+            "All commercial services included",
+            "Free project assessment",
+            "Priority scheduling",
+            "Valid for 60 days",
+        ]}
+        ctaText="Get Your Quote"
+        dismissText="Not interested"
+        ctaLink="#contact"
+        expiresIn="59:59:59"
+    />
+</BaseLayout>

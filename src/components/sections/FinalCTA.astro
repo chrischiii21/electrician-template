@@ -1,0 +1,59 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<section class="bg-primary py-10 scroll-animate" id="contact">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+            class="flex flex-col md:flex-row items-center justify-between gap-6"
+        >
+            <!-- Left -->
+            <div class="flex items-center gap-4">
+                <div
+                    class="w-10 h-10 bg-white/20 flex items-center justify-center shrink-0"
+                >
+                    <svg
+                        class="w-5 h-5 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <div>
+                    <p
+                        class="font-heading font-bold text-white text-lg leading-tight"
+                    >
+                        Stop Waiting. Get It Done Right.
+                    </p>
+                    <p class="text-white/70 text-sm">
+                        Licensed · Same-day · Upfront pricing · 100% guaranteed
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right -->
+            <div class="flex items-center gap-3 shrink-0">
+                <Button
+                    href="#quote-form"
+                    variant="secondary"
+                    size="md"
+                    class="uppercase tracking-wider font-bold whitespace-nowrap bg-white text-primary hover:bg-gray-100 border-0"
+                >
+                    Get a Free Quote
+                </Button>
+                <Button
+                    href="tel:+15550000000"
+                    variant="outline"
+                    size="md"
+                    class="uppercase tracking-wider font-bold whitespace-nowrap border-2 border-white/40 text-white hover:border-white hover:bg-white/15 transition-all duration-200"
+                >
+                    Call 24/7
+                </Button>
+            </div>
+        </div>
+    </div>
+</section>

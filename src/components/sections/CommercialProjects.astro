@@ -1,0 +1,121 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+const projects = [
+    {
+        title: "Ground-up Electrical Construction",
+        description: "Complete electrical systems for new commercial buildings from foundation to finish. Full design, installation, and code compliance.",
+        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=400&fit=crop",
+        features: ["Design & Planning", "Installation", "Code Compliance", "Project Management"],
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
+        href: "/commercial/construction",
+    },
+    {
+        title: "Emergency & Standby Power Systems",
+        description: "Backup generators and standby power systems to keep your business running during outages. Automatic transfer switches included.",
+        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=400&fit=crop",
+        features: ["Generator Installation", "Transfer Switches", "Maintenance Plans", "24/7 Support"],
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+        href: "/commercial/power-systems",
+    },
+    {
+        title: "Commercial HVAC Electrical",
+        description: "Specialized electrical work for commercial heating, ventilation, and cooling systems. Energy-efficient solutions for large facilities.",
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&h=400&fit=crop",
+        features: ["HVAC Wiring", "Control Systems", "Energy Optimization", "Maintenance"],
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`,
+        href: "/commercial/hvac",
+    },
+    {
+        title: "Commercial Electrical Panels",
+        description: "High-capacity commercial panels designed for heavy-duty industrial applications. Upgrades and replacements for aging systems.",
+        image: "https://images.unsplash.com/photo-1581092162562-40038f56c239?w=600&h=400&fit=crop",
+        features: ["Panel Installation", "Upgrades", "Load Analysis", "Safety Inspections"],
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+        href: "/commercial/panels",
+    },
+];
+---
+
+<section class="bg-white py-20" id="commercial-projects">
+    <Container size="lg">
+        <!-- Header -->
+        <div class="text-center mb-16 scroll-animate">
+            <Badge variant="primary" class="mb-3">Our Services</Badge>
+            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+                Commercial Electrical <span class="text-primary">Solutions</span>
+            </Heading>
+            <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
+                From new construction to system upgrades, we deliver reliable electrical infrastructure for businesses of all sizes.
+            </Text>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="grid md:grid-cols-2 gap-8 scroll-stagger">
+            {
+                projects.map((project) => (
+                    <div class="group flex flex-col border border-gray-200 overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300">
+                        <!-- Image with icon badge -->
+                        <div class="relative h-56 overflow-hidden bg-gray-200">
+                            <img
+                                src={project.image}
+                                alt={project.title}
+                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            />
+                            <!-- Icon badge -->
+                            <div class="absolute top-4 right-4 w-12 h-12 bg-primary flex items-center justify-center text-white shadow-md">
+                                <div class="w-6 h-6" set:html={project.icon} />
+                            </div>
+                        </div>
+
+                        <!-- Content -->
+                        <div class="p-6 flex flex-col flex-grow">
+                            <Heading level={4} class="mb-2 text-lg">
+                                {project.title}
+                            </Heading>
+                            <Text size="sm" class="text-gray-600 mb-6 flex-grow">
+                                {project.description}
+                            </Text>
+
+                            <!-- Features list -->
+                            <div class="space-y-2 mb-6 pb-6 border-b border-gray-100">
+                                {project.features.map((feature) => (
+                                    <div class="flex items-center gap-2">
+                                        <svg
+                                            class="w-4 h-4 text-primary shrink-0"
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                        <Text size="xs" class="text-gray-700">
+                                            {feature}
+                                        </Text>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <!-- CTA Button -->
+                            <Button
+                                href={project.href}
+                                variant="primary"
+                                size="sm"
+                                class="w-full uppercase tracking-wider font-bold text-xs"
+                            >
+                                Learn More
+                            </Button>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </Container>
+</section>

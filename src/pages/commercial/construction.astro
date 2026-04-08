@@ -1,0 +1,71 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero2 from "../../components/sections/Hero2.astro";
+import TrustBar from "../../components/sections/TrustBar.astro";
+import ConstructionProcess from "../../components/sections/ConstructionProcess.astro";
+import ConstructionBenefits from "../../components/sections/ConstructionBenefits.astro";
+import Testimonials from "../../components/sections/Testimonials.astro";
+import Financing from "../../components/sections/Financing.astro";
+import CTARibbon from "../../components/sections/CTARibbon.astro";
+import CouponModal from "../../components/sections/CouponModal.astro";
+import ExitModal from "../../components/sections/ExitModal.astro";
+---
+
+<BaseLayout title="Ground-up Electrical Construction | Electrician Services">
+    <Hero2
+        title="Ground-up Electrical Construction"
+        eyebrow="Commercial"
+        description="Complete electrical construction services from the ground up"
+        backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop"
+    />
+
+    <TrustBar />
+
+    <ConstructionProcess />
+
+    <ConstructionBenefits />
+
+    <Testimonials />
+
+    <Financing />
+
+    <CTARibbon />
+
+    <CouponModal
+        discount="500"
+        discountType="amount"
+        code="BUILD500"
+        title="Construction Project Discount"
+        description="Save $500 on ground-up electrical construction projects."
+        features={[
+            "New construction only",
+            "Projects over $5,000",
+            "Free design consultation",
+            "Valid for 60 days",
+        ]}
+        ctaText="Get Free Quote"
+        dismissText="Not interested"
+        ctaLink="#contact"
+        expiresIn="59:59:59"
+        data-auto-open-delay="2000"
+    />
+
+    <ExitModal
+        discount="750"
+        discountType="amount"
+        code="BUILD750"
+        title="Don't Miss Out on Your Project"
+        subtitle="$750 Off Construction Projects"
+        description="Complete your electrical construction with our expert team. Get $750 off today."
+        features={[
+            "New construction projects",
+            "Free design consultation",
+            "Dedicated project manager",
+            "Valid for 90 days",
+        ]}
+        ctaText="Claim $750 Off"
+        dismissText="Not interested"
+        ctaLink="#contact"
+        expiresIn="89:59:59"
+    />
+</BaseLayout>

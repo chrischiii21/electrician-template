@@ -1,0 +1,106 @@
+---
+interface Props {
+    title: string;
+    subtitle?: string;
+    description?: string;
+    eyebrow?: string;
+    backgroundImage?: string;
+    fullHeight?: boolean;
+}
+
+const {
+    title,
+    subtitle,
+    description,
+    eyebrow = "Professional Services",
+    backgroundImage = "https://33hb9xdnm4.ucarecd.net/10381cf7-194e-422f-bcc7-50df3498bff8/photo162190525191848416bd8575a",
+    fullHeight = false,
+} = Astro.props;
+---
+
+<section
+    class={`relative text-gray-50 overflow-hidden ${fullHeight ? "-mt-16 pt-16" : "pt-8"}`}
+>
+    <!-- Background Image -->
+    <div class="absolute inset-0">
+        <div
+            class="absolute inset-0 bg-cover bg-center hero2-image"
+            style={`background-image: url('${backgroundImage}');`}
+        >
+        </div>
+        <div class="absolute inset-0 bg-gray-900/80"></div>
+    </div>
+
+    <!-- Content -->
+    <div
+        class={`relative z-10 max-w-6xl mx-auto px-6 w-full ${fullHeight ? "py-24 md:py-32" : "py-16 md:py-24"}`}
+    >
+        <div class="max-w-3xl">
+            <p
+                class="text-primary font-semibold text-sm uppercase tracking-widest mb-4 hero2-eyebrow"
+            >
+                {eyebrow}
+            </p>
+
+            <h1
+                class="font-heading font-bold text-4xl md:text-5xl lg:text-6xl leading-[1.1] mb-4 text-white hero2-title"
+            >
+                {title}
+                {
+                    subtitle && (
+                        <span class="text-primary block mt-2">{subtitle}</span>
+                    )
+                }
+            </h1>
+
+            {
+                description && (
+                    <p class="font-body text-lg text-gray-300 leading-relaxed hero2-description">
+                        {description}
+                    </p>
+                )
+            }
+        </div>
+    </div>
+
+    <div
+        class="absolute bottom-0 left-0 w-full h-16 bg-gradient-to-t from-background to-transparent"
+    >
+    </div>
+</section>
+
+<style>
+    .hero2-eyebrow {
+        animation: fadeInUp 0.6s ease-out 0.1s both;
+    }
+    .hero2-title {
+        animation: fadeInUp 0.6s ease-out 0.25s both;
+    }
+    .hero2-description {
+        animation: fadeInUp 0.6s ease-out 0.4s both;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .hero2-image {
+        animation: subtleZoom 15s ease-in-out infinite alternate;
+    }
+
+    @keyframes subtleZoom {
+        from {
+            transform: scale(1);
+        }
+        to {
+            transform: scale(1.05);
+        }
+    }
+</style>

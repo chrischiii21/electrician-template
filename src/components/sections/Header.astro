@@ -48,12 +48,97 @@ const aboutUsSubmenu = [
     class="bg-white sticky top-0 z-50 shadow-md transition-all duration-300"
     id="main-header"
 >
+    <!-- Promo Top Bar -->
+    <div
+        id="promo-bar"
+        class="bg-gray-900 border-b border-gray-700 transition-all duration-300 overflow-hidden promo-bar-visible"
+    >
+        <Container size="lg">
+            <div class="flex items-center justify-between py-2.5 px-4 gap-4">
+                <!-- Left: message -->
+                <div class="flex items-center gap-3 flex-1 min-w-0">
+                    <svg
+                        class="w-4 h-4 text-primary shrink-0"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            fill-rule="evenodd"
+                            d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
+                            clip-rule="evenodd"></path>
+                    </svg>
+                    <p
+                        class="text-sm text-gray-300 whitespace-nowrap overflow-hidden text-ellipsis"
+                    >
+                        <span
+                            class="text-primary font-bold uppercase tracking-wider"
+                            >Spring Special:</span
+                        >
+                        <span class="ml-1"
+                            >$75 OFF any electrical panel upgrade — Use code</span
+                        >
+                        <span
+                            class="inline-flex items-center mx-2 px-2 py-0.5 bg-primary text-white text-xs font-bold tracking-widest cursor-pointer promo-code-copy"
+                            data-code="SPRING75"
+                            title="Click to copy">SPRING75</span
+                        >
+                        <span
+                            class="promo-copied text-xs text-accent opacity-0 transition-opacity duration-200"
+                            >✓ Copied!</span
+                        >
+                    </p>
+                </div>
+
+                <!-- Right: countdown + close -->
+                <div class="flex items-center gap-4 shrink-0">
+                    <div
+                        class="flex items-center gap-1.5 text-gray-400 text-xs uppercase tracking-wider"
+                    >
+                        <span>Ends In:</span>
+                        <span
+                            class="promo-unit bg-primary text-white font-heading font-bold text-xs w-7 h-6 flex items-center justify-center"
+                            data-unit="hours">00</span
+                        >
+                        <span class="text-gray-500 font-bold">:</span>
+                        <span
+                            class="promo-unit bg-primary text-white font-heading font-bold text-xs w-7 h-6 flex items-center justify-center"
+                            data-unit="mins">00</span
+                        >
+                        <span class="text-gray-500 font-bold">:</span>
+                        <span
+                            class="promo-unit bg-primary text-white font-heading font-bold text-xs w-7 h-6 flex items-center justify-center"
+                            data-unit="secs">00</span
+                        >
+                    </div>
+                    <button
+                        id="promo-close"
+                        class="text-gray-500 hover:text-white transition-colors ml-2"
+                        aria-label="Dismiss"
+                    >
+                        <svg
+                            class="w-4 h-4"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </Container>
+    </div>
+
     <!-- Top Bar - White Background -->
     <div
         class="bg-white border-b border-gray-100 header-top-bar transition-all duration-300"
     >
         <Container size="lg">
-            <div class="flex items-center justify-between py-3 px-12">
+            <div class="flex items-center justify-between py-3">
                 <!-- Left: Icon + Tagline -->
                 <div class="flex items-center gap-2.5">
                     <svg
@@ -81,7 +166,7 @@ const aboutUsSubmenu = [
                         href="https://facebook.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors rounded-full hover:bg-gray-100"
+                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors hover:bg-gray-100"
                         aria-label="Facebook"
                     >
                         <svg
@@ -98,7 +183,7 @@ const aboutUsSubmenu = [
                         href="https://twitter.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors rounded-full hover:bg-gray-100"
+                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors hover:bg-gray-100"
                         aria-label="Twitter"
                     >
                         <svg
@@ -115,7 +200,7 @@ const aboutUsSubmenu = [
                         href="https://instagram.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors rounded-full hover:bg-gray-100"
+                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors hover:bg-gray-100"
                         aria-label="Instagram"
                     >
                         <svg
@@ -132,7 +217,7 @@ const aboutUsSubmenu = [
                         href="https://linkedin.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors rounded-full hover:bg-gray-100"
+                        class="w-9 h-9 flex items-center justify-center text-gray-700 hover:text-primary transition-colors hover:bg-gray-100"
                         aria-label="LinkedIn"
                     >
                         <svg
@@ -153,7 +238,7 @@ const aboutUsSubmenu = [
     <!-- Main Header + Navigation Combined -->
     <div class="relative header-main-section transition-all duration-300">
         <Container size="lg">
-            <div class="px-12">
+            <div>
                 <!-- Logo, Secondary Navigation, and Contact Info Row -->
                 <div
                     class="flex items-stretch header-middle-row transition-all duration-300"
@@ -165,7 +250,7 @@ const aboutUsSubmenu = [
                         >
                             <!-- Circle with CA -->
                             <div
-                                class="w-10 h-10 border-2 border-gray-50 rounded-full flex items-center justify-center mb-2"
+                                class="w-10 h-10 border-2 border-gray-50 flex items-center justify-center mb-2"
                             >
                                 <span
                                     class="text-gray-50 text-base font-bold leading-none"
@@ -297,7 +382,7 @@ const aboutUsSubmenu = [
 
             <!-- 3rd Level Navigation: Home, About Us, Services, Service Area, and CTA -->
             <div
-                class="flex px-12 gap-0 header-nav-row transition-all duration-500 ease-in-out"
+                class="flex gap-0 header-nav-row transition-all duration-500 ease-in-out"
             >
                 <nav class="flex flex-1">
                     <!-- Home Link -->
@@ -455,56 +540,95 @@ const aboutUsSubmenu = [
 </header>
 
 <script>
-    // Header scroll behavior
-    let lastScrollTop = 0;
-    const header = document.getElementById("main-header");
-    const topBar = header?.querySelector(".header-top-bar");
-    const middleRow = header?.querySelector(".header-middle-row");
+    // --- Promo bar dismiss ---
+    const promoBar = document.getElementById("promo-bar");
+    const promoClose = document.getElementById("promo-close");
 
-    function handleScroll() {
-        const scrollTop =
-            window.pageYOffset || document.documentElement.scrollTop;
-
-        if (scrollTop > 100) {
-            // Scrolled down - compact mode
-            header?.classList.add("scrolled");
-        } else {
-            // At top - full mode
-            header?.classList.remove("scrolled");
-        }
-
-        lastScrollTop = scrollTop;
+    if (sessionStorage.getItem("promoDismissed")) {
+        promoBar?.classList.replace("promo-bar-visible", "promo-bar-hidden");
     }
 
-    // Throttle scroll events for better performance
-    let ticking = false;
-    window.addEventListener("scroll", () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                handleScroll();
-                ticking = false;
-            });
-            ticking = true;
-        }
+    promoClose?.addEventListener("click", () => {
+        promoBar?.classList.replace("promo-bar-visible", "promo-bar-hidden");
+        sessionStorage.setItem("promoDismissed", "true");
     });
 
-    // Initial check
-    handleScroll();
+    // Click to copy promo code
+    document
+        .querySelector(".promo-code-copy")
+        ?.addEventListener("click", (e) => {
+            const code = (e.currentTarget as HTMLElement).dataset.code ?? "";
+            navigator.clipboard.writeText(code).catch(() => {});
+            const copied = document.querySelector<HTMLElement>(".promo-copied");
+            if (copied) {
+                copied.style.opacity = "1";
+                setTimeout(() => {
+                    copied.style.opacity = "0";
+                }, 2000);
+            }
+        });
+
+    // --- Promo countdown (same 72h key as Specials section) ---
+    const KEY = "flashSaleExpiry";
+    const DURATION = 72 * 60 * 60 * 1000;
+    let expiry = parseInt(localStorage.getItem(KEY) ?? "0");
+    if (!expiry || expiry < Date.now()) {
+        expiry = Date.now() + DURATION;
+        localStorage.setItem(KEY, String(expiry));
+    }
+
+    function tickPromo() {
+        const remaining = Math.max(0, expiry - Date.now());
+        const h = Math.floor(remaining / 3600000);
+        const m = Math.floor((remaining % 3600000) / 60000);
+        const s = Math.floor((remaining % 60000) / 1000);
+        const map: Record<string, number> = { hours: h, mins: m, secs: s };
+        document.querySelectorAll<HTMLElement>(".promo-unit").forEach((el) => {
+            const unit = el.dataset.unit ?? "";
+            el.textContent = String(map[unit] ?? 0).padStart(2, "0");
+        });
+        if (remaining > 0) setTimeout(tickPromo, 1000);
+    }
+    tickPromo();
+
+    // Header scroll behavior — use IntersectionObserver to avoid threshold bouncing
+    const header = document.getElementById("main-header");
+    const sentinel = document.createElement("div");
+    sentinel.style.cssText =
+        "position:absolute;top:120px;left:0;width:1px;height:1px;pointer-events:none;";
+    document.body.prepend(sentinel);
+
+    const observer = new IntersectionObserver(
+        ([entry]) => {
+            if (entry.isIntersecting) {
+                header?.classList.remove("scrolled");
+            } else {
+                header?.classList.add("scrolled");
+            }
+        },
+        { threshold: 0, rootMargin: "0px" },
+    );
+    observer.observe(sentinel);
 </script>
 
 <style>
+    .promo-bar-visible {
+        max-height: 60px;
+        opacity: 1;
+    }
+    .promo-bar-hidden {
+        max-height: 0;
+        opacity: 0;
+        padding: 0;
+        border: none;
+    }
+
     /* Default state - full header */
     .header-top-bar,
     .header-middle-row {
         max-height: 200px;
         opacity: 1;
         overflow: hidden;
-        transition:
-            max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-            opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-            padding 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-            margin 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-            border 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     /* Show content with transition */
@@ -512,24 +636,15 @@ const aboutUsSubmenu = [
     .header-middle-row > * {
         visibility: visible;
         opacity: 1;
-        transition:
-            visibility 0s linear 0.3s,
-            opacity 0.3s ease-in-out 0.1s;
     }
 
     /* Scrolled state - compact header with orange gradient */
     #main-header {
-        transition:
-            background 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-            box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: box-shadow 0.3s ease;
     }
 
     #main-header.scrolled {
-        background: linear-gradient(
-            135deg,
-            #f96939 0%,
-            #ff8c5a 100%
-        ) !important;
+        background: #f96939 !important;
         box-shadow: 0 4px 20px rgba(249, 105, 57, 0.3);
     }
 
@@ -598,7 +713,11 @@ const aboutUsSubmenu = [
     .header-nav-row,
     .header-nav-row a,
     .nav-item {
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        transition:
+            color 0.2s ease,
+            background-color 0.2s ease,
+            border-color 0.2s ease,
+            padding 0.3s ease;
     }
 
     /* Dropdown adjustments in compact mode */
