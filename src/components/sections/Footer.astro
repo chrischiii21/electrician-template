@@ -1,6 +1,8 @@
 ---
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
 
 const footerLinks = [
     { label: "Home", href: "/" },
@@ -41,20 +43,26 @@ const socialLinks = [
     <!-- Main Footer Content -->
     <div class="bg-gray-900 py-16">
         <Container size="lg">
-            <div class="px-12">
+            <div class="px-4 md:px-12">
                 <!-- Logo and Tagline -->
-                <div class="text-center mb-8">
-                    <div class="flex items-center justify-center gap-2 mb-4">
+                <div class="text-center mb-6 md:mb-8">
+                    <div
+                        class="flex items-center justify-center gap-2 mb-3 md:mb-4"
+                    >
                         <div
-                            class="w-8 h-8 border-2 border-primary flex items-center justify-center"
+                            class="w-6 md:w-8 h-6 md:h-8 border-2 border-primary flex items-center justify-center"
                         >
-                            <span class="text-primary text-base font-bold"
+                            <span
+                                class="text-primary text-xs md:text-base font-bold"
                                 >C</span
                             >
                         </div>
-                        <h2 class="text-xl font-bold uppercase tracking-wider">
+                        <Heading
+                            level={2}
+                            class="!text-white !text-xl md:!text-2xl"
+                        >
                             <span class="text-primary">VOLT</span> EDGE
-                        </h2>
+                        </Heading>
                     </div>
 
                     <!-- Star Rating -->
@@ -62,7 +70,7 @@ const socialLinks = [
                         {
                             [...Array(5)].map(() => (
                                 <svg
-                                    class="w-4 h-4 text-accent fill-current"
+                                    class="w-3 md:w-4 h-3 md:h-4 text-accent fill-current"
                                     viewBox="0 0 20 20"
                                 >
                                     <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
@@ -71,37 +79,47 @@ const socialLinks = [
                         }
                     </div>
 
-                    <p class="text-base font-bold mb-2">
+                    <Heading
+                        level={4}
+                        class="!text-white !text-base md:!text-lg mb-1 md:mb-2"
+                    >
                         Trusted by 1000+ People Like You
-                    </p>
-                    <p class="text-2xl text-gray-300">
+                    </Heading>
+                    <Text size="sm" class="!text-gray-300 md:!text-base">
                         Contact us Today to Get Free Estimate
-                    </p>
+                    </Text>
                 </div>
 
                 <!-- Navigation Links -->
-                <nav class="flex items-center justify-center gap-8 mb-12">
+                <nav
+                    class="flex flex-wrap items-center justify-center gap-3 md:gap-8 mb-8 md:mb-12"
+                >
                     {
                         footerLinks.map((link) => (
-                            <a
+                            <Text
+                                size="sm"
+                                as="a"
                                 href={link.href}
-                                class="text-sm text-gray-50 hover:text-primary transition-colors uppercase tracking-wide"
+                                class="!text-xs md:!text-sm !text-gray-50 hover:!text-primary transition-colors !uppercase !tracking-wide cursor-pointer"
                             >
                                 {link.label}
-                            </a>
+                            </Text>
                         ))
                     }
                 </nav>
 
                 <!-- CTA Buttons -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-12">
+                <div
+                    class="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-12"
+                >
                     <!-- Request Quote -->
-                    <a
+                    <Button
                         href="/quote"
-                        class="bg-primary hover:bg-accent text-gray-50 px-6 py-4 flex items-center gap-3 transition-colors group"
+                        variant="primary"
+                        class="!bg-primary hover:!bg-accent !text-white !px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-sm md:!text-base"
                     >
                         <svg
-                            class="w-5 h-5 shrink-0"
+                            class="w-4 md:w-5 h-4 md:h-5 shrink-0"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                         >
@@ -113,22 +131,29 @@ const socialLinks = [
                             ></path>
                         </svg>
                         <div class="text-left">
-                            <div
-                                class="text-xs uppercase tracking-wider opacity-90"
+                            <Text
+                                size="sm"
+                                class="!text-xs !uppercase !tracking-wider !opacity-90"
+                                as="div"
                             >
                                 Simple & Free
-                            </div>
-                            <div class="text-sm font-bold">Request a Quote</div>
+                            </Text>
+                            <Text
+                                size="sm"
+                                class="!font-bold !text-xs md:!text-sm"
+                                as="div">Request a Quote</Text
+                            >
                         </div>
-                    </a>
+                    </Button>
 
                     <!-- Call Us -->
-                    <a
+                    <Button
                         href="tel:+14228208200"
-                        class="bg-primary hover:bg-accent text-gray-50 px-6 py-4 flex items-center gap-3 transition-colors group"
+                        variant="primary"
+                        class="!bg-primary hover:!bg-accent !text-white !px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-sm md:!text-base"
                     >
                         <svg
-                            class="w-5 h-5 shrink-0"
+                            class="w-4 md:w-5 h-4 md:h-5 shrink-0"
                             fill="none"
                             stroke="currentColor"
                             stroke-width="2"
@@ -139,22 +164,29 @@ const socialLinks = [
                             ></path>
                         </svg>
                         <div class="text-left">
-                            <div
-                                class="text-xs uppercase tracking-wider opacity-90"
+                            <Text
+                                size="sm"
+                                class="!text-xs !uppercase !tracking-wider !opacity-90"
+                                as="div"
                             >
                                 Call us
-                            </div>
-                            <div class="text-sm font-bold">(422) 820 820</div>
+                            </Text>
+                            <Text
+                                size="sm"
+                                class="!font-bold !text-xs md:!text-sm"
+                                as="div">(422) 820 820</Text
+                            >
                         </div>
-                    </a>
+                    </Button>
 
                     <!-- Email Us -->
-                    <a
+                    <Button
                         href="mailto:office@voltedge.com"
-                        class="bg-primary hover:bg-accent text-gray-50 px-6 py-4 flex items-center gap-3 transition-colors group"
+                        variant="primary"
+                        class="!bg-primary hover:!bg-accent !text-white !px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-sm md:!text-base"
                     >
                         <svg
-                            class="w-5 h-5 shrink-0"
+                            class="w-4 md:w-5 h-4 md:h-5 shrink-0"
                             fill="none"
                             stroke="currentColor"
                             stroke-width="2"
@@ -165,26 +197,32 @@ const socialLinks = [
                             ></path>
                         </svg>
                         <div class="text-left">
-                            <div
-                                class="text-xs uppercase tracking-wider opacity-90"
+                            <Text
+                                size="sm"
+                                class="!text-xs !uppercase !tracking-wider !opacity-90"
+                                as="div"
                             >
                                 Email us
-                            </div>
-                            <div class="text-sm font-bold">
+                            </Text>
+                            <Text
+                                size="sm"
+                                class="!font-bold !text-xs md:!text-sm"
+                                as="div"
+                            >
                                 office@voltedge.com
-                            </div>
+                            </Text>
                         </div>
-                    </a>
+                    </Button>
                 </div>
 
                 <!-- Address and Service Areas -->
                 <div
-                    class="flex flex-wrap items-center justify-between gap-4 pt-8 border-t border-gray-700"
+                    class="flex flex-col md:flex-row md:flex-wrap items-start md:items-center justify-between gap-4 pt-6 md:pt-8 border-t border-gray-700"
                 >
                     <!-- Address -->
-                    <div class="flex items-center gap-2 text-sm">
+                    <div class="flex items-center gap-2">
                         <svg
-                            class="w-4 h-4 text-danger"
+                            class="w-4 h-4 text-danger shrink-0"
                             fill="currentColor"
                             viewBox="0 0 20 20"
                         >
@@ -193,35 +231,47 @@ const socialLinks = [
                                 d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
                                 clip-rule="evenodd"></path>
                         </svg>
-                        <span class="text-gray-300"
-                            >Address: Los Angeles, CA</span
+                        <Text
+                            size="sm"
+                            class="!text-xs md:!text-sm !text-gray-300"
+                            as="span"
                         >
+                            Address: Los Angeles, CA
+                        </Text>
                     </div>
 
                     <!-- Service Areas -->
-                    <div class="flex items-center gap-2">
-                        <span class="text-sm text-gray-300"
-                            >Areas We Service:</span
+                    <div
+                        class="flex flex-col md:flex-row items-start md:items-center gap-2 w-full md:w-auto"
+                    >
+                        <Text
+                            size="sm"
+                            class="!text-xs md:!text-sm !text-gray-300"
+                            as="span"
                         >
-                        {
-                            serviceAreas.map((area) => (
-                                <a
-                                    href={area.href}
-                                    class="text-xs font-bold text-gray-50 hover:text-primary transition-colors px-3 py-1 border border-gray-700 hover:border-primary uppercase tracking-wider"
-                                >
-                                    {area.label}
-                                    <svg
-                                        class="inline-block w-3 h-3 ml-1"
-                                        fill="none"
-                                        stroke="currentColor"
-                                        stroke-width="2"
-                                        viewBox="0 0 24 24"
+                            Areas We Service:
+                        </Text>
+                        <div class="flex flex-wrap gap-2">
+                            {
+                                serviceAreas.map((area) => (
+                                    <a
+                                        href={area.href}
+                                        class="text-xs font-bold text-gray-50 hover:text-primary transition-colors px-2 md:px-3 py-1 border border-gray-700 hover:border-primary uppercase tracking-wider cursor-pointer"
                                     >
-                                        <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                    </svg>
-                                </a>
-                            ))
-                        }
+                                        {area.label}
+                                        <svg
+                                            class="inline-block w-2 md:w-3 h-2 md:h-3 ml-1"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2"
+                                            viewBox="0 0 24 24"
+                                        >
+                                            <path d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                                        </svg>
+                                    </a>
+                                ))
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
@@ -229,43 +279,47 @@ const socialLinks = [
     </div>
 
     <!-- Bottom Bar -->
-    <div class="bg-gray-900 border-t border-gray-700 py-6">
+    <div class="bg-gray-900 border-t border-gray-700 py-4 md:py-6">
         <Container size="lg">
             <div
-                class="px-12 flex flex-wrap items-center justify-between gap-4"
+                class="px-4 md:px-12 flex flex-col md:flex-row md:flex-wrap items-start md:items-center justify-between gap-4"
             >
                 <!-- Copyright -->
-                <p class="text-sm text-gray-300">
+                <Text size="sm" class="!text-xs md:!text-sm !text-gray-300">
                     2026 © VoltEdge. All rights reserved
-                </p>
+                </Text>
 
                 <!-- Legal Links -->
-                <div class="flex items-center gap-6">
-                    <a
+                <div class="flex items-center gap-4 md:gap-6">
+                    <Text
+                        size="sm"
+                        as="a"
                         href="/terms"
-                        class="text-sm text-gray-300 hover:text-primary transition-colors"
+                        class="!text-xs md:!text-sm !text-gray-300 hover:!text-primary transition-colors cursor-pointer"
                     >
                         Terms & Conditions
-                    </a>
-                    <a
+                    </Text>
+                    <Text
+                        size="sm"
+                        as="a"
                         href="/privacy"
-                        class="text-sm text-gray-300 hover:text-primary transition-colors"
+                        class="!text-xs md:!text-sm !text-gray-300 hover:!text-primary transition-colors cursor-pointer"
                     >
                         Privacy Policy
-                    </a>
+                    </Text>
                 </div>
 
                 <!-- Social Links -->
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-3 md:gap-4">
                     {
                         socialLinks.map((social) => (
                             <a
                                 href={social.href}
-                                class="text-gray-300 hover:text-primary transition-colors"
+                                class="text-gray-300 hover:text-primary transition-colors cursor-pointer"
                                 aria-label={social.label}
                             >
                                 <svg
-                                    class="w-5 h-5"
+                                    class="w-4 md:w-5 h-4 md:h-5"
                                     fill="currentColor"
                                     viewBox="0 0 24 24"
                                 >

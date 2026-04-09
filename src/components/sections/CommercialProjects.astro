@@ -46,10 +46,10 @@ const projects = [
         <!-- Header -->
         <div class="text-center mb-16 scroll-animate">
             <Badge variant="primary" class="mb-3">Our Services</Badge>
-            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+            <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
                 Commercial Electrical <span class="text-primary">Solutions</span>
             </Heading>
-            <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
+            <Text size="xl" class="!text-gray-700 max-w-2xl mx-auto">
                 From new construction to system upgrades, we deliver reliable electrical infrastructure for businesses of all sizes.
             </Text>
         </div>
@@ -74,10 +74,10 @@ const projects = [
 
                         <!-- Content -->
                         <div class="p-6 flex flex-col flex-grow">
-                            <Heading level={4} class="mb-2 text-lg">
+                            <Heading level={3} class="!text-text mb-2 text-lg">
                                 {project.title}
                             </Heading>
-                            <Text size="sm" class="text-gray-600 mb-6 flex-grow">
+                            <Text size="lg" class="!text-gray-600 mb-6 flex-grow">
                                 {project.description}
                             </Text>
 
@@ -96,7 +96,7 @@ const projects = [
                                                 clip-rule="evenodd"
                                             />
                                         </svg>
-                                        <Text size="xs" class="text-gray-700">
+                                        <Text size="xs" class="!text-gray-700">
                                             {feature}
                                         </Text>
                                     </div>
@@ -107,8 +107,8 @@ const projects = [
                             <Button
                                 href={project.href}
                                 variant="primary"
-                                size="sm"
-                                class="w-full uppercase tracking-wider font-bold text-xs"
+                                size="md"
+                                class="w-full uppercase tracking-wider font-bold text-md"
                             >
                                 Learn More
                             </Button>

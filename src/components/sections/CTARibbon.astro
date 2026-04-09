@@ -1,5 +1,7 @@
 ---
 import Button from "../ui/Button.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
 ---
 
 <section class="bg-primary py-12 scroll-animate">
@@ -24,15 +26,16 @@ import Button from "../ui/Button.astro";
                     </svg>
                 </div>
                 <div>
-                    <p
-                        class="font-heading font-bold text-white text-xl md:text-2xl leading-tight"
+                    <Heading
+                        level={2}
+                        class="!text-white text-xl md:text-2xl leading-tight"
                     >
                         Ready to Get Started? Let's Talk.
-                    </p>
-                    <p class="text-white/75 text-sm mt-0.5">
+                    </Heading>
+                    <Text size="lg" class="!text-white/75 mt-0.5" as="p">
                         Same-day service available. Free estimates. No
                         obligation.
-                    </p>
+                    </Text>
                 </div>
             </div>
 

@@ -135,7 +135,7 @@ const aboutUsSubmenu = [
 
     <!-- Top Bar - White Background -->
     <div
-        class="bg-white border-b border-gray-100 header-top-bar transition-all duration-300"
+        class="hidden md:block bg-white border-b border-gray-100 header-top-bar transition-all duration-300"
     >
         <Container size="lg">
             <div class="flex items-center justify-between py-3">
@@ -241,7 +241,7 @@ const aboutUsSubmenu = [
             <div>
                 <!-- Logo, Secondary Navigation, and Contact Info Row -->
                 <div
-                    class="flex items-stretch header-middle-row transition-all duration-300"
+                    class="hidden md:flex items-stretch header-middle-row transition-all duration-300"
                 >
                     <!-- Logo - Primary Box -->
                     <a href="/" class="shrink-0">
@@ -254,14 +254,14 @@ const aboutUsSubmenu = [
                             >
                                 <span
                                     class="text-gray-50 text-base font-bold leading-none"
-                                    >CA</span
+                                    >VE</span
                                 >
                             </div>
                             <!-- CON ARCH Text -->
                             <div
                                 class="text-gray-50 text-xs font-bold tracking-widest leading-tight text-center"
                             >
-                                <div>VECTOR</div>
+                                <div>VOLT EDGE</div>
                             </div>
                         </div>
                     </a>
@@ -382,16 +382,19 @@ const aboutUsSubmenu = [
 
             <!-- 3rd Level Navigation: Home, About Us, Services, Service Area, and CTA -->
             <div
-                class="flex gap-0 header-nav-row transition-all duration-500 ease-in-out"
+                class="hidden md:flex gap-0 header-nav-row transition-all duration-500 ease-in-out"
             >
                 <nav class="flex flex-1">
                     <!-- Home Link -->
                     <div class="flex-1 bg-primary nav-item">
                         <a
                             href="/"
-                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide hover:bg-white/10 transition-all duration-300"
+                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide relative group transition-all duration-300"
                         >
                             Home
+                            <span
+                                class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover:w-3/4 transition-all duration-300"
+                            ></span>
                         </a>
                     </div>
 
@@ -401,7 +404,7 @@ const aboutUsSubmenu = [
                     >
                         <a
                             href="/about"
-                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide hover:bg-white/10 transition-all duration-300"
+                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide relative transition-all duration-300"
                         >
                             About Us
                             <svg
@@ -413,6 +416,9 @@ const aboutUsSubmenu = [
                             >
                                 <path d="M19 9l-7 7-7-7"></path>
                             </svg>
+                            <span
+                                class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover:w-3/4 transition-all duration-300"
+                            ></span>
                         </a>
                         <div
                             class="absolute top-full left-0 right-0 bg-primary opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-30 min-w-max"
@@ -421,9 +427,10 @@ const aboutUsSubmenu = [
                                 aboutUsSubmenu.map((item) => (
                                     <a
                                         href={item.href}
-                                        class="flex items-center justify-center px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20"
+                                        class="flex items-center justify-center px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20 relative group/item"
                                     >
                                         {item.label}
+                                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover/item:w-3/4 transition-all duration-300" />
                                     </a>
                                 ))
                             }
@@ -436,7 +443,7 @@ const aboutUsSubmenu = [
                     >
                         <a
                             href="/services"
-                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide hover:bg-white/10 transition-all duration-300"
+                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide relative transition-all duration-300"
                         >
                             Services
                             <svg
@@ -448,6 +455,9 @@ const aboutUsSubmenu = [
                             >
                                 <path d="M19 9l-7 7-7-7"></path>
                             </svg>
+                            <span
+                                class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover:w-3/4 transition-all duration-300"
+                            ></span>
                         </a>
                         <div
                             class="absolute top-full left-0 right-0 bg-primary opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-30 min-w-max"
@@ -457,7 +467,7 @@ const aboutUsSubmenu = [
                                     <div class="relative group/category">
                                         <a
                                             href={category.href}
-                                            class="flex items-center justify-between px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20"
+                                            class="flex items-center justify-between px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20 relative group/cat-item"
                                         >
                                             <span>{category.label}</span>
                                             <svg
@@ -469,6 +479,7 @@ const aboutUsSubmenu = [
                                             >
                                                 <path d="M9 5l7 7-7 7" />
                                             </svg>
+                                            <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover/cat-item:w-3/4 transition-all duration-300" />
                                         </a>
                                         {/* Sub-services dropdown */}
                                         <div class="absolute left-full top-0 bg-primary opacity-0 invisible group-hover/category:opacity-100 group-hover/category:visible transition-all z-40 min-w-max ml-0">
@@ -476,9 +487,10 @@ const aboutUsSubmenu = [
                                                 (service) => (
                                                     <a
                                                         href={service.href}
-                                                        class="block px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20 whitespace-nowrap"
+                                                        class="block px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20 whitespace-nowrap relative group/service-item"
                                                     >
                                                         {service.label}
+                                                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover/service-item:w-3/4 transition-all duration-300" />
                                                     </a>
                                                 ),
                                             )}
@@ -495,7 +507,7 @@ const aboutUsSubmenu = [
                     >
                         <a
                             href="/service-area"
-                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide hover:bg-white/10 transition-all duration-300"
+                            class="flex items-center justify-center text-center px-6 py-4 min-h-16 text-sm font-bold text-gray-50 uppercase tracking-wide relative transition-all duration-300"
                         >
                             Service Area
                             <svg
@@ -507,6 +519,9 @@ const aboutUsSubmenu = [
                             >
                                 <path d="M19 9l-7 7-7-7"></path>
                             </svg>
+                            <span
+                                class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover:w-3/4 transition-all duration-300"
+                            ></span>
                         </a>
                         <div
                             class="absolute top-full left-0 right-0 bg-primary opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-30 min-w-max"
@@ -515,9 +530,10 @@ const aboutUsSubmenu = [
                                 serviceAreasSubmenu.map((area) => (
                                     <a
                                         href={area.href}
-                                        class="flex items-center justify-center px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20"
+                                        class="flex items-center justify-center px-6 py-3 text-sm text-gray-50 hover:bg-gray-900/10 transition-colors border-t border-gray-50/20 relative group/area-item"
                                     >
                                         {area.label}
+                                        <span class="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gray-50 transform -translate-x-1/2 group-hover/area-item:w-3/4 transition-all duration-300" />
                                     </a>
                                 ))
                             }
@@ -530,10 +546,261 @@ const aboutUsSubmenu = [
                     href="/book"
                     variant="accent"
                     size="lg"
-                    class="whitespace-nowrap uppercase tracking-wider"
+                    class="whitespace-nowrap uppercase tracking-wide"
                 >
                     BOOK NOW
                 </Button>
+            </div>
+
+            <!-- Mobile Hamburger Menu -->
+            <div
+                class="md:hidden flex items-center justify-between py-4 px-4 bg-primary"
+            >
+                <!-- Mobile Logo -->
+                <a href="/" class="shrink-0">
+                    <div
+                        class="bg-primary w-32 h-16 flex flex-col items-center justify-center"
+                    >
+                        <!-- Circle with VE -->
+                        <div
+                            class="w-8 h-8 border-2 border-white flex items-center justify-center mb-1"
+                        >
+                            <span
+                                class="text-white text-sm font-bold leading-none"
+                                >VE</span
+                            >
+                        </div>
+                        <!-- VOLT EDGE Text -->
+                        <div
+                            class="text-white text-xs font-bold tracking-widest leading-tight text-center"
+                        >
+                            <div>VOLT EDGE</div>
+                        </div>
+                    </div>
+                </a>
+
+                <button
+                    id="mobile-menu-toggle"
+                    class="p-2 text-gray-50 hover:text-white transition-colors cursor-pointer"
+                    aria-label="Toggle menu"
+                >
+                    <svg
+                        class="w-6 h-6"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                    >
+                        <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Mobile Menu Sidebar -->
+            <div
+                id="mobile-menu"
+                class="fixed inset-0 z-50 bg-black/50 opacity-0 invisible transition-all duration-300"
+            >
+                <div
+                    class="fixed right-0 top-0 h-full w-64 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col"
+                >
+                    <!-- Close button -->
+                    <div
+                        class="flex items-center justify-between p-4 border-b-2 border-gray-100 bg-linear-to-r from-gray-50 to-white"
+                    >
+                        <span class="font-bold text-gray-900 text-lg">Menu</span
+                        >
+                        <button
+                            id="mobile-menu-close"
+                            class="p-2 text-gray-700 hover:text-primary transition-colors cursor-pointer"
+                            aria-label="Close menu"
+                        >
+                            <svg
+                                class="w-6 h-6"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Menu items -->
+                    <nav class="flex-1 overflow-y-auto p-4 space-y-1">
+                        <a
+                            href="/"
+                            class="block px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >Home</a
+                        >
+
+                        <!-- About Us Dropdown -->
+                        <div class="mobile-dropdown">
+                            <button
+                                class="mobile-dropdown-toggle w-full flex items-center justify-between px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >
+                                <span>About Us</span>
+                                <svg
+                                    class="w-4 h-4 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div
+                                class="mobile-dropdown-menu hidden pl-4 space-y-1"
+                            >
+                                {
+                                    aboutUsSubmenu.map((item) => (
+                                        <a
+                                            href={item.href}
+                                            class="block px-4 py-2 text-sm text-gray-600 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                                        >
+                                            {item.label}
+                                        </a>
+                                    ))
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Services Dropdown -->
+                        <div class="mobile-dropdown">
+                            <button
+                                class="mobile-dropdown-toggle w-full flex items-center justify-between px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >
+                                <span>Services</span>
+                                <svg
+                                    class="w-4 h-4 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div
+                                class="mobile-dropdown-menu hidden pl-4 space-y-1"
+                            >
+                                {
+                                    serviceCategories.map((category) => (
+                                        <div class="mobile-sub-dropdown">
+                                            <button class="mobile-sub-dropdown-toggle w-full flex items-center justify-between px-4 py-2 text-sm text-gray-600 hover:text-primary hover:bg-primary/5 transition-all duration-200">
+                                                <span>{category.label}</span>
+                                                <svg
+                                                    class="w-3 h-3 transition-transform"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M9 5l7 7-7 7"
+                                                    />
+                                                </svg>
+                                            </button>
+                                            <div class="mobile-sub-dropdown-menu hidden pl-4 space-y-1">
+                                                {category.services.map(
+                                                    (service) => (
+                                                        <a
+                                                            href={service.href}
+                                                            class="block px-4 py-2 text-xs text-gray-500 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                                                        >
+                                                            {service.label}
+                                                        </a>
+                                                    ),
+                                                )}
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </div>
+                        </div>
+
+                        <!-- Service Area Dropdown -->
+                        <div class="mobile-dropdown">
+                            <button
+                                class="mobile-dropdown-toggle w-full flex items-center justify-between px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >
+                                <span>Service Area</span>
+                                <svg
+                                    class="w-4 h-4 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                            <div
+                                class="mobile-dropdown-menu hidden pl-4 space-y-1"
+                            >
+                                {
+                                    serviceAreasSubmenu.map((area) => (
+                                        <a
+                                            href={area.href}
+                                            class="block px-4 py-2 text-sm text-gray-600 hover:text-primary hover:bg-primary/5 transition-all duration-200"
+                                        >
+                                            {area.label}
+                                        </a>
+                                    ))
+                                }
+                            </div>
+                        </div>
+
+                        <a
+                            href="/specials"
+                            class="block px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >Specials / Coupons</a
+                        >
+                        <a
+                            href="/financing"
+                            class="block px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >Financing</a
+                        >
+                        <a
+                            href="/contact"
+                            class="block px-4 py-3 text-base font-semibold text-gray-700 hover:text-primary hover:bg-primary/5 transition-all duration-200 border-l-4 border-transparent hover:border-primary"
+                            >Contact Us</a
+                        >
+                    </nav>
+
+                    <!-- CTA Button -->
+                    <div
+                        class="p-4 border-t-2 border-gray-100 bg-gray-50 mt-auto"
+                    >
+                        <Button
+                            href="/book"
+                            variant="primary"
+                            size="lg"
+                            class="w-full uppercase tracking-wider shadow-md hover:shadow-lg transition-shadow"
+                        >
+                            Book Now
+                        </Button>
+                    </div>
+                </div>
             </div>
         </Container>
     </div>
@@ -609,6 +876,81 @@ const aboutUsSubmenu = [
         { threshold: 0, rootMargin: "0px" },
     );
     observer.observe(sentinel);
+
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuSidebar = mobileMenu?.querySelector("div:last-child");
+
+    mobileMenuToggle?.addEventListener("click", () => {
+        mobileMenu?.classList.remove("opacity-0", "invisible");
+        mobileMenuSidebar?.classList.remove("translate-x-full");
+    });
+
+    mobileMenuClose?.addEventListener("click", () => {
+        mobileMenu?.classList.add("opacity-0", "invisible");
+        mobileMenuSidebar?.classList.add("translate-x-full");
+    });
+
+    mobileMenu?.addEventListener("click", (e) => {
+        if (e.target === mobileMenu) {
+            mobileMenu.classList.add("opacity-0", "invisible");
+            mobileMenuSidebar?.classList.add("translate-x-full");
+        }
+    });
+
+    // Close menu when a link is clicked
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+            mobileMenu.classList.add("opacity-0", "invisible");
+            mobileMenuSidebar?.classList.add("translate-x-full");
+        });
+    });
+
+    // Mobile dropdown toggles
+    document.querySelectorAll(".mobile-dropdown-toggle").forEach((toggle) => {
+        toggle.addEventListener("click", (e) => {
+            e.preventDefault();
+            const dropdown = (toggle as HTMLElement).closest(
+                ".mobile-dropdown",
+            );
+            const menu = dropdown?.querySelector(".mobile-dropdown-menu");
+            const svg = toggle.querySelector("svg");
+
+            if (menu?.classList.contains("hidden")) {
+                menu.classList.remove("hidden");
+                svg?.classList.add("rotate-180");
+            } else {
+                menu?.classList.add("hidden");
+                svg?.classList.remove("rotate-180");
+            }
+        });
+    });
+
+    // Mobile sub-dropdown toggles
+    document
+        .querySelectorAll(".mobile-sub-dropdown-toggle")
+        .forEach((toggle) => {
+            toggle.addEventListener("click", (e) => {
+                e.preventDefault();
+                const subDropdown = (toggle as HTMLElement).closest(
+                    ".mobile-sub-dropdown",
+                );
+                const subMenu = subDropdown?.querySelector(
+                    ".mobile-sub-dropdown-menu",
+                );
+                const svg = toggle.querySelector("svg");
+
+                if (subMenu?.classList.contains("hidden")) {
+                    subMenu.classList.remove("hidden");
+                    svg?.classList.add("rotate-90");
+                } else {
+                    subMenu?.classList.add("hidden");
+                    svg?.classList.remove("rotate-90");
+                }
+            });
+        });
 </script>
 
 <style>
@@ -699,7 +1041,7 @@ const aboutUsSubmenu = [
         bottom: 0;
         left: 50%;
         width: 0;
-        height: 3px;
+        height: 2px;
         background: white;
         transform: translateX(-50%);
         transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);

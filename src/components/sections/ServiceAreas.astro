@@ -57,10 +57,10 @@ const areaDetails: Record<
         <!-- Header -->
         <div class="text-center mb-12 scroll-animate">
             <Badge variant="primary" class="mb-3">Where We Work</Badge>
-            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+            <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
                 Serving All of <span class="text-primary">California</span>
             </Heading>
-            <Text size="xl" class="text-gray-700 max-w-xl mx-auto">
+            <Text size="xl" class="!text-gray-700 max-w-xl mx-auto">
                 Licensed electricians on call across four major metro areas.
                 Same-day service, local crews, zero travel fees.
             </Text>
@@ -87,21 +87,36 @@ const areaDetails: Record<
                                 <div class="flex items-start justify-between gap-4">
                                     <div class="flex-1">
                                         <div class="flex items-center gap-3 mb-1">
-                                            <span class="area-num font-heading font-bold text-sm text-gray-300 group-hover:text-primary transition-colors">
+                                            <Text
+                                                size="lg"
+                                                class="!font-bold !text-gray-300 group-hover:!text-primary transition-colors area-num"
+                                                as="span"
+                                            >
                                                 {String(i + 1).padStart(2, "0")}
-                                            </span>
-                                            <p class="area-name font-heading font-bold text-text group-hover:text-primary transition-colors">
+                                            </Text>
+                                            <Heading
+                                                level={5}
+                                                class="!text-text group-hover:!text-primary transition-colors area-name"
+                                            >
                                                 {area.name}
-                                            </p>
+                                            </Heading>
                                         </div>
-                                        <p class="text-xs text-gray-400 mb-3 pl-8">
+                                        <Text
+                                            size="sm"
+                                            class="!text-gray-400 mb-3 pl-8"
+                                            as="p"
+                                        >
                                             {d?.tagline}
-                                        </p>
+                                        </Text>
                                         <div class="flex flex-wrap gap-1 pl-8">
                                             {d?.neighborhoods.map((n) => (
-                                                <span class="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 group-hover:bg-primary/10 group-hover:text-primary transition-colors">
+                                                <Text
+                                                    size="sm"
+                                                    class="!bg-gray-100 !text-gray-500 px-2 py-0.5 group-hover:!bg-primary/10 group-hover:!text-primary transition-colors"
+                                                    as="span"
+                                                >
                                                     {n}
-                                                </span>
+                                                </Text>
                                             ))}
                                         </div>
                                         <div class="pl-8 mt-3">
@@ -157,13 +172,12 @@ const areaDetails: Record<
                     id="map-label"
                     class="absolute top-4 left-4 z-[1000] bg-white border border-gray-200 shadow-sm px-4 py-2 pointer-events-none"
                 >
-                    <p
-                        class="font-heading font-bold text-sm text-text"
-                        id="map-city-name"
-                    >
+                    <Heading level={4} id="map-city-name" class="!text-text">
                         Los Angeles
-                    </p>
-                    <p class="text-xs text-gray-400">Service Area</p>
+                    </Heading>
+                    <Text size="sm" class="!text-gray-400" as="p"
+                        >Service Area</Text
+                    >
                 </div>
             </div>
         </div>
@@ -191,7 +205,7 @@ const areaDetails: Record<
                         stroke-width="2"
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
                 </svg>
-                <Text size="sm" class="text-gray-500">
+                <Text size="md" class="!text-gray-500">
                     Don't see your city? We may still cover your area — give us
                     a call.
                 </Text>
