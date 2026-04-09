@@ -1,6 +1,8 @@
 ---
 import Container from "../ui/Container.astro";
 import Button from "../ui/Button.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
 
 const questions = [
     {
@@ -29,21 +31,24 @@ const questions = [
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <!-- Left: branding panel -->
             <div class="scroll-fade-left">
-                <p
-                    class="text-primary font-semibold text-xs uppercase tracking-widest mb-4 flex items-center gap-2"
+                <Text
+                    size="sm"
+                    class="!text-primary font-semibold uppercase tracking-widest mb-4 flex items-center gap-2"
+                    as="p"
                 >
                     <span class="inline-block w-6 h-px bg-primary"></span>
                     Safety Diagnostic
-                </p>
-                <h2
-                    class="font-heading font-bold text-4xl md:text-5xl text-white uppercase leading-tight mb-4"
+                </Text>
+                <Heading
+                    level={2}
+                    class="!text-white md:text-5xl uppercase leading-tight mb-4"
                 >
                     Is Your Home<br /><span class="text-primary">At Risk?</span>
-                </h2>
-                <p class="text-gray-400 mb-10">
+                </Heading>
+                <Text size="md" class="!text-white mb-10" as="p">
                     3 questions. 30 seconds. Get your electrical risk score
                     instantly.
-                </p>
+                </Text>
 
                 <!-- Voltage gauge -->
                 <div class="relative w-48 h-24 mx-auto md:mx-0">
@@ -205,9 +210,12 @@ const questions = [
                                         <span class="text-2xl leading-none mt-0.5">
                                             {q.icon}
                                         </span>
-                                        <p class="font-heading font-bold text-white text-lg leading-snug uppercase">
+                                        <Heading
+                                            level={3}
+                                            class="!text-white text-lg leading-snug uppercase"
+                                        >
                                             {q.text}
-                                        </p>
+                                        </Heading>
                                     </div>
                                     <div class="flex flex-wrap gap-3">
                                         {q.options.map((opt, oi) => (
@@ -227,16 +235,17 @@ const questions = [
                         <!-- Result panel -->
                         <div id="quiz-result" class="hidden">
                             <div id="result-icon" class="text-4xl mb-3"></div>
-                            <p
+                            <Heading
+                                level={3}
                                 id="result-headline"
-                                class="font-heading font-bold text-white text-xl uppercase mb-2"
-                            >
-                            </p>
-                            <p
+                                class="!text-white uppercase mb-2"
+                            />
+                            <Text
+                                size="sm"
                                 id="result-body"
-                                class="text-gray-400 text-sm leading-relaxed mb-6"
-                            >
-                            </p>
+                                class="!text-gray-400 leading-relaxed mb-6"
+                                as="p"
+                            />
                             <div class="flex flex-wrap gap-3">
                                 <Button
                                     href="#contact"

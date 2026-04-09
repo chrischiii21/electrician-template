@@ -1,5 +1,7 @@
 ---
 import Button from "../ui/Button.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
 ---
 
 <section class="bg-primary py-10 scroll-animate" id="contact">
@@ -24,14 +26,15 @@ import Button from "../ui/Button.astro";
                     </svg>
                 </div>
                 <div>
-                    <p
-                        class="font-heading font-bold text-white text-lg leading-tight"
+                    <Heading
+                        level={2}
+                        class="text-white! text-lg leading-tight"
                     >
                         Stop Waiting. Get It Done Right.
-                    </p>
-                    <p class="text-white/70 text-sm">
+                    </Heading>
+                    <Text size="lg" class="text-white/70!" as="p">
                         Licensed · Same-day · Upfront pricing · 100% guaranteed
-                    </p>
+                    </Text>
                 </div>
             </div>
 
@@ -41,7 +44,7 @@ import Button from "../ui/Button.astro";
                     href="#quote-form"
                     variant="secondary"
                     size="md"
-                    class="uppercase tracking-wider font-bold whitespace-nowrap bg-white text-primary hover:bg-gray-100 border-0"
+                    class="uppercase tracking-wider font-bold whitespace-nowrap bg-white text-primary hover:bg-accent border-0"
                 >
                     Get a Free Quote
                 </Button>
@@ -49,7 +52,7 @@ import Button from "../ui/Button.astro";
                     href="tel:+15550000000"
                     variant="outline"
                     size="md"
-                    class="uppercase tracking-wider font-bold whitespace-nowrap border-2 border-white/40 text-white hover:border-white hover:bg-white/15 transition-all duration-200"
+                    class="uppercase tracking-wider font-bold whitespace-nowrap border-2 border-white/40 text-white hover:border-white hover:bg-white hover:text-primary transition-all duration-200"
                 >
                     Call 24/7
                 </Button>

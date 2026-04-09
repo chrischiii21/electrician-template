@@ -1,5 +1,7 @@
 ---
 import Button from "../ui/Button.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
 import CouponModal from "./CouponModal.astro";
 
 const heroImage =
@@ -13,7 +15,7 @@ const heroImage =
     <div class="absolute inset-0">
         <!-- Mobile: Solid color background -->
         <div
-            class="absolute inset-0 md:hidden bg-gradient-to-br from-gray-900 to-gray-800"
+            class="absolute inset-0 md:hidden bg-linear-to-br from-gray-900 to-gray-800"
         >
         </div>
 
@@ -31,25 +33,30 @@ const heroImage =
     <!-- Content -->
     <div class="relative z-10 max-w-6xl mx-auto px-6 w-full py-32">
         <div class="max-w-2xl">
-            <p
-                class="text-primary font-semibold text-sm uppercase tracking-widest mb-5 hero-eyebrow"
+            <Text
+                size="sm"
+                class="text-primary! font-semibold uppercase tracking-widest mb-5 hero-eyebrow"
+                as="p"
             >
                 Licensed &amp; Insured Electricians
-            </p>
+            </Text>
 
-            <h1
-                class="font-heading font-bold text-5xl md:text-6xl lg:text-7xl leading-[1.1] mb-6 text-white hero-title"
+            <Heading
+                level={1}
+                class="text-white! md:text-6xl lg:text-7xl leading-[1.1] mb-6 hero-title"
             >
                 Powering Homes.<br />
                 <span class="text-primary">Built to Last.</span>
-            </h1>
+            </Heading>
 
-            <p
-                class="font-body text-lg text-gray-300 mb-10 leading-relaxed hero-description"
+            <Text
+                size="xl"
+                class="text-white! mb-10 leading-relaxed hero-description"
+                as="p"
             >
                 Expert electrical solutions for residential and commercial
                 properties. Safe, reliable, and code-compliant — every time.
-            </p>
+            </Text>
 
             <div class="flex items-center gap-4 flex-wrap hero-buttons">
                 <Button
@@ -79,7 +86,7 @@ const heroImage =
                         "Upfront pricing",
                         "100% satisfaction guarantee",
                     ].map((item) => (
-                        <div class="flex items-center gap-2 text-gray-400 text-sm">
+                        <div class="flex items-center gap-2">
                             <svg
                                 class="w-4 h-4 text-primary shrink-0"
                                 fill="currentColor"
@@ -91,7 +98,9 @@ const heroImage =
                                     clip-rule="evenodd"
                                 />
                             </svg>
-                            <span>{item}</span>
+                            <Text size="lg" class="text-white" as="span">
+                                {item}
+                            </Text>
                         </div>
                     ))
                 }

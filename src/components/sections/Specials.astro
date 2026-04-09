@@ -53,7 +53,7 @@ const coupons = [
                     </svg>
                 </div>
                 <div>
-                    <p class="font-heading font-bold text-text">⚡ Flash Sale — Ending Soon!</p>
+                    <Heading level={4} class="!text-text">⚡ Flash Sale — Ending Soon!</Heading>
                     <Text size="sm" class="text-gray-500">Claim your coupon before time runs out. These deals won't last.</Text>
                 </div>
             </div>
@@ -73,17 +73,17 @@ const coupons = [
 
         <!-- Header -->
         <div class="text-center mb-12 scroll-animate">
-            <Badge variant="accent" class="mb-3">Exclusive Savings</Badge>
-            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+            <Badge variant="primary" class="mb-3">Exclusive Savings</Badge>
+            <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
                 Coupons &amp; <span class="text-primary">Special Offers</span>
             </Heading>
-            <Text size="xl" class="text-gray-700 max-w-xl mx-auto">
+            <Text size="xl" class="!text-gray-700 max-w-xl mx-auto">
                 Save big on your next electrical project. Print or mention these codes at booking.
             </Text>
         </div>
 
         <!-- Coupon Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 scroll-stagger">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 scroll-animate">
             {coupons.map((c) => (
                 <div class={`coupon-ticket ${c.color} relative flex flex-col overflow-hidden`}>
                     <!-- Circuit pattern overlay -->
@@ -99,7 +99,7 @@ const coupons = [
                     <div class="relative px-6 pt-2 pb-4 flex flex-col gap-3 flex-1">
                         <!-- Lightning bolt + title -->
                         <div class="flex items-center justify-between">
-                            <span class={`text-xs font-bold uppercase tracking-widest ${c.textColor} opacity-70`}>{c.title}</span>
+                            <Text size="sm" class={`!font-bold !uppercase !tracking-widest ${c.textColor} opacity-70`} as="span">{c.title}</Text>
                             <svg class={`w-5 h-5 ${c.textColor} opacity-50`} fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
                             </svg>
@@ -111,7 +111,7 @@ const coupons = [
                         </div>
 
                         <!-- Description -->
-                        <p class={`text-xs leading-relaxed text-center ${c.textColor} opacity-75`}>{c.description}</p>
+                        <Text size="sm" class={`!text-center ${c.textColor} opacity-75`} as="p">{c.description}</Text>
                     </div>
 
                     <!-- Perforated tear line -->
@@ -123,7 +123,7 @@ const coupons = [
 
                     <!-- Code stub -->
                     <div class="relative px-6 py-4 flex flex-col items-center gap-2">
-                        <p class={`text-xs uppercase tracking-widest ${c.textColor} opacity-50`}>Promo Code</p>
+                        <Text size="sm" class={`!uppercase !tracking-widest ${c.textColor} opacity-50`} as="p">Promo Code</Text>
                         <button
                             class={`coupon-copy w-full py-2.5 font-heading font-bold tracking-[0.2em] text-sm border border-dashed border-white/40 hover:bg-white/15 active:scale-95 transition-all duration-150 ${c.textColor}`}
                             data-code={c.code}
@@ -131,7 +131,7 @@ const coupons = [
                         >
                             {c.code}
                         </button>
-                        <p class={`coupon-copied text-xs opacity-0 transition-opacity duration-200 ${c.textColor}`}>✓ Copied to clipboard!</p>
+                        <Text size="sm" class={`coupon-copied !opacity-0 transition-opacity duration-200 ${c.textColor}`} as="p">✓ Copied to clipboard!</Text>
                     </div>
 
                     <!-- Bottom hole punches -->
@@ -145,7 +145,7 @@ const coupons = [
 
         <!-- Bottom CTA -->
         <div class="text-center mt-12 scroll-animate">
-            <Text class="text-gray-400 mb-4">Ready to save? Book your service today and mention your code.</Text>
+            <Text class="!text-black mb-4">Ready to save? Book your service today and mention your code.</Text>
             <Button href="#contact" variant="primary" size="lg" class="uppercase tracking-wider font-bold">
                 Book Now &amp; Save
             </Button>
