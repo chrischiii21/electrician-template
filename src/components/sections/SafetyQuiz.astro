@@ -26,32 +26,56 @@ const questions = [
 ];
 ---
 
-<section class="bg-gray-900 py-20 overflow-hidden" id="safety-quiz">
+<section
+    class="bg-gray-900 py-12 md:py-20 overflow-hidden relative"
+    id="safety-quiz"
+>
+    <!-- Decorative background elements -->
+    <div class="absolute inset-0 opacity-5 pointer-events-none">
+        <div class="absolute top-10 left-10 w-32 h-32 border-2 border-primary">
+        </div>
+        <div
+            class="absolute bottom-20 right-20 w-24 h-24 border border-primary"
+        >
+        </div>
+        <div
+            class="absolute top-1/2 right-1/4 w-16 h-16 border-2 border-primary/50"
+        >
+        </div>
+    </div>
+
     <Container size="lg">
-        <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div
+            class="grid md:grid-cols-2 gap-6 md:gap-12 items-start md:items-center px-4 md:px-0 relative z-10"
+        >
             <!-- Left: branding panel -->
-            <div class="scroll-fade-left">
+            <div class="scroll-fade-left order-1 md:order-1">
                 <Text
                     size="sm"
-                    class="!text-primary font-semibold uppercase tracking-widest mb-4 flex items-center gap-2"
+                    class="text-primary! text-xs! md:text-sm! font-semibold uppercase tracking-widest mb-2 md:mb-4 flex items-center gap-2"
                     as="p"
                 >
-                    <span class="inline-block w-6 h-px bg-primary"></span>
+                    <span class="inline-block w-4 md:w-6 h-px bg-primary"
+                    ></span>
                     Safety Diagnostic
                 </Text>
                 <Heading
                     level={2}
-                    class="!text-white md:text-5xl uppercase leading-tight mb-4"
+                    class="text-white! text-2xl! md:text-5xl! uppercase leading-tight mb-2 md:mb-4"
                 >
                     Is Your Home<br /><span class="text-primary">At Risk?</span>
                 </Heading>
-                <Text size="md" class="!text-white mb-10" as="p">
+                <Text
+                    size="sm"
+                    class="text-white! text-xs! md:text-base! mb-6 md:mb-10"
+                    as="p"
+                >
                     3 questions. 30 seconds. Get your electrical risk score
                     instantly.
                 </Text>
 
                 <!-- Voltage gauge -->
-                <div class="relative w-48 h-24 mx-auto md:mx-0">
+                <div class="relative w-40 md:w-48 h-20 md:h-24 mx-auto md:mx-0">
                     <svg viewBox="0 0 200 110" class="w-full">
                         <!-- Track -->
                         <path
@@ -111,7 +135,7 @@ const questions = [
                     <div class="absolute inset-x-0 bottom-0 text-center">
                         <p
                             id="gauge-label"
-                            class="font-heading font-bold text-white text-sm uppercase tracking-widest"
+                            class="font-heading font-bold text-white text-xs! md:text-sm! uppercase tracking-widest"
                         >
                             RISK LEVEL
                         </p>
@@ -119,42 +143,42 @@ const questions = [
                 </div>
 
                 <!-- Risk score display -->
-                <div class="mt-6 flex items-center gap-3">
-                    <div class="flex gap-1.5">
+                <div class="mt-4 md:mt-6 flex items-center gap-2 md:gap-3">
+                    <div class="flex gap-1">
                         <div
-                            class="risk-dot w-3 h-3 bg-gray-700 transition-colors duration-500"
+                            class="risk-dot w-2 md:w-3 h-2 md:h-3 bg-gray-700 transition-colors duration-500"
                             data-dot="0"
                         >
                         </div>
                         <div
-                            class="risk-dot w-3 h-3 bg-gray-700 transition-colors duration-500"
+                            class="risk-dot w-2 md:w-3 h-2 md:h-3 bg-gray-700 transition-colors duration-500"
                             data-dot="1"
                         >
                         </div>
                         <div
-                            class="risk-dot w-3 h-3 bg-gray-700 transition-colors duration-500"
+                            class="risk-dot w-2 md:w-3 h-2 md:h-3 bg-gray-700 transition-colors duration-500"
                             data-dot="2"
                         >
                         </div>
                         <div
-                            class="risk-dot w-3 h-3 bg-gray-700 transition-colors duration-500"
+                            class="risk-dot w-2 md:w-3 h-2 md:h-3 bg-gray-700 transition-colors duration-500"
                             data-dot="3"
                         >
                         </div>
                         <div
-                            class="risk-dot w-3 h-3 bg-gray-700 transition-colors duration-500"
+                            class="risk-dot w-2 md:w-3 h-2 md:h-3 bg-gray-700 transition-colors duration-500"
                             data-dot="4"
                         >
                         </div>
                         <div
-                            class="risk-dot w-3 h-3 bg-gray-700 transition-colors duration-500"
+                            class="risk-dot w-2 md:w-3 h-2 md:h-3 bg-gray-700 transition-colors duration-500"
                             data-dot="5"
                         >
                         </div>
                     </div>
                     <p
                         id="score-label"
-                        class="text-gray-500 text-xs font-mono uppercase tracking-wider"
+                        class="text-gray-500 text-xs! font-mono uppercase tracking-wider"
                     >
                         Awaiting input...
                     </p>
@@ -162,16 +186,21 @@ const questions = [
             </div>
 
             <!-- Right: quiz terminal -->
-            <div class="scroll-fade-right">
-                <div class="bg-gray-800 border border-gray-700 overflow-hidden">
+            <div class="scroll-fade-right order-1 md:order-2">
+                <div
+                    class="bg-gray-800 border border-gray-700 overflow-hidden text-sm md:text-base"
+                >
                     <!-- Terminal header bar -->
                     <div
-                        class="bg-gray-700 px-4 py-2.5 flex items-center gap-2 border-b border-gray-600"
+                        class="bg-gray-700 px-3 md:px-4 py-2 md:py-2.5 flex items-center gap-2 border-b border-gray-600"
                     >
-                        <div class="w-3 h-3 bg-red-500/70"></div>
-                        <div class="w-3 h-3 bg-yellow-500/70"></div>
-                        <div class="w-3 h-3 bg-green-500/70"></div>
-                        <span class="ml-3 text-gray-400 text-xs font-mono"
+                        <div class="w-2 md:w-3 h-2 md:h-3 bg-red-500/70"></div>
+                        <div class="w-2 md:w-3 h-2 md:h-3 bg-yellow-500/70">
+                        </div>
+                        <div class="w-2 md:w-3 h-2 md:h-3 bg-green-500/70">
+                        </div>
+                        <span
+                            class="ml-2 md:ml-3 text-gray-400 text-xs! md:text-sm! font-mono"
                             >electrical_safety_check.exe</span
                         >
                     </div>
@@ -182,7 +211,7 @@ const questions = [
                             questions.map((_, i) => (
                                 <div
                                     class:list={[
-                                        "quiz-step flex-1 py-2 text-center text-xs font-mono border-r border-gray-700 last:border-0 transition-all duration-300",
+                                        "quiz-step flex-1 py-2 text-center text-xs! md:text-sm! font-mono border-r border-gray-700 last:border-0 transition-all duration-300",
                                         i === 0
                                             ? "text-primary bg-primary/10"
                                             : "text-gray-600",
@@ -196,7 +225,7 @@ const questions = [
                     </div>
 
                     <!-- Question area -->
-                    <div class="p-6 min-h-52">
+                    <div class="p-4 md:p-6 min-h-48 md:min-h-52">
                         {
                             questions.map((q, i) => (
                                 <div
@@ -206,21 +235,21 @@ const questions = [
                                         i !== 0 && "hidden",
                                     ]}
                                 >
-                                    <div class="flex items-start gap-3 mb-6">
-                                        <span class="text-2xl leading-none mt-0.5">
+                                    <div class="flex items-start gap-2 md:gap-3 mb-4 md:mb-6">
+                                        <span class="text-xl! md:text-2xl! leading-none mt-0.5">
                                             {q.icon}
                                         </span>
                                         <Heading
                                             level={3}
-                                            class="!text-white text-lg leading-snug uppercase"
+                                            class="text-white! text-sm! md:text-lg! leading-snug uppercase"
                                         >
                                             {q.text}
                                         </Heading>
                                     </div>
-                                    <div class="flex flex-wrap gap-3">
+                                    <div class="flex flex-wrap gap-2 md:gap-3">
                                         {q.options.map((opt, oi) => (
                                             <button
-                                                class="quiz-answer border border-gray-600 px-6 py-2.5 text-xs font-bold uppercase tracking-widest text-gray-300 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-150 font-mono"
+                                                class="quiz-answer border border-gray-600 px-3! md:px-6! py-2! md:py-2.5! text-xs! md:text-sm! font-bold uppercase tracking-widest text-gray-300 hover:border-primary hover:text-primary hover:bg-primary/10 transition-all duration-150 font-mono"
                                                 data-q={i}
                                                 data-risk={q.risk[oi]}
                                             >
@@ -234,30 +263,33 @@ const questions = [
 
                         <!-- Result panel -->
                         <div id="quiz-result" class="hidden">
-                            <div id="result-icon" class="text-4xl mb-3"></div>
+                            <div
+                                id="result-icon"
+                                class="text-3xl! md:text-4xl! mb-2 md:mb-3"
+                            >
+                            </div>
                             <Heading
                                 level={3}
                                 id="result-headline"
-                                class="!text-white uppercase mb-2"
+                                class="text-white! text-base! md:text-lg! uppercase mb-1 md:mb-2"
                             />
-                            <Text
-                                size="sm"
+                            <p
                                 id="result-body"
-                                class="!text-gray-400 leading-relaxed mb-6"
-                                as="p"
-                            />
-                            <div class="flex flex-wrap gap-3">
+                                class="text-xs! md:text-sm! text-gray-400! leading-relaxed mb-4 md:mb-6"
+                            >
+                            </p>
+                            <div class="flex flex-wrap gap-2 md:gap-3">
                                 <Button
                                     href="#contact"
                                     variant="primary"
                                     size="md"
-                                    class="uppercase tracking-wider font-bold font-mono text-xs"
+                                    class="uppercase tracking-wider font-bold font-mono text-xs! md:text-sm! px-3! md:px-6! py-2! md:py-2.5!"
                                 >
                                     Book Free Safety Check →
                                 </Button>
                                 <button
                                     id="quiz-restart"
-                                    class="text-xs text-gray-500 hover:text-gray-300 transition-colors font-mono uppercase tracking-wider px-2"
+                                    class="text-xs! md:text-sm! text-gray-500 hover:text-gray-300 transition-colors font-mono uppercase tracking-wider px-2"
                                 >
                                     [ restart ]
                                 </button>
@@ -267,16 +299,16 @@ const questions = [
 
                     <!-- Status bar -->
                     <div
-                        class="bg-gray-700/50 border-t border-gray-700 px-4 py-2 flex items-center justify-between"
+                        class="bg-gray-700/50 border-t border-gray-700 px-3 md:px-4 py-2 flex flex-col md:flex-row items-start md:items-center justify-between gap-1 md:gap-0"
                     >
                         <span
                             id="status-text"
-                            class="text-xs font-mono text-gray-500"
+                            class="text-xs! font-mono text-gray-500"
                             >STATUS: READY</span
                         >
                         <span
                             id="progress-text"
-                            class="text-xs font-mono text-gray-600"
+                            class="text-xs! font-mono text-gray-600"
                             >0 / {questions.length} ANSWERED</span
                         >
                     </div>
