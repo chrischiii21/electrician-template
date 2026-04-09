@@ -12,18 +12,90 @@ import CouponModal from "../../components/sections/CouponModal.astro";
 import ExitModal from "../../components/sections/ExitModal.astro";
 
 const laNeighborhoods = [
-    { name: "Downtown LA", lat: 34.0522, lng: -118.2437 },
-    { name: "Santa Monica", lat: 34.0195, lng: -118.4912 },
-    { name: "Beverly Hills", lat: 34.0901, lng: -118.4065 },
-    { name: "Westwood", lat: 34.0728, lng: -118.4452 },
-    { name: "Brentwood", lat: 34.0395, lng: -118.4814 },
-    { name: "Malibu", lat: 34.0259, lng: -118.6822 },
-    { name: "Long Beach", lat: 33.7701, lng: -118.1937 },
-    { name: "Pasadena", lat: 34.1478, lng: -118.1445 },
-    { name: "Glendale", lat: 34.1425, lng: -118.2551 },
-    { name: "Burbank", lat: 34.1899, lng: -118.3089 },
-    { name: "Culver City", lat: 34.0089, lng: -118.3977 },
-    { name: "Manhattan Beach", lat: 33.885, lng: -118.4114 },
+    {
+        name: "Downtown LA",
+        lat: 34.0522,
+        lng: -118.2437,
+        electricians: 8,
+        avgResponse: "8-12 min",
+    },
+    {
+        name: "Santa Monica",
+        lat: 34.0195,
+        lng: -118.4912,
+        electricians: 6,
+        avgResponse: "10-15 min",
+    },
+    {
+        name: "Beverly Hills",
+        lat: 34.0901,
+        lng: -118.4065,
+        electricians: 7,
+        avgResponse: "9-13 min",
+    },
+    {
+        name: "Westwood",
+        lat: 34.0728,
+        lng: -118.4452,
+        electricians: 5,
+        avgResponse: "12-18 min",
+    },
+    {
+        name: "Brentwood",
+        lat: 34.0395,
+        lng: -118.4814,
+        electricians: 4,
+        avgResponse: "15-20 min",
+    },
+    {
+        name: "Malibu",
+        lat: 34.0259,
+        lng: -118.6822,
+        electricians: 3,
+        avgResponse: "20-25 min",
+    },
+    {
+        name: "Long Beach",
+        lat: 33.7701,
+        lng: -118.1937,
+        electricians: 6,
+        avgResponse: "10-15 min",
+    },
+    {
+        name: "Pasadena",
+        lat: 34.1478,
+        lng: -118.1445,
+        electricians: 5,
+        avgResponse: "12-17 min",
+    },
+    {
+        name: "Glendale",
+        lat: 34.1425,
+        lng: -118.2551,
+        electricians: 5,
+        avgResponse: "11-16 min",
+    },
+    {
+        name: "Burbank",
+        lat: 34.1899,
+        lng: -118.3089,
+        electricians: 4,
+        avgResponse: "13-18 min",
+    },
+    {
+        name: "Culver City",
+        lat: 34.0089,
+        lng: -118.3977,
+        electricians: 6,
+        avgResponse: "10-14 min",
+    },
+    {
+        name: "Manhattan Beach",
+        lat: 33.885,
+        lng: -118.4114,
+        electricians: 4,
+        avgResponse: "14-19 min",
+    },
 ];
 
 const laReasons = [
@@ -86,7 +158,11 @@ const laReasons = [
 
     <WhyServiceArea city="Los Angeles" reasons={laReasons} />
 
-    <ServiceAreaMap city="Los Angeles" neighborhoods={laNeighborhoods} />
+    <ServiceAreaMap
+        city="Los Angeles"
+        neighborhoods={laNeighborhoods}
+        totalElectricians={8}
+    />
 
     <Specials />
 

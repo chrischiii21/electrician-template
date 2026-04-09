@@ -74,7 +74,7 @@ const socialLinks = [
                     >
                         Trusted by 1000+ People Like You
                     </Heading>
-                    <Text size="sm" class="!text-gray-300 md:!text-base">
+                    <Text size="sm" class="!text-white !md:text-base">
                         Contact us Today to Get Free Estimate
                     </Text>
                 </div>
@@ -89,7 +89,7 @@ const socialLinks = [
                                 size="sm"
                                 as="a"
                                 href={link.href}
-                                class="!text-xs md:!text-sm !text-gray-50 hover:!text-primary transition-colors !uppercase !tracking-wide cursor-pointer"
+                                class="!text-xs md:!text-sm !text-white hover:!text-primary transition-colors !uppercase !tracking-wide cursor-pointer"
                             >
                                 {link.label}
                             </Text>
@@ -222,7 +222,7 @@ const socialLinks = [
                         </svg>
                         <Text
                             size="sm"
-                            class="!text-xs md:!text-sm !text-gray-300"
+                            class="!text-xs md:!text-sm !text-white"
                             as="span"
                         >
                             Address: Los Angeles, CA
@@ -235,7 +235,7 @@ const socialLinks = [
                     >
                         <Text
                             size="sm"
-                            class="!text-xs md:!text-sm !text-gray-300"
+                            class="!text-xs md:!text-sm !text-white"
                             as="span"
                         >
                             Areas We Service:
@@ -245,7 +245,7 @@ const socialLinks = [
                                 serviceAreas.map((area) => (
                                     <a
                                         href={area.href}
-                                        class="text-xs font-bold text-gray-50 hover:text-primary transition-colors px-2 md:px-3 py-1 border border-gray-700 hover:border-primary uppercase tracking-wider cursor-pointer"
+                                        class="text-xs font-bold text-white hover:text-primary transition-colors px-2 md:px-3 py-1 border border-gray-700 hover:border-primary uppercase tracking-wider cursor-pointer"
                                     >
                                         {area.label}
                                         <svg
@@ -274,7 +274,7 @@ const socialLinks = [
                 class="px-4 md:px-12 flex flex-col md:flex-row md:flex-wrap items-start md:items-center justify-between gap-4"
             >
                 <!-- Copyright -->
-                <Text size="sm" class="!text-xs md:!text-sm !text-gray-300">
+                <Text size="sm" class="!text-xs md:!text-sm !text-white">
                     2026 © VoltEdge. All rights reserved
                 </Text>
 
@@ -284,7 +284,7 @@ const socialLinks = [
                         size="sm"
                         as="a"
                         href="/terms"
-                        class="!text-xs md:!text-sm !text-gray-300 hover:!text-primary transition-colors cursor-pointer"
+                        class="!text-xs md:!text-sm !text-white hover:!text-primary transition-colors cursor-pointer"
                     >
                         Terms & Conditions
                     </Text>
@@ -292,7 +292,7 @@ const socialLinks = [
                         size="sm"
                         as="a"
                         href="/privacy"
-                        class="!text-xs md:!text-sm !text-gray-300 hover:!text-primary transition-colors cursor-pointer"
+                        class="!text-xs md:!text-sm !text-white hover:!text-primary transition-colors cursor-pointer"
                     >
                         Privacy Policy
                     </Text>
@@ -304,7 +304,7 @@ const socialLinks = [
                         socialLinks.map((social) => (
                             <a
                                 href={social.href}
-                                class="text-gray-300 hover:text-primary transition-colors cursor-pointer"
+                                class="text-white hover:text-primary transition-colors cursor-pointer"
                                 aria-label={social.label}
                             >
                                 <svg
