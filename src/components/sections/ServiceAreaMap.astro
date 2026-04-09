@@ -8,14 +8,17 @@ interface Neighborhood {
     name: string;
     lat: number;
     lng: number;
+    electricians?: number;
+    avgResponse?: string;
 }
 
 interface Props {
     city: string;
     neighborhoods: Neighborhood[];
+    totalElectricians?: number;
 }
 
-const { city, neighborhoods } = Astro.props;
+const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
 ---
 
 <section class="bg-white py-20" id="service-area-map">
@@ -47,6 +50,14 @@ const { city, neighborhoods } = Astro.props;
                                     data-lat={neighborhood.lat}
                                     data-lng={neighborhood.lng}
                                     data-name={neighborhood.name}
+                                    data-electricians={
+                                        neighborhood.electricians ||
+                                        Math.floor(Math.random() * 5) + 3
+                                    }
+                                    data-response={
+                                        neighborhood.avgResponse ||
+                                        `${Math.floor(Math.random() * 10) + 10}-${Math.floor(Math.random() * 10) + 15} min`
+                                    }
                                 >
                                     <span class="flex items-center gap-2">
                                         <span class="w-2 h-2 bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -72,8 +83,8 @@ const { city, neighborhoods } = Astro.props;
                         id="info-card"
                         class="absolute bottom-4 left-4 right-4 bg-white shadow-lg p-4 opacity-0 transition-opacity duration-300 pointer-events-none"
                     >
-                        <div class="flex items-start justify-between">
-                            <div>
+                        <div class="flex items-start justify-between gap-4">
+                            <div class="flex-1">
                                 <Heading
                                     level={5}
                                     id="neighborhood-name"
@@ -82,12 +93,26 @@ const { city, neighborhoods } = Astro.props;
                                 <Text
                                     size="sm"
                                     id="neighborhood-info"
-                                    class="text-gray-600"
+                                    class="text-gray-600 mb-2"
                                     >Click on a neighborhood to see details</Text
                                 >
+                                <div class="flex items-center gap-2">
+                                    <div
+                                        id="electrician-indicators"
+                                        class="flex gap-1"
+                                    >
+                                    </div>
+                                    <Text
+                                        size="sm"
+                                        class="text-gray-700 font-medium"
+                                    >
+                                        <span id="electrician-count">0</span> electricians
+                                        active
+                                    </Text>
+                                </div>
                             </div>
                             <svg
-                                class="w-5 h-5 text-primary flex-shrink-0"
+                                class="w-5 h-5 text-primary shrink-0"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
@@ -119,7 +144,28 @@ const { city, neighborhoods } = Astro.props;
         </div>
 
         <!-- Stats -->
-        <div class="grid md:grid-cols-3 gap-4 mt-8">
+        <div class="grid md:grid-cols-4 gap-4 mt-8">
+            <div class="bg-gray-50 border border-gray-200 p-6 text-center">
+                <div
+                    id="total-electrician-indicators"
+                    class="flex items-center justify-center gap-2 mb-3"
+                >
+                    {
+                        [...Array(totalElectricians)].map(() => (
+                            <div class="w-6 h-6 bg-primary" />
+                        ))
+                    }
+                </div>
+                <div
+                    id="total-electrician-count"
+                    class="text-2xl font-bold text-primary mb-1"
+                >
+                    {totalElectricians}
+                </div>
+                <Text size="sm" class="text-gray-600">
+                    Licensed Electricians Active
+                </Text>
+            </div>
             <div class="bg-gray-50 border border-gray-200 p-6 text-center">
                 <div class="text-3xl font-bold text-primary mb-2">
                     {neighborhoods.length}+
@@ -132,8 +178,13 @@ const { city, neighborhoods } = Astro.props;
                 <Text size="sm" class="text-gray-600">Emergency Response</Text>
             </div>
             <div class="bg-gray-50 border border-gray-200 p-6 text-center">
-                <div class="text-3xl font-bold text-primary mb-2">Same-Day</div>
-                <Text size="sm" class="text-gray-600">Service Available</Text>
+                <div
+                    id="avg-response-time"
+                    class="text-3xl font-bold text-primary mb-2"
+                >
+                    10-15 min
+                </div>
+                <Text size="sm" class="text-gray-600">Avg Response Time</Text>
             </div>
         </div>
     </Container>
@@ -183,6 +234,11 @@ const { city, neighborhoods } = Astro.props;
                 const lat = parseFloat(button.getAttribute("data-lat") || "0");
                 const lng = parseFloat(button.getAttribute("data-lng") || "0");
                 const name = button.getAttribute("data-name") || "";
+                const electricians = parseInt(
+                    button.getAttribute("data-electricians") || "5",
+                );
+                const response =
+                    button.getAttribute("data-response") || "10-15 min";
 
                 // Add marker
                 const marker = (window as any).L.circleMarker([lat, lng], {
@@ -197,7 +253,7 @@ const { city, neighborhoods } = Astro.props;
                 // Marker click handler
                 marker.on("click", () => {
                     map.setView([lat, lng], 13);
-                    updateInfo(name);
+                    updateInfo(name, electricians, response);
                     highlightButton(button);
                     currentMarker = marker;
                 });
@@ -205,16 +261,69 @@ const { city, neighborhoods } = Astro.props;
                 // Button click handler
                 button.addEventListener("click", () => {
                     map.setView([lat, lng], 13);
-                    updateInfo(name);
+                    updateInfo(name, electricians, response);
                     highlightButton(button);
                     currentMarker = marker;
                 });
             });
 
-            function updateInfo(name: string) {
+            function updateInfo(
+                name: string,
+                electricians: number,
+                response: string,
+            ) {
                 if (neighborhoodName && neighborhoodInfo && infoCard) {
                     neighborhoodName.textContent = name;
                     neighborhoodInfo.textContent = `We proudly serve ${name} with 24/7 emergency response and same-day service availability.`;
+
+                    // Update electrician count in info card
+                    const electricianCount =
+                        document.getElementById("electrician-count");
+                    const electricianIndicators = document.getElementById(
+                        "electrician-indicators",
+                    );
+                    if (electricianCount) {
+                        electricianCount.textContent = electricians.toString();
+                    }
+                    if (electricianIndicators) {
+                        electricianIndicators.innerHTML = "";
+                        for (let i = 0; i < electricians; i++) {
+                            const indicator = document.createElement("div");
+                            indicator.className = "w-4 h-4 bg-primary";
+                            electricianIndicators.appendChild(indicator);
+                        }
+                    }
+
+                    // Update total stats
+                    const totalCount = document.getElementById(
+                        "total-electrician-count",
+                    );
+                    const totalIndicators = document.getElementById(
+                        "total-electrician-indicators",
+                    );
+                    const avgResponseTime =
+                        document.getElementById("avg-response-time");
+
+                    if (totalCount) {
+                        totalCount.textContent = electricians.toString();
+                    }
+                    if (totalIndicators) {
+                        totalIndicators.innerHTML = "";
+                        const indicatorsContainer =
+                            document.createElement("div");
+                        indicatorsContainer.className =
+                            "flex items-center justify-center gap-2";
+                        for (let i = 0; i < electricians; i++) {
+                            const indicator = document.createElement("div");
+                            indicator.className = "w-6 h-6 bg-primary";
+                            indicatorsContainer.appendChild(indicator);
+                        }
+                        totalIndicators.appendChild(indicatorsContainer);
+                    }
+                    if (avgResponseTime) {
+                        avgResponseTime.textContent = response;
+                    }
+
                     infoCard.classList.remove("opacity-0");
                     infoCard.classList.add("opacity-100");
                 }

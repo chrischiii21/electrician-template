@@ -15,7 +15,10 @@ const sizes = {
     xl: "text-xl",
 };
 
-const classes = `font-body text-text ${sizes[size]} ${className}`;
+const classes = `font-body ${sizes[size]} ${className}`.replace(
+    "text-text",
+    "",
+);
 ---
 
 <Tag class={classes}>
