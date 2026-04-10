@@ -5,56 +5,53 @@ import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
 import Button from "../ui/Button.astro";
 
-const testimonials = [
-    {
-        name: "Marcus T.",
-        location: "Los Angeles, CA",
-        job: "Panel Upgrade",
-        rating: 5,
-        quote: "Called at 8am, they were at my house by noon. Replaced my entire panel in one day, cleaned up after themselves, and the price matched the quote exactly. Zero surprises.",
-        avatar: "MT",
-    },
-    {
-        name: "Sandra R.",
-        location: "San Diego, CA",
-        job: "EV Charger Install",
-        rating: 5,
-        quote: "Had a Level 2 charger installed for my Tesla. The electrician walked me through every step, pulled the permit, and had it done in under 3 hours. Couldn't be happier.",
-        avatar: "SR",
-    },
-    {
-        name: "James K.",
-        location: "San Francisco, CA",
-        job: "Commercial Wiring",
-        rating: 5,
-        quote: "Hired them to wire our new 4,000 sq ft office. Finished ahead of schedule and passed inspection on the first try. Our go-to electrical contractor from now on.",
-        avatar: "JK",
-    },
-    {
-        name: "Priya M.",
-        location: "Sacramento, CA",
-        job: "Emergency Repair",
-        rating: 5,
-        quote: "Power went out at 11pm on a Friday. They picked up immediately and had a tech at my door within the hour. Fixed a faulty breaker in 45 minutes. Absolute lifesavers.",
-        avatar: "PM",
-    },
-    {
-        name: "David L.",
-        location: "Los Angeles, CA",
-        job: "Landscape Lighting",
-        rating: 5,
-        quote: "Transformed our backyard completely. The lighting design they suggested was better than what I had in mind, and the install was flawless. Neighbors keep asking who did it.",
-        avatar: "DL",
-    },
-    {
-        name: "Angela W.",
-        location: "San Diego, CA",
-        job: "Pool & Spa Electrical",
-        rating: 5,
-        quote: "They wired our new pool and spa setup, handled all the permits, and the work was immaculate. Knew exactly what code required. Highly recommend for any outdoor electrical.",
-        avatar: "AW",
-    },
-];
+const rawContent = await import("../../content/testimonials.md?raw").then(
+    (m) => m.default,
+);
+
+const testimonials = rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .map((line: string) => {
+        const name = line.replace("## ", "").trim();
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+        
+        let location = "";
+        let job = "";
+        let rating = 5;
+        let quote = "";
+        let avatar = "";
+        
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**Location**")) {
+                location = currentLine.match(/\*\*Location\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Job**")) {
+                job = currentLine.match(/\*\*Job\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Rating**")) {
+                rating = parseInt(currentLine.match(/\*\*Rating\*\*:\s*(.+)/)?.[1]?.trim() || "5");
+            }
+            if (currentLine.includes("**Quote**")) {
+                quote = currentLine.match(/\*\*Quote\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Avatar**")) {
+                avatar = currentLine.match(/\*\*Avatar\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+
+        return {
+            name,
+            location,
+            job,
+            rating,
+            quote,
+            avatar,
+        };
+    });
 ---
 
 <section class="bg-white py-20 overflow-hidden" id="testimonials">

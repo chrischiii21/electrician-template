@@ -5,76 +5,83 @@ import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
 import Button from "../ui/Button.astro";
 
-const services = [
-    {
-        id: "commercial",
-        label: "Commercial",
-        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
-        badge: "Most Popular",
-        tagline: "Built for Business. Engineered for Scale.",
-        description: "Whether you're breaking ground on a new facility or upgrading aging infrastructure, our commercial electrical team handles projects of every size. We work around your schedule to minimize downtime and keep your operations running.",
-        pitch: "From high-rise construction to industrial power systems, we bring the expertise and manpower to deliver on time and on budget — every single time.",
-        image: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80",
-        services: [
-            "Ground-up Electrical Construction",
-            "Emergency & Standby Power Systems",
-            "Commercial HVAC Electrical",
-            "Commercial Electrical Panels",
-        ],
-        cta: { label: "Get a Commercial Quote", href: "/commercial" },
-    },
-    {
-        id: "residential",
-        label: "Residential",
-        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
-        badge: null,
-        tagline: "Your Home Deserves the Best.",
-        description: "We treat every home like our own. From EV charger installs to full panel upgrades, our licensed electricians deliver clean, code-compliant work with zero mess left behind.",
-        pitch: "Upgrade your home's electrical system and add real value to your property. Our residential team is fast, friendly, and fully insured.",
-        image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80",
-        services: [
-            "EV Car Charging Stations",
-            "Ceiling Fan Installation",
-            "GFCI Outlet Upgrades",
-            "Backup Generator Install",
-        ],
-        cta: { label: "Book a Home Visit", href: "/residential" },
-    },
-    {
-        id: "specialty",
-        label: "Specialty",
-        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
-        badge: null,
-        tagline: "Beyond the Basics. Above Expectations.",
-        description: "Stand out from the neighborhood. Our specialty electrical services add beauty, safety, and functionality to your outdoor spaces, pools, and seasonal setups.",
-        pitch: "From resort-style pool lighting to stunning landscape designs, we turn ordinary properties into extraordinary ones.",
-        image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=900&q=80",
-        services: [
-            "Holiday Lighting Installation",
-            "Landscape & Outdoor Lighting",
-            "Pool & Spa Electrical",
-            "Property Management Services",
-        ],
-        cta: { label: "Explore Specialty Services", href: "/specialty" },
-    },
-    {
-        id: "emergency",
-        label: "Emergency",
-        icon: `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,
-        badge: "24/7",
-        tagline: "Power Out? We're On Our Way.",
-        description: "Electrical emergencies don't wait for business hours — and neither do we. Our emergency response team is available 24/7, 365 days a year to restore your power fast and safely.",
-        pitch: "Don't risk your family's safety or your business's bottom line. One call and a licensed electrician is dispatched immediately.",
-        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=900&q=80",
-        services: [
-            "24-Hour Emergency Response",
-            "Emergency HVAC Electrical",
-            "Heating System Repairs",
-            "Water Heater Electrical",
-        ],
-        cta: { label: "Call Now — We're Ready", href: "tel:+15550000000" },
-    },
-];
+const iconMap: Record<string, string> = {
+    "building": `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
+    "home": `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
+    "star": `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"/></svg>`,
+    "alert": `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/></svg>`,
+};
+
+const rawContent = await import("../../content/services-catalog.md?raw").then(
+    (m) => m.default,
+);
+
+const services = rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .map((line: string, index: number) => {
+        const label = line.replace("## ", "").trim();
+        const id = label.toLowerCase();
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+        
+        let icon = "";
+        let badge = "";
+        let tagline = "";
+        let description = "";
+        let pitch = "";
+        let image = "";
+        let servicesStr = "";
+        let ctaLabel = "";
+        let ctaHref = "";
+        
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**Icon**")) {
+                icon = currentLine.match(/\*\*Icon\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Badge**")) {
+                badge = currentLine.match(/\*\*Badge\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Tagline**")) {
+                tagline = currentLine.match(/\*\*Tagline\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Description**")) {
+                description = currentLine.match(/\*\*Description\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Pitch**")) {
+                pitch = currentLine.match(/\*\*Pitch\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Image**")) {
+                image = currentLine.match(/\*\*Image\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Services**")) {
+                servicesStr = currentLine.match(/\*\*Services\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**CTA Label**")) {
+                ctaLabel = currentLine.match(/\*\*CTA Label\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**CTA Href**")) {
+                ctaHref = currentLine.match(/\*\*CTA Href\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+        
+        const servicesList = servicesStr.split(",").map((s: string) => s.trim()).filter((s: string) => s);
+
+        return {
+            id,
+            label,
+            icon: iconMap[icon] || iconMap["building"],
+            badge: badge || null,
+            tagline,
+            description,
+            pitch,
+            image,
+            services: servicesList,
+            cta: { label: ctaLabel, href: ctaHref },
+        };
+    });
 ---
 
 <section class="bg-white py-20" id="services">

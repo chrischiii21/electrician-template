@@ -11,6 +11,11 @@ const areas = entries
     .sort((a, b) => a.data.order - b.data.order)
     .map((e) => ({ name: e.data.name, href: e.data.href }));
 
+const rawContent =
+    await import("../../content/service-areas-details.md?raw").then(
+        (m) => m.default,
+    );
+
 const areaDetails: Record<
     string,
     {
@@ -20,36 +25,71 @@ const areaDetails: Record<
         lng: number;
         zoom: number;
     }
-> = {
-    "Los Angeles": {
-        tagline: "From Hollywood to the Harbor",
-        neighborhoods: ["Downtown LA", "Santa Monica", "Burbank", "Pasadena"],
-        lat: 34.0522,
-        lng: -118.2437,
-        zoom: 11,
-    },
-    "San Diego": {
-        tagline: "Coastal to Inland — We Cover It All",
-        neighborhoods: ["Chula Vista", "El Cajon", "La Jolla", "Escondido"],
-        lat: 32.7157,
-        lng: -117.1611,
-        zoom: 11,
-    },
-    "San Francisco": {
-        tagline: "Bay Area's Trusted Electricians",
-        neighborhoods: ["SoMa", "Mission District", "Oakland", "Daly City"],
-        lat: 37.7749,
-        lng: -122.4194,
-        zoom: 12,
-    },
-    Sacramento: {
-        tagline: "Serving the Capital Region",
-        neighborhoods: ["Elk Grove", "Roseville", "Folsom", "Citrus Heights"],
-        lat: 38.5816,
-        lng: -121.4944,
-        zoom: 11,
-    },
-};
+> = {};
+
+rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .forEach((line: string) => {
+        const name = line.replace("## ", "").trim();
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+
+        let tagline = "";
+        let neighborhoodsStr = "";
+        let lat = 0;
+        let lng = 0;
+        let zoom = 11;
+
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**Tagline**")) {
+                tagline =
+                    currentLine.match(/\*\*Tagline\*\*:\s*(.+)/)?.[1]?.trim() ||
+                    "";
+            }
+            if (currentLine.includes("**Neighborhoods**")) {
+                neighborhoodsStr =
+                    currentLine
+                        .match(/\*\*Neighborhoods\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "";
+            }
+            if (currentLine.includes("**Latitude**")) {
+                lat = parseFloat(
+                    currentLine
+                        .match(/\*\*Latitude\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "0",
+                );
+            }
+            if (currentLine.includes("**Longitude**")) {
+                lng = parseFloat(
+                    currentLine
+                        .match(/\*\*Longitude\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "0",
+                );
+            }
+            if (currentLine.includes("**Zoom**")) {
+                zoom = parseInt(
+                    currentLine.match(/\*\*Zoom\*\*:\s*(.+)/)?.[1]?.trim() ||
+                        "11",
+                );
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+
+        const neighborhoods = neighborhoodsStr
+            .split(",")
+            .map((n: string) => n.trim())
+            .filter((n: string) => n);
+
+        areaDetails[name] = {
+            tagline,
+            neighborhoods,
+            lat,
+            lng,
+            zoom,
+        };
+    });
 ---
 
 <section class="bg-gray-50 py-20" id="service-areas">
