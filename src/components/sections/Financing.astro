@@ -7,52 +7,79 @@ import Grid from "../ui/Grid.astro";
 import Card from "../ui/Card.astro";
 import Button from "../ui/Button.astro";
 
-const plans = [
-    {
-        name: "Standard Plan",
-        apr: "0%",
-        term: "12-24 months",
-        minAmount: "$500",
-        maxAmount: "$5,000",
-        features: [
-            "0% APR for qualified customers",
-            "Quick approval process",
-            "Flexible monthly payments",
-            "No prepayment penalties",
-        ],
-        highlighted: false,
-    },
-    {
-        name: "Premium Plan",
-        apr: "0%",
-        term: "24-48 months",
-        minAmount: "$5,000",
-        maxAmount: "$25,000",
-        features: [
-            "0% APR for qualified customers",
-            "Extended payment terms",
-            "Dedicated support",
-            "No prepayment penalties",
-            "Priority approval",
-        ],
-        highlighted: true,
-    },
-    {
-        name: "Commercial Plan",
-        apr: "0%",
-        term: "36-60 months",
-        minAmount: "$25,000+",
-        maxAmount: "Unlimited",
-        features: [
-            "0% APR for qualified customers",
-            "Long-term financing options",
-            "Business account management",
-            "Customized payment schedules",
-            "Priority support",
-        ],
-        highlighted: false,
-    },
-];
+const rawContent = await import("../../content/financing-plans.md?raw").then(
+    (m) => m.default,
+);
+
+const plans = rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .map((line: string) => {
+        const name = line.replace("## ", "").trim();
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+
+        let apr = "";
+        let term = "";
+        let minAmount = "";
+        let maxAmount = "";
+        let highlighted = false;
+        let featuresStr = "";
+
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**APR**")) {
+                apr =
+                    currentLine.match(/\*\*APR\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Term**")) {
+                term =
+                    currentLine.match(/\*\*Term\*\*:\s*(.+)/)?.[1]?.trim() ||
+                    "";
+            }
+            if (currentLine.includes("**Min Amount**")) {
+                minAmount =
+                    currentLine
+                        .match(/\*\*Min Amount\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "";
+            }
+            if (currentLine.includes("**Max Amount**")) {
+                maxAmount =
+                    currentLine
+                        .match(/\*\*Max Amount\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "";
+            }
+            if (currentLine.includes("**Highlighted**")) {
+                const highlightedStr =
+                    currentLine
+                        .match(/\*\*Highlighted\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "false";
+                highlighted = highlightedStr.toLowerCase() === "true";
+            }
+            if (currentLine.includes("**Features**")) {
+                featuresStr =
+                    currentLine
+                        .match(/\*\*Features\*\*:\s*(.+)/)?.[1]
+                        ?.trim() || "";
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+
+        const features = featuresStr
+            .split(",")
+            .map((f: string) => f.trim())
+            .filter((f: string) => f);
+
+        return {
+            name,
+            apr,
+            term,
+            minAmount,
+            maxAmount,
+            features,
+            highlighted,
+        };
+    });
 ---
 
 <section class="bg-gradient-to-b from-white to-gray-50 py-20" id="financing">

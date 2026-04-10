@@ -4,26 +4,58 @@ import Button from "../ui/Button.astro";
 import Heading from "../ui/Heading.astro";
 import Text from "../ui/Text.astro";
 
-const questions = [
-    {
-        icon: "⚡",
-        text: "Is your electrical panel over 20 years old?",
-        options: ["Yes", "No", "Not Sure"],
-        risk: [2, 0, 1],
-    },
-    {
-        icon: "🔌",
-        text: "Do you frequently trip breakers or blow fuses?",
-        options: ["Yes", "Sometimes", "Never"],
-        risk: [2, 1, 0],
-    },
-    {
-        icon: "💡",
-        text: "Have you noticed flickering lights or burning smells?",
-        options: ["Yes", "No", "Not Sure"],
-        risk: [2, 0, 1],
-    },
-];
+const rawContent = await import("../../content/safety-quiz.md?raw").then(
+    (m) => m.default,
+);
+
+const questions = rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .map((line: string) => {
+        const text = line.replace("## ", "").trim();
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+
+        let icon = "";
+        let optionsStr = "";
+        let riskStr = "";
+
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**Icon**")) {
+                icon =
+                    currentLine.match(/\*\*Icon\*\*:\s*(.+)/)?.[1]?.trim() ||
+                    "";
+            }
+            if (currentLine.includes("**Options**")) {
+                optionsStr =
+                    currentLine.match(/\*\*Options\*\*:\s*(.+)/)?.[1]?.trim() ||
+                    "";
+            }
+            if (currentLine.includes("**Risk**")) {
+                riskStr =
+                    currentLine.match(/\*\*Risk\*\*:\s*(.+)/)?.[1]?.trim() ||
+                    "";
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+
+        const options = optionsStr
+            .split(",")
+            .map((o: string) => o.trim())
+            .filter((o: string) => o);
+        const risk = riskStr
+            .split(",")
+            .map((r: string) => parseInt(r.trim()))
+            .filter((r: number) => !isNaN(r));
+
+        return {
+            icon,
+            text,
+            options,
+            risk,
+        };
+    });
 ---
 
 <section

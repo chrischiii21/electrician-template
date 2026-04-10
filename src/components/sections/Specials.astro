@@ -5,40 +5,65 @@ import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
 import Button from "../ui/Button.astro";
 
-const coupons = [
-    {
-        color: "bg-primary",
-        textColor: "text-white",
-        discount: "20% OFF",
-        title: "New Customer Special",
-        description: "First-time customers get 20% off any electrical service over $200.",
-        code: "VOLT20",
-    },
-    {
-        color: "bg-gray-900",
-        textColor: "text-white",
-        discount: "15% OFF",
-        title: "Senior & Military",
-        description: "We honor those who served. Seniors & military get 15% off all services.",
-        code: "HONOR15",
-    },
-    {
-        color: "bg-accent",
-        textColor: "text-gray-900",
-        discount: "$150 OFF",
-        title: "Panel Upgrade",
-        description: "Upgrade your electrical panel for improved safety and capacity.",
-        code: "PANEL150",
-    },
-    {
-        color: "bg-text",
-        textColor: "text-white",
-        discount: "FREE",
-        title: "Free Safety Check",
-        description: "Complete home electrical safety inspection — no purchase necessary.",
-        code: "SAFECHECK",
-    },
-];
+const colorMap: Record<string, string> = {
+    "primary": "bg-primary",
+    "gray-900": "bg-gray-900",
+    "accent": "bg-accent",
+    "text": "bg-text",
+};
+
+const textColorMap: Record<string, string> = {
+    "white": "text-white",
+    "gray-900": "text-gray-900",
+};
+
+const rawContent = await import("../../content/specials-coupons.md?raw").then(
+    (m) => m.default,
+);
+
+const coupons = rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .map((line: string) => {
+        const title = line.replace("## ", "").trim();
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+        
+        let color = "";
+        let textColor = "";
+        let discount = "";
+        let description = "";
+        let code = "";
+        
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**Color**")) {
+                color = currentLine.match(/\*\*Color\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Text Color**")) {
+                textColor = currentLine.match(/\*\*Text Color\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Discount**")) {
+                discount = currentLine.match(/\*\*Discount\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Description**")) {
+                description = currentLine.match(/\*\*Description\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Code**")) {
+                code = currentLine.match(/\*\*Code\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+
+        return {
+            color: colorMap[color] || "bg-primary",
+            textColor: textColorMap[textColor] || "text-white",
+            discount,
+            title,
+            description,
+            code,
+        };
+    });
 ---
 
 <section class="bg-gray-50 py-20" id="specials">

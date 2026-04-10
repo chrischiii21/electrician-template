@@ -4,32 +4,44 @@ import Heading from "../ui/Heading.astro";
 import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
 
-const steps = [
-    {
-        number: "01",
-        title: "Design & Engineering",
-        description: "Collaborate with architects and engineers to design complete electrical systems for new construction. Load calculations, panel sizing, and code compliance planning.",
-        details: ["Electrical design", "Load analysis", "Panel sizing", "Code review"],
-    },
-    {
-        number: "02",
-        title: "Foundation & Rough-In",
-        description: "Install conduit, cable trays, and underground utilities during foundation phase. Rough-in all wiring during framing for optimal placement and efficiency.",
-        details: ["Underground utilities", "Conduit installation", "Cable routing", "Panel placement"],
-    },
-    {
-        number: "03",
-        title: "Trim-Out & Connections",
-        description: "Install outlets, switches, fixtures, and equipment after walls are closed. Final connections and device installation with precision and attention to detail.",
-        details: ["Device installation", "Equipment wiring", "Fixture connections", "Final testing"],
-    },
-    {
-        number: "04",
-        title: "Inspection & Commissioning",
-        description: "Comprehensive system testing, code inspections, and full commissioning. Complete documentation and handoff to building owner.",
-        details: ["System testing", "Code inspection", "Commissioning", "Documentation"],
-    },
-];
+const rawContent = await import("../../content/construction-process.md?raw").then(
+    (m) => m.default,
+);
+
+const steps = rawContent
+    .split("\n")
+    .filter((line: string) => line.startsWith("## "))
+    .map((line: string) => {
+        const headerMatch = line.match(/## (\d+)\s*-\s*(.+)/);
+        const number = headerMatch?.[1] || "";
+        const title = headerMatch?.[2]?.trim() || "";
+        
+        const lines = rawContent.split("\n");
+        const lineIndex = lines.indexOf(line);
+        
+        let description = "";
+        let detailsStr = "";
+        
+        for (let i = lineIndex + 1; i < lines.length; i++) {
+            const currentLine = lines[i];
+            if (currentLine.includes("**Description**")) {
+                description = currentLine.match(/\*\*Description\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.includes("**Details**")) {
+                detailsStr = currentLine.match(/\*\*Details\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
+            if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+        
+        const details = detailsStr.split(",").map((d: string) => d.trim()).filter((d: string) => d);
+
+        return {
+            number,
+            title,
+            description,
+            details,
+        };
+    });
 ---
 
 <section class="bg-white py-20" id="construction-process">
