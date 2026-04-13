@@ -1,4 +1,8 @@
 ---
+import Button from "./Button.astro";
+import Heading from "./Heading.astro";
+import Text from "./Text.astro";
+
 const faqs = [
     {
         id: "emergency",
@@ -88,10 +92,10 @@ const faqs = [
     aria-label="Quick Help"
 >
     <!-- Header -->
-    <div class="bg-primary px-5 py-4">
+    <div class="bg-gradient-to-r from-accent to-primary px-5 py-4">
         <div class="flex items-center gap-2 mb-0.5">
             <svg
-                class="w-4 h-4 text-white"
+                class="w-4 h-4 text-white animate-pulse"
                 fill="currentColor"
                 viewBox="0 0 20 20"
             >
@@ -100,11 +104,9 @@ const faqs = [
                     d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
                     clip-rule="evenodd"></path>
             </svg>
-            <p class="text-white font-heading font-bold text-base">
-                Quick Help
-            </p>
+            <Heading level={4} class="!text-white !mb-0">Quick Help</Heading>
         </div>
-        <p class="text-white/80 text-sm">Ask us anything</p>
+        <Text size="sm" class="!text-white/80 !mt-0.5">Ask us anything</Text>
     </div>
 
     <!-- Content Area -->
@@ -114,15 +116,15 @@ const faqs = [
             {
                 faqs.map((faq) => (
                     <button
-                        class="qh-question-btn flex items-start gap-3 bg-white px-4 py-3 text-left text-sm font-medium text-text border border-gray-100 shadow-sm hover:border-primary hover:bg-primary/5 transition-all duration-200"
+                        class="qh-question-btn flex items-start gap-3 bg-white px-4 py-3 text-left text-sm font-medium text-text border-2 border-gray-100 shadow-sm hover:border-accent hover:bg-accent/5 transition-all duration-200 w-full"
                         data-faq-id={faq.id}
                     >
                         <span class="text-lg leading-none shrink-0">
                             {faq.emoji}
                         </span>
-                        <span class="flex-1">{faq.question}</span>
+                        <span class="flex-1 text-left">{faq.question}</span>
                         <svg
-                            class="w-4 h-4 text-gray-400 shrink-0 mt-0.5"
+                            class="w-4 h-4 text-accent shrink-0 mt-0.5 transition-transform"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
@@ -144,7 +146,7 @@ const faqs = [
             <!-- Back button -->
             <button
                 id="qh-back-btn"
-                class="flex items-center gap-2 text-primary text-sm font-semibold mb-4 hover:gap-3 transition-all duration-200"
+                class="flex items-center gap-2 text-accent text-sm font-semibold mb-4 hover:gap-3 transition-all duration-200 hover:text-accent/80"
             >
                 <svg
                     class="w-4 h-4"
@@ -167,17 +169,17 @@ const faqs = [
                     <span id="qh-answer-emoji" class="text-2xl leading-none"
                         >🚨</span
                     >
-                    <p
+                    <h5
                         id="qh-answer-question"
                         class="font-heading font-bold text-text text-base leading-snug"
                     >
                         Question here
-                    </p>
+                    </h5>
                 </div>
             </div>
 
             <!-- Answer -->
-            <div class="bg-white border border-gray-100 p-4 mb-4">
+            <div class="bg-white border-2 border-accent/20 p-4 mb-4 rounded-sm">
                 <p
                     id="qh-answer-text"
                     class="text-sm text-gray-700 leading-relaxed"
@@ -190,16 +192,18 @@ const faqs = [
             <div class="space-y-2">
                 <p
                     id="qh-followup-text"
-                    class="text-xs text-gray-500 font-semibold uppercase tracking-wider"
+                    class="text-xs text-accent font-semibold uppercase tracking-wider"
                 >
                     Still need help?
                 </p>
-                <a
+                <Button
                     href="/contact"
-                    class="block w-full bg-primary text-white text-center px-4 py-2.5 text-sm font-bold uppercase tracking-wider hover:opacity-90 transition-opacity duration-200"
+                    variant="accent"
+                    size="md"
+                    class="w-full uppercase tracking-wider font-bold shadow-md hover:shadow-lg hover:shadow-accent/30"
                 >
                     Contact Us
-                </a>
+                </Button>
             </div>
         </div>
     </div>
@@ -274,18 +278,16 @@ const faqs = [
         const faq = faqData[faqId];
         if (!faq) return;
 
-        // Update answer view
-        (
-            document.getElementById("qh-answer-emoji") as HTMLElement
-        ).textContent = faq.emoji;
-        (
-            document.getElementById("qh-answer-question") as HTMLElement
-        ).textContent = faq.question;
-        (document.getElementById("qh-answer-text") as HTMLElement).textContent =
-            faq.answer;
-        (
-            document.getElementById("qh-followup-text") as HTMLElement
-        ).textContent = faq.followUp;
+        // Update answer view with proper element selection
+        const emojiEl = document.getElementById("qh-answer-emoji");
+        const questionEl = document.getElementById("qh-answer-question");
+        const answerEl = document.getElementById("qh-answer-text");
+        const followUpEl = document.getElementById("qh-followup-text");
+
+        if (emojiEl) emojiEl.textContent = faq.emoji;
+        if (questionEl) questionEl.textContent = faq.question;
+        if (answerEl) answerEl.textContent = faq.answer;
+        if (followUpEl) followUpEl.textContent = faq.followUp;
 
         // Switch views
         questionsList?.classList.add("hidden");
@@ -312,12 +314,21 @@ const faqs = [
         }, 300);
     }
 
-    trigger?.addEventListener("click", togglePanel);
-    backBtn?.addEventListener("click", backToQuestions);
+    // Event listeners
+    trigger?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        togglePanel();
+    });
+
+    backBtn?.addEventListener("click", (e) => {
+        e.stopPropagation();
+        backToQuestions();
+    });
 
     // Question button clicks
     questionBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
             const faqId = (btn as HTMLElement).getAttribute("data-faq-id");
             if (faqId) showAnswer(faqId);
         });
