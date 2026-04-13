@@ -21,9 +21,9 @@ const { city, reasons } = Astro.props;
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-20 scroll-animate">
-            <Badge variant="primary" class="mb-3">Local Expertise</Badge>
+            <Badge variant="accent" class="mb-3">Local Expertise</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Why We Service <span class="text-primary">{city}</span>
+                Why We Service <span class="text-accent">{city}</span>
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
                 We're deeply committed to serving {city} because we understand the unique electrical needs of this vibrant community.
@@ -33,7 +33,7 @@ const { city, reasons } = Astro.props;
         <!-- Reasons Grid -->
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 scroll-stagger">
             {reasons.map((reason) => (
-                <div class="group bg-white overflow-hidden border border-gray-200 hover:border-primary hover:shadow-lg transition-all duration-300">
+                <div class="group bg-white overflow-hidden border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300">
                     <!-- Image Container -->
                     <div class="relative h-40 overflow-hidden bg-gray-200">
                         <img
@@ -47,11 +47,11 @@ const { city, reasons } = Astro.props;
                     <!-- Content -->
                     <div class="p-6">
                         <!-- Icon -->
-                        <div class="w-10 h-10 bg-primary/10 flex items-center justify-center text-primary mb-3 border border-primary/20">
+                        <div class="w-10 h-10 bg-accent/10 flex items-center justify-center text-accent mb-3 border border-accent/20 group-hover:bg-accent group-hover:text-white transition-all duration-300">
                             <div class="w-5 h-5" set:html={reason.icon} />
                         </div>
 
-                        <Heading level={4} class="mb-2 text-lg">{reason.title}</Heading>
+                        <Heading level={4} class="mb-2 text-lg group-hover:text-accent transition-colors">{reason.title}</Heading>
                         <Text size="sm" class="text-gray-600 leading-relaxed">{reason.description}</Text>
                     </div>
                 </div>
@@ -59,11 +59,11 @@ const { city, reasons } = Astro.props;
         </div>
 
         <!-- Bottom Section -->
-        <div class="mt-20 bg-white border border-gray-200 p-8 md:p-12 scroll-animate">
+        <div class="mt-20 bg-white border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/20 p-8 md:p-12 scroll-animate transition-all duration-300">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Left Content -->
                 <div>
-                    <Heading level={3} class="mb-4">Local Knowledge, Professional Excellence</Heading>
+                    <Heading level={3} class="mb-4 text-accent">Local Knowledge, Professional Excellence</Heading>
                     <Text class="text-gray-700 mb-4 leading-relaxed">
                         Our team knows {city} inside and out. We understand the local building codes, climate challenges, and the specific electrical demands of homes and businesses in this area.
                     </Text>

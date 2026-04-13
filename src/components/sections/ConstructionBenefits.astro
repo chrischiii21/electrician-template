@@ -63,10 +63,9 @@ benefits.forEach((b) => console.log(`- ${b.title}`));
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-16 scroll-animate">
-            <Badge variant="primary" class="mb-3">Why Choose Us</Badge>
+            <Badge variant="accent" class="mb-3">Why Choose Us</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Ground-up Construction <span class="text-primary"
-                    >Expertise</span
+                Ground-up Construction <span class="text-accent">Expertise</span
                 >
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
@@ -79,11 +78,14 @@ benefits.forEach((b) => console.log(`- ${b.title}`));
         <Grid cols={3} gap="lg" class="scroll-stagger">
             {
                 benefits.map((benefit) => (
-                    <div class="bg-white border border-gray-200 p-6 hover:border-primary hover:shadow-lg transition-all duration-300">
-                        <div class="w-12 h-12 bg-primary/10 flex items-center justify-center text-primary mb-4 border border-primary/20">
+                    <div class="bg-white border border-gray-200 p-6 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300 group">
+                        <div class="w-12 h-12 bg-accent/10 flex items-center justify-center text-accent mb-4 border border-accent/20 group-hover:bg-accent group-hover:text-white transition-all duration-300">
                             <div class="w-6 h-6" set:html={benefit.icon} />
                         </div>
-                        <Heading level={4} class="mb-2">
+                        <Heading
+                            level={4}
+                            class="mb-2 group-hover:text-accent transition-colors"
+                        >
                             {benefit.title}
                         </Heading>
                         <Text size="sm" class="text-gray-600">

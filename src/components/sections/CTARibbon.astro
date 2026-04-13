@@ -4,7 +4,7 @@ import Heading from "../ui/Heading.astro";
 import Text from "../ui/Text.astro";
 ---
 
-<section class="bg-primary py-12 scroll-animate">
+<section class="bg-accent py-12 scroll-animate">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div
             class="flex flex-col md:flex-row items-center justify-between gap-6"
@@ -12,7 +12,7 @@ import Text from "../ui/Text.astro";
             <!-- Left: message -->
             <div class="flex items-center gap-5">
                 <div
-                    class="w-12 h-12 bg-white/15 flex items-center justify-center shrink-0"
+                    class="w-12 h-12 bg-primary flex items-center justify-center shrink-0"
                 >
                     <svg
                         class="w-6 h-6 text-white"
@@ -30,7 +30,9 @@ import Text from "../ui/Text.astro";
                         level={2}
                         class="!text-white text-xl md:text-2xl leading-tight"
                     >
-                        Ready to Get Started? Let's Talk.
+                        Ready to Get Started? <span class="text-background"
+                            >Let's Talk.</span
+                        >
                     </Heading>
                     <Text size="lg" class="!text-white/75 mt-0.5" as="p">
                         Same-day service available. Free estimates. No
@@ -43,18 +45,13 @@ import Text from "../ui/Text.astro";
             <div class="flex items-center gap-3 shrink-0">
                 <Button
                     href="tel:+15550000000"
-                    variant="secondary"
+                    variant="primary"
                     size="lg"
-                    class="uppercase tracking-wider font-bold bg-white text-primary hover:bg-gray-100 border-0"
+                    class="hover:bg-white hover:text-primary hover:shadow-lg"
                 >
                     Call Now
                 </Button>
-                <Button
-                    href="#contact"
-                    variant="outline"
-                    size="lg"
-                    class="uppercase tracking-wider font-bold border-2 border-white text-white hover:bg-white hover:text-primary transition-all duration-200"
-                >
+                <Button href="#contact" variant="outline" size="lg">
                     Get a Free Quote
                 </Button>
             </div>

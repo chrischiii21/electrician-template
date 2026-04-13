@@ -25,9 +25,9 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-12 scroll-animate">
-            <Badge variant="primary" class="mb-3">Service Coverage Map</Badge>
+            <Badge variant="accent" class="mb-3">Service Coverage Map</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Our <span class="text-primary">{city}</span> Coverage Area
+                Our <span class="text-accent">{city}</span> Coverage Area
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
                 Click on any neighborhood to see our service coverage. We
@@ -45,7 +45,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                         {
                             neighborhoods.map((neighborhood, index) => (
                                 <button
-                                    class="neighborhood-btn w-full text-left px-4 py-3 border border-gray-200 bg-white hover:border-primary hover:bg-primary/5 transition-all duration-200 text-sm font-medium text-gray-700 hover:text-primary"
+                                    class="neighborhood-btn w-full text-left px-4 py-3 border border-gray-200 bg-white hover:border-accent hover:bg-accent/5 transition-all duration-200 text-sm font-medium text-gray-700 hover:text-accent"
                                     data-index={index}
                                     data-lat={neighborhood.lat}
                                     data-lng={neighborhood.lng}
@@ -60,7 +60,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                                     }
                                 >
                                     <span class="flex items-center gap-2">
-                                        <span class="w-2 h-2 bg-primary opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        <span class="w-2 h-2 bg-accent opacity-0 group-hover:opacity-100 transition-opacity" />
                                         {neighborhood.name}
                                     </span>
                                 </button>
@@ -112,7 +112,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                                 </div>
                             </div>
                             <svg
-                                class="w-5 h-5 text-primary shrink-0"
+                                class="w-5 h-5 text-accent shrink-0"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
@@ -131,7 +131,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                     >
                         <div class="text-center">
                             <div
-                                class="w-8 h-8 border-4 border-primary border-t-transparent animate-spin mx-auto mb-2"
+                                class="w-8 h-8 border-4 border-accent border-t-transparent animate-spin mx-auto mb-2"
                             >
                             </div>
                             <Text size="sm" class="text-gray-600"
@@ -145,20 +145,22 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
 
         <!-- Stats -->
         <div class="grid md:grid-cols-4 gap-4 mt-8">
-            <div class="bg-gray-50 border border-gray-200 p-6 text-center">
+            <div
+                class="bg-gray-50 border border-gray-200 p-6 text-center hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+            >
                 <div
                     id="total-electrician-indicators"
                     class="flex items-center justify-center gap-2 mb-3"
                 >
                     {
                         [...Array(totalElectricians)].map(() => (
-                            <div class="w-6 h-6 bg-primary" />
+                            <div class="w-6 h-6 bg-accent" />
                         ))
                     }
                 </div>
                 <div
                     id="total-electrician-count"
-                    class="text-2xl font-bold text-primary mb-1"
+                    class="text-2xl font-bold text-accent mb-1"
                 >
                     {totalElectricians}
                 </div>
@@ -166,21 +168,27 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                     Licensed Electricians Active
                 </Text>
             </div>
-            <div class="bg-gray-50 border border-gray-200 p-6 text-center">
-                <div class="text-3xl font-bold text-primary mb-2">
+            <div
+                class="bg-gray-50 border border-gray-200 p-6 text-center hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+            >
+                <div class="text-3xl font-bold text-accent mb-2">
                     {neighborhoods.length}+
                 </div>
                 <Text size="sm" class="text-gray-600">Neighborhoods Served</Text
                 >
             </div>
-            <div class="bg-gray-50 border border-gray-200 p-6 text-center">
-                <div class="text-3xl font-bold text-primary mb-2">24/7</div>
+            <div
+                class="bg-gray-50 border border-gray-200 p-6 text-center hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+            >
+                <div class="text-3xl font-bold text-accent mb-2">24/7</div>
                 <Text size="sm" class="text-gray-600">Emergency Response</Text>
             </div>
-            <div class="bg-gray-50 border border-gray-200 p-6 text-center">
+            <div
+                class="bg-gray-50 border border-gray-200 p-6 text-center hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
+            >
                 <div
                     id="avg-response-time"
-                    class="text-3xl font-bold text-primary mb-2"
+                    class="text-3xl font-bold text-accent mb-2"
                 >
                     10-15 min
                 </div>
@@ -243,7 +251,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                 // Add marker
                 const marker = (window as any).L.circleMarker([lat, lng], {
                     radius: 6,
-                    fillColor: "#F96939",
+                    fillColor: "#D52212",
                     color: "#fff",
                     weight: 2,
                     opacity: 1,
@@ -289,7 +297,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                         electricianIndicators.innerHTML = "";
                         for (let i = 0; i < electricians; i++) {
                             const indicator = document.createElement("div");
-                            indicator.className = "w-4 h-4 bg-primary";
+                            indicator.className = "w-4 h-4 bg-accent";
                             electricianIndicators.appendChild(indicator);
                         }
                     }
@@ -315,7 +323,7 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
                             "flex items-center justify-center gap-2";
                         for (let i = 0; i < electricians; i++) {
                             const indicator = document.createElement("div");
-                            indicator.className = "w-6 h-6 bg-primary";
+                            indicator.className = "w-6 h-6 bg-accent";
                             indicatorsContainer.appendChild(indicator);
                         }
                         totalIndicators.appendChild(indicatorsContainer);
@@ -331,11 +339,11 @@ const { city, neighborhoods, totalElectricians = 6 } = Astro.props;
 
             function highlightButton(button: Element) {
                 buttons.forEach((btn) => {
-                    btn.classList.remove("border-primary", "bg-primary/5");
+                    btn.classList.remove("border-accent", "bg-accent/5");
                     btn.classList.add("border-gray-200", "bg-white");
                 });
                 button.classList.remove("border-gray-200", "bg-white");
-                button.classList.add("border-primary", "bg-primary/5");
+                button.classList.add("border-accent", "bg-accent/5");
             }
 
             // Hide loading indicator
