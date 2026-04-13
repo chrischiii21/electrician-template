@@ -45,9 +45,9 @@ const projects = [
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-16 scroll-animate">
-            <Badge variant="primary" class="mb-3">Our Services</Badge>
+            <Badge variant="accent" class="mb-3">Our Services</Badge>
             <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
-                Commercial Electrical <span class="text-primary">Solutions</span>
+                Commercial Electrical <span class="text-accent">Solutions</span>
             </Heading>
             <Text size="xl" class="!text-gray-700 max-w-2xl mx-auto">
                 From new construction to system upgrades, we deliver reliable electrical infrastructure for businesses of all sizes.
@@ -57,8 +57,11 @@ const projects = [
         <!-- Projects Grid -->
         <div class="grid md:grid-cols-2 gap-8 scroll-stagger">
             {
-                projects.map((project) => (
-                    <div class="group flex flex-col border border-gray-200 overflow-hidden hover:border-primary hover:shadow-lg transition-all duration-300">
+                projects.map((project, index) => (
+                    <div class="group flex flex-col border-2 border-gray-200 overflow-hidden hover:border-accent hover:shadow-xl transition-all duration-300 relative">
+                        <!-- Accent top border -->
+                        <div class="absolute top-0 left-0 right-0 h-1 bg-accent"></div>
+
                         <!-- Image with icon badge -->
                         <div class="relative h-56 overflow-hidden bg-gray-200">
                             <img
@@ -66,15 +69,15 @@ const projects = [
                                 alt={project.title}
                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             />
-                            <!-- Icon badge -->
-                            <div class="absolute top-4 right-4 w-12 h-12 bg-primary flex items-center justify-center text-white shadow-md">
-                                <div class="w-6 h-6" set:html={project.icon} />
+                            <!-- Icon badge with accent -->
+                            <div class="absolute top-4 right-4 w-14 h-14 bg-accent flex items-center justify-center text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                                <div class="w-7 h-7" set:html={project.icon} />
                             </div>
                         </div>
 
                         <!-- Content -->
                         <div class="p-6 flex flex-col flex-grow">
-                            <Heading level={3} class="!text-text mb-2 text-lg">
+                            <Heading level={3} class="!text-text mb-2 text-lg group-hover:text-accent transition-colors duration-300">
                                 {project.title}
                             </Heading>
                             <Text size="lg" class="!text-gray-600 mb-6 flex-grow">
@@ -82,11 +85,11 @@ const projects = [
                             </Text>
 
                             <!-- Features list -->
-                            <div class="space-y-2 mb-6 pb-6 border-b border-gray-100">
+                            <div class="space-y-2 mb-6 pb-6 border-b-2 border-accent/20">
                                 {project.features.map((feature) => (
                                     <div class="flex items-center gap-2">
                                         <svg
-                                            class="w-4 h-4 text-primary shrink-0"
+                                            class="w-4 h-4 text-accent shrink-0 font-bold"
                                             fill="currentColor"
                                             viewBox="0 0 20 20"
                                         >
@@ -106,9 +109,9 @@ const projects = [
                             <!-- CTA Button -->
                             <Button
                                 href={project.href}
-                                variant="primary"
+                                variant="accent"
                                 size="md"
-                                class="w-full uppercase tracking-wider font-bold text-md"
+                                class="w-full uppercase tracking-wider font-bold text-md hover:shadow-lg hover:shadow-accent/30"
                             >
                                 Learn More
                             </Button>

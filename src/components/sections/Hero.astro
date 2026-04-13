@@ -1,6 +1,5 @@
 ---
 import Button from "../ui/Button.astro";
-import HeroOverlay from "./HeroOverlay.astro";
 ---
 
 <section
@@ -60,7 +59,7 @@ import HeroOverlay from "./HeroOverlay.astro";
 
     <!-- Hero Content -->
     <div
-        class="relative z-30 max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 h-full flex items-center"
+        class="relative z-30 max-w-480 mx-auto px-6 sm:px-12 lg:px-16 xl:px-20 h-full flex items-center"
     >
         <div class="w-full max-w-5xl">
             <!-- Main Heading -->
@@ -69,18 +68,18 @@ import HeroOverlay from "./HeroOverlay.astro";
                     class="font-heading font-bold text-white leading-[1.05] tracking-tight"
                 >
                     <div
-                        class="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl drop-shadow-2xl"
+                        class="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl drop-shadow-2xl animate-slide-in-left"
                     >
                         Power Your
                     </div>
                     <div
-                        class="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl drop-shadow-2xl"
+                        class="text-5xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-7xl drop-shadow-2xl animate-slide-in-right"
                     >
                         Business Forward
                     </div>
                 </h1>
                 <p
-                    class="mt-6 lg:mt-8 text-white/90 text-lg sm:text-xl lg:text-2xl font-body max-w-xl lg:max-w-3xl leading-relaxed drop-shadow-lg"
+                    class="mt-6 lg:mt-8 text-white/90 text-lg sm:text-xl lg:text-2xl font-body max-w-xl lg:max-w-3xl leading-relaxed drop-shadow-lg animate-fade-in-up-delay"
                 >
                     Expert electrical solutions for commercial and residential
                     properties. Licensed, insured, and ready to serve.
@@ -94,13 +93,13 @@ import HeroOverlay from "./HeroOverlay.astro";
                 <!-- Primary CTA with decorative element -->
                 <div class="relative group">
                     <div
-                        class="absolute -inset-1 bg-gradient-to-r from-accent to-primary blur opacity-25 group-hover:opacity-50 transition duration-300"
+                        class="absolute -inset-1 bg-linear-to-r from-accent to-primary blur opacity-25 group-hover:opacity-50 transition duration-300 animate-scale-in"
                     >
                     </div>
                     <div
-                        class="relative bg-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                        class="relative bg-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 animate-scale-in"
                     >
-                        <Button href="#contact" variant="primary" size="lg">
+                        <Button href="/contact" variant="primary" size="lg">
                             <span class="flex items-center gap-2 lg:gap-3">
                                 Get Free Quote
                                 <svg
@@ -126,7 +125,7 @@ import HeroOverlay from "./HeroOverlay.astro";
                         href="tel:+1234567890"
                         variant="outline"
                         size="lg"
-                        class="!border-white !text-white hover:!bg-white hover:!text-accent shadow-lg backdrop-blur-sm bg-white/10"
+                        class="border-white! text-white! hover:bg-white! hover:text-accent! shadow-lg backdrop-blur-sm bg-white/10 animate-scale-in"
                     >
                         <span class="flex items-center gap-2 lg:gap-3">
                             <svg
@@ -147,11 +146,13 @@ import HeroOverlay from "./HeroOverlay.astro";
 
             <!-- Trust Indicators -->
             <div
-                class="mt-10 lg:mt-16 flex flex-wrap gap-6 lg:gap-8 items-center animate-fade-in-up-delay-2"
+                class="mt-10 lg:mt-16 flex flex-wrap gap-6 lg:gap-8 items-center animate-fade-in-up-delay-2 scroll-stagger"
             >
-                <div class="flex items-center gap-3 text-white/90">
+                <div
+                    class="flex items-center gap-3 text-white/90 scroll-animate"
+                >
                     <div
-                        class="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 backdrop-blur-sm flex items-center justify-center shrink-0"
+                        class="w-10 h-10 lg:w-12 lg:h-12 bg-white/20 backdrop-blur-sm flex items-center justify-center shrink-0 animate-scale-in"
                     >
                         <svg
                             class="w-5 h-5 lg:w-6 lg:h-6 text-white"
@@ -219,7 +220,7 @@ import HeroOverlay from "./HeroOverlay.astro";
 
     <!-- Scroll Indicator -->
     <div
-        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce hidden lg:block"
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-float hidden lg:block"
     >
         <div
             class="w-6 h-10 border-2 border-white/50 flex items-start justify-center p-2"
@@ -241,6 +242,49 @@ import HeroOverlay from "./HeroOverlay.astro";
         }
     }
 
+    @keyframes slide-in-left {
+        from {
+            opacity: 0;
+            transform: translateX(-60px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slide-in-right {
+        from {
+            opacity: 0;
+            transform: translateX(60px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes scale-in {
+        from {
+            opacity: 0;
+            transform: scale(0.95);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes float {
+        0%,
+        100% {
+            transform: translateY(0px);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+
     .animate-fade-in-up {
         animation: fade-in-up 0.8s ease-out forwards;
     }
@@ -253,6 +297,22 @@ import HeroOverlay from "./HeroOverlay.astro";
     .animate-fade-in-up-delay-2 {
         opacity: 0;
         animation: fade-in-up 0.8s ease-out 0.4s forwards;
+    }
+
+    .animate-slide-in-left {
+        animation: slide-in-left 0.9s ease-out forwards;
+    }
+
+    .animate-slide-in-right {
+        animation: slide-in-right 0.9s ease-out 0.1s forwards;
+    }
+
+    .animate-scale-in {
+        animation: scale-in 0.7s ease-out forwards;
+    }
+
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
     }
 
     .carousel-image {
