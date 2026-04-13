@@ -7,14 +7,11 @@ import Button from "../ui/Button.astro";
 
 const colorMap: Record<string, string> = {
     "primary": "bg-primary",
-    "gray-900": "bg-gray-900",
     "accent": "bg-accent",
-    "text": "bg-text",
 };
 
 const textColorMap: Record<string, string> = {
     "white": "text-white",
-    "gray-900": "text-gray-900",
 };
 
 const rawContent = await import("../../content/specials-coupons.md?raw").then(
@@ -24,25 +21,17 @@ const rawContent = await import("../../content/specials-coupons.md?raw").then(
 const coupons = rawContent
     .split("\n")
     .filter((line: string) => line.startsWith("## "))
-    .map((line: string) => {
+    .map((line: string, index: number) => {
         const title = line.replace("## ", "").trim();
         const lines = rawContent.split("\n");
         const lineIndex = lines.indexOf(line);
         
-        let color = "";
-        let textColor = "";
         let discount = "";
         let description = "";
         let code = "";
         
         for (let i = lineIndex + 1; i < lines.length; i++) {
             const currentLine = lines[i];
-            if (currentLine.includes("**Color**")) {
-                color = currentLine.match(/\*\*Color\*\*:\s*(.+)/)?.[1]?.trim() || "";
-            }
-            if (currentLine.includes("**Text Color**")) {
-                textColor = currentLine.match(/\*\*Text Color\*\*:\s*(.+)/)?.[1]?.trim() || "";
-            }
             if (currentLine.includes("**Discount**")) {
                 discount = currentLine.match(/\*\*Discount\*\*:\s*(.+)/)?.[1]?.trim() || "";
             }
@@ -55,9 +44,11 @@ const coupons = rawContent
             if (currentLine.startsWith("## ") && currentLine !== line) break;
         }
 
+        // Alternate between primary and accent
+        const color = index % 2 === 0 ? "bg-primary" : "bg-accent";
+
         return {
-            color: colorMap[color] || "bg-primary",
-            textColor: textColorMap[textColor] || "text-white",
+            color,
             discount,
             title,
             description,
@@ -87,7 +78,7 @@ const coupons = rawContent
             <div class="flex items-center gap-2 shrink-0" id="flash-countdown">
                 {["DAYS", "HOURS", "MINS", "SECS"].map((label) => (
                     <div class="text-center">
-                        <div class="bg-gray-900 text-white font-heading font-bold text-xl w-12 h-12 flex items-center justify-center countdown-unit" data-unit={label.toLowerCase()}>
+                        <div class="bg-accent text-white font-heading font-bold text-xl w-12 h-12 flex items-center justify-center countdown-unit" id={`countdown-${label.toLowerCase()}`}>
                             00
                         </div>
                         <p class="text-xs text-gray-400 uppercase tracking-wider mt-1">{label}</p>
@@ -98,9 +89,9 @@ const coupons = rawContent
 
         <!-- Header -->
         <div class="text-center mb-12 scroll-animate">
-            <Badge variant="primary" class="mb-3">Exclusive Savings</Badge>
+            <Badge variant="accent" class="mb-3">Exclusive Savings</Badge>
             <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
-                Coupons &amp; <span class="text-primary">Special Offers</span>
+                Coupons &amp; <span class="text-accent">Special Offers</span>
             </Heading>
             <Text size="xl" class="!text-gray-700 max-w-xl mx-auto">
                 Save big on your next electrical project. Print or mention these codes at booking.
@@ -124,19 +115,19 @@ const coupons = rawContent
                     <div class="relative px-6 pt-2 pb-4 flex flex-col gap-3 flex-1">
                         <!-- Lightning bolt + title -->
                         <div class="flex items-center justify-between">
-                            <Text size="sm" class={`!font-bold !uppercase !tracking-widest ${c.textColor} opacity-70`} as="span">{c.title}</Text>
-                            <svg class={`w-5 h-5 ${c.textColor} opacity-50`} fill="currentColor" viewBox="0 0 20 20">
+                            <Text size="sm" class="!font-bold !uppercase !tracking-widest text-white opacity-70" as="span">{c.title}</Text>
+                            <svg class="w-5 h-5 text-white opacity-50" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"/>
                             </svg>
                         </div>
 
                         <!-- Big discount -->
                         <div class="text-center py-2">
-                            <p class={`font-heading font-bold leading-none ${c.textColor}`} style="font-size: clamp(2.5rem, 5vw, 3.5rem)">{c.discount}</p>
+                            <p class="font-heading font-bold leading-none text-white" style="font-size: clamp(2.5rem, 5vw, 3.5rem)">{c.discount}</p>
                         </div>
 
                         <!-- Description -->
-                        <Text size="sm" class={`!text-center ${c.textColor} opacity-75`} as="p">{c.description}</Text>
+                        <Text size="sm" class="!text-center text-white opacity-75" as="p">{c.description}</Text>
                     </div>
 
                     <!-- Perforated tear line -->
@@ -148,15 +139,15 @@ const coupons = rawContent
 
                     <!-- Code stub -->
                     <div class="relative px-6 py-4 flex flex-col items-center gap-2">
-                        <Text size="sm" class={`!uppercase !tracking-widest ${c.textColor} opacity-50`} as="p">Promo Code</Text>
+                        <Text size="sm" class="!uppercase !tracking-widest text-white opacity-50" as="p">Promo Code</Text>
                         <button
-                            class={`coupon-copy w-full py-2.5 font-heading font-bold tracking-[0.2em] text-sm border border-dashed border-white/40 hover:bg-white/15 active:scale-95 transition-all duration-150 ${c.textColor}`}
+                            class="coupon-copy w-full py-2.5 font-heading font-bold tracking-[0.2em] text-sm border border-dashed border-white/40 text-white hover:bg-white/15 active:scale-95 transition-all duration-150"
                             data-code={c.code}
                             aria-label={`Copy code ${c.code}`}
                         >
                             {c.code}
                         </button>
-                        <Text size="sm" class={`coupon-copied !opacity-0 transition-opacity duration-200 ${c.textColor}`} as="p">✓ Copied to clipboard!</Text>
+                        <Text size="sm" class="coupon-copied !opacity-0 transition-opacity duration-200 text-white" as="p">✓ Copied to clipboard!</Text>
                     </div>
 
                     <!-- Bottom hole punches -->
@@ -220,20 +211,34 @@ const coupons = rawContent
         localStorage.setItem(KEY, String(expiry));
     }
 
-    function tick() {
+    function updateCountdown() {
         const remaining = Math.max(0, expiry - Date.now());
-        const d = Math.floor(remaining / 86400000);
-        const h = Math.floor((remaining % 86400000) / 3600000);
-        const m = Math.floor((remaining % 3600000) / 60000);
-        const s = Math.floor((remaining % 60000) / 1000);
+        const days = Math.floor(remaining / 86400000);
+        const hours = Math.floor((remaining % 86400000) / 3600000);
+        const mins = Math.floor((remaining % 3600000) / 60000);
+        const secs = Math.floor((remaining % 60000) / 1000);
 
-        const units: Record<string, number> = { days: d, hours: h, mins: m, secs: s };
-        Object.entries(units).forEach(([key, val]) => {
-            const el = document.querySelector<HTMLElement>(`[data-unit="${key}"]`);
-            if (el) el.textContent = String(val).padStart(2, "0");
-        });
+        const countdownElements = {
+            days: document.getElementById("countdown-days"),
+            hours: document.getElementById("countdown-hours"),
+            mins: document.getElementById("countdown-mins"),
+            secs: document.getElementById("countdown-secs"),
+        };
 
-        if (remaining > 0) setTimeout(tick, 1000);
+        if (countdownElements.days) countdownElements.days.textContent = String(days).padStart(2, "0");
+        if (countdownElements.hours) countdownElements.hours.textContent = String(hours).padStart(2, "0");
+        if (countdownElements.mins) countdownElements.mins.textContent = String(mins).padStart(2, "0");
+        if (countdownElements.secs) countdownElements.secs.textContent = String(secs).padStart(2, "0");
+
+        if (remaining > 0) {
+            setTimeout(updateCountdown, 1000);
+        }
     }
-    tick();
+
+    // Start countdown
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", updateCountdown);
+    } else {
+        updateCountdown();
+    }
 </script>

@@ -86,9 +86,9 @@ const plans = rawContent
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-16 scroll-animate">
-            <Badge variant="primary" class="mb-3">Flexible Payments</Badge>
+            <Badge variant="accent" class="mb-3">Flexible Payments</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Financing Plans for Every <span class="text-primary"
+                Financing Plans for Every <span class="text-accent"
                     >Project</span
                 >
             </Heading>
@@ -104,15 +104,15 @@ const plans = rawContent
                 plans.map((plan) => (
                     <Card
                         padding="lg"
-                        class={`relative flex flex-col transition-all duration-200 ${
+                        class={`relative flex flex-col transition-all duration-200 rounded-none ${
                             plan.highlighted
-                                ? "border-2 border-primary shadow-xl scale-105"
+                                ? "border-2 border-accent shadow-xl scale-105"
                                 : "border border-gray-200 hover:border-primary hover:shadow-lg"
                         }`}
                     >
                         {plan.highlighted && (
                             <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                                <Badge variant="primary">Most Popular</Badge>
+                                <Badge variant="accent">Most Popular</Badge>
                             </div>
                         )}
 
@@ -166,9 +166,9 @@ const plans = rawContent
 
                         <Button
                             href="/financing"
-                            variant={plan.highlighted ? "primary" : "outline"}
+                            variant={plan.highlighted ? "accent" : "primary"}
                             size="md"
-                            class="w-full"
+                            class="w-full rounded-none"
                         >
                             Learn More
                         </Button>

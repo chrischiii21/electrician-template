@@ -21,14 +21,14 @@ const {
     >
         <!-- Grid background -->
         <div
-            class="absolute inset-0 opacity-10"
+            class="absolute inset-0 opacity-20"
             style="background-image: linear-gradient(#F96939 1px, transparent 1px), linear-gradient(90deg, #F96939 1px, transparent 1px); background-size: 40px 40px;"
         >
         </div>
 
-        <!-- Glow -->
+        <!-- Glow - Accent -->
         <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-primary/10 pointer-events-none"
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-accent/20 pointer-events-none"
             style="filter: blur(80px); will-change: transform;"
         >
         </div>
@@ -36,16 +36,16 @@ const {
         <div class="relative text-center px-6 max-w-2xl mx-auto">
             <!-- Terminal badge -->
             <div
-                class="inline-flex items-center gap-2 bg-gray-800 border border-gray-700 px-4 py-2 mb-8 font-mono text-xs text-gray-400"
+                class="inline-flex items-center gap-2 border border-accent px-4 py-2 mb-8 font-mono text-xs text-background"
             >
-                <span class="w-2 h-2 bg-primary animate-pulse"></span>
+                <span class="w-2 h-2 bg-background animate-pulse"></span>
                 <span>STATUS: UNDER CONSTRUCTION</span>
             </div>
 
             <!-- Lightning bolt -->
             <div class="flex justify-center mb-6">
                 <svg
-                    class="w-16 h-16 text-primary"
+                    class="w-16 h-16 text-accent"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                 >
@@ -57,7 +57,7 @@ const {
             </div>
 
             <p
-                class="text-primary font-semibold text-xs uppercase tracking-widest mb-3"
+                class="text-accent font-semibold text-xs uppercase tracking-widest mb-3"
             >
                 {section}
             </p>
@@ -70,9 +70,9 @@ const {
 
             <!-- Progress bar -->
             <div class="w-full bg-gray-800 h-1 mb-2 overflow-hidden">
-                <div class="h-full bg-primary wiring-progress"></div>
+                <div class="h-full bg-accent wiring-progress"></div>
             </div>
-            <p class="text-xs text-gray-600 font-mono mb-10">
+            <p class="text-xs text-background font-mono mb-10">
                 Wiring in progress...
             </p>
 
@@ -82,7 +82,7 @@ const {
             >
                 <a
                     href="/"
-                    class="inline-flex items-center gap-2 bg-primary text-white font-bold text-sm uppercase tracking-wider px-6 py-3 hover:bg-primary/90 transition-colors"
+                    class="inline-flex items-center gap-2 bg-accent text-background font-bold text-sm uppercase tracking-wider px-6 py-3 hover:bg-accent/90 transition-colors"
                 >
                     <svg
                         class="w-4 h-4"
@@ -100,7 +100,7 @@ const {
                 </a>
                 <a
                     href="tel:+15550000000"
-                    class="inline-flex items-center gap-2 border border-gray-600 text-gray-300 font-bold text-sm uppercase tracking-wider px-6 py-3 hover:border-primary hover:text-primary transition-colors"
+                    class="inline-flex items-center gap-2 border border-accent text-accent font-bold text-sm uppercase tracking-wider px-6 py-3 hover:bg-accent hover:text-background transition-colors"
                 >
                     <svg
                         class="w-4 h-4"

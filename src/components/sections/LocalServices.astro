@@ -62,9 +62,9 @@ const services = rawContent
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-16 scroll-animate">
-            <Badge variant="primary" class="mb-3">Available Services</Badge>
+            <Badge variant="accent" class="mb-3">Available Services</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Complete Electrical Solutions in <span class="text-primary"
+                Complete Electrical Solutions in <span class="text-accent"
                     >Los Angeles</span
                 >
             </Heading>
@@ -80,21 +80,21 @@ const services = rawContent
                 services.map((service) => (
                     <a
                         href={service.link}
-                        class="group bg-white border border-gray-200 p-8 hover:border-primary hover:shadow-lg transition-all duration-300"
+                        class="group bg-white border border-gray-200 p-8 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
                     >
-                        <div class="w-14 h-14 bg-primary/10 flex items-center justify-center text-primary mb-4 border border-primary/20 group-hover:bg-primary group-hover:text-white transition-all duration-300">
+                        <div class="w-14 h-14 bg-accent/10 flex items-center justify-center text-accent mb-4 border border-accent/20 group-hover:bg-accent group-hover:text-white transition-all duration-300">
                             <div class="w-7 h-7" set:html={service.icon} />
                         </div>
                         <Heading
                             level={4}
-                            class="mb-2 group-hover:text-primary transition-colors duration-300"
+                            class="mb-2 group-hover:text-accent transition-colors duration-300"
                         >
                             {service.title}
                         </Heading>
                         <Text size="sm" class="text-gray-600">
                             {service.description}
                         </Text>
-                        <div class="mt-4 flex items-center gap-2 text-primary font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <div class="mt-4 flex items-center gap-2 text-accent font-semibold text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             Learn More
                             <svg
                                 class="w-4 h-4"

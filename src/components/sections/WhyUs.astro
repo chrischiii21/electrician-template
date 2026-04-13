@@ -55,9 +55,9 @@ const comparison = [
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-12 scroll-animate">
-            <Badge variant="primary" class="mb-3">Why Choose Us</Badge>
+            <Badge variant="accent" class="mb-3">Why Choose Us</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                The <span class="text-primary">Difference</span>
+                The <span class="text-accent">Difference</span>
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-xl mx-auto">
                 Not all electricians are equal. Here's what sets us apart.
@@ -70,9 +70,9 @@ const comparison = [
                 features.map((f) => (
                     <Card
                         padding="lg"
-                        class="group hover:border-accent hover:shadow-md transition-all duration-200 border border-gray-100"
+                        class="group hover:border-accent hover:shadow-md transition-all duration-200 border border-gray-100 rounded-none"
                     >
-                        <div class="w-10 h-10 flex items-center justify-center text-accent mb-4 border border-accent/20 bg-accent/5 group-hover:bg-accent group-hover:text-white transition-all duration-200">
+                        <div class="w-10 h-10 flex items-center justify-center text-accent mb-4 border border-accent/20 bg-accent/5 group-hover:bg-accent group-hover:text-white transition-all duration-200 rounded-none">
                             <div class="w-5 h-5" set:html={f.icon} />
                         </div>
                         <Heading level={4} class="mb-2">

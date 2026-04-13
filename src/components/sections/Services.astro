@@ -89,9 +89,9 @@ const services = rawContent
 
         <!-- Header -->
         <div class="text-center mb-10 scroll-animate">
-            <Badge variant="primary" class="mb-3">What We Do</Badge>
+            <Badge variant="accent" class="mb-3">What We Do</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Every Electrical Need. <span class="text-primary">One Trusted Team.</span>
+                Every Electrical Need. <span class="text-accent">One Trusted Team.</span>
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
                 From emergency callouts to full commercial builds — we've got the crew, the tools, and the track record.
@@ -107,10 +107,10 @@ const services = rawContent
                     aria-controls={`panel-${s.id}`}
                     data-tab={s.id}
                     class:list={[
-                        "services-tab inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-heading border transition-all duration-200 whitespace-nowrap",
+                        "services-tab inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-heading border-2 transition-all duration-200 whitespace-nowrap",
                         i === 0
-                            ? "bg-primary text-white border-primary"
-                            : "bg-white text-gray-500 border-gray-200 hover:border-primary hover:text-text",
+                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
+                            : "bg-white text-gray-600 border-gray-200 hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/20",
                     ]}
                 >
                     <span set:html={s.icon} />
@@ -118,7 +118,7 @@ const services = rawContent
                     {s.badge && (
                         <span class:list={[
                             "tab-badge text-md font-bold px-1.5 py-0.5 leading-none",
-                            i === 0 ? "bg-gray-900 text-white" : "bg-primary text-white"
+                            i === 0 ? "bg-accent text-white" : "bg-accent text-white"
                         ]}>
                             {s.badge}
                         </span>
@@ -150,7 +150,7 @@ const services = rawContent
 
                         <!-- Content -->
                         <div class="p-8 md:p-10 flex flex-col justify-center bg-white">
-                            <Badge variant="primary" class="mb-4 self-start">{s.label} Services</Badge>
+                            <Badge variant="accent" class="mb-4 self-start">{s.label} Services</Badge>
                             <Heading level={3} class="mb-3">{s.tagline}</Heading>
                             <Text class="text-gray-700 mb-2">{s.description}</Text>
                             <Text size="md" class="text-gray-400 mb-6 italic">{s.pitch}</Text>
@@ -206,18 +206,18 @@ const services = rawContent
                 t.setAttribute("aria-selected", String(active));
 
                 if (active) {
-                    t.classList.add("bg-primary", "text-white", "border-primary");
-                    t.classList.remove("bg-white", "text-gray-500", "border-gray-200");
+                    t.classList.add("bg-primary", "text-white", "border-primary", "shadow-lg", "shadow-primary/30");
+                    t.classList.remove("bg-white", "text-gray-600", "border-gray-200", "hover:border-accent", "hover:text-accent", "hover:shadow-md", "hover:shadow-accent/20");
                 } else {
-                    t.classList.remove("bg-primary", "text-white", "border-primary");
-                    t.classList.add("bg-white", "text-gray-500", "border-gray-200");
+                    t.classList.remove("bg-primary", "text-white", "border-primary", "shadow-lg", "shadow-primary/30");
+                    t.classList.add("bg-white", "text-gray-600", "border-gray-200", "hover:border-accent", "hover:text-accent", "hover:shadow-md", "hover:shadow-accent/20");
                 }
 
                 // Badge inside tab: dark bg when tab is active so it's visible on primary
                 const badge = t.querySelector<HTMLElement>(".tab-badge");
                 if (badge) {
                     badge.classList.toggle("bg-gray-900", active);
-                    badge.classList.toggle("bg-primary", !active);
+                    badge.classList.toggle("bg-accent", !active);
                 }
             });
 

@@ -48,9 +48,9 @@ const steps = rawContent
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-16 scroll-animate">
-            <Badge variant="primary" class="mb-3">Our Process</Badge>
+            <Badge variant="accent" class="mb-3">Our Process</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Ground-up Construction <span class="text-primary">Process</span>
+                Ground-up Construction <span class="text-accent">Process</span>
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
                 From design through commissioning, we manage every phase of new electrical construction with precision and expertise.
@@ -60,7 +60,7 @@ const steps = rawContent
         <!-- Timeline -->
         <div class="relative scroll-stagger">
             <!-- Vertical line -->
-            <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary via-primary to-transparent md:transform md:-translate-x-1/2"></div>
+            <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-accent to-primary md:transform md:-translate-x-1/2"></div>
 
             <!-- Steps -->
             <div class="space-y-12 md:space-y-16">
@@ -68,11 +68,11 @@ const steps = rawContent
                     <div class={`relative md:flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
                         <!-- Content -->
                         <div class={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"} pl-12 md:pl-0`}>
-                            <div class="bg-gray-50 border border-gray-200 p-6 hover:border-primary hover:shadow-lg transition-all duration-300">
+                            <div class="bg-gray-50 border border-gray-200 p-6 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300">
                                 <div class="flex items-start gap-4 mb-4">
-                                    <div class="text-4xl font-bold text-primary/20">{step.number}</div>
+                                    <div class="text-4xl font-bold text-accent/30">{step.number}</div>
                                     <div class="flex-grow">
-                                        <Heading level={4} class="mb-1">{step.title}</Heading>
+                                        <Heading level={4} class="mb-1 group-hover:text-accent">{step.title}</Heading>
                                         <Text size="sm" class="text-gray-600">{step.description}</Text>
                                     </div>
                                 </div>
@@ -81,7 +81,7 @@ const steps = rawContent
                                 <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-gray-200">
                                     {step.details.map((detail) => (
                                         <div class="flex items-center gap-2">
-                                            <svg class="w-3 h-3 text-primary shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                            <svg class="w-3 h-3 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                             </svg>
                                             <Text size="xs" class="text-gray-700">{detail}</Text>
@@ -92,7 +92,7 @@ const steps = rawContent
                         </div>
 
                         <!-- Timeline dot -->
-                        <div class="absolute left-0 md:left-1/2 top-6 md:top-8 w-4 h-4 bg-white border-4 border-primary md:transform md:-translate-x-1/2 md:-translate-x-2"></div>
+                        <div class="absolute left-0 md:left-1/2 top-6 md:top-8 w-4 h-4 bg-white border-4 border-accent md:transform md:-translate-x-1/2 md:-translate-x-2"></div>
                     </div>
                 ))}
             </div>

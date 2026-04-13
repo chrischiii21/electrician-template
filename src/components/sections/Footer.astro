@@ -112,11 +112,11 @@ const socialLinks = parseSocialLinks(socialLinksContent);
 
                     <Heading
                         level={4}
-                        class="!text-white !text-base md:!text-lg mb-1 md:mb-2"
+                        class="!text-white !text-xl md:!text-2xl mb-1 md:mb-2"
                     >
                         Trusted by 1000+ People Like You
                     </Heading>
-                    <Text size="sm" class="!text-white !md:text-base">
+                    <Text size="md" class="!text-white !md:text-xl">
                         Contact us Today to Get Free Estimate
                     </Text>
                 </div>
@@ -131,7 +131,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                                 size="sm"
                                 as="a"
                                 href={link.href}
-                                class="!text-xs md:!text-sm !text-white hover:!text-primary transition-colors !uppercase !tracking-wide cursor-pointer"
+                                class="!text-sm md:!text-lg !text-white hover:!text-accent transition-colors !uppercase !tracking-wide cursor-pointer"
                             >
                                 {link.label}
                             </Text>
@@ -146,8 +146,8 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                     <!-- Request Quote -->
                     <Button
                         href="/quote"
-                        variant="primary"
-                        class="!bg-primary hover:!bg-accent !text-white !px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-sm md:!text-base"
+                        variant="outline"
+                        class="!px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-md md:!text-md"
                     >
                         <svg
                             class="w-4 md:w-5 h-4 md:h-5 shrink-0"
@@ -180,8 +180,8 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                     <!-- Call Us -->
                     <Button
                         href="tel:+14228208200"
-                        variant="primary"
-                        class="!bg-primary hover:!bg-accent !text-white !px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-sm md:!text-base"
+                        variant="outline"
+                        class="!px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-md md:!text-md"
                     >
                         <svg
                             class="w-4 md:w-5 h-4 md:h-5 shrink-0"
@@ -213,8 +213,8 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                     <!-- Email Us -->
                     <Button
                         href="mailto:office@voltedge.com"
-                        variant="primary"
-                        class="!bg-primary hover:!bg-accent !text-white !px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-sm md:!text-base"
+                        variant="outline"
+                        class="!px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-md md:!text-md"
                     >
                         <svg
                             class="w-4 md:w-5 h-4 md:h-5 shrink-0"
@@ -287,7 +287,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                                 serviceAreas.map((area) => (
                                     <a
                                         href={area.href}
-                                        class="text-xs font-bold text-white hover:text-primary transition-colors px-2 md:px-3 py-1 border border-gray-700 hover:border-primary uppercase tracking-wider cursor-pointer"
+                                        class="text-xs font-bold text-white hover:text-accent transition-colors px-2 md:px-3 py-1 border border-gray-700 hover:border-accent uppercase tracking-wider cursor-pointer"
                                     >
                                         {area.label}
                                         <svg
@@ -326,7 +326,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                         size="sm"
                         as="a"
                         href="/terms"
-                        class="!text-xs md:!text-sm !text-white hover:!text-primary transition-colors cursor-pointer"
+                        class="!text-xs md:!text-sm !text-white hover:!text-accent transition-colors cursor-pointer"
                     >
                         Terms & Conditions
                     </Text>
@@ -334,7 +334,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                         size="sm"
                         as="a"
                         href="/privacy"
-                        class="!text-xs md:!text-sm !text-white hover:!text-primary transition-colors cursor-pointer"
+                        class="!text-xs md:!text-sm !text-white hover:!text-accent transition-colors cursor-pointer"
                     >
                         Privacy Policy
                     </Text>
@@ -346,7 +346,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                         socialLinks.map((social) => (
                             <a
                                 href={social.href}
-                                class="text-white hover:text-primary transition-colors cursor-pointer"
+                                class="text-white hover:text-accent transition-colors cursor-pointer"
                                 aria-label={social.label}
                             >
                                 <svg

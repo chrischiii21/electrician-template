@@ -96,9 +96,9 @@ rawContent
     <Container size="lg">
         <!-- Header -->
         <div class="text-center mb-12 scroll-animate">
-            <Badge variant="primary" class="mb-3">Where We Work</Badge>
+            <Badge variant="accent" class="mb-3">Where We Work</Badge>
             <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
-                Serving All of <span class="text-primary">California</span>
+                Serving All of <span class="text-accent">California</span>
             </Heading>
             <Text size="xl" class="!text-gray-700 max-w-xl mx-auto">
                 Licensed electricians on call across four major metro areas.
@@ -117,7 +117,7 @@ rawContent
                         const d = areaDetails[area.name];
                         return (
                             <button
-                                class="area-tab group text-left px-6 py-5 transition-all duration-200 hover:bg-primary/5 focus:outline-none"
+                                class="area-tab group text-left px-6 py-5 transition-all duration-200 hover:bg-accent/5 focus:outline-none"
                                 data-lat={d?.lat}
                                 data-lng={d?.lng}
                                 data-zoom={d?.zoom}
@@ -129,14 +129,14 @@ rawContent
                                         <div class="flex items-center gap-3 mb-1">
                                             <Text
                                                 size="lg"
-                                                class="!font-bold !text-gray-300 group-hover:!text-primary transition-colors area-num"
+                                                class="!font-bold !text-gray-300 group-hover:!text-accent transition-colors area-num"
                                                 as="span"
                                             >
                                                 {String(i + 1).padStart(2, "0")}
                                             </Text>
                                             <Heading
                                                 level={5}
-                                                class="!text-text group-hover:!text-primary transition-colors area-name"
+                                                class="!text-text group-hover:!text-accent transition-colors area-name"
                                             >
                                                 {area.name}
                                             </Heading>
@@ -152,7 +152,7 @@ rawContent
                                             {d?.neighborhoods.map((n) => (
                                                 <Text
                                                     size="sm"
-                                                    class="!bg-gray-100 !text-gray-500 px-2 py-0.5 group-hover:!bg-primary/10 group-hover:!text-primary transition-colors"
+                                                    class="!bg-gray-100 !text-gray-500 px-2 py-0.5 group-hover:!bg-accent/10 group-hover:!text-accent transition-colors"
                                                     as="span"
                                                 >
                                                     {n}
@@ -162,7 +162,7 @@ rawContent
                                         <div class="pl-8 mt-3">
                                             <a
                                                 href={area.href}
-                                                class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary px-3 py-1.5 hover:bg-primary hover:text-white transition-all duration-150"
+                                                class="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-primary border border-primary px-3 py-1.5 hover:bg-primary hover:text-white transition-all duration-150 area-link"
                                                 onclick="event.stopPropagation()"
                                             >
                                                 View {area.name}
@@ -183,7 +183,7 @@ rawContent
                                         </div>
                                     </div>
                                     <svg
-                                        class="w-4 h-4 text-gray-300 group-hover:text-primary shrink-0 mt-1 translate-x-0 group-hover:translate-x-1 transition-all duration-200"
+                                        class="w-4 h-4 text-gray-300 group-hover:text-accent shrink-0 mt-1 translate-x-0 group-hover:translate-x-1 transition-all duration-200"
                                         fill="none"
                                         stroke="currentColor"
                                         viewBox="0 0 24 24"
@@ -228,7 +228,7 @@ rawContent
         >
             <div class="flex items-center gap-3">
                 <svg
-                    class="w-5 h-5 text-primary shrink-0"
+                    class="w-5 h-5 text-accent shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -305,10 +305,10 @@ rawContent
             },
         ).addTo(map);
 
-        // Custom primary-colored marker
+        // Custom accent-colored marker
         const icon = L.divIcon({
             className: "",
-            html: `<div style="width:16px;height:16px;background:#F96939;border:3px solid white;box-shadow:0 2px 8px rgba(249,105,57,0.5);"></div>`,
+            html: `<div style="width:16px;height:16px;background:#D52212;border:3px solid white;box-shadow:0 2px 8px rgba(213,34,18,0.5);"></div>`,
             iconSize: [16, 16],
             iconAnchor: [8, 8],
         });
@@ -335,17 +335,47 @@ rawContent
         // Update tab styles
         tabs.forEach((t, i) => {
             const isActive = i === idx;
-            t.classList.toggle("bg-primary/5", isActive);
-            t.classList.toggle("border-l-2", isActive);
-            t.classList.toggle("border-primary", isActive);
+            t.classList.toggle("bg-accent/5", isActive);
+            t.classList.toggle("border-l-4", isActive);
+            t.classList.toggle("border-accent", isActive);
             t.querySelector<HTMLElement>(".area-name")?.classList.toggle(
-                "text-primary",
+                "text-accent",
                 isActive,
             );
             t.querySelector<HTMLElement>(".area-num")?.classList.toggle(
-                "text-primary",
+                "text-accent",
                 isActive,
             );
+
+            // Toggle link styling based on active state
+            const link = t.querySelector<HTMLElement>(".area-link");
+            if (link) {
+                if (isActive) {
+                    link.classList.remove(
+                        "text-primary",
+                        "border-primary",
+                        "hover:bg-primary",
+                    );
+                    link.classList.add(
+                        "text-accent",
+                        "border-accent",
+                        "hover:bg-accent",
+                        "hover:text-white",
+                    );
+                } else {
+                    link.classList.remove(
+                        "text-accent",
+                        "border-accent",
+                        "hover:bg-accent",
+                        "hover:text-white",
+                    );
+                    link.classList.add(
+                        "text-primary",
+                        "border-primary",
+                        "hover:bg-primary",
+                    );
+                }
+            }
         });
 
         // Fly map to location
