@@ -1,21 +1,28 @@
 @import "tailwindcss";
 
 @theme {
-    --color-text: #1d283a;
+    --color-text: #0f0302;
     --color-background: #ffffff;
-    --color-primary: #F96939;
-    --color-secondary: #f8fafc;
-    --color-accent: #f59f0a;
+    --color-primary: #1E2023;
+    --color-secondary: #2B2D30;
+    --color-accent: #D52212;
 
-    --color-gray-50: #f9fafb;
-    --color-gray-100: #f3f4f6;
-    --color-gray-300: #d1d5db;
-    --color-gray-400: #9ca3af;
-    --color-gray-700: #374151;
-    --color-gray-900: #111827;
+    --color-brand-blue: #0066CC;
+    --color-brand-orange: #FF6B35;
+    --color-brand-green: #00A878;
+    --color-brand-purple: #7B2CBF;
+    --color-brand-yellow: #FFB627;
 
-    --color-link: #1d283a;
-    --color-danger: #ff0000;
+    --color-neutral-50: #F9FAFB;
+    --color-neutral-100: #F3F4F6;
+    --color-neutral-200: #E5E7EB;
+    --color-neutral-300: #D1D5DB;
+    --color-neutral-400: #9CA3AF;
+    --color-neutral-500: #6B7280;
+    --color-neutral-600: #4B5563;
+    --color-neutral-700: #374151;
+    --color-neutral-800: #1F2937;
+    --color-neutral-900: #111827;
 
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Poppins', sans-serif;
@@ -23,48 +30,184 @@
 
 @layer base {
     :root {
-        --text: #1d283a;
+        --text: #0f0302;
         --background: #ffffff;
-        --primary: #33bcf7;
-        --secondary: #f8fafc;
-        --accent: #f59f0a;
+        --primary: #1E2023;
+        --secondary: #2B2D30;
+        --accent: #D52212;
 
-        /* Gray scale */
-        --gray-50: #f9fafb;
-        --gray-100: #f3f4f6;
-        --gray-300: #d1d5db;
-        --gray-400: #9ca3af;
-        --gray-700: #374151;
-        --gray-900: #111827;
+        /* Brand colors */
+        --brand-blue: #0066CC;
+        --brand-orange: #FF6B35;
+        --brand-green: #00A878;
+        --brand-purple: #7B2CBF;
+        --brand-yellow: #FFB627;
 
-        /* Semantic colors */
-        --link: #1d283a;
-        --danger: #ff0000;
+        /* Neutral scale */
+        --neutral-50: #F9FAFB;
+        --neutral-100: #F3F4F6;
+        --neutral-200: #E5E7EB;
+        --neutral-300: #D1D5DB;
+        --neutral-400: #9CA3AF;
+        --neutral-500: #6B7280;
+        --neutral-600: #4B5563;
+        --neutral-700: #374151;
+        --neutral-800: #1F2937;
+        --neutral-900: #111827;
     }
 
     .dark {
-        --text: #e3e3e3;
+        --text: #f0fdfc;
         --background: #090806;
-        --primary: #33bcf7;
-        --secondary: #71a5ef;
-        --accent: #f59f0a;
+        --primary: #d1dfe2;
+        --secondary: #d4d2d5;
+        --accent: #ed2d1d;
 
-        /* Gray scale for dark mode */
-        --gray-50: #000000;
-        --gray-100: #1a1a1a;
-        --gray-300: #555555;
-        --gray-400: #777777;
-        --gray-700: #cccccc;
-        --gray-900: #ffffff;
+        /* Brand colors for dark mode */
+        --brand-blue: #3399FF;
+        --brand-orange: #FF8C5A;
+        --brand-green: #00D99A;
+        --brand-purple: #9D4EDD;
+        --brand-yellow: #FFC857;
 
-        /* Semantic colors */
-        --link: #3399ff;
-        --danger: #ff3333;
+        /* Neutral scale for dark mode */
+        --neutral-50: #111827;
+        --neutral-100: #1F2937;
+        --neutral-200: #374151;
+        --neutral-300: #4B5563;
+        --neutral-400: #6B7280;
+        --neutral-500: #9CA3AF;
+        --neutral-600: #D1D5DB;
+        --neutral-700: #E5E7EB;
+        --neutral-800: #F3F4F6;
+        --neutral-900: #F9FAFB;
     }
 
     body {
         background-color: var(--background);
         color: var(--text);
+    }
+}
+
+/* Accent Color Utilities */
+@layer utilities {
+
+    /* Accent borders and decorations */
+    .accent-border-top {
+        border-top: 4px solid var(--brand-orange);
+    }
+
+    .accent-border-left {
+        border-left: 4px solid var(--brand-blue);
+    }
+
+    .accent-underline {
+        position: relative;
+    }
+
+    .accent-underline::after {
+        content: '';
+        position: absolute;
+        bottom: -8px;
+        left: 0;
+        width: 60px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--brand-orange), var(--brand-yellow));
+        border-radius: 2px;
+    }
+
+    /* Gradient backgrounds */
+    .bg-gradient-brand {
+        background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
+    }
+
+    .bg-gradient-warm {
+        background: linear-gradient(135deg, var(--brand-orange), var(--brand-yellow));
+    }
+
+    .bg-gradient-cool {
+        background: linear-gradient(135deg, var(--brand-blue), var(--brand-green));
+    }
+
+    /* Accent text colors */
+    .text-gradient-brand {
+        background: linear-gradient(135deg, var(--brand-blue), var(--brand-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Icon accent backgrounds */
+    .icon-bg-blue {
+        background-color: rgba(0, 102, 204, 0.1);
+        color: var(--brand-blue);
+    }
+
+    .icon-bg-orange {
+        background-color: rgba(255, 107, 53, 0.1);
+        color: var(--brand-orange);
+    }
+
+    .icon-bg-green {
+        background-color: rgba(0, 168, 120, 0.1);
+        color: var(--brand-green);
+    }
+
+    .icon-bg-purple {
+        background-color: rgba(123, 44, 191, 0.1);
+        color: var(--brand-purple);
+    }
+
+    .icon-bg-yellow {
+        background-color: rgba(255, 182, 39, 0.1);
+        color: var(--brand-yellow);
+    }
+
+    /* Hover effects with accent colors */
+    .hover-accent-blue {
+        transition: all 0.3s ease;
+    }
+
+    .hover-accent-blue:hover {
+        border-color: var(--brand-blue);
+        box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2);
+    }
+
+    .hover-accent-orange {
+        transition: all 0.3s ease;
+    }
+
+    .hover-accent-orange:hover {
+        border-color: var(--brand-orange);
+        box-shadow: 0 4px 12px rgba(255, 107, 53, 0.2);
+    }
+
+    /* Badge styles with accent colors */
+    .badge-blue {
+        background-color: var(--brand-blue);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .badge-orange {
+        background-color: var(--brand-orange);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
+    }
+
+    .badge-green {
+        background-color: var(--brand-green);
+        color: white;
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        font-size: 0.875rem;
+        font-weight: 600;
     }
 }
 
