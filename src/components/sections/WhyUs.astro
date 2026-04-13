@@ -70,9 +70,9 @@ const comparison = [
                 features.map((f) => (
                     <Card
                         padding="lg"
-                        class="group hover:border-primary hover:shadow-md transition-all duration-200 border border-gray-100"
+                        class="group hover:border-accent hover:shadow-md transition-all duration-200 border border-gray-100"
                     >
-                        <div class="w-10 h-10 flex items-center justify-center text-primary mb-4 border border-primary/20 bg-primary/5 group-hover:bg-primary group-hover:text-white transition-all duration-200">
+                        <div class="w-10 h-10 flex items-center justify-center text-accent mb-4 border border-accent/20 bg-accent/5 group-hover:bg-accent group-hover:text-white transition-all duration-200">
                             <div class="w-5 h-5" set:html={f.icon} />
                         </div>
                         <Heading level={4} class="mb-2">
@@ -126,7 +126,7 @@ const comparison = [
                             <div class="px-6 py-4 flex items-center justify-center border-l border-gray-100">
                                 {row.us ? (
                                     <svg
-                                        class="w-5 h-5 text-primary"
+                                        class="w-5 h-5 text-accent"
                                         fill="currentColor"
                                         viewBox="0 0 20 20"
                                     >

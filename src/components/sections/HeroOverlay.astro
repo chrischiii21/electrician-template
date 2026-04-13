@@ -3,25 +3,25 @@ import Button from "../ui/Button.astro";
 ---
 
 <!-- Hero Overlay Section - Image + Promotional Card -->
-<div class="relative w-full z-40 pb-12">
-    <div class="max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 items-start">
+<div class="relative w-full z-40 pb-0">
+    <div class="max-w-480 mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
+        <div
+            class="flex flex-col lg:flex-row items-center justify-center gap-0 relative"
+        >
             <!-- Left Side - Image -->
-            <div class="hidden lg:block lg:col-span-6 relative pt-8">
-                <div
-                    class="relative z-10 p-8 bg-background max-w-lg ml-auto h-full flex items-center"
-                >
-                    <img
-                        src="/images/overlay-image.png"
-                        alt="Professional electrician"
-                        class="w-full h-full max-h-[800px] object-cover"
-                    />
-                </div>
+            <div
+                class="hidden lg:flex relative flex-shrink-0 w-64 h-96 items-center justify-center"
+            >
+                <img
+                    src="/images/overlay-image.png"
+                    alt="Professional electrician"
+                    class="w-full h-full object-contain"
+                />
             </div>
 
             <!-- Right Side - Special Offer Card -->
             <div
-                class="lg:col-span-6 xl:col-span-5 bg-background shadow-2xl relative border-4 border-accent max-w-xl animate-pulse-border -mt-40 lg:-mt-64"
+                class="w-full lg:w-96 bg-background shadow-2xl relative border-4 border-accent animate-pulse-border -mt-40 lg:-mt-0 lg:-ml-20"
             >
                 <!-- Promotional Banner -->
                 <div
@@ -149,7 +149,7 @@ import Button from "../ui/Button.astro";
                         </p>
                         <a href="tel:+1234567890" class="block">
                             <div
-                                class="bg-primary text-background px-6 py-4 hover:bg-accent transition-colors transform hover:scale-105 transition-transform"
+                                class="bg-primary text-background px-6 py-4 hover:bg-accent transition-all transform hover:scale-105"
                             >
                                 <div class="text-xs font-body mb-1 opacity-90">
                                     Tap to Call
@@ -168,8 +168,7 @@ import Button from "../ui/Button.astro";
                         href="#contact"
                         variant="primary"
                         size="md"
-                        fullWidth={true}
-                        class="animate-pulse-slow"
+                        class="w-full animate-pulse-slow"
                     >
                         🎁 CLAIM DISCOUNT NOW
                     </Button>

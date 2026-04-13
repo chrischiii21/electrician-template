@@ -68,13 +68,13 @@ const testimonials = rawContent
             <div class="flex items-center gap-4 shrink-0">
                 <!-- Prev / Next -->
                 <button id="t-prev" aria-label="Previous review"
-                    class="w-11 h-11 border border-gray-200 flex items-center justify-center text-gray-400 hover:border-primary hover:text-primary transition-all duration-200 cursor-pointer">
+                    class="w-11 h-11 border border-gray-200 flex items-center justify-center text-gray-400 hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
                     </svg>
                 </button>
                 <button id="t-next" aria-label="Next review"
-                    class="w-11 h-11 border border-gray-200 flex items-center justify-center text-gray-400 hover:border-primary hover:text-primary transition-all duration-200 cursor-pointer">
+                    class="w-11 h-11 border border-gray-200 flex items-center justify-center text-gray-400 hover:border-accent hover:text-accent transition-all duration-200 cursor-pointer">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
                     </svg>
@@ -85,7 +85,7 @@ const testimonials = rawContent
         <!-- Carousel track -->
         <div class="relative scroll-animate">
             <!-- Big quote mark -->
-            <div class="absolute -top-4 left-0 text-primary/10 font-heading font-bold leading-none select-none pointer-events-none" style="font-size: 12rem; line-height: 1">"</div>
+            <div class="absolute -top-4 left-0 text-accent/10 font-heading font-bold leading-none select-none pointer-events-none" style="font-size: 12rem; line-height: 1">"</div>
 
             <div class="grid md:grid-cols-3 gap-8 items-start">
 
@@ -125,17 +125,17 @@ const testimonials = rawContent
 
                     <!-- Dot nav + progress bar -->
                     <div class="mt-10 flex items-center gap-6">
-                        <div class="flex gap-2" id="t-dots">
+                        <div class="flex gap-1" id="t-dots">
                             {testimonials.map((_, i) => (
                                 <button
-                                    class:list={["t-dot h-2 transition-all duration-300 cursor-pointer", i === 0 ? "bg-primary w-6" : "bg-gray-200 w-2"]}
+                                    class:list={["t-dot h-2 transition-all duration-300 cursor-pointer", i === 0 ? "bg-accent w-6" : "bg-gray-200 w-2"]}
                                     data-index={i}
                                     aria-label={`Go to review ${i + 1}`}
                                 ></button>
                             ))}
                         </div>
                         <div class="flex-1 h-px bg-gray-100 relative overflow-hidden">
-                            <div id="t-progress" class="absolute left-0 top-0 h-full bg-primary" style="width: 0%; transition: width linear"></div>
+                            <div id="t-progress" class="absolute left-0 top-0 h-full bg-accent" style="width: 0%; transition: width linear"></div>
                         </div>
                         <Text size="xs" class="!text-gray-400 !font-mono shrink-0" as="span" id="t-counter">1 / {testimonials.length}</Text>
                     </div>
@@ -144,7 +144,7 @@ const testimonials = rawContent
                 <!-- Right: static stat card -->
                 <div class="hidden md:flex flex-col gap-4">
                     <div class="bg-gray-50 border border-gray-100 p-6">
-                        <Heading level={3} class="!text-primary text-5xl mb-1">
+                        <Heading level={3} class="!text-accent text-5xl mb-1">
                             4.9
                         </Heading>
                         <div class="flex gap-0.5 mb-2">
