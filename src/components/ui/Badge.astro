@@ -1,18 +1,31 @@
 ---
 interface Props {
-    variant?: "primary" | "secondary" | "accent";
+    variant?:
+        | "primary"
+        | "secondary"
+        | "accent"
+        | "blue"
+        | "orange"
+        | "green"
+        | "purple"
+        | "yellow";
     class?: string;
 }
 
 const { variant = "primary", class: className = "" } = Astro.props;
 
 const variants = {
-    primary: "bg-primary/10 text-primary",
-    secondary: "bg-secondary/10 text-secondary",
-    accent: "bg-accent/10 text-accent",
+    primary: "bg-primary/10 text-primary border border-primary/20",
+    secondary: "bg-secondary/10 text-secondary border border-secondary/20",
+    accent: "bg-accent/10 text-accent border border-accent/20",
+    blue: "bg-brand-blue/10 text-brand-blue border border-brand-blue/20",
+    orange: "bg-brand-orange/10 text-brand-orange border border-brand-orange/20",
+    green: "bg-brand-green/10 text-brand-green border border-brand-green/20",
+    purple: "bg-brand-purple/10 text-brand-purple border border-brand-purple/20",
+    yellow: "bg-brand-yellow/10 text-brand-yellow border border-brand-yellow/20",
 };
 
-const classes = `inline-flex items-center px-3 py-1 text-sm font-bold ${variants[variant]} ${className}`;
+const classes = `inline-flex items-center px-3 py-1 text-sm font-semibold rounded-full ${variants[variant]} ${className}`;
 ---
 
 <span class={classes}>

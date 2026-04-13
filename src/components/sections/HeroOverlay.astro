@@ -1,0 +1,278 @@
+---
+import Button from "../ui/Button.astro";
+---
+
+<!-- Hero Overlay Section - Image + Promotional Card -->
+<div class="relative w-full z-40 pb-12">
+    <div class="max-w-[1920px] mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-0 items-start">
+            <!-- Left Side - Image -->
+            <div class="hidden lg:block lg:col-span-6 relative pt-8">
+                <div
+                    class="relative z-10 p-8 bg-background max-w-lg ml-auto h-full flex items-center"
+                >
+                    <img
+                        src="/images/overlay-image.png"
+                        alt="Professional electrician"
+                        class="w-full h-full max-h-[800px] object-cover"
+                    />
+                </div>
+            </div>
+
+            <!-- Right Side - Special Offer Card -->
+            <div
+                class="lg:col-span-6 xl:col-span-5 bg-background shadow-2xl relative border-4 border-accent max-w-xl animate-pulse-border -mt-40 lg:-mt-64"
+            >
+                <!-- Promotional Banner -->
+                <div
+                    class="bg-accent text-background px-6 py-4 relative overflow-hidden"
+                >
+                    <div
+                        class="absolute inset-0 opacity-20 animate-slide"
+                        style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,.3) 10px, rgba(255,255,255,.3) 20px);"
+                    >
+                    </div>
+
+                    <div class="relative z-10">
+                        <!-- Flash Badge -->
+                        <div
+                            class="absolute -top-1 -right-1 w-16 h-16 bg-primary text-background flex items-center justify-center transform rotate-12 animate-bounce-slow"
+                        >
+                            <div class="text-center">
+                                <div class="text-xs font-bold">HOT</div>
+                                <div class="text-xl">🔥</div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <span
+                                class="text-xs font-heading font-bold tracking-widest uppercase block animate-pulse"
+                            >
+                                ⚡ LIMITED TIME ⚡
+                            </span>
+                            <h2
+                                class="font-heading font-bold text-4xl leading-none mt-1 drop-shadow-lg"
+                            >
+                                20% OFF
+                            </h2>
+                            <p
+                                class="text-background/90 text-sm font-bold mt-1"
+                            >
+                                Panel Upgrades
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card Content -->
+                <div class="p-6 bg-gradient-to-b from-background to-accent/5">
+                    <!-- Urgency Banner -->
+                    <div
+                        class="bg-primary text-background px-4 py-2 -mx-6 mb-4 text-center"
+                    >
+                        <p class="font-heading font-bold text-sm animate-pulse">
+                            ⏰ EXPIRES SOON - ACT NOW!
+                        </p>
+                    </div>
+
+                    <!-- Promo Code -->
+                    <div class="mb-4 text-center">
+                        <div
+                            class="text-text/60 text-xs font-body mb-2 uppercase tracking-widest font-bold"
+                        >
+                            👉 USE CODE 👈
+                        </div>
+                        <div
+                            class="bg-accent text-background border-2 border-primary border-dashed p-4 transform hover:scale-105 transition-transform"
+                        >
+                            <span
+                                class="font-heading font-bold text-3xl tracking-widest"
+                            >
+                                SPRING20
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- Benefits -->
+                    <div class="bg-accent/10 border-l-4 border-accent p-4 mb-4">
+                        <ul class="space-y-2 text-sm">
+                            <li class="flex items-start gap-2">
+                                <div
+                                    class="w-5 h-5 bg-accent text-background flex items-center justify-center shrink-0 text-xs font-bold"
+                                >
+                                    ✓
+                                </div>
+                                <span class="text-text font-body font-bold"
+                                    >20% off all panel upgrades</span
+                                >
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div
+                                    class="w-5 h-5 bg-accent text-background flex items-center justify-center shrink-0 text-xs font-bold"
+                                >
+                                    ✓
+                                </div>
+                                <span class="text-text font-body font-bold"
+                                    >FREE inspection ($150 value)</span
+                                >
+                            </li>
+                            <li class="flex items-start gap-2">
+                                <div
+                                    class="w-5 h-5 bg-accent text-background flex items-center justify-center shrink-0 text-xs font-bold"
+                                >
+                                    ✓
+                                </div>
+                                <span class="text-text font-body font-bold"
+                                    >Same-day service available</span
+                                >
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="relative my-4">
+                        <div class="border-t-2 border-dashed border-text/30">
+                        </div>
+                        <div
+                            class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-background px-3"
+                        >
+                            <span class="text-xl">✂️</span>
+                        </div>
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="text-center mb-4">
+                        <p
+                            class="text-primary font-heading font-bold text-base mb-2"
+                        >
+                            📞 Call to Claim Discount
+                        </p>
+                        <a href="tel:+1234567890" class="block">
+                            <div
+                                class="bg-primary text-background px-6 py-4 hover:bg-accent transition-colors transform hover:scale-105 transition-transform"
+                            >
+                                <div class="text-xs font-body mb-1 opacity-90">
+                                    Tap to Call
+                                </div>
+                                <div
+                                    class="font-heading font-bold text-2xl tracking-wide"
+                                >
+                                    (123) 456-7890
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <!-- CTA Button -->
+                    <Button
+                        href="#contact"
+                        variant="primary"
+                        size="md"
+                        fullWidth={true}
+                        class="animate-pulse-slow"
+                    >
+                        🎁 CLAIM DISCOUNT NOW
+                    </Button>
+
+                    <!-- Trust Badges -->
+                    <div
+                        class="flex items-center justify-center gap-3 mt-4 text-text/60 text-xs"
+                    >
+                        <span class="font-bold">✓ Licensed</span>
+                        <div class="w-1 h-1 bg-text/40"></div>
+                        <span class="font-bold">⭐ 5-Star</span>
+                        <div class="w-1 h-1 bg-text/40"></div>
+                        <span class="font-bold">500+ Reviews</span>
+                    </div>
+                </div>
+
+                <!-- Perforated Edge -->
+                <div class="h-3 bg-accent relative">
+                    <div
+                        class="absolute top-0 left-0 w-full h-full flex justify-around items-center"
+                    >
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                        <div
+                            class="w-3 h-3 bg-background transform -translate-y-1/2"
+                        >
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    @keyframes pulse-border {
+        0%,
+        100% {
+            box-shadow: 0 0 0 0 rgba(213, 34, 18, 0.7);
+        }
+        50% {
+            box-shadow: 0 0 0 8px rgba(213, 34, 18, 0);
+        }
+    }
+
+    @keyframes slide {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 40px 40px;
+        }
+    }
+
+    @keyframes bounce-slow {
+        0%,
+        100% {
+            transform: rotate(12deg) translateY(0);
+        }
+        50% {
+            transform: rotate(12deg) translateY(-8px);
+        }
+    }
+
+    .animate-pulse-border {
+        animation: pulse-border 2s infinite;
+    }
+
+    .animate-slide {
+        animation: slide 2s linear infinite;
+    }
+
+    .animate-bounce-slow {
+        animation: bounce-slow 2s ease-in-out infinite;
+    }
+
+    .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+</style>
