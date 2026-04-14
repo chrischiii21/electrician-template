@@ -55,7 +55,10 @@ import Container from "../ui/Container.astro";
     <div
         class="lg:hidden flex items-center justify-between px-4 py-3 border-b border-text/10 bg-background"
     >
-        <div class="flex items-center gap-3">
+        <a
+            href="/"
+            class="flex items-center gap-3 hover:opacity-80 transition-opacity"
+        >
             <img
                 src="/logo.png"
                 alt="ElectriTrade Logo"
@@ -71,7 +74,7 @@ import Container from "../ui/Container.astro";
                     Professional Electrical
                 </p>
             </div>
-        </div>
+        </a>
         <button
             id="hamburger-menu-btn"
             class="text-text hover:text-accent transition-colors p-2"
@@ -374,39 +377,41 @@ import Container from "../ui/Container.astro";
                                 class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
                             >
                                 <div
-                                    class="bg-background border border-accent/20 shadow-lg overflow-hidden"
+                                    class="bg-background border border-accent/20 shadow-lg overflow-hidden min-w-max"
                                 >
-                                    <div class="grid grid-cols-4">
+                                    <div class="grid grid-cols-2 gap-0">
                                         <!-- Commercial Section -->
-                                        <div class="border-r border-gray-200">
+                                        <div
+                                            class="border-r border-gray-200 w-64"
+                                        >
                                             <a
                                                 href="/commercial"
                                                 class="block px-4 py-3 text-md font-bold text-text hover:bg-accent/5 hover:text-accent transition-colors bg-gray-50 border-b border-gray-200"
                                             >
-                                                Commercial
+                                                Commercial Electrical Services
                                             </a>
                                             <div class="space-y-0">
                                                 <a
                                                     href="/commercial/construction"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Ground-up Construction
                                                 </a>
                                                 <a
                                                     href="/commercial/power-systems"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Standby Power
                                                 </a>
                                                 <a
                                                     href="/commercial/hvac"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     HVAC Electrical
                                                 </a>
                                                 <a
                                                     href="/commercial/panels"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Electrical Panels
                                                 </a>
@@ -414,35 +419,35 @@ import Container from "../ui/Container.astro";
                                         </div>
 
                                         <!-- Residential Section -->
-                                        <div class="border-r border-gray-200">
+                                        <div class="w-64">
                                             <a
                                                 href="/residential"
                                                 class="block px-4 py-3 text-md font-bold text-text hover:bg-accent/5 hover:text-accent transition-colors bg-gray-50 border-b border-gray-200"
                                             >
-                                                Residential
+                                                Residential Electrical Services
                                             </a>
                                             <div class="space-y-0">
                                                 <a
                                                     href="/residential/ev-charging"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     EV Charging
                                                 </a>
                                                 <a
                                                     href="/residential/ceiling-fan"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Ceiling Fans
                                                 </a>
                                                 <a
                                                     href="/residential/gfci"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     GFCI Outlets
                                                 </a>
                                                 <a
                                                     href="/residential/generators"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Generators
                                                 </a>
@@ -450,43 +455,47 @@ import Container from "../ui/Container.astro";
                                         </div>
 
                                         <!-- Specialty Section -->
-                                        <div class="border-r border-gray-200">
+                                        <div
+                                            class="border-r border-gray-200 border-t border-gray-200 w-64"
+                                        >
                                             <a
                                                 href="/specialty"
                                                 class="block px-4 py-3 text-md font-bold text-text hover:bg-accent/5 hover:text-accent transition-colors bg-gray-50 border-b border-gray-200"
                                             >
-                                                Specialty
+                                                Specialty Services
                                             </a>
                                             <div class="space-y-0">
                                                 <a
                                                     href="/specialty/holiday-lighting"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Holiday Lighting
                                                 </a>
                                                 <a
                                                     href="/specialty/landscape"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Landscape Lighting
                                                 </a>
                                                 <a
                                                     href="/specialty/pool-spa"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Pool & Spa
                                                 </a>
                                                 <a
                                                     href="/specialty/property-management"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
-                                                    Property Mgmt
+                                                    Property Management
                                                 </a>
                                             </div>
                                         </div>
 
                                         <!-- Emergency Section -->
-                                        <div>
+                                        <div
+                                            class="border-t border-gray-200 w-64"
+                                        >
                                             <a
                                                 href="/emergency"
                                                 class="block px-4 py-3 text-md font-bold text-text hover:bg-accent/5 hover:text-accent transition-colors bg-gray-50 border-b border-gray-200"
@@ -496,25 +505,25 @@ import Container from "../ui/Container.astro";
                                             <div class="space-y-0">
                                                 <a
                                                     href="/emergency/24-hour"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     24-hour Service
                                                 </a>
                                                 <a
                                                     href="/emergency/hvac"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     HVAC Emergency
                                                 </a>
                                                 <a
                                                     href="/emergency/heating"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Heating Emergency
                                                 </a>
                                                 <a
                                                     href="/emergency/water-heater"
-                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors"
+                                                    class="block px-4 py-2 text-sm font-body text-text hover:text-accent hover:bg-accent/5 transition-colors whitespace-nowrap"
                                                 >
                                                     Water Heater
                                                 </a>
@@ -811,104 +820,112 @@ import Container from "../ui/Container.astro";
                 <div class="mobile-dropdown-content hidden pl-9 pb-3">
                     <!-- Commercial -->
                     <div class="mb-4">
-                        <h4 class="text-sm font-bold text-accent mb-2">
-                            Commercial Electrical Services
-                        </h4>
                         <a
-                            href="/services/ground-up-construction"
-                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Ground-up Electrical Construction</a
+                            href="/commercial"
+                            class="block py-2 text-base font-bold text-accent hover:text-accent/80 transition-colors"
+                            >Commercial Electrical Services</a
                         >
                         <a
-                            href="/services/emergency-standby-power"
+                            href="/commercial/construction"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Emergency & Standby Power Generating Systems</a
+                            >Ground-up Construction</a
                         >
                         <a
-                            href="/services/commercial-hvac"
+                            href="/commercial/power-systems"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Commercial HVAC Electrical</a
+                            >Standby Power</a
                         >
                         <a
-                            href="/services/commercial-panels"
+                            href="/commercial/hvac"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Commercial Electrical Panels</a
+                            >HVAC Electrical</a
+                        >
+                        <a
+                            href="/commercial/panels"
+                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
+                            >Electrical Panels</a
                         >
                     </div>
                     <!-- Residential -->
                     <div class="mb-4">
-                        <h4 class="text-sm font-bold text-accent mb-2">
-                            Residential Electrical Services
-                        </h4>
                         <a
-                            href="/services/car-charging-ev"
-                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Car Charging Stations/ EV</a
+                            href="/residential"
+                            class="block py-2 text-base font-bold text-accent hover:text-accent/80 transition-colors"
+                            >Residential Electrical Services</a
                         >
                         <a
-                            href="/services/ceiling-fan"
+                            href="/residential/ev-charging"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Ceiling Fan</a
+                            >EV Charging</a
                         >
                         <a
-                            href="/services/gfci-outlets"
+                            href="/residential/ceiling-fan"
+                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
+                            >Ceiling Fans</a
+                        >
+                        <a
+                            href="/residential/gfci"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
                             >GFCI Outlets</a
                         >
                         <a
-                            href="/services/backup-generators"
+                            href="/residential/generators"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Backup Generators</a
+                            >Generators</a
                         >
                     </div>
                     <!-- Specialty -->
                     <div class="mb-4">
-                        <h4 class="text-sm font-bold text-accent mb-2">
-                            Specialty Services
-                        </h4>
                         <a
-                            href="/services/holiday-lighting"
-                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Holiday Lighting Installation Services</a
+                            href="/specialty"
+                            class="block py-2 text-base font-bold text-accent hover:text-accent/80 transition-colors"
+                            >Specialty Services</a
                         >
                         <a
-                            href="/services/landscape-lighting"
+                            href="/specialty/holiday-lighting"
+                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
+                            >Holiday Lighting</a
+                        >
+                        <a
+                            href="/specialty/landscape"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
                             >Landscape Lighting</a
                         >
                         <a
-                            href="/services/pool-spa"
+                            href="/specialty/pool-spa"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Pool & Spa Electrical</a
+                            >Pool & Spa</a
                         >
                         <a
-                            href="/services/property-management"
+                            href="/specialty/property-management"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
                             >Property Management</a
                         >
                     </div>
                     <!-- Emergency -->
                     <div>
-                        <h4 class="text-sm font-bold text-accent mb-2">
-                            Emergency
-                        </h4>
                         <a
-                            href="/services/24-hour-emergency"
-                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >24-hour Emergency Service</a
+                            href="/emergency"
+                            class="block py-2 text-base font-bold text-accent hover:text-accent/80 transition-colors"
+                            >Emergency</a
                         >
                         <a
-                            href="/services/hvac"
+                            href="/emergency/24-hour"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >HVAC</a
+                            >24-hour Service</a
                         >
                         <a
-                            href="/services/heating"
+                            href="/emergency/hvac"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
-                            >Heating</a
+                            >HVAC Emergency</a
                         >
                         <a
-                            href="/services/water-heater"
+                            href="/emergency/heating"
+                            class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
+                            >Heating Emergency</a
+                        >
+                        <a
+                            href="/emergency/water-heater"
                             class="block py-1.5 text-sm font-body text-text hover:text-accent transition-colors"
                             >Water Heater</a
                         >
@@ -918,10 +935,13 @@ import Container from "../ui/Container.astro";
 
             <!-- Service Area -->
             <div class="border-b border-text/10">
-                <button
-                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-4 text-lg font-body text-text hover:text-accent transition-colors"
+                <div
+                    class="flex items-center justify-between py-4 text-lg font-body text-text"
                 >
-                    <div class="flex items-center gap-3">
+                    <a
+                        href="/service-area"
+                        class="flex items-center gap-3 hover:text-accent transition-colors flex-1"
+                    >
                         <svg
                             class="w-6 h-6 text-accent"
                             fill="currentColor"
@@ -933,48 +953,54 @@ import Container from "../ui/Container.astro";
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span>Service Area</span>
-                    </div>
-                    <svg
-                        class="w-5 h-5 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    </a>
+                    <button
+                        class="mobile-dropdown-toggle p-2 hover:text-accent transition-colors"
                     >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
+                        <svg
+                            class="w-5 h-5 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
                 <div class="mobile-dropdown-content hidden pl-9 pb-3">
                     <a
-                        href="/service-area/city-1"
+                        href="/service-area/los-angeles"
                         class="block py-2 text-base font-body text-text hover:text-accent transition-colors"
-                        >City 1</a
+                        >Los Angeles</a
                     >
                     <a
-                        href="/service-area/city-2"
+                        href="/service-area/san-diego"
                         class="block py-2 text-base font-body text-text hover:text-accent transition-colors"
-                        >City 2</a
+                        >San Diego</a
                     >
                     <a
-                        href="/service-area/city-3"
+                        href="/service-area/san-francisco"
                         class="block py-2 text-base font-body text-text hover:text-accent transition-colors"
-                        >City 3</a
+                        >San Francisco</a
                     >
                     <a
-                        href="/service-area/city-4"
+                        href="/service-area/sacramento"
                         class="block py-2 text-base font-body text-text hover:text-accent transition-colors"
-                        >City 4</a
+                        >Sacramento</a
                     >
                 </div>
             </div>
 
             <!-- Specials / Coupons -->
-            <a
+            <Button
                 href="/specials"
-                class="flex items-center gap-3 px-4 py-4 my-2 bg-accent text-background hover:bg-accent/90 transition-all duration-200 border-l-4 border-accent"
+                variant="accent"
+                size="md"
+                class="w-full gap-3 my-2 rounded-none"
             >
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                     <path
@@ -982,13 +1008,15 @@ import Container from "../ui/Container.astro";
                         d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <span class="font-bold">Specials / Coupons</span>
-            </a>
+                <span>Specials / Coupons</span>
+            </Button>
 
             <!-- Financing -->
-            <a
+            <Button
                 href="/financing"
-                class="flex items-center gap-3 px-4 py-4 my-2 bg-primary text-background hover:bg-primary/90 transition-all duration-200 border-l-4 border-primary"
+                variant="primary"
+                size="md"
+                class="w-full gap-3 my-2 rounded-none"
             >
                 <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
@@ -997,8 +1025,8 @@ import Container from "../ui/Container.astro";
                         d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <span class="font-bold">Financing</span>
-            </a>
+                <span>Financing</span>
+            </Button>
 
             <!-- Contact Info -->
             <div class="mt-6 space-y-3">
@@ -1040,12 +1068,14 @@ import Container from "../ui/Container.astro";
 
         <!-- Sidebar Footer CTA -->
         <div class="px-6 py-4 border-t border-text/10">
-            <a
+            <Button
                 href="/contact"
-                class="block w-full bg-accent hover:bg-accent/90 text-background text-center py-3 font-bold transition-colors"
+                variant="accent"
+                size="lg"
+                class="w-full rounded-none"
             >
                 GET A QUOTE
-            </a>
+            </Button>
         </div>
     </div>
 </div>
@@ -1079,11 +1109,14 @@ import Container from "../ui/Container.astro";
     );
     dropdownToggles.forEach((toggle) => {
         toggle.addEventListener("click", () => {
-            const content = toggle.nextElementSibling;
-            const icon = toggle.querySelector("svg");
+            const parent = toggle.closest("div.border-b");
+            const content = parent?.querySelector(".mobile-dropdown-content");
+            const svg = toggle.querySelector("svg");
 
-            content?.classList.toggle("hidden");
-            icon?.classList.toggle("rotate-180");
+            if (content) {
+                content.classList.toggle("hidden");
+                svg?.classList.toggle("rotate-180");
+            }
         });
     });
 </script>
