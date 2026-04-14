@@ -8,7 +8,6 @@ import Testimonials from "../../components/sections/Testimonials.astro";
 import Financing from "../../components/sections/Financing.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
 import CouponModal from "../../components/sections/CouponModal.astro";
-import ExitModal from "../../components/sections/ExitModal.astro";
 ---
 
 <BaseLayout title="Ground-up Electrical Construction | Electrician Services">
@@ -49,24 +48,5 @@ import ExitModal from "../../components/sections/ExitModal.astro";
         expiresIn="59:59:59"
         autoOpen={true}
         autoOpenDelay={2000}
-    />
-
-    <ExitModal
-        discount="750"
-        discountType="amount"
-        code="BUILD750"
-        title="Don't Miss Out on Your Project"
-        subtitle="$750 Off Construction Projects"
-        description="Complete your electrical construction with our expert team. Get $750 off today."
-        features={[
-            "New construction projects",
-            "Free design consultation",
-            "Dedicated project manager",
-            "Valid for 90 days",
-        ]}
-        ctaText="Claim $750 Off"
-        dismissText="Not interested"
-        ctaLink="#contact"
-        expiresIn="89:59:59"
     />
 </BaseLayout>

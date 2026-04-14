@@ -9,7 +9,6 @@ import Specials from "../../components/sections/Specials.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
 import CouponModal from "../../components/sections/CouponModal.astro";
-import ExitModal from "../../components/sections/ExitModal.astro";
 
 const laNeighborhoods = [
     {
@@ -187,24 +186,5 @@ const laReasons = [
         ctaLink="#contact"
         expiresIn="47:59:59"
         data-auto-open-delay="2000"
-    />
-
-    <ExitModal
-        discount="25"
-        discountType="percentage"
-        code="LA25"
-        title="Don't Leave LA Without This Deal"
-        subtitle="25% Off LA Services"
-        description="We serve all of Los Angeles. Get 25% off your next electrical service in any LA neighborhood."
-        features={[
-            "Valid in all LA neighborhoods",
-            "Residential & Commercial",
-            "Same-day booking available",
-            "Valid for 7 days",
-        ]}
-        ctaText="Claim 25% Off"
-        dismissText="Not interested"
-        ctaLink="#contact"
-        expiresIn="6:23:59"
     />
 </BaseLayout>
