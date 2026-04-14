@@ -7,7 +7,6 @@ import Testimonials from "../components/sections/Testimonials.astro";
 import Financing from "../components/sections/Financing.astro";
 import CTARibbon from "../components/sections/CTARibbon.astro";
 import CouponModal from "../components/sections/CouponModal.astro";
-import ExitModal from "../components/sections/ExitModal.astro";
 ---
 
 <BaseLayout title="Commercial Services | Electrician Services">
@@ -41,24 +40,5 @@ import ExitModal from "../components/sections/ExitModal.astro";
         ctaLink="#contact"
         expiresIn="29:59:59"
         data-auto-open-delay="2000"
-    />
-
-    <ExitModal
-        discount="15"
-        discountType="percentage"
-        code="COMMERCIAL15"
-        title="Wait! Special Commercial Offer"
-        subtitle="15% Off Commercial Projects"
-        description="Don't miss out on our exclusive commercial electrical services discount."
-        features={[
-            "All commercial services included",
-            "Free project assessment",
-            "Priority scheduling",
-            "Valid for 60 days",
-        ]}
-        ctaText="Get Your Quote"
-        dismissText="Not interested"
-        ctaLink="#contact"
-        expiresIn="59:59:59"
     />
 </BaseLayout>
