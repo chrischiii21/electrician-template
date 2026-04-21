@@ -1,0 +1,359 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+
+interface FAQItem {
+    question: string;
+    answer: string;
+    category: string;
+}
+
+const faqs: FAQItem[] = [
+    {
+        question: "What areas do you serve?",
+        answer: "We proudly serve all major California metro areas including Los Angeles, San Diego, San Francisco, and Sacramento. Our licensed electricians are available across these regions with same-day service and zero travel fees.",
+        category: "General Information",
+    },
+    {
+        question: "Are your electricians licensed and insured?",
+        answer: "Absolutely. All our electricians are fully licensed, bonded, and insured. We maintain the highest industry certifications and comply with all local and state electrical codes to ensure safe, quality work.",
+        category: "General Information",
+    },
+    {
+        question: "How much do electrical services cost?",
+        answer: "Pricing varies based on the scope of work, materials needed, and project complexity. We provide free, detailed estimates before starting any work. Our transparent pricing ensures no hidden fees or surprises.",
+        category: "Pricing and Payment",
+    },
+    {
+        question: "Do you offer financing options?",
+        answer: "Yes, we offer flexible financing plans to make electrical services more affordable. We work with trusted financing partners to provide competitive rates and convenient payment options for projects of all sizes.",
+        category: "Pricing and Payment",
+    },
+    {
+        question: "What payment methods do you accept?",
+        answer: "We accept all major credit cards, debit cards, checks, and cash. For larger projects, we also offer payment plans and financing options to make our services more accessible.",
+        category: "Pricing and Payment",
+    },
+    {
+        question: "Are there any additional fees or charges?",
+        answer: "We believe in transparent pricing. All costs are outlined in your estimate, including labor, materials, and any applicable fees. There are no hidden charges or surprise costs.",
+        category: "Pricing and Payment",
+    },
+    {
+        question: "Do you offer emergency electrical services?",
+        answer: "Yes! We provide 24/7 emergency electrical services for urgent issues like power outages, electrical fires, sparking outlets, and other hazardous situations. Our emergency response team is available around the clock to ensure your safety.",
+        category: "Service Types",
+    },
+    {
+        question: "How quickly can you respond to service calls?",
+        answer: "For standard service calls, we typically schedule appointments within 24-48 hours. Emergency services receive immediate dispatch with response times averaging 30-60 minutes depending on your location.",
+        category: "Service Types",
+    },
+    {
+        question: "Do you handle both residential and commercial projects?",
+        answer: "Yes, we specialize in both residential and commercial electrical work. Our team has the expertise and equipment to handle projects of any size, from home repairs to large commercial installations.",
+        category: "Service Types",
+    },
+    {
+        question: "Can you help with electrical panel upgrades?",
+        answer: "Absolutely. We specialize in electrical panel upgrades and replacements. Whether you need more capacity for modern appliances or your panel is outdated, we can safely upgrade your system to meet current codes.",
+        category: "Service Types",
+    },
+    {
+        question: "Do you install EV charging stations?",
+        answer: "Yes, we are certified to install residential and commercial EV charging stations. We'll assess your electrical system, recommend the right charger, and handle the complete installation process.",
+        category: "Service Types",
+    },
+    {
+        question: "Do you provide warranties on your work?",
+        answer: "Yes, we stand behind our work with comprehensive warranties. All labor comes with a minimum 1-year warranty, and materials are covered by manufacturer warranties. Specific warranty terms vary by project type.",
+        category: "Policies and Guarantees",
+    },
+    {
+        question: "Can you help with electrical code compliance?",
+        answer: "Absolutely. We ensure all work meets current NEC (National Electrical Code) standards and local building codes. We can also perform electrical inspections and bring existing systems up to code.",
+        category: "Policies and Guarantees",
+    },
+    {
+        question: "What is your cancellation policy?",
+        answer: "We understand plans change. You can cancel or reschedule appointments up to 24 hours in advance without any fees. For emergency services, please call us as soon as possible if you need to cancel.",
+        category: "Policies and Guarantees",
+    },
+    {
+        question: "Are you insured and bonded?",
+        answer: "Yes, we carry full liability insurance and are bonded to protect both our clients and our team. You can have peace of mind knowing you're working with a fully insured professional electrical contractor.",
+        category: "Policies and Guarantees",
+    },
+    {
+        question: "What should I do if I smell burning or see sparks?",
+        answer: "If you smell burning or see sparks, immediately turn off power at the main breaker if safe to do so, evacuate the area, and call our 24/7 emergency line. Do not attempt to investigate or fix the issue yourself.",
+        category: "Safety and Emergency",
+    },
+    {
+        question: "How do I know if I need an electrical inspection?",
+        answer: "We recommend electrical inspections if your home is over 25 years old, you're experiencing frequent circuit breaker trips, flickering lights, or if you're buying/selling a property. Regular inspections help prevent safety hazards.",
+        category: "Safety and Emergency",
+    },
+    {
+        question: "What are signs of electrical problems?",
+        answer: "Common warning signs include flickering lights, burning smells, warm outlets, frequent breaker trips, buzzing sounds, and discolored outlets. If you notice any of these, contact us immediately for an inspection.",
+        category: "Safety and Emergency",
+    },
+];
+
+const categories = [
+    "General Information",
+    "Pricing and Payment",
+    "Service Types",
+    "Policies and Guarantees",
+    "Safety and Emergency",
+];
+---
+
+<section class="bg-gray-50 py-20" id="faq">
+    <Container size="lg">
+        <div class="bg-white p-8 md:p-12 shadow-xl border border-gray-100">
+            <!-- Header -->
+            <div class="text-center mb-12 scroll-animate">
+                <Badge variant="accent" class="mb-3 uppercase tracking-wider"
+                    >Fill Every Call with Joy</Badge
+                >
+                <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
+                    Frequently Asked Questions
+                </Heading>
+                <Text size="lg" class="!text-gray-600 max-w-2xl mx-auto">
+                    Find answers to common questions about our electrical
+                    services and how we can benefit your business.
+                </Text>
+            </div>
+
+            <!-- Main Layout: Sidebar + Content -->
+            <div class="grid lg:grid-cols-4 gap-8 lg:gap-12">
+                <!-- Left Sidebar - Categories -->
+                <div class="lg:col-span-1">
+                    <div class="lg:sticky lg:top-24">
+                        <Heading level={5} class="!text-text mb-4 text-lg">
+                            Categories
+                        </Heading>
+                        <nav class="space-y-1">
+                            {
+                                categories.map((category, index) => (
+                                    <button
+                                        class:list={[
+                                            "category-btn w-full text-left px-4 py-3 text-sm transition-all duration-200 border-l-4",
+                                            {
+                                                "border-accent bg-accent/5 text-accent font-bold":
+                                                    index === 0,
+                                                "border-transparent text-gray-600 hover:border-gray-300 hover:bg-gray-50":
+                                                    index !== 0,
+                                            },
+                                        ]}
+                                        data-category={category}
+                                    >
+                                        {category}
+                                    </button>
+                                ))
+                            }
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Right Content - FAQ Items -->
+                <div class="lg:col-span-3">
+                    <div class="space-y-4">
+                        {
+                            faqs.map((faq, index) => (
+                                <div
+                                    class:list={[
+                                        "faq-item border border-gray-200 transition-all duration-300",
+                                        {
+                                            hidden:
+                                                faq.category !==
+                                                "General Information",
+                                        },
+                                    ]}
+                                    data-category={faq.category}
+                                >
+                                    <button
+                                        class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 group hover:bg-gray-50 transition-colors"
+                                        aria-expanded={
+                                            index === 0 ? "true" : "false"
+                                        }
+                                    >
+                                        <Heading
+                                            level={5}
+                                            class="!text-text text-lg group-hover:!text-accent transition-colors"
+                                        >
+                                            {faq.question}
+                                        </Heading>
+                                        <div class="shrink-0 w-8 h-8 flex items-center justify-center">
+                                            <svg
+                                                class="faq-icon w-5 h-5 text-gray-400 group-hover:text-accent transition-all duration-300"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                viewBox="0 0 24 24"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M19 9l-7 7-7-7"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </button>
+                                    <div
+                                        class:list={[
+                                            "faq-answer px-6 pb-5",
+                                            { hidden: index !== 0 },
+                                        ]}
+                                    >
+                                        <Text
+                                            size="md"
+                                            class="!text-gray-600 leading-relaxed"
+                                        >
+                                            {faq.answer}
+                                        </Text>
+                                    </div>
+                                </div>
+                            ))
+                        }
+                    </div>
+
+                    <!-- Still Have Questions CTA -->
+                    <div
+                        class="mt-8 bg-gray-100 p-6 flex items-center justify-between gap-6 flex-wrap"
+                    >
+                        <div class="flex items-center gap-4">
+                            <svg
+                                class="w-8 h-8 text-text shrink-0"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            <div>
+                                <Heading
+                                    level={5}
+                                    class="!text-text text-lg mb-1"
+                                >
+                                    Still have a question?
+                                </Heading>
+                                <Text size="sm" class="!text-gray-600">
+                                    If you didn't find your answer, feel free to
+                                    reach out.
+                                </Text>
+                            </div>
+                        </div>
+                        <a
+                            href="/contact"
+                            class="inline-flex items-center gap-2 bg-white border border-gray-300 text-text font-bold text-sm px-6 py-3 hover:bg-gray-50 transition-colors whitespace-nowrap"
+                        >
+                            Contact us
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>
+
+<script>
+    // FAQ accordion functionality
+    const faqQuestions =
+        document.querySelectorAll<HTMLElement>(".faq-question");
+
+    faqQuestions.forEach((question) => {
+        question.addEventListener("click", () => {
+            const faqItem = question.closest(".faq-item");
+            const answer = faqItem?.querySelector<HTMLElement>(".faq-answer");
+            const icon = question.querySelector<HTMLElement>(".faq-icon");
+            const isExpanded =
+                question.getAttribute("aria-expanded") === "true";
+
+            // Toggle current item
+            question.setAttribute("aria-expanded", String(!isExpanded));
+            answer?.classList.toggle("hidden");
+            icon?.classList.toggle("rotate-180");
+
+            // Toggle active state styling
+            if (!isExpanded) {
+                faqItem?.classList.add("border-accent", "bg-accent/5");
+                faqItem?.classList.remove("border-gray-200");
+                question.classList.add("bg-accent/5");
+                question.classList.remove("hover:bg-gray-50");
+            } else {
+                faqItem?.classList.remove("border-accent", "bg-accent/5");
+                faqItem?.classList.add("border-gray-200");
+                question.classList.remove("bg-accent/5");
+                question.classList.add("hover:bg-gray-50");
+            }
+        });
+    });
+
+    // Category filter functionality
+    const categoryButtons =
+        document.querySelectorAll<HTMLElement>(".category-btn");
+    const faqItems = document.querySelectorAll<HTMLElement>(".faq-item");
+
+    categoryButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            const category = button.dataset.category;
+
+            // Update active button
+            categoryButtons.forEach((btn) => {
+                btn.classList.remove(
+                    "border-accent",
+                    "bg-accent/5",
+                    "text-accent",
+                    "font-bold",
+                );
+                btn.classList.add(
+                    "border-transparent",
+                    "text-gray-600",
+                    "hover:border-gray-300",
+                    "hover:bg-gray-50",
+                );
+            });
+            button.classList.remove(
+                "border-transparent",
+                "text-gray-600",
+                "hover:border-gray-300",
+                "hover:bg-gray-50",
+            );
+            button.classList.add(
+                "border-accent",
+                "bg-accent/5",
+                "text-accent",
+                "font-bold",
+            );
+
+            // Filter FAQ items
+            faqItems.forEach((item) => {
+                const itemCategory = item.dataset.category;
+                if (itemCategory === category) {
+                    item.classList.remove("hidden");
+                } else {
+                    item.classList.add("hidden");
+                    // Close any open items when filtering
+                    const question =
+                        item.querySelector<HTMLElement>(".faq-question");
+                    const answer =
+                        item.querySelector<HTMLElement>(".faq-answer");
+                    const icon = item.querySelector<HTMLElement>(".faq-icon");
+                    question?.setAttribute("aria-expanded", "false");
+                    answer?.classList.add("hidden");
+                    icon?.classList.remove("rotate-180");
+                }
+            });
+        });
+    });
+</script>
