@@ -67,7 +67,34 @@ const services = rawContent
             if (currentLine.startsWith("## ") && currentLine !== line) break;
         }
         
-        const servicesList = servicesStr.split(",").map((s: string) => s.trim()).filter((s: string) => s);
+        // Map service names to routes
+        const serviceRouteMap: Record<string, string> = {
+            "Ground-up Electrical Construction": "/commercial/construction",
+            "Emergency & Standby Power Systems": "/commercial/power-systems",
+            "Commercial HVAC Electrical": "/commercial/hvac",
+            "Commercial Electrical Panels": "/commercial/panels",
+            "EV Car Charging Stations": "/residential/ev-charging",
+            "Ceiling Fan Installation": "/residential/ceiling-fan",
+            "GFCI Outlet Upgrades": "/residential/gfci",
+            "Backup Generator Install": "/residential/generators",
+            "Holiday Lighting Installation": "/specialty/holiday-lighting",
+            "Landscape & Outdoor Lighting": "/specialty/landscape",
+            "Pool & Spa Electrical": "/specialty/pool-spa",
+            "Property Management Services": "/specialty/property-management",
+            "24-Hour Emergency Response": "/emergency/24-hour",
+            "Emergency HVAC Electrical": "/emergency/hvac",
+            "Heating System Repairs": "/emergency/heating",
+            "Water Heater Electrical": "/emergency/water-heater",
+        };
+        
+        const servicesList = servicesStr
+            .split(",")
+            .map((s: string) => s.trim())
+            .filter((s: string) => s)
+            .map((name: string) => ({
+                name,
+                href: serviceRouteMap[name] || "#"
+            }));
 
         return {
             id,
@@ -84,7 +111,7 @@ const services = rawContent
     });
 ---
 
-<section class="bg-white py-20" id="services">
+<section class="bg-background py-20" id="services">
     <Container size="lg">
 
         <!-- Header -->
@@ -93,7 +120,7 @@ const services = rawContent
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
                 Every Electrical Need. <span class="text-accent">One Trusted Team.</span>
             </Heading>
-            <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
+            <Text size="xl" class="text-gray-700 max-w-5xl mx-auto">
                 From emergency callouts to full commercial builds — we've got the crew, the tools, and the track record.
             </Text>
         </div>
@@ -155,29 +182,28 @@ const services = rawContent
                             <Text class="text-gray-700 mb-2">{s.description}</Text>
                             <Text size="md" class="text-gray-400 mb-6 italic">{s.pitch}</Text>
 
-                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 mb-8">
+                            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                                 {s.services.map((item) => (
-                                    <li class="flex items-center gap-2">
-                                        <svg class="w-4 h-4 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                                        </svg>
-                                        <Text size="md" class="text-gray-700" as="span">{item}</Text>
+                                    <li>
+                                        <a 
+                                            href={item.href}
+                                            class="flex items-start justify-between gap-4 bg-white border-2 border-gray-200 px-4 py-3.5 font-bold text-sm text-gray-800 hover:bg-accent hover:text-white hover:border-accent hover:shadow-lg hover:shadow-accent/30 hover:-translate-y-0.5 transition-all duration-200 group min-h-[3.5rem]"
+                                        >
+                                            <span class="flex items-start gap-3 flex-1">
+                                                <svg class="w-5 h-5 text-accent group-hover:text-white transition-colors shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                                </svg>
+                                                <span class="leading-snug">{item.name}</span>
+                                            </span>
+                                            <svg class="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                        </a>
                                     </li>
                                 ))}
                             </ul>
 
                             <div class="self-start">
-                                <Button
-                                    href={s.cta.href}
-                                    variant="primary"
-                                    size="md"
-                                    class="uppercase tracking-wider font-bold inline-flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-primary/30 transition-all duration-200"
-                                >
-                                    {s.cta.label}
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                                    </svg>
-                                </Button>
                             </div>
                         </div>
                     </div>
