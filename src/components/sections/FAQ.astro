@@ -3,6 +3,7 @@ import Container from "../ui/Container.astro";
 import Heading from "../ui/Heading.astro";
 import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
 
 interface FAQItem {
     question: string;
@@ -112,18 +113,18 @@ const categories = [
 ];
 ---
 
-<section class="bg-gray-50 py-20" id="faq">
+<section class="bg-background py-20" id="faq">
     <Container size="lg">
-        <div class="bg-white p-8 md:p-12 shadow-xl border border-gray-100">
+        <div class="bg-background">
             <!-- Header -->
             <div class="text-center mb-12 scroll-animate">
                 <Badge variant="accent" class="mb-3 uppercase tracking-wider"
                     >Fill Every Call with Joy</Badge
                 >
                 <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
-                    Frequently Asked Questions
+                    Frequently <span class="text-accent">Asked Questions</span>
                 </Heading>
-                <Text size="lg" class="!text-gray-600 max-w-2xl mx-auto">
+                <Text size="xl" class="!text-gray-600 max-w-5xl mx-auto">
                     Find answers to common questions about our electrical
                     services and how we can benefit your business.
                 </Text>
@@ -142,7 +143,7 @@ const categories = [
                                 categories.map((category, index) => (
                                     <button
                                         class:list={[
-                                            "category-btn w-full text-left px-4 py-3 text-sm transition-all duration-200 border-l-4",
+                                            "category-btn w-full text-left px-4 py-3 text-lg transition-all duration-200 border-l-4",
                                             {
                                                 "border-accent bg-accent/5 text-accent font-bold":
                                                     index === 0,
@@ -253,12 +254,9 @@ const categories = [
                                 </Text>
                             </div>
                         </div>
-                        <a
-                            href="/contact"
-                            class="inline-flex items-center gap-2 bg-white border border-gray-300 text-text font-bold text-sm px-6 py-3 hover:bg-gray-50 transition-colors whitespace-nowrap"
-                        >
+                        <Button href="/contact" variant="primary" size="md">
                             Contact us
-                        </a>
+                        </Button>
                     </div>
                 </div>
             </div>
