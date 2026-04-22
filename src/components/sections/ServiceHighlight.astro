@@ -1,0 +1,204 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+
+interface Stat {
+    icon: string;
+    value: string;
+    label: string;
+}
+
+interface Props {
+    contentTitle: string;
+    contentDescription: string;
+    contentDetails?: string;
+    image: string;
+    stats: Stat[];
+    phone?: string;
+    hours?: string;
+}
+
+const {
+    contentTitle,
+    contentDescription,
+    contentDetails,
+    image,
+    stats,
+    phone,
+    hours,
+} = Astro.props;
+---
+
+<section class="bg-white py-16 text-text">
+    <Container size="lg">
+        <!-- Stats Bar -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8 scroll-stagger">
+            {
+                stats.map((stat) => (
+                    <div class="bg-gray-50 border border-gray-200 p-5 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 group text-center">
+                        <div class="flex justify-center mb-3">
+                            <div class="w-12 h-12 bg-white border-2 border-accent flex items-center justify-center group-hover:bg-accent group-hover:scale-110 transition-all duration-300">
+                                <svg
+                                    class="w-6 h-6 text-accent group-hover:text-white transition-colors"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <Fragment set:html={stat.icon} />
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="text-3xl md:text-4xl font-bold mb-1 text-text group-hover:text-accent transition-colors">
+                            {stat.value}
+                        </div>
+                        <div class="text-xs uppercase tracking-wide text-gray-600 font-semibold leading-tight">
+                            {stat.label}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="grid lg:grid-cols-2 gap-8 scroll-animate">
+            <!-- Left: Image -->
+            <div
+                class="relative h-96 lg:h-auto overflow-hidden border border-gray-200 hover:border-accent transition-colors duration-300"
+            >
+                <img
+                    src={image}
+                    alt={contentTitle}
+                    class="absolute inset-0 w-full h-full object-cover"
+                />
+                <div
+                    class="absolute inset-0 bg-gradient-to-t from-gray-900/70 via-gray-900/30 to-transparent"
+                >
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-gray-900/90 to-transparent"
+                >
+                    <Heading
+                        level={3}
+                        class="text-2xl md:text-3xl font-bold text-white mb-3"
+                    >
+                        {contentTitle}
+                    </Heading>
+                    {
+                        (phone || hours) && (
+                            <div class="flex items-center gap-3 bg-white p-4 border-l-4 border-accent">
+                                <div class="w-12 h-12 bg-accent flex items-center justify-center shrink-0">
+                                    <svg
+                                        class="w-6 h-6 text-white"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                                        />
+                                    </svg>
+                                </div>
+                                <div>
+                                    {hours && (
+                                        <div class="text-xs text-gray-600 font-medium mb-0.5">
+                                            {hours}
+                                        </div>
+                                    )}
+                                    {phone && (
+                                        <a
+                                            href={`tel:${phone.replace(/\D/g, "")}`}
+                                            class="text-xl font-bold text-text hover:text-accent transition-colors"
+                                        >
+                                            {phone}
+                                        </a>
+                                    )}
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+
+            <!-- Right: Content -->
+            <div class="flex flex-col justify-center">
+                <div
+                    class="bg-gray-50 border border-gray-200 p-8 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300"
+                >
+                    <div class="flex items-start gap-3 mb-6">
+                        <div
+                            class="w-10 h-10 bg-accent flex items-center justify-center shrink-0 mt-1"
+                        >
+                            <svg
+                                class="w-5 h-5 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <Heading
+                                level={3}
+                                class="text-2xl font-bold mb-3 text-text"
+                            >
+                                What This Means For You
+                            </Heading>
+                            <Text
+                                size="lg"
+                                class="text-gray-700 leading-relaxed mb-6"
+                            >
+                                {contentDescription}
+                            </Text>
+                        </div>
+                    </div>
+
+                    {
+                        contentDetails && (
+                            <div class="bg-white border-l-4 border-accent p-5">
+                                <div class="flex items-start gap-3">
+                                    <svg
+                                        class="w-5 h-5 text-accent shrink-0 mt-1"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                        />
+                                    </svg>
+                                    <div>
+                                        <Text
+                                            size="2xl"
+                                            class="font-bold text-accent mb-2"
+                                        >
+                                            Our Planning Process
+                                        </Text>
+                                        <Text
+                                            size="lg"
+                                            class="text-gray-600 leading-relaxed"
+                                        >
+                                            {contentDetails}
+                                        </Text>
+                                    </div>
+                                </div>
+                            </div>
+                        )
+                    }
+                </div>
+            </div>
+        </div>
+    </Container>
+</section>

@@ -11,7 +11,8 @@ import Process from "../../components/sections/Process.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
 import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
 import ServiceAreas from "../../components/sections/ServiceAreas.astro";
-import ContentPlaceholder from "../../components/sections/ContentPlaceholder.astro";
+import CouponModal from "../../components/sections/CouponModal.astro";
+import ServiceHighlight from "../../components/sections/ServiceHighlight.astro";
 ---
 
 <BaseLayout title="Ground-up Electrical Construction | Electrician Services">
@@ -21,13 +22,59 @@ import ContentPlaceholder from "../../components/sections/ContentPlaceholder.ast
         description="Complete electrical construction services from the ground up"
         backgroundImage="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=1200&h=600&fit=crop"
     />
-    <ContentPlaceholder />
+    <ServiceHighlight
+        contentTitle="Complete Electrical Systems From Ground Up"
+        contentDescription="Ground-up electrical construction is our specialty. We coordinate with general contractors from day one, installing underground conduit during excavation, rough-in wiring during framing, and complete power distribution systems before walls close. Every wire, panel, and circuit is strategically placed for optimal performance and code compliance."
+        contentDetails="We start with comprehensive load calculations and electrical blueprints tailored to your building's needs. Our team sizes service panels, plans circuit distribution, and coordinates with utility companies for main service installation—ensuring your new facility has reliable, efficient power from the moment you open."
+        image="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&h=800&fit=crop"
+        stats={[
+            {
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />',
+                value: "250+",
+                label: "New Buildings Wired",
+            },
+            {
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />',
+                value: "15+",
+                label: "Years in Construction",
+            },
+            {
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />',
+                value: "100%",
+                label: "Inspection Pass Rate",
+            },
+            {
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />',
+                value: "96%",
+                label: "On-Time Completion",
+            },
+        ]}
+        phone="(555) 123-4567"
+        hours="Mon-Sat 7:00-6:00"
+    />
     <TrustBar />
-    <Process />
-    <CTARibbon />
     <OffersAndFinancing category="Commercial" />
     <Testimonials />
+    <CTARibbon />
     <FAQ />
     <ServiceAreas />
     <FinalCTA />
+    <CouponModal
+        discount="200"
+        discountType="amount"
+        code="CONSTRUCT200"
+        title="Ground-up Construction Special"
+        description="Save $200 on complete electrical systems for new construction projects. Professional installation from the ground up."
+        features={[
+            "New Construction Specialists",
+            "Complete Electrical Systems",
+            "Permit-Ready Work",
+            "Project Timeline Guarantee",
+        ]}
+        ctaText="Start Your Project"
+        dismissText="Not right now"
+        ctaLink="/contact"
+        expiresIn="47:59:59"
+        autoOpen={true}
+    />
 </BaseLayout>
