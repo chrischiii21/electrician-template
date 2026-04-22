@@ -20,79 +20,74 @@ const steps = rawContent
         const lineIndex = lines.indexOf(line);
         
         let description = "";
-        let detailsStr = "";
         
         for (let i = lineIndex + 1; i < lines.length; i++) {
             const currentLine = lines[i];
             if (currentLine.includes("**Description**")) {
                 description = currentLine.match(/\*\*Description\*\*:\s*(.+)/)?.[1]?.trim() || "";
             }
-            if (currentLine.includes("**Details**")) {
-                detailsStr = currentLine.match(/\*\*Details\*\*:\s*(.+)/)?.[1]?.trim() || "";
-            }
             if (currentLine.startsWith("## ") && currentLine !== line) break;
         }
-        
-        const details = detailsStr.split(",").map((d: string) => d.trim()).filter((d: string) => d);
 
         return {
             number,
             title,
             description,
-            details,
         };
     });
 ---
 
-<section class="bg-white py-20" id="construction-process">
+<section class="bg-background py-16" id="construction-process">
     <Container size="lg">
         <!-- Header -->
-        <div class="text-center mb-16 scroll-animate">
+        <div class="text-center mb-12 scroll-animate">
             <Badge variant="accent" class="mb-3">Our Process</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
                 Ground-up Construction <span class="text-accent">Process</span>
             </Heading>
-            <Text size="xl" class="text-gray-700 max-w-2xl mx-auto">
-                From design through commissioning, we manage every phase of new electrical construction with precision and expertise.
+            <Text size="lg" class="text-gray-600 max-w-2xl mx-auto">
+                From design through commissioning, we manage every phase with precision and expertise.
             </Text>
         </div>
 
-        <!-- Timeline -->
+        <!-- Horizontal Timeline -->
         <div class="relative scroll-stagger">
-            <!-- Vertical line -->
-            <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-accent via-accent to-primary md:transform md:-translate-x-1/2"></div>
+            <!-- Desktop: Horizontal line -->
+            <div class="hidden lg:block absolute top-20 left-0 right-0 h-0.5 bg-linear-to-r from-accent/20 via-accent to-accent/20"></div>
 
-            <!-- Steps -->
-            <div class="space-y-12 md:space-y-16">
+            <!-- Steps Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-4">
                 {steps.map((step, index) => (
-                    <div class={`relative md:flex ${index % 2 === 0 ? "md:flex-row" : "md:flex-row-reverse"}`}>
-                        <!-- Content -->
-                        <div class={`md:w-1/2 ${index % 2 === 0 ? "md:pr-12" : "md:pl-12"} pl-12 md:pl-0`}>
-                            <div class="bg-gray-50 border border-gray-200 p-6 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300">
-                                <div class="flex items-start gap-4 mb-4">
-                                    <div class="text-4xl font-bold text-accent/30">{step.number}</div>
-                                    <div class="flex-grow">
-                                        <Heading level={4} class="mb-1 group-hover:text-accent">{step.title}</Heading>
-                                        <Text size="sm" class="text-gray-600">{step.description}</Text>
-                                    </div>
-                                </div>
-
-                                <!-- Details -->
-                                <div class="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-gray-200">
-                                    {step.details.map((detail) => (
-                                        <div class="flex items-center gap-2">
-                                            <svg class="w-3 h-3 text-accent shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                            </svg>
-                                            <Text size="xs" class="text-gray-700">{detail}</Text>
-                                        </div>
-                                    ))}
+                    <div class="relative">
+                        <!-- Desktop: Timeline dot -->
+                        <div class="hidden lg:block absolute left-1/2 top-20 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 bg-accent border-4 border-white shadow-md z-10"></div>
+                        
+                        <!-- Content Card -->
+                        <div class="bg-white border border-gray-200 p-5 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 h-full">
+                            <!-- Number Badge -->
+                            <div class="flex justify-center mb-4">
+                                <div class="bg-white border-2 border-accent px-4 py-1.5">
+                                    <span class="text-2xl font-bold text-accent">{step.number}</span>
                                 </div>
                             </div>
+
+                            <!-- Title -->
+                            <Heading level={4} class="text-lg font-bold mb-2 text-center">
+                                {step.title}
+                            </Heading>
+
+                            <!-- Description -->
+                            <Text size="sm" class="text-gray-600 text-center leading-relaxed">
+                                {step.description}
+                            </Text>
                         </div>
 
-                        <!-- Timeline dot -->
-                        <div class="absolute left-0 md:left-1/2 top-6 md:top-8 w-4 h-4 bg-white border-4 border-accent md:transform md:-translate-x-1/2 md:-translate-x-2"></div>
+                        <!-- Mobile: Connector line (vertical) -->
+                        {index < steps.length - 1 && (
+                            <div class="lg:hidden flex justify-center py-3">
+                                <div class="w-0.5 h-6 bg-accent/30"></div>
+                            </div>
+                        )}
                     </div>
                 ))}
             </div>

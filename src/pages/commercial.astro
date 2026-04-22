@@ -11,6 +11,8 @@ import FAQ from "../components/sections/FAQ.astro";
 import TrustBar from "../components/sections/TrustBar.astro";
 import RelatedServices from "../components/sections/RelatedServices.astro";
 import ServiceAreas from "../components/sections/ServiceAreas.astro";
+import CouponModal from "../components/sections/CouponModal.astro";
+import CTARibbon from "../components/sections/CTARibbon.astro";
 ---
 
 <BaseLayout title="Commercial Services | Electrician Services">
@@ -42,8 +44,27 @@ import ServiceAreas from "../components/sections/ServiceAreas.astro";
     <OffersAndFinancing category="Commercial" />
     <FeaturedWorks />
     <RelatedServices currentCategory="Commercial" />
+    <CTARibbon />
     <Testimonials />
     <FAQ />
     <ServiceAreas />
     <FinalCTA />
+    <CouponModal
+        discount="15"
+        discountType="percentage"
+        code="COMMERCIAL15"
+        title="Commercial Electrical Special"
+        description="Save 15% on any commercial electrical service. Perfect for businesses looking to improve safety and capacity."
+        features={[
+            "Licensed & Insured Electricians",
+            "Minimal Business Disruption",
+            "Code Compliant Installation",
+            "Free Safety Inspection",
+        ]}
+        ctaText="Get Commercial Quote"
+        dismissText="Maybe later"
+        ctaLink="/contact"
+        expiresIn="47:59:59"
+        autoOpen={true}
+    />
 </BaseLayout>

@@ -1,209 +1,197 @@
 ---
 import Button from "./Button.astro";
-import Heading from "./Heading.astro";
-import Text from "./Text.astro";
 
-const faqs = [
-    {
-        id: "emergency",
-        emoji: "🚨",
-        question: "What should I do in an electrical emergency?",
-        answer: "Turn off the main breaker if it's safe to do so, avoid touching wet areas, and call us immediately at (555) 000-0000. We offer 24/7 emergency response.",
-        followUp: "Still need help?",
-    },
-    {
-        id: "quote",
-        emoji: "💰",
-        question: "How do I get a free quote?",
-        answer: "Fill out our online form or call us at (555) 000-0000. We'll assess your project and provide a detailed, no-obligation estimate within 24 hours.",
-        followUp: "Ready to get started?",
-    },
-    {
-        id: "coupon",
-        emoji: "✂️",
-        question: "What coupons and discounts are available?",
-        answer: "We offer seasonal promotions, first-time customer discounts, and special rates for seniors and military. Check our Specials page for current offers.",
-        followUp: "Want to book now?",
-    },
-    {
-        id: "schedule",
-        emoji: "📅",
-        question: "How do I schedule a service visit?",
-        answer: "Call us at (555) 000-0000 or use our online booking form. We offer same-day service in most areas and flexible scheduling to fit your needs.",
-        followUp: "Ready to schedule?",
-    },
-    {
-        id: "warranty",
-        emoji: "✅",
-        question: "Do you offer warranties on your work?",
-        answer: "Yes! All our work is backed by a 1-year warranty on labor and parts. We stand behind every job we do.",
-        followUp: "Have more questions?",
-    },
-    {
-        id: "licensed",
-        emoji: "🔒",
-        question: "Are you licensed and insured?",
-        answer: "Absolutely. We're fully licensed, bonded, and insured. All our electricians are certified professionals with years of experience.",
-        followUp: "Need anything else?",
-    },
-];
+// Quick offer configuration
+const offer = {
+    discount: "$75 OFF",
+    title: "Spring Special",
+    description: "Any electrical panel upgrade",
+    code: "SPRING75",
+    cta: "Claim Offer",
+    ctaLink: "/contact",
+};
 ---
 
 <!-- Floating trigger button -->
 <button
     id="qh-trigger"
-    class="fixed bottom-6 right-6 z-50 w-14 h-14 bg-accent text-white shadow-lg shadow-primary/40 flex items-center justify-center transition-all duration-300 hover:scale-110 hover:shadow-primary/60"
-    aria-label="Quick Help"
+    class="fixed bottom-6 right-6 z-50 w-16 h-16 bg-gradient-to-br from-accent to-primary text-white shadow-2xl flex items-center justify-center transition-all duration-300 hover:scale-110 group"
+    aria-label="Special Offer"
     aria-expanded="false"
-    aria-controls="qh-panel"
 >
-    <!-- Chat icon (default) -->
     <svg
-        id="qh-icon-chat"
-        class="w-6 h-6"
+        class="w-8 h-8 group-hover:rotate-12 transition-transform"
         fill="currentColor"
-        viewBox="0 0 24 24"
+        viewBox="0 0 20 20"
     >
         <path
-            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"
+            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
         ></path>
     </svg>
-    <!-- Close icon (when open) -->
-    <svg
-        id="qh-icon-close"
-        class="w-6 h-6 hidden"
-        fill="none"
-        stroke="currentColor"
-        viewBox="0 0 24 24"
+
+    <!-- Pulse effect -->
+    <span class="absolute inset-0 bg-accent animate-ping opacity-75"></span>
+
+    <!-- Badge -->
+    <span
+        class="absolute -top-2 -right-2 px-2 py-1 bg-brand-yellow text-primary text-xs font-black border-2 border-white shadow-lg"
     >
-        <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2.5"
-            d="M6 18L18 6M6 6l12 12"></path>
-    </svg>
+        $75
+    </span>
 </button>
 
-<!-- Panel -->
+<!-- Slide-in Banner -->
 <div
-    id="qh-panel"
-    class="fixed bottom-24 right-6 z-50 w-80 bg-white shadow-2xl overflow-hidden qh-panel-hidden"
-    role="dialog"
-    aria-label="Quick Help"
+    id="qh-banner"
+    class="fixed bottom-24 right-6 z-50 w-80 md:w-96 bg-white shadow-2xl border-4 border-accent opacity-0 pointer-events-none"
+    role="alert"
+    aria-live="polite"
+    style="transform: translateX(100px) scale(0.9);"
 >
-    <!-- Header -->
-    <div class="bg-gradient-to-r from-accent to-primary px-5 py-4">
-        <div class="flex items-center gap-2 mb-0.5">
-            <svg
-                class="w-4 h-4 text-white animate-pulse"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-            >
-                <path
-                    fill-rule="evenodd"
-                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
-                    clip-rule="evenodd"></path>
-            </svg>
-            <Heading level={4} class="!text-white !mb-0">Quick Help</Heading>
-        </div>
-        <Text size="sm" class="!text-white/80 !mt-0.5">Ask us anything</Text>
+    <!-- Animated gradient glow -->
+    <div
+        class="absolute -inset-1 bg-gradient-to-r from-accent via-primary to-accent opacity-50 blur-lg"
+    >
     </div>
 
-    <!-- Content Area -->
-    <div class="p-4 bg-gray-50 max-h-96 overflow-y-auto">
-        <!-- Questions List (initial view) -->
-        <div id="qh-questions-list" class="flex flex-col gap-2">
-            {
-                faqs.map((faq) => (
-                    <button
-                        class="qh-question-btn flex items-start gap-3 bg-white px-4 py-3 text-left text-sm font-medium text-text border-2 border-gray-100 shadow-sm hover:border-accent hover:bg-accent/5 transition-all duration-200 w-full"
-                        data-faq-id={faq.id}
-                    >
-                        <span class="text-lg leading-none shrink-0">
-                            {faq.emoji}
-                        </span>
-                        <span class="flex-1 text-left">{faq.question}</span>
-                        <svg
-                            class="w-4 h-4 text-accent shrink-0 mt-0.5 transition-transform"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                        >
-                            <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M9 5l7 7-7 7"
-                            />
-                        </svg>
-                    </button>
-                ))
-            }
+    <!-- Content wrapper -->
+    <div class="relative bg-white">
+        <!-- Accent top bar -->
+        <div class="h-2 bg-gradient-to-r from-accent via-primary to-accent">
         </div>
 
-        <!-- Answer View (hidden initially) -->
-        <div id="qh-answer-view" class="hidden">
-            <!-- Back button -->
-            <button
-                id="qh-back-btn"
-                class="flex items-center gap-2 text-accent text-sm font-semibold mb-4 hover:gap-3 transition-all duration-200 hover:text-accent/80"
+        <!-- Close button -->
+        <button
+            id="qh-close"
+            class="absolute top-3 right-3 w-7 h-7 bg-gray-100 hover:bg-accent text-gray-600 hover:text-white transition-all flex items-center justify-center z-10"
+            aria-label="Close"
+        >
+            <svg
+                class="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
             >
-                <svg
-                    class="w-4 h-4"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M15 19l-7-7 7-7"></path>
-                </svg>
-                Back to questions
-            </button>
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2.5"
+                    d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
 
-            <!-- Question -->
-            <div class="mb-4">
-                <div class="flex items-start gap-3 mb-3">
-                    <span id="qh-answer-emoji" class="text-2xl leading-none"
-                        >🚨</span
+        <div class="p-6">
+            <!-- Header with icon -->
+            <div class="flex items-start gap-4 mb-5">
+                <div
+                    class="w-14 h-14 bg-gradient-to-br from-accent to-primary flex items-center justify-center shrink-0 shadow-lg"
+                >
+                    <svg
+                        class="w-7 h-7 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
                     >
-                    <h5
-                        id="qh-answer-question"
-                        class="font-heading font-bold text-text text-base leading-snug"
+                        <path
+                            d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                        ></path>
+                    </svg>
+                </div>
+                <div class="flex-1 pt-1">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span
+                            class="text-3xl font-black text-accent leading-none"
+                            >{offer.discount}</span
+                        >
+                    </div>
+                    <div
+                        class="inline-block px-3 py-1 bg-accent text-white text-xs font-bold uppercase tracking-wider mb-2"
                     >
-                        Question here
-                    </h5>
+                        {offer.title}
+                    </div>
+                    <p class="text-sm text-gray-600 font-semibold">
+                        {offer.description}
+                    </p>
                 </div>
             </div>
 
-            <!-- Answer -->
-            <div class="bg-white border-2 border-accent/20 p-4 mb-4 rounded-sm">
-                <p
-                    id="qh-answer-text"
-                    class="text-sm text-gray-700 leading-relaxed"
+            <!-- Coupon Code -->
+            <div
+                class="bg-gradient-to-br from-gray-50 to-gray-100 border-2 border-dashed border-accent/40 p-4 mb-5 relative overflow-hidden"
+            >
+                <div
+                    class="absolute top-0 right-0 w-20 h-20 bg-accent/5 rounded-full -mr-10 -mt-10"
                 >
-                    Answer here
-                </p>
+                </div>
+                <div class="relative">
+                    <p
+                        class="text-xs text-gray-500 uppercase tracking-widest font-bold mb-2"
+                    >
+                        Use Coupon Code
+                    </p>
+                    <div class="flex items-center justify-between gap-3">
+                        <code
+                            class="text-xl font-black text-accent tracking-[0.15em]"
+                        >
+                            {offer.code}
+                        </code>
+                        <button
+                            id="copy-code-btn"
+                            class="px-4 py-2 bg-accent text-white hover:bg-primary transition-all hover:scale-105 shadow-md"
+                            data-code={offer.code}
+                            aria-label={`Copy code ${offer.code}`}
+                            title="Copy code"
+                        >
+                            <svg
+                                class="w-5 h-5"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
             </div>
 
-            <!-- Follow-up -->
-            <div class="space-y-2">
-                <p
-                    id="qh-followup-text"
-                    class="text-xs text-accent font-semibold uppercase tracking-wider"
+            <!-- CTA Button -->
+            <Button
+                href={offer.ctaLink}
+                variant="accent"
+                size="lg"
+                class="w-full font-black uppercase tracking-wider shadow-lg hover:shadow-xl"
+            >
+                {offer.cta} →
+            </Button>
+
+            <!-- Timer -->
+            <div
+                class="mt-4 pt-4 border-t border-gray-200 flex items-center justify-center gap-2 text-xs"
+            >
+                <svg
+                    class="w-4 h-4 text-accent animate-pulse"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
                 >
-                    Still need help?
-                </p>
-                <Button
-                    href="/contact"
-                    variant="accent"
-                    size="md"
-                    class="w-full uppercase tracking-wider font-bold shadow-md hover:shadow-lg hover:shadow-accent/30"
+                    <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                        clip-rule="evenodd"></path>
+                </svg>
+                <span
+                    class="text-gray-500 font-semibold uppercase tracking-wide"
+                    >Expires in:</span
                 >
-                    Contact Us
-                </Button>
+                <span
+                    id="qh-timer"
+                    class="font-black text-accent tabular-nums text-sm"
+                    >47:59:59</span
+                >
             </div>
         </div>
     </div>
@@ -211,161 +199,138 @@ const faqs = [
 
 <script>
     const trigger = document.getElementById("qh-trigger");
-    const panel = document.getElementById("qh-panel");
-    const iconChat = document.getElementById("qh-icon-chat");
-    const iconClose = document.getElementById("qh-icon-close");
-    const questionsList = document.getElementById("qh-questions-list");
-    const answerView = document.getElementById("qh-answer-view");
-    const backBtn = document.getElementById("qh-back-btn");
-    const questionBtns = document.querySelectorAll(".qh-question-btn");
+    const banner = document.getElementById("qh-banner");
+    const closeBtn = document.getElementById("qh-close");
+    const copyBtn = document.getElementById("copy-code-btn");
+    const timerElement = document.getElementById("qh-timer");
 
-    // FAQ data
-    const faqData: Record<string, any> = {
-        emergency: {
-            emoji: "🚨",
-            question: "What should I do in an electrical emergency?",
-            answer: "Turn off the main breaker if it's safe to do so, avoid touching wet areas, and call us immediately at (555) 000-0000. We offer 24/7 emergency response.",
-            followUp: "Still need help?",
-        },
-        quote: {
-            emoji: "💰",
-            question: "How do I get a free quote?",
-            answer: "Fill out our online form or call us at (555) 000-0000. We'll assess your project and provide a detailed, no-obligation estimate within 24 hours.",
-            followUp: "Ready to get started?",
-        },
-        coupon: {
-            emoji: "✂️",
-            question: "What coupons and discounts are available?",
-            answer: "We offer seasonal promotions, first-time customer discounts, and special rates for seniors and military. Check our Specials page for current offers.",
-            followUp: "Want to book now?",
-        },
-        schedule: {
-            emoji: "📅",
-            question: "How do I schedule a service visit?",
-            answer: "Call us at (555) 000-0000 or use our online booking form. We offer same-day service in most areas and flexible scheduling to fit your needs.",
-            followUp: "Ready to schedule?",
-        },
-        warranty: {
-            emoji: "✅",
-            question: "Do you offer warranties on your work?",
-            answer: "Yes! All our work is backed by a 1-year warranty on labor and parts. We stand behind every job we do.",
-            followUp: "Have more questions?",
-        },
-        licensed: {
-            emoji: "🔒",
-            question: "Are you licensed and insured?",
-            answer: "Absolutely. We're fully licensed, bonded, and insured. All our electricians are certified professionals with years of experience.",
-            followUp: "Need anything else?",
-        },
-    };
+    let isOpen = false;
+    let countdownInterval: number | null = null;
 
-    let open = false;
+    // Shared timer key for syncing across components
+    const TIMER_KEY = "promo_timer_end";
+    const TIMER_DURATION = 48 * 60 * 60 * 1000; // 48 hours in milliseconds
 
-    function togglePanel() {
-        open = !open;
-        trigger?.setAttribute("aria-expanded", String(open));
+    function getTimerEndTime(): number {
+        const stored = localStorage.getItem(TIMER_KEY);
+        if (stored) {
+            const endTime = parseInt(stored);
+            if (endTime > Date.now()) {
+                return endTime;
+            }
+        }
+        // Set new end time
+        const newEndTime = Date.now() + TIMER_DURATION;
+        localStorage.setItem(TIMER_KEY, newEndTime.toString());
+        return newEndTime;
+    }
 
-        if (open) {
-            panel?.classList.replace("qh-panel-hidden", "qh-panel-visible");
-            iconChat?.classList.add("hidden");
-            iconClose?.classList.remove("hidden");
-        } else {
-            closePanel();
+    function updateAllTimers() {
+        const endTime = getTimerEndTime();
+        const now = Date.now();
+        const remaining = Math.max(0, endTime - now);
+
+        const hours = Math.floor(remaining / (1000 * 60 * 60));
+        const minutes = Math.floor(
+            (remaining % (1000 * 60 * 60)) / (1000 * 60),
+        );
+        const seconds = Math.floor((remaining % (1000 * 60)) / 1000);
+
+        // Update QuickHelp timer
+        if (timerElement) {
+            timerElement.textContent = `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+        }
+
+        // Update header promo bar timers
+        const hoursEl = document.querySelector('[data-unit="hours"]');
+        const minsEl = document.querySelector('[data-unit="mins"]');
+        const secsEl = document.querySelector('[data-unit="secs"]');
+
+        if (hoursEl) hoursEl.textContent = String(hours).padStart(2, "0");
+        if (minsEl) minsEl.textContent = String(minutes).padStart(2, "0");
+        if (secsEl) secsEl.textContent = String(seconds).padStart(2, "0");
+
+        if (remaining <= 0 && countdownInterval) {
+            clearInterval(countdownInterval);
+            countdownInterval = null;
         }
     }
 
-    function showAnswer(faqId: string) {
-        const faq = faqData[faqId];
-        if (!faq) return;
+    function startCountdown() {
+        // Update immediately
+        updateAllTimers();
 
-        // Update answer view with proper element selection
-        const emojiEl = document.getElementById("qh-answer-emoji");
-        const questionEl = document.getElementById("qh-answer-question");
-        const answerEl = document.getElementById("qh-answer-text");
-        const followUpEl = document.getElementById("qh-followup-text");
-
-        if (emojiEl) emojiEl.textContent = faq.emoji;
-        if (questionEl) questionEl.textContent = faq.question;
-        if (answerEl) answerEl.textContent = faq.answer;
-        if (followUpEl) followUpEl.textContent = faq.followUp;
-
-        // Switch views
-        questionsList?.classList.add("hidden");
-        answerView?.classList.remove("hidden");
+        // Then update every second
+        if (!countdownInterval) {
+            countdownInterval = setInterval(
+                updateAllTimers,
+                1000,
+            ) as unknown as number;
+        }
     }
 
-    function backToQuestions() {
-        questionsList?.classList.remove("hidden");
-        answerView?.classList.add("hidden");
+    function openBanner() {
+        if (banner && !isOpen) {
+            isOpen = true;
+            banner.style.opacity = "1";
+            banner.style.transform = "translateX(0) scale(1)";
+            banner.style.pointerEvents = "auto";
+            banner.style.transition =
+                "all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1)";
+            trigger?.setAttribute("aria-expanded", "true");
+
+            if (!countdownInterval) {
+                startCountdown();
+            }
+        }
     }
 
-    function closePanel() {
-        open = false;
-        panel?.classList.replace("qh-panel-visible", "qh-panel-hidden");
-        iconChat?.classList.remove("hidden");
-        iconClose?.classList.add("hidden");
-        // Reset to questions list
-        questionsList?.classList.remove("hidden");
-        answerView?.classList.add("hidden");
-
-        // Trigger coupon modal after panel closes
-        setTimeout(() => {
-            (window as any).couponModal?.open?.();
-        }, 300);
+    function closeBanner() {
+        if (banner && isOpen) {
+            isOpen = false;
+            banner.style.opacity = "0";
+            banner.style.transform = "translateX(100px) scale(0.9)";
+            banner.style.pointerEvents = "none";
+            banner.style.transition = "all 0.3s ease-in";
+            trigger?.setAttribute("aria-expanded", "false");
+        }
     }
+
+    // Copy code functionality
+    copyBtn?.addEventListener("click", async (e) => {
+        e.preventDefault();
+        const code = copyBtn.getAttribute("data-code");
+        if (code) {
+            try {
+                await navigator.clipboard.writeText(code);
+                const originalHTML = copyBtn.innerHTML;
+                copyBtn.innerHTML = `<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>`;
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHTML;
+                }, 2000);
+            } catch (err) {
+                console.error("Failed to copy:", err);
+            }
+        }
+    });
 
     // Event listeners
-    trigger?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        togglePanel();
-    });
-
-    backBtn?.addEventListener("click", (e) => {
-        e.stopPropagation();
-        backToQuestions();
-    });
-
-    // Question button clicks
-    questionBtns.forEach((btn) => {
-        btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            const faqId = (btn as HTMLElement).getAttribute("data-faq-id");
-            if (faqId) showAnswer(faqId);
-        });
-    });
-
-    // Close on outside click
-    document.addEventListener("click", (e) => {
-        if (
-            open &&
-            !panel?.contains(e.target as Node) &&
-            !trigger?.contains(e.target as Node)
-        ) {
-            closePanel();
+    trigger?.addEventListener("click", () => {
+        if (isOpen) {
+            closeBanner();
+        } else {
+            openBanner();
         }
     });
 
-    // Close on Escape
-    document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && open) closePanel();
-    });
-</script>
+    closeBtn?.addEventListener("click", closeBanner);
 
-<style>
-    .qh-panel-hidden {
-        opacity: 0;
-        transform: translateY(12px) scale(0.97);
-        pointer-events: none;
-        transition:
-            opacity 0.25s ease,
-            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .qh-panel-visible {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        pointer-events: auto;
-        transition:
-            opacity 0.25s ease,
-            transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-</style>
+    // Start countdown on page load
+    startCountdown();
+
+    // Expose to window for external control
+    (window as any).quickHelpBanner = {
+        open: openBanner,
+        close: closeBanner,
+    };
+</script>

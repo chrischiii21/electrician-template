@@ -9,6 +9,9 @@ import FinalCTA from "../../components/sections/FinalCTA.astro";
 import FAQ from "../../components/sections/FAQ.astro";
 import OffersAndFinancing from "../../components/sections/OffersAndFinancing.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
+import FeaturedWorks from "../../components/sections/FeaturedWorks.astro";
+import CouponModal from "../../components/sections/CouponModal.astro";
+import TrustBar from "../../components/sections/TrustBar.astro";
 
 const laNeighborhoods = [
     {
@@ -129,10 +132,10 @@ const laFeatures = [
         secondaryImage="/images/hero-1.avif"
         features={laFeatures}
     />
-
     <Services />
     <CTARibbon />
     <OffersAndFinancing />
+    <FeaturedWorks />
     <Testimonials />
     <FAQ />
     <ServiceAreaMap
@@ -141,4 +144,22 @@ const laFeatures = [
         totalElectricians={8}
     />
     <FinalCTA />
+    <CouponModal
+        discount="75"
+        discountType="amount"
+        code="SPRING75"
+        title="Los Angeles Electrical Special"
+        description="Save $75 on any electrical panel upgrade in Los Angeles County. Serving all LA neighborhoods from Downtown to Malibu."
+        features={[
+            "Same-Day Service Available",
+            "All LA Neighborhoods Covered",
+            "Licensed CA Electricians",
+            "100% Satisfaction Guarantee",
+        ]}
+        ctaText="Claim LA Discount"
+        dismissText="No thanks"
+        ctaLink="/contact"
+        expiresIn="47:59:59"
+        autoOpen={true}
+    />
 </BaseLayout>
