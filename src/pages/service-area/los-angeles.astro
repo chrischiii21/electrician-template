@@ -1,14 +1,10 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/sections/Hero2.astro";
-import TrustBar from "../../components/sections/TrustBar.astro";
-import LocalServices from "../../components/sections/LocalServices.astro";
-import WhyServiceArea from "../../components/sections/WhyServiceArea.astro";
 import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
-import Specials from "../../components/sections/Specials.astro";
+import Services from "../../components/sections/Services.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
-import CTARibbon from "../../components/sections/CTARibbon.astro";
-import CouponModal from "../../components/sections/CouponModal.astro";
+import FinalCTA from "../../components/sections/FinalCTA.astro";
 
 const laNeighborhoods = [
     {
@@ -96,51 +92,6 @@ const laNeighborhoods = [
         avgResponse: "14-19 min",
     },
 ];
-
-const laReasons = [
-    {
-        title: "Diverse Housing Stock",
-        description:
-            "From historic homes to modern high-rises, we handle electrical needs for every property type in LA.",
-        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
-        image: "/images/diverse-housing.jpg",
-    },
-    {
-        title: "Year-Round Demand",
-        description:
-            "LA's mild climate means consistent electrical work throughout the year with no seasonal slowdowns.",
-        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`,
-        image: "/images/year-round-demand.jpg",
-    },
-    {
-        title: "Growing Tech Scene",
-        description:
-            "LA's booming tech and entertainment industries require specialized electrical infrastructure and expertise.",
-        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
-        image: "/images/tech-scene.jpg",
-    },
-    {
-        title: "Commercial Growth",
-        description:
-            "LA's thriving business district means constant demand for commercial electrical construction and upgrades.",
-        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
-        image: "/images/commercial-growth.jpg",
-    },
-    {
-        title: "Energy Efficiency Focus",
-        description:
-            "LA residents prioritize sustainable living, driving demand for EV charging, solar, and energy-efficient systems.",
-        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
-        image: "/images/energy-efficiency.jpg",
-    },
-    {
-        title: "Local Presence Matters",
-        description:
-            "We're part of the LA community, invested in serving our neighbors with reliability and professionalism.",
-        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>`,
-        image: "/images/local-presence.jpg",
-    },
-];
 ---
 
 <BaseLayout title="Los Angeles | Electrician Services">
@@ -151,40 +102,13 @@ const laReasons = [
         backgroundImage="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&h=600&fit=crop"
     />
 
-    <TrustBar />
-
-    <LocalServices />
-
-    <WhyServiceArea city="Los Angeles" reasons={laReasons} />
-
     <ServiceAreaMap
         city="Los Angeles"
         neighborhoods={laNeighborhoods}
         totalElectricians={8}
     />
 
-    <Specials />
-
+    <Services />
     <Testimonials />
-
-    <CTARibbon />
-
-    <CouponModal
-        discount="20"
-        discountType="percentage"
-        code="LA20"
-        title="Los Angeles Exclusive Offer"
-        description="Get 20% off any electrical service in Los Angeles and surrounding areas."
-        features={[
-            "Valid in all LA neighborhoods",
-            "Residential & Commercial",
-            "Same-day service available",
-            "Expires in 48 hours",
-        ]}
-        ctaText="Book Now"
-        dismissText="Not right now"
-        ctaLink="#contact"
-        expiresIn="47:59:59"
-        data-auto-open-delay="2000"
-    />
+    <FinalCTA />
 </BaseLayout>
