@@ -1,12 +1,10 @@
 ﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/sections/Hero2.astro";
-import TrustBar from "../components/sections/TrustBar.astro";
-import CommercialProjects from "../components/sections/CommercialProjects.astro";
+import Services from "../components/sections/Services.astro";
+import FeaturedWorks from "../components/sections/FeaturedWorks.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
-import Financing from "../components/sections/Financing.astro";
-import CTARibbon from "../components/sections/CTARibbon.astro";
-import CouponModal from "../components/sections/CouponModal.astro";
+import FinalCTA from "../components/sections/FinalCTA.astro";
 ---
 
 <BaseLayout title="Commercial Services | Electrician Services">
@@ -17,28 +15,8 @@ import CouponModal from "../components/sections/CouponModal.astro";
         backgroundImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop"
     />
 
-    <TrustBar />
-    <CommercialProjects />
+    <Services />
+    <FeaturedWorks />
     <Testimonials />
-    <Financing />
-    <CTARibbon />
-
-    <CouponModal
-        discount="10"
-        discountType="percentage"
-        code="COMMERCIAL10"
-        title="Commercial Project Special"
-        description="Save 10% on commercial electrical services and construction projects."
-        features={[
-            "All commercial services included",
-            "Design consultation included",
-            "Flexible scheduling",
-            "Valid for 30 days",
-        ]}
-        ctaText="Get Commercial Quote"
-        dismissText="Maybe later"
-        ctaLink="#contact"
-        expiresIn="29:59:59"
-        data-auto-open-delay="2000"
-    />
+    <FinalCTA />
 </BaseLayout>
