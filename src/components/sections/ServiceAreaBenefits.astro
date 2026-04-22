@@ -1,0 +1,92 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Card from "../ui/Card.astro";
+import Button from "../ui/Button.astro";
+
+interface Benefit {
+    title: string;
+    description: string;
+    icon: string;
+    tags: string[];
+}
+
+interface Props {
+    city: string;
+    benefits: Benefit[];
+}
+
+const { city, benefits } = Astro.props;
+---
+
+<section class="bg-background py-20">
+    <Container size="lg">
+        <!-- Header -->
+        <div class="mb-12 scroll-animate">
+            <Badge variant="accent" class="mb-3 uppercase tracking-wider">
+                What We Offer
+            </Badge>
+            <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+                <div class="flex-1">
+                    <Heading level={2} class="text-4xl md:text-5xl mb-4 font-black">
+                        Explore Our Service Offerings
+                    </Heading>
+                    <Text size="lg" class="text-gray-700! max-w-2xl">
+                        We are committed to serving as a trusted partner, delivering comprehensive electrical solutions tailored to meet diverse project requirements in {city}.
+                    </Text>
+                </div>
+                <div>
+                    <Button href="/services" variant="accent" size="lg">
+                        View All Services
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                    </Button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Benefits Grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 scroll-stagger">
+            {benefits.map((benefit) => (
+                <Card padding="lg" class="border-2 border-gray-200 hover:border-accent transition-all duration-300 group">
+                    <div class="flex flex-col h-full">
+                        <!-- Icon -->
+                        <div class="w-16 h-16 border-2 border-accent/20 bg-accent/5 flex items-center justify-center mb-6 group-hover:bg-accent group-hover:border-accent transition-all duration-300">
+                            <div class="w-8 h-8 text-accent group-hover:text-white transition-colors duration-300" set:html={benefit.icon} />
+                        </div>
+
+                        <!-- Title -->
+                        <Heading level={4} class="text-xl font-black mb-3 text-text!">
+                            {benefit.title}
+                        </Heading>
+
+                        <!-- Description -->
+                        <Text size="base" class="text-gray-600! mb-6 flex-grow">
+                            {benefit.description}
+                        </Text>
+
+                        <!-- Tags -->
+                        <div class="flex flex-wrap gap-2 pt-4 border-t border-gray-200">
+                            {benefit.tags.map((tag) => (
+                                <span class="px-3 py-1 text-xs font-bold uppercase tracking-wide bg-gray-100 text-gray-700 border border-gray-200">
+                                    {tag}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </Card>
+            ))}
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="mt-12 text-center scroll-animate">
+            <Text size="lg" class="text-gray-700!">
+                Ready to start your project today? We will help you prepare for any challenge. 
+                <a href="/contact" class="text-accent font-bold hover:underline">Let's get started today!</a>
+            </Text>
+        </div>
+    </Container>
+</section>

@@ -5,6 +5,12 @@ import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
 import Button from "../ui/Button.astro";
 
+interface Props {
+    category?: "Commercial" | "Residential" | "Specialty" | "Emergency";
+}
+
+const { category } = Astro.props;
+
 const iconMap: Record<string, string> = {
     "building": `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>`,
     "home": `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>`,
@@ -87,13 +93,34 @@ const services = rawContent
             "Water Heater Electrical": "/emergency/water-heater",
         };
         
+        // Map service names to images
+        const serviceImageMap: Record<string, string> = {
+            "Ground-up Electrical Construction": "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80",
+            "Emergency & Standby Power Systems": "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80",
+            "Commercial HVAC Electrical": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80",
+            "Commercial Electrical Panels": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80",
+            "EV Car Charging Stations": "https://images.unsplash.com/photo-1593941707882-a5bba14938c7?w=600&q=80",
+            "Ceiling Fan Installation": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+            "GFCI Outlet Upgrades": "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=600&q=80",
+            "Backup Generator Install": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80",
+            "Holiday Lighting Installation": "https://images.unsplash.com/photo-1482517967863-00e15c9b44be?w=600&q=80",
+            "Landscape & Outdoor Lighting": "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=600&q=80",
+            "Pool & Spa Electrical": "https://images.unsplash.com/photo-1575429198097-0414ec08e8cd?w=600&q=80",
+            "Property Management Services": "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80",
+            "24-Hour Emergency Response": "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80",
+            "Emergency HVAC Electrical": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80",
+            "Heating System Repairs": "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=600&q=80",
+            "Water Heater Electrical": "https://images.unsplash.com/photo-1607400201889-565b1ee75f8e?w=600&q=80",
+        };
+        
         const servicesList = servicesStr
             .split(",")
             .map((s: string) => s.trim())
             .filter((s: string) => s)
             .map((name: string) => ({
                 name,
-                href: serviceRouteMap[name] || "#"
+                href: serviceRouteMap[name] || "#",
+                image: serviceImageMap[name] || "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=600&q=80"
             }));
 
         return {
@@ -109,6 +136,11 @@ const services = rawContent
             cta: { label: ctaLabel, href: ctaHref },
         };
     });
+
+// Filter services if category prop is provided
+const filteredServices = category 
+    ? services.filter(s => s.label === category)
+    : services;
 ---
 
 <section class="bg-background py-20" id="services">
@@ -116,47 +148,112 @@ const services = rawContent
 
         <!-- Header -->
         <div class="text-center mb-10 scroll-animate">
-            <Badge variant="accent" class="mb-3">What We Do</Badge>
+            <Badge variant="accent" class="mb-3">{category ? `${category} Services` : "What We Do"}</Badge>
             <Heading level={2} class="text-4xl md:text-5xl mb-4">
-                Every Electrical Need. <span class="text-accent">One Trusted Team.</span>
+                {category 
+                    ? <><span class="text-accent">{category}</span> Electrical Solutions</>
+                    : <>Every Electrical Need. <span class="text-accent">One Trusted Team.</span></>
+                }
             </Heading>
             <Text size="xl" class="text-gray-700 max-w-5xl mx-auto">
-                From emergency callouts to full commercial builds — we've got the crew, the tools, and the track record.
+                {category 
+                    ? `Professional ${category.toLowerCase()} electrical services tailored to your specific needs.`
+                    : "From emergency callouts to full commercial builds — we've got the crew, the tools, and the track record."
+                }
             </Text>
         </div>
 
-        <!-- Pill Tab Nav -->
-        <div class="flex flex-wrap justify-center gap-2 mb-10 scroll-animate" role="tablist">
-            {services.map((s, i) => (
-                <button
-                    role="tab"
-                    aria-selected={i === 0}
-                    aria-controls={`panel-${s.id}`}
-                    data-tab={s.id}
-                    class:list={[
-                        "services-tab inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-heading border-2 transition-all duration-200 whitespace-nowrap",
-                        i === 0
-                            ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
-                            : "bg-white text-gray-600 border-gray-200 hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/20",
-                    ]}
-                >
-                    <span set:html={s.icon} />
-                    {s.label}
-                    {s.badge && (
-                        <span class:list={[
-                            "tab-badge text-md font-bold px-1.5 py-0.5 leading-none",
-                            i === 0 ? "bg-accent text-white" : "bg-accent text-white"
-                        ]}>
-                            {s.badge}
-                        </span>
-                    )}
-                </button>
-            ))}
-        </div>
+        <!-- Pill Tab Nav - Only show if multiple services -->
+        {filteredServices.length > 1 && (
+            <div class="flex flex-wrap justify-center gap-2 mb-10 scroll-animate" role="tablist">
+                {filteredServices.map((s, i) => (
+                    <button
+                        role="tab"
+                        aria-selected={i === 0}
+                        aria-controls={`panel-${s.id}`}
+                        data-tab={s.id}
+                        class:list={[
+                            "services-tab inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-heading border-2 transition-all duration-200 whitespace-nowrap",
+                            i === 0
+                                ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
+                                : "bg-white text-gray-600 border-gray-200 hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/20",
+                        ]}
+                    >
+                        <span set:html={s.icon} />
+                        {s.label}
+                        {s.badge && (
+                            <span class:list={[
+                                "tab-badge text-md font-bold px-1.5 py-0.5 leading-none",
+                                i === 0 ? "bg-accent text-white" : "bg-accent text-white"
+                            ]}>
+                                {s.badge}
+                            </span>
+                        )}
+                    </button>
+                ))}
+            </div>
+        )}
 
-        <!-- Panels -->
-        <div class="panels-wrapper scroll-animate">
-            {services.map((s, i) => (
+        <!-- Panels - Show card grid when filtered to single category -->
+        {category && filteredServices.length === 1 ? (
+            <div class="scroll-animate">
+                {filteredServices.map((s) => (
+                    <div class="grid md:grid-cols-2 gap-6">
+                        {s.services.map((item) => (
+                            <a 
+                                href={item.href}
+                                class="group block bg-white border-2 border-gray-200 hover:border-primary hover:shadow-xl transition-all duration-300 overflow-hidden"
+                            >
+                                <!-- Image -->
+                                <div class="relative h-48 overflow-hidden">
+                                    <img 
+                                        src={item.image} 
+                                        alt={item.name}
+                                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                        loading="lazy"
+                                    />
+                                    <!-- Overlay gradient -->
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </div>
+                                
+                                <!-- Content -->
+                                <div class="p-6">
+                                    <div class="flex items-start gap-4">
+                                        <!-- Icon -->
+                                        <div class="w-12 h-12 bg-primary flex items-center justify-center shrink-0 group-hover:bg-accent transition-colors duration-300">
+                                            <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                                            </svg>
+                                        </div>
+                                        
+                                        <!-- Text Content -->
+                                        <div class="flex-1">
+                                            <Heading level={3} class="text-xl font-black mb-2 group-hover:text-primary transition-colors">
+                                                {item.name}
+                                            </Heading>
+                                            <Text size="sm" class="text-gray-600! mb-4 leading-relaxed">
+                                                Professional {item.name.toLowerCase()} services for your business needs.
+                                            </Text>
+                                            
+                                            <!-- Learn More Link -->
+                                            <div class="flex items-center gap-2 text-primary font-bold text-sm group-hover:text-accent transition-colors">
+                                                <span>Learn More</span>
+                                                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        ))}
+                    </div>
+                ))}
+            </div>
+        ) : (
+            <!-- Original Panels with tabs -->
+            <div class="panels-wrapper scroll-animate">
+                {filteredServices.map((s, i) => (
                 <div
                     id={`panel-${s.id}`}
                     role="tabpanel"
@@ -207,6 +304,7 @@ const services = rawContent
                 </div>
             ))}
         </div>
+        )}
 
     </Container>
 </section>
