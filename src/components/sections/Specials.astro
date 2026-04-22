@@ -29,6 +29,7 @@ const coupons = rawContent
         let discount = "";
         let description = "";
         let code = "";
+        let validUntil = "";
         
         for (let i = lineIndex + 1; i < lines.length; i++) {
             const currentLine = lines[i];
@@ -41,7 +42,21 @@ const coupons = rawContent
             if (currentLine.includes("**Code**")) {
                 code = currentLine.match(/\*\*Code\*\*:\s*(.+)/)?.[1]?.trim() || "";
             }
+            if (currentLine.includes("**Valid Until**")) {
+                validUntil = currentLine.match(/\*\*Valid Until\*\*:\s*(.+)/)?.[1]?.trim() || "";
+            }
             if (currentLine.startsWith("## ") && currentLine !== line) break;
+        }
+
+        // If no validity date is specified, default to 30 days from now
+        if (!validUntil) {
+            const futureDate = new Date();
+            futureDate.setDate(futureDate.getDate() + 30);
+            validUntil = futureDate.toLocaleDateString('en-US', { 
+                month: 'short', 
+                day: 'numeric', 
+                year: 'numeric' 
+            });
         }
 
         // Alternate between primary and accent
@@ -53,6 +68,7 @@ const coupons = rawContent
             title,
             description,
             code,
+            validUntil,
         };
     });
 ---
@@ -148,6 +164,12 @@ const coupons = rawContent
                             {c.code}
                         </button>
                         <Text size="sm" class="coupon-copied !opacity-0 transition-opacity duration-200 text-white" as="p">✓ Copied to clipboard!</Text>
+                        
+                        <!-- Validity Date -->
+                        <div class="mt-2 pt-2 border-t border-white/20 w-full text-center">
+                            <Text size="xs" class="!uppercase !tracking-wider text-white opacity-60" as="p">Valid Until</Text>
+                            <Text size="sm" class="!font-bold text-white opacity-80" as="p">{c.validUntil}</Text>
+                        </div>
                     </div>
 
                     <!-- Bottom hole punches -->

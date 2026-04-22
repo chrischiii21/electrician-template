@@ -211,35 +211,38 @@ import Container from "../ui/Container.astro";
                 <div
                     class="flex items-center justify-between px-16 py-5 border-b border-text/10 bg-background"
                 >
-                    <div class="flex items-center gap-6">
-                        <Button
+                    <div class="flex items-center gap-8">
+                        <a
                             href="/specials"
-                            variant="accent"
-                            size="md"
-                            class="gap-3 border-accent rounded-none"
+                            class="flex items-center gap-3 px-6 py-3 bg-accent/10 border-l-4 border-accent hover:bg-accent/20 hover:shadow-lg transform hover:scale-105 transition-all duration-300 group"
                         >
                             <svg
-                                class="w-6 h-6"
+                                class="w-6 h-6 text-accent group-hover:animate-pulse"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
                                 <path
                                     fill-rule="evenodd"
-                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                                    d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="whitespace-nowrap"
-                                >Specials / Coupons</span
-                            >
-                        </Button>
-                        <Button
+                            <div>
+                                <span
+                                    class="block text-lg font-bold text-accent uppercase tracking-wider group-hover:text-accent/80"
+                                    >Specials / Coupons</span
+                                >
+                                <span
+                                    class="block text-xs text-gray-600 font-medium"
+                                    >Save big on electrical services</span
+                                >
+                            </div>
+                        </a>
+                        <a
                             href="/financing"
-                            variant="primary"
-                            size="md"
-                            class="gap-3 border-primary rounded-none"
+                            class="flex items-center gap-3 px-6 py-3 bg-primary/10 border-l-4 border-primary hover:bg-primary/20 hover:shadow-lg transform hover:scale-105 transition-all duration-300 group"
                         >
                             <svg
-                                class="w-6 h-6"
+                                class="w-6 h-6 text-primary group-hover:animate-pulse"
                                 fill="currentColor"
                                 viewBox="0 0 20 20"
                             >
@@ -251,8 +254,17 @@ import Container from "../ui/Container.astro";
                                     d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
                                     clip-rule="evenodd"></path>
                             </svg>
-                            <span class="whitespace-nowrap">Financing</span>
-                        </Button>
+                            <div>
+                                <span
+                                    class="block text-lg font-bold text-primary uppercase tracking-wider group-hover:text-primary/80"
+                                    >Financing Available</span
+                                >
+                                <span
+                                    class="block text-xs text-gray-600 font-medium"
+                                    >Flexible payment options</span
+                                >
+                            </div>
+                        </a>
                     </div>
 
                     <!-- Contact Info -->
@@ -996,37 +1008,57 @@ import Container from "../ui/Container.astro";
             </div>
 
             <!-- Specials / Coupons -->
-            <Button
+            <a
                 href="/specials"
-                variant="accent"
-                size="md"
-                class="w-full gap-3 my-2 rounded-none"
+                class="flex items-center gap-3 px-4 py-4 my-3 bg-accent/10 border-l-4 border-accent hover:bg-accent/20 hover:shadow-lg transition-all duration-300 group"
             >
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                    class="w-6 h-6 text-accent group-hover:animate-pulse"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                >
                     <path
                         fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z"
+                        d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <span>Specials / Coupons</span>
-            </Button>
+                <div>
+                    <span
+                        class="block text-base font-bold text-accent uppercase tracking-wider group-hover:text-accent/80"
+                        >Specials / Coupons</span
+                    >
+                    <span class="block text-xs text-gray-600 font-medium"
+                        >Save big on electrical services</span
+                    >
+                </div>
+            </a>
 
             <!-- Financing -->
-            <Button
+            <a
                 href="/financing"
-                variant="primary"
-                size="md"
-                class="w-full gap-3 my-2 rounded-none"
+                class="flex items-center gap-3 px-4 py-4 my-3 bg-primary/10 border-l-4 border-primary hover:bg-primary/20 hover:shadow-lg transition-all duration-300 group"
             >
-                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <svg
+                    class="w-6 h-6 text-primary group-hover:animate-pulse"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                >
                     <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z"></path>
                     <path
                         fill-rule="evenodd"
                         d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <span>Financing</span>
-            </Button>
+                <div>
+                    <span
+                        class="block text-base font-bold text-primary uppercase tracking-wider group-hover:text-primary/80"
+                        >Financing Available</span
+                    >
+                    <span class="block text-xs text-gray-600 font-medium"
+                        >Flexible payment options</span
+                    >
+                </div>
+            </a>
 
             <!-- Contact Info -->
             <div class="mt-6 space-y-3">
