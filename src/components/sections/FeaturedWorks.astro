@@ -5,6 +5,12 @@ import Text from "../ui/Text.astro";
 import Badge from "../ui/Badge.astro";
 import Button from "../ui/Button.astro";
 
+interface Props {
+    filter?: "Commercial" | "Residential" | "Specialty" | "Emergency";
+}
+
+const { filter } = Astro.props;
+
 interface Project {
     title: string;
     category: string;
@@ -12,7 +18,7 @@ interface Project {
     href: string;
 }
 
-const projects: Project[] = [
+const allProjects: Project[] = [
     {
         title: "Commercial Electrical Panel Installation",
         category: "Commercial",
@@ -50,6 +56,10 @@ const projects: Project[] = [
         href: "/residential/generators",
     },
 ];
+
+const projects = filter 
+    ? allProjects.filter(project => project.category === filter)
+    : allProjects;
 ---
 
 <section class="bg-white py-20" id="featured-works">

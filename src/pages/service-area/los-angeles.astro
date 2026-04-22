@@ -2,9 +2,13 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/sections/Hero2.astro";
 import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
+import ServiceAreaTrust from "../../components/sections/ServiceAreaTrust.astro";
 import Services from "../../components/sections/Services.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import OffersAndFinancing from "../../components/sections/OffersAndFinancing.astro";
+import CTARibbon from "../../components/sections/CTARibbon.astro";
 
 const laNeighborhoods = [
     {
@@ -92,6 +96,21 @@ const laNeighborhoods = [
         avgResponse: "14-19 min",
     },
 ];
+
+const laFeatures = [
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-full h-full text-accent"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>`,
+        title: "Your Vision, Our Expertise",
+        description:
+            "We customize every electrical solution to match your specific needs, creating unique installations just for you across Los Angeles.",
+    },
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-full h-full text-accent"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+        title: "Built to Last, Built for You",
+        description:
+            "With the best materials and expert craftsmanship, our electrical systems provide enduring quality for years of reliable service.",
+    },
+];
 ---
 
 <BaseLayout title="Los Angeles | Electrician Services">
@@ -101,14 +120,25 @@ const laNeighborhoods = [
         description="Professional electrical services serving Los Angeles and surrounding areas"
         backgroundImage="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&h=600&fit=crop"
     />
+    <ServiceAreaTrust
+        city="Los Angeles"
+        eyebrow="Worry No More"
+        title="Experience worry-free electrical solutions across <span class='text-accent'>Los Angeles</span>."
+        description="Our licensed electricians, based in Los Angeles, provide comprehensive electrical services tailored to your needs. With meticulous design and expert craftsmanship, we bring reliable power solutions to homes and businesses across LA County."
+        mainImage="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop"
+        secondaryImage="/images/hero-1.avif"
+        features={laFeatures}
+    />
 
+    <Services />
+    <CTARibbon />
+    <OffersAndFinancing />
+    <Testimonials />
+    <FAQ />
     <ServiceAreaMap
         city="Los Angeles"
         neighborhoods={laNeighborhoods}
         totalElectricians={8}
     />
-
-    <Services />
-    <Testimonials />
     <FinalCTA />
 </BaseLayout>
