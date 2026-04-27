@@ -184,7 +184,7 @@ const filteredServices = category
                         {s.badge && (
                             <span class:list={[
                                 "tab-badge text-md font-bold px-1.5 py-0.5 leading-none",
-                                i === 0 ? "bg-white text-accent" : "bg-accent text-white"
+                                i === 0 ? "bg-gray-900 text-white" : "bg-accent text-white"
                             ]}>
                                 {s.badge}
                             </span>
@@ -334,14 +334,14 @@ const filteredServices = category
                     t.classList.add("bg-white", "text-gray-600", "border-gray-200", "hover:border-accent", "hover:text-accent", "hover:shadow-md", "hover:shadow-accent/20");
                 }
 
-                // Badge inside tab: white bg with red text when tab is active
+                // Badge inside tab: black bg with white text when tab is active
                 const badge = t.querySelector<HTMLElement>(".tab-badge");
                 if (badge) {
                     if (active) {
-                        badge.classList.add("bg-white", "text-accent");
-                        badge.classList.remove("bg-accent", "text-white");
+                        badge.classList.add("bg-gray-900", "text-white");
+                        badge.classList.remove("bg-accent");
                     } else {
-                        badge.classList.remove("bg-white", "text-accent");
+                        badge.classList.remove("bg-gray-900");
                         badge.classList.add("bg-accent", "text-white");
                     }
                 }
