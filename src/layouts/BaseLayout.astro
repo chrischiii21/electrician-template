@@ -147,8 +147,11 @@ const fullOgImage = ogImage.startsWith("http")
         <title>{title}</title>
     </head>
     <body class="bg-background text-text font-body">
+        <!-- Skip Link for Keyboard Navigation -->
+        <a href="#main-content" class="skip-link"> Skip to main content </a>
+
         <Header />
-        <main class="relative">
+        <main id="main-content" class="relative">
             <slot />
         </main>
         <Footer />
