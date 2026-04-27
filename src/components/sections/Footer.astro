@@ -127,14 +127,12 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                 >
                     {
                         footerLinks.map((link) => (
-                            <Text
-                                size="sm"
-                                as="a"
+                            <a
                                 href={link.href}
-                                class="!text-sm md:!text-lg !text-white hover:!text-accent transition-colors !uppercase !tracking-wide cursor-pointer"
+                                class="text-sm md:text-lg text-white hover:text-accent transition-colors uppercase tracking-wide cursor-pointer"
                             >
                                 {link.label}
-                            </Text>
+                            </a>
                         ))
                     }
                 </nav>
@@ -145,7 +143,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                 >
                     <!-- Request Quote -->
                     <Button
-                        href="/quote"
+                        href="/contact"
                         variant="outline"
                         class="!px-4 md:!px-6 !py-3 md:!py-4 !flex !items-center !gap-2 md:!gap-3 !transition-colors !justify-start !text-md md:!text-md"
                     >
@@ -325,7 +323,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                     <Text
                         size="sm"
                         as="a"
-                        href="/terms"
+                        href="/contact"
                         class="!text-xs md:!text-sm !text-white hover:!text-accent transition-colors cursor-pointer"
                     >
                         Terms & Conditions
@@ -333,7 +331,7 @@ const socialLinks = parseSocialLinks(socialLinksContent);
                     <Text
                         size="sm"
                         as="a"
-                        href="/privacy"
+                        href="/contact"
                         class="!text-xs md:!text-sm !text-white hover:!text-accent transition-colors cursor-pointer"
                     >
                         Privacy Policy
