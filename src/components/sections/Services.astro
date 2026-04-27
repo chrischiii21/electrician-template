@@ -175,17 +175,14 @@ const filteredServices = category
                         class:list={[
                             "services-tab inline-flex items-center gap-2 px-5 py-2.5 text-sm font-semibold font-heading border-2 transition-all duration-200 whitespace-nowrap",
                             i === 0
-                                ? "bg-primary text-white border-primary shadow-lg shadow-primary/30"
+                                ? "bg-gray-900 text-white border-gray-900 shadow-lg shadow-gray-900/30"
                                 : "bg-white text-gray-600 border-gray-200 hover:border-accent hover:text-accent hover:shadow-md hover:shadow-accent/20",
                         ]}
                     >
                         <span set:html={s.icon} />
                         {s.label}
                         {s.badge && (
-                            <span class:list={[
-                                "tab-badge text-md font-bold px-1.5 py-0.5 leading-none",
-                                i === 0 ? "bg-accent text-white" : "bg-accent text-white"
-                            ]}>
+                            <span class="tab-badge text-md font-bold px-1.5 py-0.5 leading-none bg-accent text-white">
                                 {s.badge}
                             </span>
                         )}
@@ -327,18 +324,18 @@ const filteredServices = category
                 t.setAttribute("aria-selected", String(active));
 
                 if (active) {
-                    t.classList.add("bg-primary", "text-white", "border-primary", "shadow-lg", "shadow-primary/30");
+                    t.classList.add("bg-gray-900", "text-white", "border-gray-900", "shadow-lg", "shadow-gray-900/30");
                     t.classList.remove("bg-white", "text-gray-600", "border-gray-200", "hover:border-accent", "hover:text-accent", "hover:shadow-md", "hover:shadow-accent/20");
                 } else {
-                    t.classList.remove("bg-primary", "text-white", "border-primary", "shadow-lg", "shadow-primary/30");
+                    t.classList.remove("bg-gray-900", "text-white", "border-gray-900", "shadow-lg", "shadow-gray-900/30");
                     t.classList.add("bg-white", "text-gray-600", "border-gray-200", "hover:border-accent", "hover:text-accent", "hover:shadow-md", "hover:shadow-accent/20");
                 }
 
-                // Badge inside tab: dark bg when tab is active so it's visible on primary
+                // Badge inside tab: always red background with white text
                 const badge = t.querySelector<HTMLElement>(".tab-badge");
                 if (badge) {
-                    badge.classList.toggle("bg-gray-900", active);
-                    badge.classList.toggle("bg-accent", !active);
+                    badge.classList.add("bg-accent", "text-white");
+                    badge.classList.remove("bg-white", "text-accent");
                 }
             });
 
