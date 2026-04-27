@@ -323,7 +323,8 @@ import Container from "../ui/Container.astro";
                             Home
                         </a>
                         <div class="relative group">
-                            <button
+                            <a
+                                href="/about"
                                 class="text-base font-body text-text hover:text-accent transition-colors whitespace-nowrap flex items-center gap-2"
                             >
                                 About Us
@@ -339,7 +340,7 @@ import Container from "../ui/Container.astro";
                                         stroke-width="2"
                                         d="M19 9l-7 7-7-7"></path>
                                 </svg>
-                            </button>
+                            </a>
                             <div
                                 class="absolute left-0 top-full pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50"
                             >
@@ -745,10 +746,13 @@ import Container from "../ui/Container.astro";
 
             <!-- About Us -->
             <div class="border-b border-text/10">
-                <button
-                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-4 text-lg font-body text-text hover:text-accent transition-colors"
+                <div
+                    class="flex items-center justify-between py-4 text-lg font-body text-text"
                 >
-                    <div class="flex items-center gap-3">
+                    <a
+                        href="/about"
+                        class="flex items-center gap-3 hover:text-accent transition-colors flex-1"
+                    >
                         <svg
                             class="w-6 h-6 text-accent"
                             fill="currentColor"
@@ -760,26 +764,25 @@ import Container from "../ui/Container.astro";
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span>About Us</span>
-                    </div>
-                    <svg
-                        class="w-5 h-5 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    </a>
+                    <button
+                        class="mobile-dropdown-toggle p-2 hover:text-accent transition-colors shrink-0"
                     >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
+                        <svg
+                            class="w-5 h-5 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
                 <div class="mobile-dropdown-content hidden pl-9 pb-3">
-                    <a
-                        href="/about"
-                        class="block py-2 text-base font-body text-text hover:text-accent transition-colors"
-                        >About Us</a
-                    >
                     <a
                         href="/careers"
                         class="block py-2 text-base font-body text-text hover:text-accent transition-colors"
@@ -800,10 +803,13 @@ import Container from "../ui/Container.astro";
 
             <!-- Services -->
             <div class="border-b border-text/10">
-                <button
-                    class="mobile-dropdown-toggle w-full flex items-center justify-between py-4 text-lg font-body text-text hover:text-accent transition-colors"
+                <div
+                    class="flex items-center justify-between py-4 text-lg font-body text-text"
                 >
-                    <div class="flex items-center gap-3">
+                    <a
+                        href="/services"
+                        class="flex items-center gap-3 hover:text-accent transition-colors flex-1"
+                    >
                         <svg
                             class="w-6 h-6 text-accent"
                             fill="currentColor"
@@ -815,20 +821,24 @@ import Container from "../ui/Container.astro";
                                 clip-rule="evenodd"></path>
                         </svg>
                         <span>Services</span>
-                    </div>
-                    <svg
-                        class="w-5 h-5 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+                    </a>
+                    <button
+                        class="mobile-dropdown-toggle p-2 hover:text-accent transition-colors shrink-0"
                     >
-                        <path
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
-                            d="M19 9l-7 7-7-7"></path>
-                    </svg>
-                </button>
+                        <svg
+                            class="w-5 h-5 transition-transform"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                </div>
                 <div class="mobile-dropdown-content hidden pl-9 pb-3">
                     <!-- Commercial -->
                     <div class="mb-4">
@@ -967,7 +977,7 @@ import Container from "../ui/Container.astro";
                         <span>Service Area</span>
                     </a>
                     <button
-                        class="mobile-dropdown-toggle p-2 hover:text-accent transition-colors"
+                        class="mobile-dropdown-toggle p-2 hover:text-accent transition-colors shrink-0"
                     >
                         <svg
                             class="w-5 h-5 transition-transform"
@@ -1140,14 +1150,17 @@ import Container from "../ui/Container.astro";
         ".mobile-dropdown-toggle",
     );
     dropdownToggles.forEach((toggle) => {
-        toggle.addEventListener("click", () => {
+        toggle.addEventListener("click", (e) => {
+            e.preventDefault();
             const parent = toggle.closest("div.border-b");
             const content = parent?.querySelector(".mobile-dropdown-content");
-            const svg = toggle.querySelector("svg");
+            // Get all SVGs and target the last one (the arrow)
+            const svgs = toggle.querySelectorAll("svg");
+            const arrowSvg = svgs[svgs.length - 1];
 
             if (content) {
                 content.classList.toggle("hidden");
-                svg?.classList.toggle("rotate-180");
+                arrowSvg?.classList.toggle("rotate-180");
             }
         });
     });

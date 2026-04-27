@@ -1,18 +1,16 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/sections/Hero2.astro";
-import PageIntro from "../../components/sections/PageIntro.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
 import FinalCTA from "../../components/sections/FinalCTA.astro";
 import OffersAndFinancing from "../../components/sections/OffersAndFinancing.astro";
 import FAQ from "../../components/sections/FAQ.astro";
 import TrustBar from "../../components/sections/TrustBar.astro";
-import Process from "../../components/sections/Process.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
-import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
 import ServiceAreas from "../../components/sections/ServiceAreas.astro";
 import CouponModal from "../../components/sections/CouponModal.astro";
 import ServiceHighlight from "../../components/sections/ServiceHighlight.astro";
+import RelatedServices from "../../components/sections/RelatedServices.astro";
 ---
 
 <BaseLayout title="Ground-up Electrical Construction | Electrician Services">
@@ -56,6 +54,32 @@ import ServiceHighlight from "../../components/sections/ServiceHighlight.astro";
     <OffersAndFinancing category="Commercial" />
     <Testimonials />
     <CTARibbon />
+    <RelatedServices
+        title="Other <span class='text-accent'>Commercial</span> Electrical Services"
+        services={[
+            {
+                title: "Standby <span class='text-accent'>Power</span> Systems",
+                description:
+                    "Backup generators and UPS systems to keep your business running during power outages.",
+                link: "/commercial/power-systems",
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />',
+            },
+            {
+                title: "Commercial <span class='text-accent'>HVAC</span> Electrical",
+                description:
+                    "Electrical installations and maintenance for commercial heating, cooling, and ventilation systems.",
+                link: "/commercial/hvac",
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />',
+            },
+            {
+                title: "Electrical <span class='text-accent'>Panel</span> Upgrades",
+                description:
+                    "Panel replacements and upgrades to meet increased power demands for commercial facilities.",
+                link: "/commercial/panels",
+                icon: '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />',
+            },
+        ]}
+    />
     <FAQ />
     <ServiceAreas />
     <FinalCTA />
