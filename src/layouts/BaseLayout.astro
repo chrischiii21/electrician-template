@@ -8,28 +8,12 @@ import "../styles/global.css";
 interface Props {
     title?: string;
     description?: string;
-    canonical?: string;
-    ogImage?: string;
-    noindex?: boolean;
 }
 
 const {
-    title = "Professional Electrician Services | Licensed & Insured",
-    description = "Expert electrical services for residential, commercial, and emergency needs. Licensed electricians available 24/7. Free estimates, same-day service.",
-    canonical,
-    ogImage = "/logo.png",
-    noindex = false,
+    title = "Electrician Services",
+    description = "Professional electrical services for your home and business",
 } = Astro.props;
-
-// Get the current URL for canonical
-const currentUrl =
-    canonical ||
-    new URL(Astro.url.pathname, Astro.site || "https://example.com").href;
-
-// Construct full OG image URL
-const fullOgImage = ogImage.startsWith("http")
-    ? ogImage
-    : new URL(ogImage, Astro.site || "https://example.com").href;
 ---
 
 <!doctype html>
@@ -38,120 +22,32 @@ const fullOgImage = ogImage.startsWith("http")
         <meta charset="UTF-8" />
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="icon" type="image/png" href="/logo.png" />
-
-        <!-- Canonical URL -->
-        <link rel="canonical" href={currentUrl} />
-
-        <!-- Robots meta -->
-        {
-            noindex ? (
-                <meta name="robots" content="noindex, nofollow" />
-            ) : (
-                <meta
-                    name="robots"
-                    content="index, follow, max-snippet:160, max-image-preview:large"
-                />
-            )
-        }
-
-        <!-- Preconnect for performance -->
+        <link rel="icon" type="image/svg+xml" href="/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
             rel="stylesheet"
         />
-
         <meta name="generator" content={Astro.generator} />
 
-        <!-- Open Graph / Facebook Meta Tags -->
+        <!-- Open Graph / Social Media Meta Tags -->
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={currentUrl} />
         <meta property="og:title" content={title} />
         <meta property="og:description" content={description} />
-        <meta property="og:image" content={fullOgImage} />
-        <meta property="og:site_name" content="Electrician Services" />
+        <meta property="og:image" content="/logo.png" />
 
         <!-- Twitter Card Meta Tags -->
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:url" content={currentUrl} />
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description} />
-        <meta name="twitter:image" content={fullOgImage} />
-
-        <!-- Business Schema.org structured data -->
-        <script
-            type="application/ld+json"
-            set:html={JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "ElectricalContractor",
-                name: "Electrician Services",
-                description:
-                    "Professional electrical services for residential, commercial, and emergency needs",
-                url: Astro.site || "https://example.com",
-                logo: fullOgImage,
-                telephone: "+1-555-123-4567",
-                priceRange: "$$",
-                address: {
-                    "@type": "PostalAddress",
-                    addressLocality: "California",
-                    addressCountry: "US",
-                },
-                areaServed: [
-                    {
-                        "@type": "City",
-                        name: "Los Angeles",
-                    },
-                    {
-                        "@type": "City",
-                        name: "San Francisco",
-                    },
-                    {
-                        "@type": "City",
-                        name: "San Diego",
-                    },
-                    {
-                        "@type": "City",
-                        name: "Sacramento",
-                    },
-                ],
-                openingHoursSpecification: [
-                    {
-                        "@type": "OpeningHoursSpecification",
-                        dayOfWeek: [
-                            "Monday",
-                            "Tuesday",
-                            "Wednesday",
-                            "Thursday",
-                            "Friday",
-                        ],
-                        opens: "07:00",
-                        closes: "18:00",
-                    },
-                    {
-                        "@type": "OpeningHoursSpecification",
-                        dayOfWeek: "Saturday",
-                        opens: "08:00",
-                        closes: "16:00",
-                    },
-                ],
-                sameAs: [
-                    "https://facebook.com/example",
-                    "https://twitter.com/example",
-                    "https://linkedin.com/company/example",
-                ],
-            })}
-        />
+        <meta name="twitter:image" content="/logo.png" />
 
         <title>{title}</title>
     </head>
     <body class="bg-background text-text font-body">
-        <!-- Skip Link for Keyboard Navigation -->
-        <a href="#main-content" class="skip-link"> Skip to main content </a>
-
         <Header />
-        <main id="main-content" class="relative">
+        <main class="relative">
             <slot />
         </main>
         <Footer />
