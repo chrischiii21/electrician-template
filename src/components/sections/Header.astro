@@ -78,12 +78,15 @@ import Container from "../ui/Container.astro";
         <button
             id="hamburger-menu-btn"
             class="text-text hover:text-accent transition-colors p-2"
+            aria-label="Open navigation menu"
+            aria-expanded="false"
         >
             <svg
                 class="w-7 h-7"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
+                aria-hidden="true"
             >
                 <path
                     stroke-linecap="round"
@@ -156,13 +159,14 @@ import Container from "../ui/Container.astro";
                     <button
                         id="promo-close"
                         class="text-gray-500 hover:text-white transition-colors ml-2"
-                        aria-label="Dismiss"
+                        aria-label="Close promotional banner"
                     >
                         <svg
                             class="w-4 h-4"
                             fill="none"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
+                            aria-hidden="true"
                         >
                             <path
                                 stroke-linecap="round"
