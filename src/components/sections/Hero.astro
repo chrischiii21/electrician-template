@@ -5,8 +5,8 @@ import Button from "../ui/Button.astro";
 <section
     class="relative w-full h-screen min-h-175 bg-white overflow-hidden pt-27.5 lg:pt-70 mb-0"
 >
-    <!-- Full Size Background Image Carousel -->
-    <div class="absolute inset-0 w-full h-full">
+    <!-- Full Size Background Image Carousel - Hidden on Mobile -->
+    <div class="absolute inset-0 w-full h-full hidden md:block">
         <!-- Image 1 -->
         <div class="carousel-image absolute inset-0 w-full h-full opacity-100">
             <img
@@ -41,6 +41,12 @@ import Button from "../ui/Button.astro";
         </div>
         <!-- Dark overlay for better text readability -->
         <div class="absolute inset-0 bg-black/40 z-10"></div>
+    </div>
+
+    <!-- Mobile Plain Background -->
+    <div
+        class="absolute inset-0 w-full h-full md:hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
     </div>
 
     <!-- Rotated Red Rectangle Background with Gradient -->
