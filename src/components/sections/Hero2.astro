@@ -21,14 +21,20 @@ const {
 <section
     class={`relative text-gray-50 overflow-hidden ${fullHeight ? "pt-40" : "pt-32"}`}
 >
-    <!-- Background Image -->
-    <div class="absolute inset-0">
+    <!-- Background Image - Hidden on Mobile -->
+    <div class="absolute inset-0 hidden md:block">
         <div
             class="absolute inset-0 bg-cover bg-center hero2-image"
             style={`background-image: url('${backgroundImage}');`}
         >
         </div>
         <div class="absolute inset-0 bg-gray-900/80"></div>
+    </div>
+
+    <!-- Mobile Plain Background -->
+    <div
+        class="absolute inset-0 md:hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900"
+    >
     </div>
 
     <!-- Content -->
