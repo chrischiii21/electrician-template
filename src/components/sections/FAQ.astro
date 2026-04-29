@@ -11,106 +11,616 @@ interface FAQItem {
     category: string;
 }
 
-const faqs: FAQItem[] = [
-    {
-        question: "What areas do you serve?",
-        answer: "We proudly serve all major California metro areas including Los Angeles, San Diego, San Francisco, and Sacramento. Our licensed electricians are available across these regions with same-day service and zero travel fees.",
-        category: "General Information",
-    },
-    {
-        question: "Are your electricians licensed and insured?",
-        answer: "Absolutely. All our electricians are fully licensed, bonded, and insured. We maintain the highest industry certifications and comply with all local and state electrical codes to ensure safe, quality work.",
-        category: "General Information",
-    },
-    {
-        question: "How much do electrical services cost?",
-        answer: "Pricing varies based on the scope of work, materials needed, and project complexity. We provide free, detailed estimates before starting any work. Our transparent pricing ensures no hidden fees or surprises.",
-        category: "Pricing and Payment",
-    },
-    {
-        question: "Do you offer financing options?",
-        answer: "Yes, we offer flexible financing plans to make electrical services more affordable. We work with trusted financing partners to provide competitive rates and convenient payment options for projects of all sizes.",
-        category: "Pricing and Payment",
-    },
-    {
-        question: "What payment methods do you accept?",
-        answer: "We accept all major credit cards, debit cards, checks, and cash. For larger projects, we also offer payment plans and financing options to make our services more accessible.",
-        category: "Pricing and Payment",
-    },
-    {
-        question: "Are there any additional fees or charges?",
-        answer: "We believe in transparent pricing. All costs are outlined in your estimate, including labor, materials, and any applicable fees. There are no hidden charges or surprise costs.",
-        category: "Pricing and Payment",
-    },
-    {
-        question: "Do you offer emergency electrical services?",
-        answer: "Yes! We provide 24/7 emergency electrical services for urgent issues like power outages, electrical fires, sparking outlets, and other hazardous situations. Our emergency response team is available around the clock to ensure your safety.",
-        category: "Service Types",
-    },
-    {
-        question: "How quickly can you respond to service calls?",
-        answer: "For standard service calls, we typically schedule appointments within 24-48 hours. Emergency services receive immediate dispatch with response times averaging 30-60 minutes depending on your location.",
-        category: "Service Types",
-    },
-    {
-        question: "Do you handle both residential and commercial projects?",
-        answer: "Yes, we specialize in both residential and commercial electrical work. Our team has the expertise and equipment to handle projects of any size, from home repairs to large commercial installations.",
-        category: "Service Types",
-    },
-    {
-        question: "Can you help with electrical panel upgrades?",
-        answer: "Absolutely. We specialize in electrical panel upgrades and replacements. Whether you need more capacity for modern appliances or your panel is outdated, we can safely upgrade your system to meet current codes.",
-        category: "Service Types",
-    },
-    {
-        question: "Do you install EV charging stations?",
-        answer: "Yes, we are certified to install residential and commercial EV charging stations. We'll assess your electrical system, recommend the right charger, and handle the complete installation process.",
-        category: "Service Types",
-    },
-    {
-        question: "Do you provide warranties on your work?",
-        answer: "Yes, we stand behind our work with comprehensive warranties. All labor comes with a minimum 1-year warranty, and materials are covered by manufacturer warranties. Specific warranty terms vary by project type.",
-        category: "Policies and Guarantees",
-    },
-    {
-        question: "Can you help with electrical code compliance?",
-        answer: "Absolutely. We ensure all work meets current NEC (National Electrical Code) standards and local building codes. We can also perform electrical inspections and bring existing systems up to code.",
-        category: "Policies and Guarantees",
-    },
-    {
-        question: "What is your cancellation policy?",
-        answer: "We understand plans change. You can cancel or reschedule appointments up to 24 hours in advance without any fees. For emergency services, please call us as soon as possible if you need to cancel.",
-        category: "Policies and Guarantees",
-    },
-    {
-        question: "Are you insured and bonded?",
-        answer: "Yes, we carry full liability insurance and are bonded to protect both our clients and our team. You can have peace of mind knowing you're working with a fully insured professional electrical contractor.",
-        category: "Policies and Guarantees",
-    },
-    {
-        question: "What should I do if I smell burning or see sparks?",
-        answer: "If you smell burning or see sparks, immediately turn off power at the main breaker if safe to do so, evacuate the area, and call our 24/7 emergency line. Do not attempt to investigate or fix the issue yourself.",
-        category: "Safety and Emergency",
-    },
-    {
-        question: "How do I know if I need an electrical inspection?",
-        answer: "We recommend electrical inspections if your home is over 25 years old, you're experiencing frequent circuit breaker trips, flickering lights, or if you're buying/selling a property. Regular inspections help prevent safety hazards.",
-        category: "Safety and Emergency",
-    },
-    {
-        question: "What are signs of electrical problems?",
-        answer: "Common warning signs include flickering lights, burning smells, warm outlets, frequent breaker trips, buzzing sounds, and discolored outlets. If you notice any of these, contact us immediately for an inspection.",
-        category: "Safety and Emergency",
-    },
-];
+interface Props {
+    pageType?:
+        | "home"
+        | "commercial"
+        | "residential"
+        | "emergency"
+        | "commercial-construction"
+        | "commercial-hvac"
+        | "commercial-panels"
+        | "los-angeles"
+        | "san-diego"
+        | "san-francisco"
+        | "sacramento";
+}
 
-const categories = [
-    "General Information",
-    "Pricing and Payment",
-    "Service Types",
-    "Policies and Guarantees",
-    "Safety and Emergency",
-];
+const { pageType = "home" } = Astro.props;
+
+// FAQ sets organized by page type with conversational, problem-focused questions
+const faqSets: Record<string, { faqs: FAQItem[]; categories: string[] }> = {
+    home: {
+        faqs: [
+            {
+                question:
+                    "What are the signs I need an electrical panel upgrade?",
+                answer: "Common signs include frequent circuit breaker trips, flickering lights when appliances turn on, warm or discolored outlets, burning smells, buzzing sounds from the panel, or if your home is over 25 years old with the original panel. Modern homes need 200-amp service to handle today's electrical demands safely.",
+                category: "Common Questions",
+            },
+            {
+                question: "How do I know if my home's wiring is safe?",
+                answer: "Warning signs of unsafe wiring include flickering or dimming lights, outlets that spark or feel warm, burning smells, discolored switch plates, buzzing sounds, or if your home was built before 1970 and hasn't been rewired. Schedule a professional electrical inspection to assess your system's safety.",
+                category: "Common Questions",
+            },
+            {
+                question:
+                    "What's the difference between 100-amp and 200-amp electrical service?",
+                answer: "100-amp service was standard in older homes but struggles with modern demands like central AC, electric vehicles, and smart home devices. 200-amp service provides double the capacity, preventing overloads and allowing for future electrical needs. Most homes today require 200-amp service for safe, reliable power.",
+                category: "Common Questions",
+            },
+            {
+                question:
+                    "Can I add more outlets without rewiring my entire house?",
+                answer: "Yes, in most cases. Licensed electricians can add outlets by extending existing circuits or installing new dedicated circuits without full rewiring. However, if your home has outdated wiring (knob-and-tube, aluminum) or overloaded circuits, partial or complete rewiring may be recommended for safety.",
+                category: "Common Questions",
+            },
+            {
+                question:
+                    "How much does it typically cost to hire a licensed electrician?",
+                answer: "Costs vary by project complexity. Simple repairs like outlet replacement run $150-$300, panel upgrades $1,500-$4,000, EV charger installation $800-$2,500, and whole-home rewiring $4,000-$12,000. Licensed electricians provide free estimates with transparent pricing before starting work.",
+                category: "Pricing and Services",
+            },
+            {
+                question:
+                    "Do electricians charge for estimates and consultations?",
+                answer: "Most reputable electrical contractors offer free estimates for standard projects like panel upgrades, rewiring, or installations. Some may charge a service call fee ($75-$150) for diagnostic work or troubleshooting, which is often waived if you proceed with the repair.",
+                category: "Pricing and Services",
+            },
+            {
+                question:
+                    "What's included in a typical electrical safety inspection?",
+                answer: "A comprehensive electrical inspection includes checking the main panel and breakers, testing GFCI and AFCI protection, inspecting visible wiring for damage, testing outlets and switches, checking grounding systems, evaluating electrical load capacity, and identifying code violations or safety hazards. You'll receive a detailed report with recommendations.",
+                category: "Pricing and Services",
+            },
+            {
+                question: "How long does an electrical panel upgrade take?",
+                answer: "Most residential panel upgrades take 6-8 hours to complete, typically done in one day. This includes disconnecting the old panel, installing the new panel, reconnecting circuits, and final testing. Your power will be off during installation, usually 4-6 hours. Complex upgrades or service entrance work may require two days.",
+                category: "Pricing and Services",
+            },
+            {
+                question:
+                    "Why should I hire a licensed electrician instead of doing it myself?",
+                answer: "Electrical work is dangerous and requires expertise to prevent fires, shocks, and code violations. Licensed electricians have years of training, understand electrical codes, carry insurance, pull proper permits, and guarantee their work. DIY electrical work can void insurance, fail inspections, and create serious safety hazards.",
+                category: "Safety and Licensing",
+            },
+            {
+                question:
+                    "What does it mean for an electrician to be licensed and insured?",
+                answer: "A licensed electrician has passed state exams proving electrical knowledge and code compliance expertise. Insurance protects you from liability if accidents occur during work. Always verify licenses (like California C-10), ask for proof of insurance, and ensure they pull permits for major work.",
+                category: "Safety and Licensing",
+            },
+            {
+                question: "What should I do in an electrical emergency?",
+                answer: "For sparking outlets, burning smells, or electrical fires: immediately turn off power at the main breaker if safe to do so, evacuate the area, and call 911 if there's fire or immediate danger. Then contact a 24/7 emergency electrician. Never touch electrical equipment that's sparking or smoking.",
+                category: "Safety and Licensing",
+            },
+            {
+                question:
+                    "How often should I have my home's electrical system inspected?",
+                answer: "Electrical inspections are recommended every 3-5 years for homes under 25 years old, and annually for older homes. Also schedule inspections when buying/selling property, after major renovations, if experiencing electrical issues, or before installing high-demand equipment like EV chargers or hot tubs.",
+                category: "Safety and Licensing",
+            },
+        ],
+        categories: [
+            "Common Questions",
+            "Pricing and Services",
+            "Safety and Licensing",
+        ],
+    },
+    commercial: {
+        faqs: [
+            {
+                question:
+                    "What types of commercial electrical projects do you handle?",
+                answer: "We handle all commercial electrical work including ground-up construction, tenant improvements, panel upgrades, lighting retrofits, backup generator installation, data center electrical, parking lot lighting, EV charging stations for fleets, and emergency repairs. From small retail spaces to large industrial facilities, we have the expertise and equipment.",
+                category: "Commercial Services",
+            },
+            {
+                question:
+                    "Can you work on commercial projects without disrupting business operations?",
+                answer: "Absolutely. We specialize in after-hours and weekend installations to minimize disruption. For occupied buildings, we coordinate with facility managers to schedule work during off-peak hours, use temporary power solutions, and phase projects to keep your business running smoothly throughout the electrical work.",
+                category: "Commercial Services",
+            },
+            {
+                question:
+                    "Do you handle commercial electrical permits and inspections?",
+                answer: "Yes, we manage all commercial electrical permits, code compliance documentation, and coordinate inspections with local building departments. Our team is experienced with Title 24 energy compliance, ADA requirements, and commercial building codes. We maintain a 100% inspection pass rate on commercial projects.",
+                category: "Commercial Services",
+            },
+            {
+                question:
+                    "What's the difference between commercial and residential electrical work?",
+                answer: "Commercial electrical work involves higher voltages (208V, 277V, 480V), three-phase power, larger service capacities, stricter code requirements, fire alarm integration, emergency lighting systems, and more complex load calculations. Commercial projects require specialized licensing, equipment, and expertise beyond residential work.",
+                category: "Commercial Services",
+            },
+            {
+                question:
+                    "How much do commercial electrical services typically cost?",
+                answer: "Commercial electrical costs vary widely by project scope. Tenant improvements run $8-$25 per square foot, panel upgrades $3,000-$15,000, parking lot lighting $150-$400 per fixture, and ground-up construction $10-$40 per square foot depending on complexity. We provide detailed estimates after site assessment and reviewing project specifications.",
+                category: "Pricing and Planning",
+            },
+            {
+                question:
+                    "Do you offer maintenance contracts for commercial facilities?",
+                answer: "Yes, we offer preventive maintenance contracts including quarterly inspections, emergency lighting testing, thermal imaging scans, panel maintenance, and priority emergency service. Regular maintenance prevents costly downtime, ensures code compliance, and extends equipment life. Custom maintenance plans are available for multi-location businesses.",
+                category: "Pricing and Planning",
+            },
+            {
+                question:
+                    "How long do commercial electrical projects typically take?",
+                answer: "Timeline depends on project scope. Tenant improvements take 1-4 weeks, panel upgrades 1-3 days, lighting retrofits 3-10 days, and ground-up construction follows the general contractor's schedule (typically 3-12 months). We provide detailed project timelines and maintain a 96% on-time completion rate.",
+                category: "Pricing and Planning",
+            },
+            {
+                question:
+                    "Can you provide emergency electrical service for commercial buildings?",
+                answer: "Yes! We offer 24/7 emergency service for commercial facilities including power outages, equipment failures, safety hazards, and urgent repairs. Our commercial emergency team responds quickly to minimize downtime and business disruption. We understand that electrical issues can cost your business thousands per hour.",
+                category: "Emergency and Support",
+            },
+            {
+                question:
+                    "Do you work with general contractors and property managers?",
+                answer: "Absolutely. We regularly partner with general contractors, construction managers, property management companies, and facility directors. We provide detailed bids, maintain clear communication, coordinate with other trades, and deliver projects on schedule. References from contractors and property managers available upon request.",
+                category: "Emergency and Support",
+            },
+        ],
+        categories: [
+            "Commercial Services",
+            "Pricing and Planning",
+            "Emergency and Support",
+        ],
+    },
+    residential: {
+        faqs: [
+            {
+                question:
+                    "What residential electrical services do you provide?",
+                answer: "We provide complete residential electrical services including panel upgrades, whole-home rewiring, EV charger installation, ceiling fan and lighting installation, outlet and switch replacement, GFCI/AFCI upgrades, smart home integration, generator installation, pool and spa electrical, and emergency repairs. We handle everything from small repairs to complete electrical systems.",
+                category: "Residential Services",
+            },
+            {
+                question: "How do I know if my home needs to be rewired?",
+                answer: "Signs you need rewiring include frequent breaker trips, flickering lights, burning smells, warm outlets, two-prong outlets throughout, aluminum wiring, knob-and-tube wiring, or if your home is over 40 years old with original wiring. Homes built before 1970 often need rewiring to meet modern safety standards and electrical demands.",
+                category: "Residential Services",
+            },
+            {
+                question: "Can you install a Level 2 EV charger at my home?",
+                answer: "Yes! We install Level 2 EV chargers for all electric vehicles including Tesla, Rivian, Ford, Chevy, and more. We'll assess your electrical panel capacity, install a dedicated 240V circuit, mount the charger in your garage or driveway, handle all permits and inspections, and test the system. Most installations complete in 4-6 hours.",
+                category: "Residential Services",
+            },
+            {
+                question: "Do you install smart home electrical systems?",
+                answer: "Absolutely. We install smart switches, dimmers, outlets, lighting controls, whole-home automation systems, and integrate with platforms like Alexa, Google Home, and Apple HomeKit. We'll ensure your electrical system can support smart devices and provide proper wiring for reliable smart home performance.",
+                category: "Residential Services",
+            },
+            {
+                question:
+                    "How much does it cost to upgrade from 100-amp to 200-amp service?",
+                answer: "Residential panel upgrades from 100-amp to 200-amp typically cost $2,000-$4,000 depending on panel location, whether the meter needs upgrading, distance from the street, and local permit fees. We provide free estimates with transparent pricing. Financing options available to make upgrades affordable.",
+                category: "Pricing and Timeline",
+            },
+            {
+                question: "How long does a whole-home rewire take?",
+                answer: "Whole-home rewiring typically takes 3-7 days for an average-sized home (1,500-2,500 sq ft). Timeline depends on home size, accessibility, whether walls need opening, and project complexity. We work efficiently to minimize disruption, protect your belongings, and clean up thoroughly each day.",
+                category: "Pricing and Timeline",
+            },
+            {
+                question:
+                    "Do you offer financing for residential electrical projects?",
+                answer: "Yes, we offer flexible financing options for projects over $1,000 through trusted lending partners. Options include 0% interest for qualified buyers, low monthly payments, and same-day approval. We'll help you find a payment plan that fits your budget for panel upgrades, rewiring, or major installations.",
+                category: "Pricing and Timeline",
+            },
+            {
+                question:
+                    "What should I do if I have an electrical emergency at home?",
+                answer: "For electrical emergencies like sparking outlets, burning smells, power outages, or exposed wires: turn off power at the main breaker if safe, evacuate if there's fire or smoke, call 911 for immediate danger, then call our 24/7 emergency line. We respond quickly to residential electrical emergencies to protect your family and home.",
+                category: "Safety and Emergency",
+            },
+            {
+                question:
+                    "Are your residential electricians licensed and insured?",
+                answer: "Yes, all our electricians are fully licensed, bonded, and insured for residential work. We carry general liability and workers compensation insurance to protect you and your property. We pull proper permits, follow all electrical codes, and guarantee our work with comprehensive warranties.",
+                category: "Safety and Emergency",
+            },
+        ],
+        categories: [
+            "Residential Services",
+            "Pricing and Timeline",
+            "Safety and Emergency",
+        ],
+    },
+    emergency: {
+        faqs: [
+            {
+                question: "What qualifies as an electrical emergency?",
+                answer: "Electrical emergencies include sparking outlets or switches, burning smells from electrical sources, exposed or damaged wiring, power outages affecting only your property, electrical shocks from appliances or outlets, smoke from electrical panels, buzzing or sizzling sounds, and any situation where you feel unsafe. If in doubt, call us immediately.",
+                category: "Emergency Situations",
+            },
+            {
+                question:
+                    "How quickly can you respond to electrical emergencies?",
+                answer: "We provide 24/7 emergency electrical service with average response times of 30-60 minutes depending on your location. Our emergency electricians are on-call around the clock, including nights, weekends, and holidays. We understand electrical emergencies can't wait and prioritize rapid response to protect your safety.",
+                category: "Emergency Situations",
+            },
+            {
+                question:
+                    "Do you charge extra for emergency electrical service?",
+                answer: "We charge standard rates for emergency service—no extra fees for nights, weekends, or holidays. You'll receive transparent pricing before we start work. We believe electrical emergencies are stressful enough without surprise charges. Our focus is getting your power restored safely and quickly.",
+                category: "Emergency Situations",
+            },
+            {
+                question:
+                    "What should I do while waiting for emergency electrical service?",
+                answer: "Turn off power at the main breaker if safe to do so, unplug appliances from affected outlets, keep family members away from the problem area, never touch sparking equipment or exposed wires, evacuate if you smell smoke or see fire, and call 911 for immediate danger. Stay on the line with our dispatcher for guidance.",
+                category: "Emergency Situations",
+            },
+            {
+                question: "Can you restore power during a localized outage?",
+                answer: "Yes, if the outage is isolated to your property (not a utility company issue), we can diagnose and repair the problem. Common causes include tripped main breakers, damaged service entrance cables, meter issues, or internal electrical faults. We'll identify the cause and restore power safely, coordinating with the utility company if needed.",
+                category: "Common Emergencies",
+            },
+            {
+                question: "What if my electrical panel is sparking or smoking?",
+                answer: "If your panel is sparking or smoking, immediately turn off the main breaker if you can do so safely, evacuate everyone from the home, call 911 if there's active fire, and call our emergency line. Do not open the panel or attempt repairs. This is a serious fire hazard requiring immediate professional attention.",
+                category: "Common Emergencies",
+            },
+            {
+                question:
+                    "Can you fix electrical issues caused by storm damage?",
+                answer: "Yes, we handle storm-related electrical emergencies including downed service lines (coordinating with utility), damaged panels, water-damaged electrical systems, lightning strike damage, and power restoration. We'll assess damage, make emergency repairs to restore power safely, and provide estimates for permanent repairs.",
+                category: "Common Emergencies",
+            },
+            {
+                question:
+                    "Do you provide emergency service for both homes and businesses?",
+                answer: "Yes, we provide 24/7 emergency electrical service for both residential and commercial properties. We understand business electrical emergencies mean lost revenue and productivity. Our commercial emergency team has the expertise and equipment to handle high-voltage systems, three-phase power, and complex commercial electrical issues.",
+                category: "Common Emergencies",
+            },
+            {
+                question:
+                    "Will emergency repairs be covered by my homeowner's insurance?",
+                answer: "Many electrical emergencies caused by storms, fires, or sudden equipment failure are covered by homeowner's insurance. We provide detailed documentation, photos, and itemized invoices to support your insurance claim. We can also work directly with insurance adjusters and accept insurance payments for covered repairs.",
+                category: "Insurance and Payment",
+            },
+        ],
+        categories: [
+            "Emergency Situations",
+            "Common Emergencies",
+            "Insurance and Payment",
+        ],
+    },
+    "commercial-construction": {
+        faqs: [
+            {
+                question:
+                    "How early in the construction process should we involve an electrician?",
+                answer: "Ideally, involve us during the design phase—before breaking ground. Early involvement allows us to create accurate load calculations, plan optimal conduit routes, coordinate with architects, and ensure your electrical system is sized correctly from day one. This prevents costly changes during construction and ensures code compliance.",
+                category: "Planning and Timeline",
+            },
+            {
+                question:
+                    "What happens if the electrical work delays the construction schedule?",
+                answer: "We pride ourselves on a 96% on-time completion rate. We coordinate closely with general contractors, schedule inspections in advance, and maintain adequate crew sizes to meet deadlines. If weather or unforeseen issues arise, we communicate immediately and adjust our crew to minimize delays.",
+                category: "Planning and Timeline",
+            },
+            {
+                question:
+                    "Can you handle the electrical permits and inspections?",
+                answer: "Yes, we handle all electrical permits, code compliance documentation, and coordinate inspections with local building departments. We have a 100% inspection pass rate because we follow NEC and California Title 24 standards precisely. You won't need to worry about electrical compliance—we manage it all.",
+                category: "Planning and Timeline",
+            },
+            {
+                question:
+                    "How do you size the electrical service for a new commercial building?",
+                answer: "We start with comprehensive load calculations based on your building's square footage, equipment needs, HVAC systems, lighting, and future expansion plans. We'll recommend the appropriate service size (200A, 400A, 600A, or larger) and coordinate with the utility company for main service installation.",
+                category: "Technical Details",
+            },
+            {
+                question:
+                    "What's included in ground-up electrical construction?",
+                answer: "Everything from underground conduit during excavation to final device installation. This includes: service entrance and meter installation, main panel and sub-panels, rough-in wiring during framing, circuit distribution, lighting systems, emergency power systems, data/communication infrastructure, and final fixtures and devices.",
+                category: "Technical Details",
+            },
+            {
+                question:
+                    "Do you install backup generators for new commercial buildings?",
+                answer: "Yes, we design and install complete standby power systems including automatic transfer switches, generator pads, fuel systems, and integration with your main electrical service. We'll ensure critical systems (emergency lighting, fire alarms, elevators) have uninterrupted power during outages.",
+                category: "Technical Details",
+            },
+            {
+                question:
+                    "How much does electrical construction cost for a new commercial building?",
+                answer: "Costs vary widely based on building size, complexity, and equipment needs. As a rough estimate: $8-15 per square foot for basic office space, $15-25 for retail with specialized lighting, and $25-40+ for industrial facilities. We provide detailed estimates after reviewing your plans and specifications.",
+                category: "Cost and Payment",
+            },
+            {
+                question:
+                    "Do you offer financing for large commercial electrical projects?",
+                answer: "Yes, we work with commercial financing partners to offer flexible payment plans for projects over $10,000. Options include progress billing (pay as work is completed), equipment financing, and business lines of credit. We'll help you find the best financing solution for your project.",
+                category: "Cost and Payment",
+            },
+            {
+                question:
+                    "What warranty do you provide on new construction electrical work?",
+                answer: "We provide a 2-year labor warranty on all ground-up construction work, covering workmanship and installation. Materials carry manufacturer warranties (typically 10-25 years for panels, breakers, and major equipment). We also offer extended warranty programs for comprehensive coverage.",
+                category: "Cost and Payment",
+            },
+        ],
+        categories: [
+            "Planning and Timeline",
+            "Technical Details",
+            "Cost and Payment",
+        ],
+    },
+    "commercial-hvac": {
+        faqs: [
+            {
+                question:
+                    "Why does my commercial HVAC system keep tripping the breaker?",
+                answer: "Breaker trips on HVAC systems usually indicate overloaded circuits, failing compressor motors, or electrical connections that have loosened over time. Commercial HVAC units draw significant power, and aging equipment or undersized circuits can't handle the load. We'll diagnose the issue and recommend repairs or circuit upgrades.",
+                category: "Common HVAC Issues",
+            },
+            {
+                question: "Can you install electrical for rooftop HVAC units?",
+                answer: "Yes, we specialize in rooftop HVAC electrical installations including dedicated circuits, disconnect switches, conduit runs, and proper grounding. We coordinate with HVAC contractors to ensure seamless installation and handle all electrical permits and inspections required for rooftop equipment.",
+                category: "Common HVAC Issues",
+            },
+            {
+                question:
+                    "What size electrical service do I need for a new commercial HVAC system?",
+                answer: "It depends on your HVAC tonnage and configuration. A typical 5-ton unit needs a 60-amp circuit, while larger 20-ton systems may require 200+ amps. We'll review your HVAC specifications, calculate exact loads, and determine if your existing panel can handle it or if an upgrade is needed.",
+                category: "Common HVAC Issues",
+            },
+            {
+                question:
+                    "How much does it cost to run electrical for a new commercial HVAC unit?",
+                answer: "Costs typically range from $800-3,000 depending on distance from the panel, circuit size, and whether we need to run conduit through walls or to the roof. We provide free estimates after assessing your facility and reviewing HVAC specifications. Financing options are available for larger projects.",
+                category: "Installation and Costs",
+            },
+            {
+                question:
+                    "Do you provide emergency electrical service for HVAC systems?",
+                answer: "Yes! We offer 24/7 emergency service for commercial HVAC electrical issues. If your HVAC system loses power during extreme weather, we'll dispatch a technician immediately to restore cooling or heating. We understand downtime affects your business and customers.",
+                category: "Installation and Costs",
+            },
+            {
+                question:
+                    "Can you upgrade electrical panels to support larger HVAC systems?",
+                answer: "Absolutely. Many older commercial buildings need panel upgrades to support modern, energy-efficient HVAC systems. We'll assess your current electrical capacity, recommend the appropriate panel size, and coordinate the upgrade to minimize business disruption—often completing work after hours or on weekends.",
+                category: "Installation and Costs",
+            },
+        ],
+        categories: ["Common HVAC Issues", "Installation and Costs"],
+    },
+    "los-angeles": {
+        faqs: [
+            {
+                question:
+                    "Do you provide same-day electrical service in Los Angeles?",
+                answer: "Yes! We offer same-day electrical service throughout Los Angeles County, including Downtown LA, Santa Monica, Beverly Hills, Pasadena, Long Beach, and all surrounding neighborhoods. Our average response time is 8-20 minutes depending on your location, with no travel fees.",
+                category: "Service in Los Angeles",
+            },
+            {
+                question: "Which Los Angeles neighborhoods do you serve?",
+                answer: "We serve all Los Angeles neighborhoods including Downtown LA, Santa Monica, Beverly Hills, Westwood, Brentwood, Malibu, Long Beach, Pasadena, Glendale, Burbank, Culver City, Manhattan Beach, and everywhere in between. Our electricians are strategically located across LA County for fast response times.",
+                category: "Service in Los Angeles",
+            },
+            {
+                question:
+                    "Are your electricians licensed to work in Los Angeles?",
+                answer: "Absolutely. All our electricians hold valid California C-10 electrical contractor licenses and are fully insured to work throughout Los Angeles County. We comply with all LA building codes, permit requirements, and inspection standards to ensure safe, legal electrical work.",
+                category: "Service in Los Angeles",
+            },
+            {
+                question:
+                    "What electrical services do you offer in Los Angeles?",
+                answer: "We provide comprehensive electrical services across Los Angeles including panel upgrades, EV charger installation, whole-home rewiring, lighting installation, emergency repairs, commercial electrical work, smart home integration, and code compliance upgrades. From small repairs to complete electrical systems, we handle it all.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Can you install EV charging stations in Los Angeles homes?",
+                answer: "Yes! We're certified to install Level 2 EV charging stations throughout Los Angeles for Tesla, Rivian, and all electric vehicles. We'll assess your panel capacity, install dedicated 240V circuits, handle LA city permits, and coordinate inspections. Most LA installations are completed in one day.",
+                category: "Services Available",
+            },
+            {
+                question: "Do you handle electrical permits in Los Angeles?",
+                answer: "Yes, we handle all electrical permits required by the City of Los Angeles Department of Building and Safety. We'll pull permits, ensure code compliance, schedule inspections, and provide all documentation needed for your electrical project. Our 100% inspection pass rate means no delays.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "How much do electrical panel upgrades cost in Los Angeles?",
+                answer: "Panel upgrades in Los Angeles typically range from $2,000-$4,500 depending on the upgrade size (100A to 200A), location accessibility, and permit requirements. LA city permits add $200-400. We provide free estimates with transparent pricing and offer financing options for all LA residents.",
+                category: "Pricing and Availability",
+            },
+            {
+                question:
+                    "Do you offer emergency electrical service in LA at night?",
+                answer: "Yes! We provide 24/7 emergency electrical service throughout Los Angeles with no extra night or weekend fees. Whether it's 2 AM in Downtown LA or Sunday evening in Santa Monica, our emergency electricians are available to handle power outages, sparking outlets, and electrical hazards immediately.",
+                category: "Pricing and Availability",
+            },
+            {
+                question:
+                    "Why do older Los Angeles homes need electrical upgrades?",
+                answer: "Many LA homes built before 1980 have outdated 60-100 amp panels that can't handle modern electrical demands like central AC, EV chargers, and smart home devices. Older aluminum wiring and lack of GFCI protection also pose safety risks. We specialize in upgrading vintage LA homes to modern electrical standards.",
+                category: "Pricing and Availability",
+            },
+        ],
+        categories: [
+            "Service in Los Angeles",
+            "Services Available",
+            "Pricing and Availability",
+        ],
+    },
+    "san-diego": {
+        faqs: [
+            {
+                question:
+                    "Do you provide same-day electrical service in San Diego?",
+                answer: "Yes! We offer same-day electrical service throughout San Diego County, including Downtown San Diego, La Jolla, Pacific Beach, Mission Valley, Chula Vista, and all surrounding areas. Our electricians are available 7 days a week with fast response times and zero travel fees.",
+                category: "Service in San Diego",
+            },
+            {
+                question: "Which San Diego areas do you cover?",
+                answer: "We serve all of San Diego County including Downtown, La Jolla, Pacific Beach, Mission Beach, Ocean Beach, North Park, Hillcrest, Mission Valley, Chula Vista, National City, Coronado, Del Mar, Encinitas, Carlsbad, and everywhere in between. Our electricians know San Diego's unique electrical needs.",
+                category: "Service in San Diego",
+            },
+            {
+                question: "Are you licensed for electrical work in San Diego?",
+                answer: "Yes, all our electricians are fully licensed with California C-10 contractor licenses and insured to work throughout San Diego County. We comply with San Diego building codes, handle all permit requirements, and coordinate inspections with the City of San Diego.",
+                category: "Service in San Diego",
+            },
+            {
+                question: "What electrical services do you offer in San Diego?",
+                answer: "We provide complete electrical services in San Diego including panel upgrades, EV charger installation, solar panel electrical integration, whole-home rewiring, outdoor lighting, pool and spa electrical, emergency repairs, and commercial electrical work. We specialize in coastal electrical solutions for San Diego's climate.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Can you install solar panel electrical systems in San Diego?",
+                answer: "Absolutely! San Diego's sunshine makes solar perfect. We handle all electrical work for solar installations including main panel upgrades, sub-panel installation, inverter connections, and utility interconnection. We coordinate with solar installers and handle all San Diego permit requirements.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Do you install outdoor lighting for San Diego coastal homes?",
+                answer: "Yes! We specialize in outdoor electrical installations for San Diego's coastal environment using corrosion-resistant materials rated for salt air. We install landscape lighting, patio lighting, security lighting, and outdoor outlets that withstand San Diego's coastal conditions.",
+                category: "Services Available",
+            },
+            {
+                question: "How much do electrical services cost in San Diego?",
+                answer: "Pricing varies by project scope. Panel upgrades in San Diego typically run $2,000-$4,000, EV charger installations $800-$2,500, and rewiring $4,000-$12,000 depending on home size. We provide free estimates with transparent pricing and offer financing options for San Diego residents.",
+                category: "Pricing and Availability",
+            },
+            {
+                question:
+                    "Do you offer 24/7 emergency electrical service in San Diego?",
+                answer: "Yes! We provide round-the-clock emergency electrical service throughout San Diego County. Whether it's a power outage in La Jolla at midnight or a sparking outlet in Chula Vista on Sunday, our emergency electricians respond quickly to keep your San Diego home or business safe.",
+                category: "Pricing and Availability",
+            },
+        ],
+        categories: [
+            "Service in San Diego",
+            "Services Available",
+            "Pricing and Availability",
+        ],
+    },
+    "san-francisco": {
+        faqs: [
+            {
+                question:
+                    "Do you provide electrical service throughout San Francisco?",
+                answer: "Yes! We serve all San Francisco neighborhoods including Downtown, SOMA, Mission District, Nob Hill, Pacific Heights, Marina District, Richmond, Sunset, Castro, Haight-Ashbury, and beyond. Our electricians understand SF's unique building codes and Victorian home electrical challenges.",
+                category: "Service in San Francisco",
+            },
+            {
+                question: "Can you work on Victorian homes in San Francisco?",
+                answer: "Absolutely! We specialize in electrical upgrades for San Francisco's historic Victorian and Edwardian homes. We understand knob-and-tube wiring replacement, panel upgrades in limited spaces, and maintaining historic character while meeting modern electrical codes and SF building requirements.",
+                category: "Service in San Francisco",
+            },
+            {
+                question:
+                    "Are you licensed for electrical work in San Francisco?",
+                answer: "Yes, all our electricians hold California C-10 licenses and are fully insured to work in San Francisco. We're experienced with SF Department of Building Inspection requirements, permit processes, and the strict electrical codes that apply to San Francisco properties.",
+                category: "Service in San Francisco",
+            },
+            {
+                question:
+                    "What electrical services do you offer in San Francisco?",
+                answer: "We provide comprehensive electrical services in SF including knob-and-tube rewiring, panel upgrades, EV charger installation, smart home integration, seismic-safe electrical installations, emergency repairs, and commercial electrical work. We specialize in SF's unique electrical challenges from Victorian homes to modern condos.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Can you replace knob-and-tube wiring in San Francisco homes?",
+                answer: "Yes! Many SF homes built before 1950 still have knob-and-tube wiring. We specialize in complete rewiring while preserving your home's historic character. We work with SF building inspectors, handle all permits, and ensure your vintage SF home meets modern safety standards.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Do you install EV chargers in San Francisco parking spaces?",
+                answer: "Absolutely! We install EV chargers in SF garages, driveways, and shared parking spaces. We navigate SF's unique challenges including limited panel space, HOA requirements, and city permits. We're experienced with both single-family homes and multi-unit buildings throughout San Francisco.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "How much do electrical upgrades cost in San Francisco?",
+                answer: "SF electrical costs reflect the city's complexity. Panel upgrades typically run $2,500-$5,000, knob-and-tube rewiring $8,000-$20,000, and EV charger installations $1,200-$3,500. SF permits add $300-600. We provide detailed estimates and offer financing options for San Francisco residents.",
+                category: "Pricing and Availability",
+            },
+            {
+                question:
+                    "Do you offer emergency electrical service in San Francisco?",
+                answer: "Yes! We provide 24/7 emergency electrical service throughout San Francisco. From power outages in the Marina to electrical hazards in the Mission, our emergency electricians respond quickly to keep SF residents and businesses safe, day or night, weekends and holidays.",
+                category: "Pricing and Availability",
+            },
+        ],
+        categories: [
+            "Service in San Francisco",
+            "Services Available",
+            "Pricing and Availability",
+        ],
+    },
+    sacramento: {
+        faqs: [
+            {
+                question:
+                    "Do you provide electrical service throughout Sacramento?",
+                answer: "Yes! We serve all of Sacramento including Downtown, Midtown, East Sacramento, Land Park, Natomas, Elk Grove, Folsom, Roseville, and surrounding areas. Our electricians are familiar with Sacramento's hot summers and the electrical demands of cooling systems in the region.",
+                category: "Service in Sacramento",
+            },
+            {
+                question: "Which Sacramento neighborhoods do you cover?",
+                answer: "We cover all Sacramento County areas including Downtown Sacramento, Midtown, East Sacramento, Land Park, Curtis Park, Pocket, Natomas, Arden-Arcade, Carmichael, Fair Oaks, Citrus Heights, Elk Grove, Folsom, and Roseville. Our electricians know Sacramento's diverse housing stock from historic homes to new developments.",
+                category: "Service in Sacramento",
+            },
+            {
+                question: "Are you licensed for electrical work in Sacramento?",
+                answer: "Yes, all our electricians are California C-10 licensed and fully insured to work throughout Sacramento County. We comply with Sacramento building codes, handle all permit requirements with the City of Sacramento, and coordinate inspections to ensure code-compliant electrical work.",
+                category: "Service in Sacramento",
+            },
+            {
+                question:
+                    "What electrical services do you offer in Sacramento?",
+                answer: "We provide complete electrical services in Sacramento including panel upgrades for AC systems, whole-home rewiring, EV charger installation, ceiling fan installation, outdoor lighting, pool electrical, emergency repairs, and commercial electrical work. We specialize in handling Sacramento's high cooling demands.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Can you upgrade electrical panels for Sacramento's hot summers?",
+                answer: "Absolutely! Sacramento's 100°F+ summers put heavy demands on electrical systems. We specialize in panel upgrades to support central AC, multiple cooling zones, and modern appliances. We'll ensure your electrical system can handle Sacramento's peak summer loads without tripping breakers.",
+                category: "Services Available",
+            },
+            {
+                question:
+                    "Do you install whole-house generators in Sacramento?",
+                answer: "Yes! With Sacramento's occasional power outages during heat waves and storms, whole-house generators provide peace of mind. We install automatic standby generators, handle all electrical connections, coordinate gas or propane hookups, and ensure your Sacramento home stays powered during outages.",
+                category: "Services Available",
+            },
+            {
+                question: "How much do electrical services cost in Sacramento?",
+                answer: "Sacramento electrical costs are competitive. Panel upgrades typically run $1,800-$3,800, EV charger installations $800-$2,200, and whole-home rewiring $4,500-$10,000 depending on home size. We provide free estimates with transparent pricing and offer financing options for Sacramento residents.",
+                category: "Pricing and Availability",
+            },
+            {
+                question:
+                    "Do you offer emergency electrical service in Sacramento?",
+                answer: "Yes! We provide 24/7 emergency electrical service throughout Sacramento County. Whether your AC loses power during a heat wave or you have an electrical emergency in the middle of the night, our Sacramento electricians respond quickly to restore power and ensure your safety.",
+                category: "Pricing and Availability",
+            },
+        ],
+        categories: [
+            "Service in Sacramento",
+            "Services Available",
+            "Pricing and Availability",
+        ],
+    },
+};
+
+// Get the appropriate FAQ set based on page type
+const { faqs, categories } = faqSets[pageType] || faqSets.home;
 ---
 
 <section class="bg-background py-20" id="faq">
@@ -165,61 +675,84 @@ const categories = [
                 <div class="lg:col-span-3">
                     <div class="space-y-4">
                         {
-                            faqs.map((faq, index) => (
-                                <div
-                                    class:list={[
-                                        "faq-item border border-gray-200 transition-all duration-300",
-                                        {
-                                            hidden:
-                                                faq.category !==
-                                                "General Information",
-                                        },
-                                    ]}
-                                    data-category={faq.category}
-                                >
-                                    <button
-                                        class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 group hover:bg-gray-50 transition-colors"
-                                        aria-expanded={
-                                            index === 0 ? "true" : "false"
-                                        }
-                                    >
-                                        <Heading
-                                            level={5}
-                                            class="!text-text text-lg group-hover:!text-accent transition-colors"
-                                        >
-                                            {faq.question}
-                                        </Heading>
-                                        <div class="shrink-0 w-8 h-8 flex items-center justify-center">
-                                            <svg
-                                                class="faq-icon w-5 h-5 text-gray-400 group-hover:text-accent transition-all duration-300"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                viewBox="0 0 24 24"
-                                            >
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M19 9l-7 7-7-7"
-                                                />
-                                            </svg>
-                                        </div>
-                                    </button>
+                            faqs.map((faq, index) => {
+                                const firstCategory = categories[0];
+                                const isFirstCategoryItem =
+                                    faq.category === firstCategory;
+                                const isFirstItemInCategory =
+                                    faqs.findIndex(
+                                        (f) => f.category === faq.category,
+                                    ) === index;
+
+                                return (
                                     <div
                                         class:list={[
-                                            "faq-answer px-6 pb-5",
-                                            { hidden: index !== 0 },
+                                            "faq-item border border-gray-200 transition-all duration-300",
+                                            {
+                                                hidden: !isFirstCategoryItem,
+                                            },
                                         ]}
+                                        data-category={faq.category}
                                     >
-                                        <Text
-                                            size="md"
-                                            class="!text-gray-600 leading-relaxed"
+                                        <button
+                                            class="faq-question w-full text-left px-6 py-5 flex items-center justify-between gap-4 group hover:bg-gray-50 transition-colors"
+                                            aria-expanded={
+                                                isFirstCategoryItem &&
+                                                isFirstItemInCategory
+                                                    ? "true"
+                                                    : "false"
+                                            }
                                         >
-                                            {faq.answer}
-                                        </Text>
+                                            <Heading
+                                                level={5}
+                                                class="!text-text text-lg group-hover:!text-accent transition-colors"
+                                            >
+                                                {faq.question}
+                                            </Heading>
+                                            <div class="shrink-0 w-8 h-8 flex items-center justify-center">
+                                                <svg
+                                                    class:list={[
+                                                        "faq-icon w-5 h-5 text-gray-400 group-hover:text-accent transition-all duration-300",
+                                                        {
+                                                            "rotate-180":
+                                                                isFirstCategoryItem &&
+                                                                isFirstItemInCategory,
+                                                        },
+                                                    ]}
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24"
+                                                >
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 9l-7 7-7-7"
+                                                    />
+                                                </svg>
+                                            </div>
+                                        </button>
+                                        <div
+                                            class:list={[
+                                                "faq-answer px-6 pb-5",
+                                                {
+                                                    hidden: !(
+                                                        isFirstCategoryItem &&
+                                                        isFirstItemInCategory
+                                                    ),
+                                                },
+                                            ]}
+                                        >
+                                            <Text
+                                                size="md"
+                                                class="!text-gray-600 leading-relaxed"
+                                            >
+                                                {faq.answer}
+                                            </Text>
+                                        </div>
                                     </div>
-                                </div>
-                            ))
+                                );
+                            })
                         }
                     </div>
 
