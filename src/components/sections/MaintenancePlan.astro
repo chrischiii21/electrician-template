@@ -1,0 +1,457 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+import Card from "../ui/Card.astro";
+
+const plans = [
+    {
+        name: "Basic Plan",
+        price: "$9.99",
+        period: "per month",
+        description:
+            "Essential maintenance for homeowners who want peace of mind.",
+        features: [
+            "Annual safety inspection",
+            "Priority scheduling",
+            "10% off all repairs",
+            "Email service reminders",
+            "Basic electrical assessment",
+            "Safety checklist report",
+        ],
+        cta: "Get Started",
+        ctaLink: "/contact",
+        highlighted: false,
+        image: "https://images.unsplash.com/photo-1621905252507-b35492cc74b4?w=400&h=300&fit=crop",
+    },
+    {
+        name: "Premium Plan",
+        price: "$14.33",
+        period: "per month",
+        description:
+            "Complete protection with priority service and maximum savings.",
+        features: [
+            "Bi-annual safety inspections",
+            "Priority scheduling",
+            "15% off all repairs",
+            "No overtime charges",
+            "24/7 emergency support",
+            "Transferable membership",
+        ],
+        cta: "Most Popular",
+        ctaLink: "/contact",
+        highlighted: true,
+        badge: "Best Value",
+        image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop",
+    },
+    {
+        name: "Commercial Plan",
+        price: "$49.99",
+        period: "per month",
+        description:
+            "Comprehensive maintenance for businesses and commercial properties.",
+        features: [
+            "Quarterly safety inspections",
+            "Priority emergency response",
+            "20% off all repairs",
+            "Dedicated account manager",
+            "Compliance documentation",
+            "Preventive maintenance reports",
+        ],
+        cta: "Contact Sales",
+        ctaLink: "/contact",
+        highlighted: false,
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop",
+    },
+];
+
+const benefits = [
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>`,
+        title: "Prevent Costly Repairs",
+        description:
+            "Regular inspections catch small issues before they become expensive emergencies.",
+    },
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>`,
+        title: "Extend Equipment Life",
+        description:
+            "Proper maintenance keeps your electrical systems running efficiently for years longer.",
+    },
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+        title: "Save Money Long-Term",
+        description:
+            "Members save an average of $500 annually on electrical services and repairs.",
+    },
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+        title: "Priority Service",
+        description:
+            "Skip the line with priority scheduling and faster emergency response times.",
+    },
+];
+
+const whatsCovered = [
+    "Electrical panel inspection and testing",
+    "Circuit breaker functionality check",
+    "GFCI and AFCI outlet testing",
+    "Smoke and CO detector inspection",
+    "Lighting system assessment",
+    "Wiring and connection inspection",
+    "Grounding system verification",
+    "Load capacity evaluation",
+    "Safety hazard identification",
+    "Energy efficiency recommendations",
+    "Code compliance review",
+    "Detailed inspection report",
+];
+---
+
+<section class="bg-white py-20" id="maintenance-plan">
+    <Container size="lg">
+        <!-- Header -->
+        <div class="text-center mb-16 scroll-animate">
+            <Badge variant="accent" class="mb-3 uppercase tracking-wider">
+                Maintenance Plans
+            </Badge>
+            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+                Keep Your Electrical System <span class="text-accent"
+                    >Running Smoothly</span
+                >
+            </Heading>
+            <Text size="xl" class="text-gray-700 max-w-3xl mx-auto">
+                Regular maintenance prevents emergencies, extends equipment
+                life, and saves you money. Choose the plan that fits your needs.
+            </Text>
+        </div>
+
+        <!-- Benefits Grid -->
+        <div
+            class="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16 scroll-stagger"
+        >
+            {
+                benefits.map((benefit) => (
+                    <Card
+                        padding="lg"
+                        class="border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 group"
+                    >
+                        <div class="w-12 h-12 flex items-center justify-center bg-accent/10 border border-accent/20 mb-4 group-hover:bg-accent group-hover:border-accent transition-all duration-300">
+                            <div
+                                class="w-6 h-6 text-accent group-hover:text-white transition-colors"
+                                set:html={benefit.icon}
+                            />
+                        </div>
+                        <Heading level={4} class="text-lg font-bold mb-2">
+                            {benefit.title}
+                        </Heading>
+                        <Text size="sm" class="text-gray-600 leading-relaxed">
+                            {benefit.description}
+                        </Text>
+                    </Card>
+                ))
+            }
+        </div>
+
+        <!-- Pricing Cards -->
+        <div class="grid md:grid-cols-3 gap-8 mb-16 scroll-stagger">
+            {
+                plans.map((plan) => (
+                    <div
+                        class:list={[
+                            "relative bg-white border-2 overflow-hidden transition-all duration-300 hover:shadow-2xl group",
+                            {
+                                "border-accent shadow-xl": plan.highlighted,
+                                "border-gray-200 hover:border-accent":
+                                    !plan.highlighted,
+                            },
+                        ]}
+                    >
+                        {/* Recommended Badge */}
+                        {plan.highlighted && plan.badge && (
+                            <div class="absolute top-0 right-0 bg-accent text-white px-4 py-1 text-sm font-bold uppercase tracking-wider z-20">
+                                {plan.badge}
+                            </div>
+                        )}
+
+                        {/* Top Accent Bar */}
+                        <div
+                            class:list={[
+                                "h-2 w-full",
+                                {
+                                    "bg-gradient-to-r from-accent via-primary to-accent":
+                                        plan.highlighted,
+                                    "bg-gray-300": !plan.highlighted,
+                                },
+                            ]}
+                        />
+
+                        {/* Image */}
+                        <div class="relative h-48 overflow-hidden">
+                            <img
+                                src={plan.image}
+                                alt={`${plan.name} - professional electrical maintenance services`}
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            />
+                            <div class="absolute inset-0 bg-gradient-to-t from-gray-900/80 to-transparent" />
+
+                            {/* Plan Name Overlay */}
+                            <div class="absolute bottom-4 left-4 right-4">
+                                <Heading
+                                    level={3}
+                                    class="text-white text-2xl font-black mb-1"
+                                >
+                                    {plan.name}
+                                </Heading>
+                            </div>
+                        </div>
+
+                        {/* Content */}
+                        <div class="p-6">
+                            {/* Price */}
+                            <div class="mb-6 text-center">
+                                <div class="flex items-baseline justify-center gap-2">
+                                    <span
+                                        class:list={[
+                                            "font-black leading-none",
+                                            {
+                                                "text-5xl text-accent":
+                                                    plan.highlighted,
+                                                "text-4xl text-text":
+                                                    !plan.highlighted,
+                                            },
+                                        ]}
+                                    >
+                                        {plan.price}
+                                    </span>
+                                </div>
+                                <Text
+                                    size="sm"
+                                    class="text-gray-500 uppercase tracking-wide font-semibold mt-2"
+                                >
+                                    {plan.period}
+                                </Text>
+                            </div>
+
+                            {/* Description */}
+                            <Text
+                                size="base"
+                                class="text-gray-600 mb-6 text-center leading-relaxed"
+                            >
+                                {plan.description}
+                            </Text>
+
+                            {/* Features */}
+                            <ul class="space-y-3 mb-8">
+                                {plan.features.map((feature) => (
+                                    <li class="flex items-start gap-3">
+                                        <svg
+                                            class:list={[
+                                                "w-5 h-5 shrink-0 mt-0.5",
+                                                {
+                                                    "text-accent":
+                                                        plan.highlighted,
+                                                    "text-primary":
+                                                        !plan.highlighted,
+                                                },
+                                            ]}
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                        <Text
+                                            size="sm"
+                                            class="text-gray-700 font-medium"
+                                        >
+                                            {feature}
+                                        </Text>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {/* CTA Button */}
+                            <Button
+                                href={plan.ctaLink}
+                                variant={
+                                    plan.highlighted ? "accent" : "primary"
+                                }
+                                size="lg"
+                                class="w-full justify-center font-bold uppercase tracking-wider"
+                            >
+                                {plan.cta}
+                                <svg
+                                    class="w-5 h-5 ml-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                    />
+                                </svg>
+                            </Button>
+                        </div>
+
+                        {/* Bottom Accent for Highlighted */}
+                        {plan.highlighted && (
+                            <div class="h-1 w-full bg-gradient-to-r from-accent via-primary to-accent" />
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- What's Covered Section -->
+        <div
+            class="bg-gray-50 border border-gray-200 p-8 md:p-12 scroll-animate"
+        >
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left: Content -->
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div
+                            class="w-10 h-10 bg-accent flex items-center justify-center"
+                        >
+                            <svg
+                                class="w-5 h-5 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                                ></path>
+                            </svg>
+                        </div>
+                        <Heading level={3} class="text-3xl font-black">
+                            What's <span class="text-accent">Covered</span>
+                        </Heading>
+                    </div>
+                    <Text size="lg" class="text-gray-600 mb-6 leading-relaxed">
+                        Every maintenance visit includes a comprehensive
+                        inspection of your electrical system to ensure safety,
+                        efficiency, and code compliance.
+                    </Text>
+                    <div class="bg-white border-l-4 border-accent p-6">
+                        <div class="flex items-start gap-3">
+                            <svg
+                                class="w-6 h-6 text-accent shrink-0 mt-1"
+                                fill="none"
+                                stroke="currentColor"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    stroke-width="2"
+                                    d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                                ></path>
+                            </svg>
+                            <div>
+                                <Text
+                                    size="lg"
+                                    class="font-bold text-text mb-2"
+                                >
+                                    All Plans Include
+                                </Text>
+                                <Text size="base" class="text-gray-600">
+                                    Licensed electricians, detailed reports,
+                                    safety recommendations, and no hidden fees.
+                                </Text>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Checklist -->
+                <div class="bg-white border border-gray-200 p-6">
+                    <ul class="grid grid-cols-1 gap-3">
+                        {
+                            whatsCovered.map((item) => (
+                                <li class="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
+                                    <svg
+                                        class="w-5 h-5 text-accent shrink-0 mt-0.5"
+                                        fill="currentColor"
+                                        viewBox="0 0 20 20"
+                                    >
+                                        <path
+                                            fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd"
+                                        />
+                                    </svg>
+                                    <Text
+                                        size="sm"
+                                        class="text-gray-700 font-medium"
+                                    >
+                                        {item}
+                                    </Text>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom CTA -->
+        <div
+            class="mt-16 text-center bg-white border-2 border-gray-200 p-8 scroll-animate"
+        >
+            <div class="flex items-center justify-center gap-3 mb-4">
+                <svg
+                    class="w-8 h-8 text-accent"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    ></path>
+                </svg>
+                <Heading level={3} class="text-2xl font-black text-text">
+                    Questions About Our Plans?
+                </Heading>
+            </div>
+            <Text size="lg" class="text-gray-600 mb-6 max-w-2xl mx-auto">
+                Our team is here to help you choose the right maintenance plan
+                for your property. Call us today for a free consultation.
+            </Text>
+            <div
+                class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+            >
+                <Button href="tel:+15551234567" variant="accent" size="lg">
+                    <svg
+                        class="w-5 h-5 mr-2"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                    >
+                        <path
+                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+                        ></path>
+                    </svg>
+                    Call (555) 123-4567
+                </Button>
+                <Button href="/contact" variant="primary" size="lg">
+                    Get Free Quote
+                </Button>
+            </div>
+        </div>
+    </Container>
+</section>

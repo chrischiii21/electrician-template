@@ -1,21 +1,25 @@
 ﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero2 from "../components/sections/Hero2.astro";
-import PageIntro from "../components/sections/PageIntro.astro";
-import Services from "../components/sections/Services.astro";
-import FeaturedWorks from "../components/sections/FeaturedWorks.astro";
-import Testimonials from "../components/sections/Testimonials.astro";
-import FinalCTA from "../components/sections/FinalCTA.astro";
-import OffersAndFinancing from "../components/sections/OffersAndFinancing.astro";
-import FAQ from "../components/sections/FAQ.astro";
 import TrustBar from "../components/sections/TrustBar.astro";
-import RelatedServices from "../components/sections/RelatedServices.astro";
-import ServiceAreas from "../components/sections/ServiceAreas.astro";
-import CouponModal from "../components/sections/CouponModal.astro";
+import AboutWithServices from "../components/sections/AboutWithServices.astro";
+import Services from "../components/sections/Services.astro";
+import MaintenancePlan from "../components/sections/MaintenancePlan.astro";
+import Financing from "../components/sections/Financing.astro";
+import Specials from "../components/sections/Specials.astro";
 import CTARibbon from "../components/sections/CTARibbon.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import FeaturedWorks from "../components/sections/FeaturedWorks.astro";
+import FAQ from "../components/sections/FAQ.astro";
+import ServiceAreas from "../components/sections/ServiceAreas.astro";
+import PricingTiers from "../components/sections/PricingTiers.astro";
+import CouponModal from "../components/sections/CouponModal.astro";
 ---
 
 <BaseLayout title="Commercial Services | Electrician Services">
+    <!-- Header (in BaseLayout) -->
+
+    <!-- Hero -->
     <Hero2
         title="Commercial Services"
         eyebrow="Commercial"
@@ -23,7 +27,11 @@ import CTARibbon from "../components/sections/CTARibbon.astro";
         backgroundImage="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=1200&h=600&fit=crop"
     />
 
-    <PageIntro
+    <!-- Trust Bar -->
+    <TrustBar />
+
+    <!-- About & Other Services (Unified Split Layout) -->
+    <AboutWithServices
         eyebrow="Our Expertise"
         title="Quality Commercial Electrical Solutions"
         description="We build multi-family and affordable housing communities, industrial facilities, public and private healthcare facilities, fitness centers and office buildings. We improve the supply chain management process, increase operational efficiencies and build environments that foster creativity."
@@ -32,23 +40,33 @@ import CTARibbon from "../components/sections/CTARibbon.astro";
             { number: "24/7", label: "Support" },
             { number: "100%", label: "Satisfaction" },
         ]}
-        highlights={[
-            "100% Satisfaction guarantee",
-            "On-time delivery system",
-            "Safe, Reliable and Express",
-        ]}
         image="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800&q=80"
+        currentCategory="Commercial"
     />
-    <TrustBar />
+
+    <!-- Services - Sub Category -->
     <Services category="Commercial" />
-    <OffersAndFinancing category="Commercial" />
-    <FeaturedWorks />
-    <RelatedServices currentCategory="Commercial" />
+
+    <!-- Maintenance Plans, Financing Plans, Specials & Offers -->
+    <PricingTiers />
+
+    <!-- CTA Banner -->
     <CTARibbon />
+
+    <!-- Testimonials -->
     <Testimonials />
+
+    <!-- Featured Works -->
+    <FeaturedWorks />
+
+    <!-- FAQs - Unique -->
     <FAQ pageType="commercial" />
+
+    <!-- Service Area Map -->
     <ServiceAreas />
-    <FinalCTA />
+
+    <!-- Footer (in BaseLayout) -->
+
     <CouponModal
         discount="15"
         discountType="percentage"

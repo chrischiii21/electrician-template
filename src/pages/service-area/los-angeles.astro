@@ -1,17 +1,15 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/sections/Hero2.astro";
-import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
 import ServiceAreaTrust from "../../components/sections/ServiceAreaTrust.astro";
 import Services from "../../components/sections/Services.astro";
-import Testimonials from "../../components/sections/Testimonials.astro";
-import FinalCTA from "../../components/sections/FinalCTA.astro";
-import FAQ from "../../components/sections/FAQ.astro";
-import OffersAndFinancing from "../../components/sections/OffersAndFinancing.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
 import FeaturedWorks from "../../components/sections/FeaturedWorks.astro";
+import Testimonials from "../../components/sections/Testimonials.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
+import PricingTiers from "../../components/sections/PricingTiers.astro";
 import CouponModal from "../../components/sections/CouponModal.astro";
-import TrustBar from "../../components/sections/TrustBar.astro";
 
 const laNeighborhoods = [
     {
@@ -117,12 +115,17 @@ const laFeatures = [
 ---
 
 <BaseLayout title="Los Angeles | Electrician Services">
+    <!-- Header (in BaseLayout) -->
+
+    <!-- Hero -->
     <Hero2
         title="Los Angeles"
         eyebrow="Service Area"
         description="Professional electrical services serving Los Angeles and surrounding areas"
         backgroundImage="https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=1200&h=600&fit=crop"
     />
+
+    <!-- About -->
     <ServiceAreaTrust
         city="Los Angeles"
         eyebrow="Worry No More"
@@ -132,18 +135,34 @@ const laFeatures = [
         secondaryImage="/images/hero-1.avif"
         features={laFeatures}
     />
+
+    <!-- Maintenance Plans, Financing Plans, Specials & Offers -->
+    <PricingTiers />
+
+    <!-- Services -->
     <Services />
+
+    <!-- CTA Banner -->
     <CTARibbon />
-    <OffersAndFinancing />
+
+    <!-- Featured Works -->
     <FeaturedWorks />
+
+    <!-- Testimonials -->
     <Testimonials />
+
+    <!-- FAQs - Unique -->
     <FAQ pageType="los-angeles" />
+
+    <!-- Service Area Map -->
     <ServiceAreaMap
         city="Los Angeles"
         neighborhoods={laNeighborhoods}
         totalElectricians={8}
     />
-    <FinalCTA />
+
+    <!-- Footer (in BaseLayout) -->
+
     <CouponModal
         discount="75"
         discountType="amount"
