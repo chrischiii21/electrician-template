@@ -23,7 +23,7 @@ const { eyebrow, title, description, stats, features, image, highlights } =
     <Container size="lg">
         <div class="grid lg:grid-cols-2 gap-12 items-center">
             <!-- Left: Content -->
-            <div>
+            <div class="scroll-fade-left">
                 {
                     eyebrow && (
                         <Badge
@@ -96,7 +96,7 @@ const { eyebrow, title, description, stats, features, image, highlights } =
             </div>
 
             <!-- Right: Image or Features -->
-            <div>
+            <div class="scroll-fade-right">
                 {
                     image ? (
                         <div class="relative">
