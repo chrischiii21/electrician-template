@@ -1,4 +1,137 @@
 ﻿---
-import PlaceholderLayout from "../../layouts/PlaceholderLayout.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Hero2 from "../../components/sections/Hero2.astro";
+import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
+import ServiceAreaTrust from "../../components/sections/ServiceAreaTrust.astro";
+import Services from "../../components/sections/Services.astro";
+import Testimonials from "../../components/sections/Testimonials.astro";
+import FinalCTA from "../../components/sections/FinalCTA.astro";
+import FAQ from "../../components/sections/FAQ.astro";
+import OffersAndFinancing from "../../components/sections/OffersAndFinancing.astro";
+import CTARibbon from "../../components/sections/CTARibbon.astro";
+import FeaturedWorks from "../../components/sections/FeaturedWorks.astro";
+import CouponModal from "../../components/sections/CouponModal.astro";
+import TrustBar from "../../components/sections/TrustBar.astro";
+
+const sdNeighborhoods = [
+    {
+        name: "Downtown San Diego",
+        lat: 32.7157,
+        lng: -117.1611,
+        electricians: 7,
+        avgResponse: "8-12 min",
+    },
+    {
+        name: "La Jolla",
+        lat: 32.8328,
+        lng: -117.2713,
+        electricians: 6,
+        avgResponse: "10-15 min",
+    },
+    {
+        name: "Pacific Beach",
+        lat: 32.7964,
+        lng: -117.2296,
+        electricians: 5,
+        avgResponse: "12-17 min",
+    },
+    {
+        name: "Mission Valley",
+        lat: 32.7739,
+        lng: -117.1628,
+        electricians: 6,
+        avgResponse: "9-14 min",
+    },
+    {
+        name: "Chula Vista",
+        lat: 32.6401,
+        lng: -117.0842,
+        electricians: 5,
+        avgResponse: "11-16 min",
+    },
+    {
+        name: "Coronado",
+        lat: 32.6859,
+        lng: -117.1831,
+        electricians: 4,
+        avgResponse: "13-18 min",
+    },
+    {
+        name: "Del Mar",
+        lat: 32.9595,
+        lng: -117.2653,
+        electricians: 4,
+        avgResponse: "15-20 min",
+    },
+    {
+        name: "Encinitas",
+        lat: 33.037,
+        lng: -117.292,
+        electricians: 4,
+        avgResponse: "16-21 min",
+    },
+];
+
+const sdFeatures = [
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-full h-full text-accent"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>`,
+        title: "Coastal Electrical Expertise",
+        description:
+            "We specialize in electrical solutions designed for San Diego's coastal environment, using corrosion-resistant materials that withstand salt air and ocean conditions.",
+    },
+    {
+        icon: `<svg fill="none" stroke="currentColor" viewBox="0 0 24 24" class="w-full h-full text-accent"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>`,
+        title: "Solar Integration Specialists",
+        description:
+            "San Diego's abundant sunshine makes solar perfect. We handle all electrical work for solar installations, from panel upgrades to utility interconnection.",
+    },
+];
 ---
-<PlaceholderLayout title="San Diego" section="Service Area" />
+
+<BaseLayout title="San Diego | Electrician Services">
+    <Hero2
+        title="San Diego"
+        eyebrow="Service Area"
+        description="Professional electrical services serving San Diego County and coastal communities"
+        backgroundImage="https://images.unsplash.com/photo-1509023464722-18d996393ca8?w=1200&h=600&fit=crop"
+    />
+    <ServiceAreaTrust
+        city="San Diego"
+        eyebrow="Coastal Electrical Excellence"
+        title="Experience reliable electrical solutions across <span class='text-accent'>San Diego</span>."
+        description="Our licensed electricians, based in San Diego, provide comprehensive electrical services tailored to coastal living. From La Jolla to Chula Vista, we bring expert electrical solutions that withstand San Diego's unique climate and support your solar energy goals."
+        mainImage="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?w=800&h=600&fit=crop"
+        secondaryImage="/images/hero-2.avif"
+        features={sdFeatures}
+    />
+    <Services />
+    <CTARibbon />
+    <OffersAndFinancing />
+    <FeaturedWorks />
+    <Testimonials />
+    <FAQ pageType="san-diego" />
+    <ServiceAreaMap
+        city="San Diego"
+        neighborhoods={sdNeighborhoods}
+        totalElectricians={7}
+    />
+    <FinalCTA />
+    <CouponModal
+        discount="100"
+        discountType="amount"
+        code="SANDIEGO100"
+        title="San Diego Solar Special"
+        description="Save $100 on solar electrical integration in San Diego County. Perfect for harnessing San Diego's year-round sunshine."
+        features={[
+            "Same-Day Service Available",
+            "All San Diego Areas Covered",
+            "Solar Integration Experts",
+            "Coastal-Rated Materials",
+        ]}
+        ctaText="Claim SD Discount"
+        dismissText="No thanks"
+        ctaLink="/contact"
+        expiresIn="47:59:59"
+        autoOpen={true}
+    />
+</BaseLayout>
