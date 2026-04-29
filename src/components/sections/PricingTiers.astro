@@ -1,0 +1,254 @@
+---
+import Container from "../ui/Container.astro";
+import Heading from "../ui/Heading.astro";
+import Text from "../ui/Text.astro";
+import Badge from "../ui/Badge.astro";
+import Button from "../ui/Button.astro";
+
+const tiers = [
+    {
+        name: "Maintenance Plan",
+        tagline: "Keep Your System Running",
+        price: "$14.33",
+        period: "per month",
+        description:
+            "Regular maintenance to prevent costly repairs and extend equipment life.",
+        features: [
+            "Priority scheduling",
+            "Annual safety inspection",
+            "15% off all repairs",
+            "No overtime charges",
+            "Transferable membership",
+            "24/7 emergency support",
+        ],
+        cta: "Contact Us",
+        ctaLink: "/contact",
+        highlighted: false,
+        image: "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?w=400&h=300&fit=crop",
+    },
+    {
+        name: "Financing Plan",
+        tagline: "No Interest, No Payment",
+        price: "0%",
+        period: "until 2026",
+        description:
+            "Make your electrical upgrades affordable with flexible payment options.",
+        features: [
+            "No interest charges",
+            "No payments until 2026",
+            "Approved financing available",
+            "Quick approval process",
+            "Flexible payment terms",
+            "No hidden fees",
+        ],
+        cta: "Learn More",
+        ctaLink: "/financing",
+        highlighted: true,
+        badge: "Most Popular",
+        image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=400&h=300&fit=crop",
+    },
+    {
+        name: "Specials & Offers",
+        tagline: "Save on Services Today",
+        price: "20%",
+        period: "off",
+        description:
+            "Exclusive discounts on all emergency electrical services.",
+        features: [
+            "20% off emergency services",
+            "Same-day availability",
+            "Licensed electricians",
+            "Free safety inspection",
+            "Upfront pricing",
+            "Satisfaction guaranteed",
+        ],
+        cta: "Book Now",
+        ctaLink: "/specials",
+        highlighted: false,
+        image: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&h=300&fit=crop",
+    },
+];
+---
+
+<section class="bg-gray-50 py-20 overflow-hidden" id="pricing-tiers">
+    <Container size="lg">
+        <!-- Header -->
+        <div class="text-center mb-16 scroll-animate">
+            <Badge variant="accent" class="mb-3 uppercase tracking-wider">
+                Choose Your Plan
+            </Badge>
+            <Heading level={2} class="text-4xl md:text-5xl mb-4">
+                Flexible <span class="text-accent">Options</span> for Every Need
+            </Heading>
+            <Text size="xl" class="text-gray-600 max-w-3xl mx-auto">
+                Whether you need ongoing maintenance, flexible financing, or
+                immediate savings, we have the perfect solution for you.
+            </Text>
+        </div>
+
+        <!-- Pricing Cards -->
+        <div
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 lg:gap-12 scroll-stagger"
+        >
+            {
+                tiers.map((tier) => (
+                    <div
+                        class:list={[
+                            "relative bg-white border-2 overflow-hidden transition-all duration-300 hover:shadow-2xl group w-full",
+                            {
+                                "border-accent shadow-xl": tier.highlighted,
+                                "border-gray-200 hover:border-accent":
+                                    !tier.highlighted,
+                            },
+                        ]}
+                    >
+                        {/* Recommended Badge */}
+                        {tier.highlighted && tier.badge && (
+                            <div class="absolute top-0 right-0 bg-accent text-white px-2 sm:px-3 py-1 text-xs sm:text-sm font-bold uppercase tracking-wider z-20">
+                                {tier.badge}
+                            </div>
+                        )}
+
+                        {/* Top Accent Bar */}
+                        <div
+                            class:list={[
+                                "h-2 w-full",
+                                {
+                                    "bg-linear-to-r from-accent via-primary to-accent":
+                                        tier.highlighted,
+                                    "bg-gray-300": !tier.highlighted,
+                                },
+                            ]}
+                        />
+
+                        {/* Image */}
+                        <div class="relative h-36 sm:h-40 md:h-48 overflow-hidden">
+                            <img
+                                src={tier.image}
+                                alt={`${tier.name} - professional electrical services`}
+                                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                loading="lazy"
+                            />
+                            <div class="absolute inset-0 bg-linear-to-t from-gray-900/80 to-transparent" />
+
+                            {/* Plan Name Overlay */}
+                            <div class="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 md:bottom-4 md:left-4 md:right-4">
+                                <Heading
+                                    level={3}
+                                    class="text-white text-lg sm:text-xl md:text-2xl font-black mb-1 leading-tight"
+                                >
+                                    {tier.name}
+                                </Heading>
+                                <Text
+                                    size="sm"
+                                    class="text-white/90 font-semibold text-xs sm:text-sm"
+                                >
+                                    {tier.tagline}
+                                </Text>
+                            </div>
+                        </div>
+
+                        {/* Content */}
+                        <div class="p-4 sm:p-5 md:p-6">
+                            {/* Price */}
+                            <div class="mb-4 sm:mb-5 md:mb-6 text-center">
+                                <div class="flex items-baseline justify-center gap-1 sm:gap-2">
+                                    <span
+                                        class:list={[
+                                            "font-black leading-none",
+                                            {
+                                                "text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-accent":
+                                                    tier.highlighted,
+                                                "text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-text":
+                                                    !tier.highlighted,
+                                            },
+                                        ]}
+                                    >
+                                        {tier.price}
+                                    </span>
+                                </div>
+                                <Text
+                                    size="sm"
+                                    class="text-gray-500 uppercase tracking-wide font-semibold mt-1 sm:mt-2 text-xs sm:text-sm"
+                                >
+                                    {tier.period}
+                                </Text>
+                            </div>
+
+                            {/* Description */}
+                            <Text
+                                size="base"
+                                class="text-gray-600 mb-4 sm:mb-5 md:mb-6 text-center leading-relaxed text-sm sm:text-base"
+                            >
+                                {tier.description}
+                            </Text>
+
+                            {/* Features */}
+                            <ul class="space-y-2 sm:space-y-2.5 md:space-y-3 mb-5 sm:mb-6 md:mb-8">
+                                {tier.features.map((feature) => (
+                                    <li class="flex items-start gap-2 sm:gap-3">
+                                        <svg
+                                            class:list={[
+                                                "w-4 h-4 sm:w-5 sm:h-5 shrink-0 mt-0.5",
+                                                {
+                                                    "text-accent":
+                                                        tier.highlighted,
+                                                    "text-primary":
+                                                        !tier.highlighted,
+                                                },
+                                            ]}
+                                            fill="currentColor"
+                                            viewBox="0 0 20 20"
+                                        >
+                                            <path
+                                                fill-rule="evenodd"
+                                                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                clip-rule="evenodd"
+                                            />
+                                        </svg>
+                                        <Text
+                                            size="sm"
+                                            class="text-gray-700 font-medium text-xs sm:text-sm"
+                                        >
+                                            {feature}
+                                        </Text>
+                                    </li>
+                                ))}
+                            </ul>
+
+                            {/* CTA Button */}
+                            <Button
+                                href={tier.ctaLink}
+                                variant={
+                                    tier.highlighted ? "accent" : "primary"
+                                }
+                                size="lg"
+                                class="w-full justify-center font-bold uppercase tracking-wider text-sm sm:text-base"
+                            >
+                                {tier.cta}
+                                <svg
+                                    class="w-4 h-4 sm:w-5 sm:h-5 ml-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                    />
+                                </svg>
+                            </Button>
+                        </div>
+
+                        {/* Bottom Accent for Highlighted */}
+                        {tier.highlighted && (
+                            <div class="h-1 w-full bg-linear-to-r from-accent via-primary to-accent" />
+                        )}
+                    </div>
+                ))
+            }
+        </div>
+    </Container>
+</section>

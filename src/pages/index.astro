@@ -2,34 +2,63 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Hero from "../components/sections/Hero.astro";
 import TrustBar from "../components/sections/TrustBar.astro";
-import Services from "../components/sections/Services.astro";
 import Specials from "../components/sections/Specials.astro";
-import WhyUs from "../components/sections/WhyUs.astro";
+import AboutUs from "../components/sections/AboutUs.astro";
+import Services from "../components/sections/Services.astro";
+import MaintenancePlan from "../components/sections/MaintenancePlan.astro";
 import Financing from "../components/sections/Financing.astro";
 import CTARibbon from "../components/sections/CTARibbon.astro";
+import WhyUs from "../components/sections/WhyUs.astro";
+import FeaturedWorks from "../components/sections/FeaturedWorks.astro";
 import Testimonials from "../components/sections/Testimonials.astro";
-import AboutUs from "../components/sections/AboutUs.astro";
 import FAQ from "../components/sections/FAQ.astro";
 import ServiceAreas from "../components/sections/ServiceAreas.astro";
-import FinalCTA from "../components/sections/FinalCTA.astro";
 import CouponModal from "../components/sections/CouponModal.astro";
-import FeaturedWorks from "../components/sections/FeaturedWorks.astro";
 ---
 
 <BaseLayout title="Home | Electrician Services">
+	<!-- Header (in BaseLayout) -->
+
+	<!-- Hero -->
 	<Hero />
+
+	<!-- Trust Bar -->
 	<TrustBar />
+
+	<!-- Specials & Offers -->
 	<Specials />
+
+	<!-- About -->
 	<AboutUs />
+
+	<!-- Services -->
 	<Services />
-	<FeaturedWorks />
+
+	<!-- Maintenance Plans -->
+	<MaintenancePlan />
+
+	<!-- Financing Plans -->
 	<Financing />
+
+	<!-- CTA Banner -->
 	<CTARibbon />
+
+	<!-- Why Choose Us -->
 	<WhyUs />
+
+	<!-- Featured Works -->
+	<FeaturedWorks />
+
+	<!-- Testimonials -->
 	<Testimonials />
-	<FAQ />
+
+	<!-- FAQs - Global -->
+	<FAQ pageType="home" />
+
+	<!-- Service Area Map -->
 	<ServiceAreas />
-	<FinalCTA />
+
+	<!-- Footer (in BaseLayout) -->
 
 	<CouponModal
 		discount="15"
