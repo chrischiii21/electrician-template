@@ -92,22 +92,14 @@ const comparison = [
 
             <div class="border border-gray-200 overflow-hidden">
                 <!-- Table header -->
-                <div
-                    class="grid grid-cols-3 bg-gray-50 border-b border-gray-200"
-                >
-                    <div
-                        class="px-6 py-3 text-xs font-bold uppercase tracking-wider text-gray-400"
-                    >
+                <div class="grid grid-cols-3 bg-gray-50 border-b border-gray-200">
+                    <div class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-400 flex items-center">
                         Feature
                     </div>
-                    <div
-                        class="px-6 py-3 text-xs font-bold uppercase tracking-wider text-primary text-center border-l border-gray-200"
-                    >
+                    <div class="px-6 py-4 text-sm md:text-base font-black uppercase tracking-wider text-white text-center bg-primary border-t-4 border-accent shadow-md">
                         Us
                     </div>
-                    <div
-                        class="px-6 py-3 text-xs font-bold uppercase tracking-wider text-gray-400 text-center border-l border-gray-200"
-                    >
+                    <div class="px-6 py-4 text-xs font-bold uppercase tracking-wider text-gray-400 text-center flex items-center justify-center">
                         Others
                     </div>
                 </div>
@@ -116,64 +108,35 @@ const comparison = [
                     comparison.map((row, i) => (
                         <div
                             class:list={[
-                                "grid grid-cols-3 border-b border-gray-100 last:border-0",
+                                "grid grid-cols-3 border-b border-gray-100 last:border-0 relative",
                                 i % 2 === 0 ? "bg-white" : "bg-gray-50/50",
                             ]}
                         >
-                            <div class="px-6 py-4 text-lg font-medium text-text">
+                            <div class="px-6 py-4 text-sm md:text-lg font-medium text-text">
                                 {row.feature}
                             </div>
-                            <div class="px-6 py-4 flex items-center justify-center border-l border-gray-100">
+                            <div class:list={[
+                                "px-6 py-4 flex items-center justify-center border-x-2 border-primary/20 bg-primary/5",
+                                i === comparison.length - 1 ? "border-b-4 border-primary" : ""
+                            ]}>
                                 {row.us ? (
-                                    <svg
-                                        class="w-5 h-5 text-accent"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                            clip-rule="evenodd"
-                                        />
+                                    <svg class="w-6 h-6 text-accent drop-shadow-sm" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                     </svg>
                                 ) : (
-                                    <svg
-                                        class="w-5 h-5 text-gray-300"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"
-                                        />
+                                    <svg class="w-6 h-6 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
                                     </svg>
                                 )}
                             </div>
-                            <div class="px-6 py-4 flex items-center justify-center border-l border-gray-100">
+                            <div class="px-6 py-4 flex items-center justify-center">
                                 {row.them ? (
-                                    <svg
-                                        class="w-5 h-5 text-gray-400"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                            clip-rule="evenodd"
-                                        />
+                                    <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
                                     </svg>
                                 ) : (
-                                    <svg
-                                        class="w-5 h-5 text-gray-300"
-                                        fill="currentColor"
-                                        viewBox="0 0 20 20"
-                                    >
-                                        <path
-                                            fill-rule="evenodd"
-                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                                            clip-rule="evenodd"
-                                        />
+                                    <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
                                     </svg>
                                 )}
                             </div>
