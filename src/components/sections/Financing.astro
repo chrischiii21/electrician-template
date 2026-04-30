@@ -99,133 +99,201 @@ const plans = rawContent
         </div>
 
         <!-- Plans Grid -->
-        <Grid cols={3} gap="lg" class="mb-16 scroll-stagger">
+        <div class="grid md:grid-cols-3 gap-8 mb-16 scroll-stagger">
             {
                 plans.map((plan) => (
-                    <Card
-                        padding="lg"
-                        class={`relative flex flex-col transition-all duration-200 rounded-none ${
-                            plan.highlighted
-                                ? "border-2 border-accent shadow-xl"
-                                : "border border-gray-200 hover:border-primary hover:shadow-lg"
-                        }`}
+                    <div
+                        class:list={[
+                            "relative flex flex-col bg-white border-2 overflow-hidden transition-all duration-300 hover:shadow-2xl group",
+                            {
+                                "border-accent shadow-xl": plan.highlighted,
+                                "border-gray-200 hover:border-accent":
+                                    !plan.highlighted,
+                            },
+                        ]}
                     >
+                        {/* Recommended Badge */}
                         {plan.highlighted && (
-                            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-                                <Badge variant="accent">Most Popular</Badge>
+                            <div class="absolute top-0 right-0 bg-accent text-white px-4 py-1 text-sm font-bold uppercase tracking-wider z-20">
+                                Most Popular
                             </div>
                         )}
 
-                        <div class="mb-6">
-                            <Heading level={3} class="mb-2">
-                                {plan.name}
-                            </Heading>
-                            <div class="flex items-baseline gap-1 mb-4">
-                                <span class="text-4xl font-bold text-primary">
-                                    {plan.apr}
-                                </span>
-                                <span class="text-gray-600">APR</span>
+                        {/* Top Accent Bar */}
+                        <div
+                            class:list={[
+                                "h-2 w-full",
+                                {
+                                    "bg-gradient-to-r from-accent via-primary to-accent":
+                                        plan.highlighted,
+                                    "bg-gray-300": !plan.highlighted,
+                                },
+                            ]}
+                        />
+
+                        <div class="p-8 flex-grow flex flex-col">
+                            {/* Price / APR */}
+                            <div class="mb-6 text-center mt-2">
+                                <Heading level={3} class="mb-6 text-2xl font-black text-gray-900">
+                                    {plan.name}
+                                </Heading>
+                                <div class="flex items-baseline justify-center gap-2 mb-4">
+                                    <span
+                                        class:list={[
+                                            "font-black leading-none",
+                                            {
+                                                "text-6xl text-accent":
+                                                    plan.highlighted,
+                                                "text-5xl text-text":
+                                                    !plan.highlighted,
+                                            },
+                                        ]}
+                                    >
+                                        {plan.apr}
+                                    </span>
+                                    <span class="text-xl text-gray-500 uppercase tracking-wide font-bold">
+                                        APR
+                                    </span>
+                                </div>
+                                <div class="space-y-3 text-base text-gray-600 mt-6 bg-gray-50 p-4 border border-gray-100">
+                                    <div class="flex justify-between items-center border-b border-gray-200 pb-2">
+                                        <span class="font-bold text-gray-800 text-sm uppercase tracking-wider">Term</span>
+                                        <span class="font-medium text-primary">{plan.term}</span>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-1">
+                                        <span class="font-bold text-gray-800 text-sm uppercase tracking-wider">Amount</span>
+                                        <span class="font-medium text-primary">{plan.minAmount} - {plan.maxAmount}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="space-y-2 text-md text-gray-600">
-                                <p>
-                                    <span class="font-semibold">Term:</span>{" "}
-                                    {plan.term}
-                                </p>
-                                <p>
-                                    <span class="font-semibold">Amount:</span>{" "}
-                                    {plan.minAmount} - {plan.maxAmount}
-                                </p>
+
+                            {/* Features */}
+                            <div class="flex-grow mb-8 mt-2">
+                                <ul class="space-y-4">
+                                    {plan.features.map((feature) => (
+                                        <li class="flex items-start gap-3">
+                                            <svg
+                                                class:list={[
+                                                    "w-5 h-5 shrink-0 mt-0.5",
+                                                    {
+                                                        "text-accent":
+                                                            plan.highlighted,
+                                                        "text-primary":
+                                                            !plan.highlighted,
+                                                    },
+                                                ]}
+                                                fill="currentColor"
+                                                viewBox="0 0 20 20"
+                                            >
+                                                <path
+                                                    fill-rule="evenodd"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                                    clip-rule="evenodd"
+                                                />
+                                            </svg>
+                                            <Text
+                                                size="sm"
+                                                class="text-gray-700 font-medium"
+                                            >
+                                                {feature}
+                                            </Text>
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
+
+                            {/* CTA Button */}
+                            <Button
+                                href="/financing"
+                                variant={
+                                    plan.highlighted ? "accent" : "primary"
+                                }
+                                size="lg"
+                                class="w-full justify-center font-bold uppercase tracking-wider mt-auto"
+                            >
+                                Apply Now
+                                <svg
+                                    class="w-5 h-5 ml-2"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                                    />
+                                </svg>
+                            </Button>
                         </div>
 
-                        <div class="flex-grow mb-6">
-                            <p class="text-md font-semibold text-gray-400 uppercase tracking-wider mb-3">
-                                Includes
-                            </p>
-                            <ul class="space-y-3">
-                                {plan.features.map((feature) => (
-                                    <li class="flex items-start gap-2">
-                                        <svg
-                                            class="w-4 h-4 text-accent flex-shrink-0 mt-0.5"
-                                            fill="currentColor"
-                                            viewBox="0 0 20 20"
-                                        >
-                                            <path
-                                                fill-rule="evenodd"
-                                                d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                                                clip-rule="evenodd"
-                                            />
-                                        </svg>
-                                        <Text size="sm" class="text-gray-700">
-                                            {feature}
-                                        </Text>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <Button
-                            href="/financing"
-                            variant={plan.highlighted ? "accent" : "primary"}
-                            size="md"
-                            class="w-full rounded-none"
-                        >
-                            Learn More
-                        </Button>
-                    </Card>
+                        {/* Bottom Accent for Highlighted */}
+                        {plan.highlighted && (
+                            <div class="h-1 w-full bg-gradient-to-r from-accent via-primary to-accent" />
+                        )}
+                    </div>
                 ))
             }
-        </Grid>
+        </div>
 
         <!-- Info Section -->
-        <div class="bg-white border border-gray-200 p-8 scroll-animate">
-            <Heading level={3} class="mb-4">How It Works</Heading>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="text-center">
-                    <div
-                        class="w-12 h-12 bg-accent/10 flex items-center justify-center mx-auto mb-3"
-                    >
-                        <span class="text-accent font-bold text-lg">1</span>
-                    </div>
-                    <Heading level={4} class="mb-2">Apply Online</Heading>
-                    <Text size="lg" class="text-gray-600">
-                        Complete our simple application in minutes
-                    </Text>
+        <div class="text-center mb-12 scroll-animate mt-12">
+            <Heading level={2} class="text-3xl md:text-4xl">How It Works</Heading>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 scroll-stagger">
+            <Card
+                padding="lg"
+                class="border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 group"
+            >
+                <div class="w-12 h-12 flex items-center justify-center bg-accent/10 border border-accent/20 mb-6 group-hover:bg-accent transition-all duration-300">
+                    <span class="text-accent group-hover:text-white font-black text-xl transition-colors">1</span>
                 </div>
-                <div class="text-center">
-                    <div
-                        class="w-12 h-12 bg-accent/10 flex items-center justify-center mx-auto mb-3"
-                    >
-                        <span class="text-accent font-bold text-lg">2</span>
-                    </div>
-                    <Heading level={4} class="mb-2">Get Approved</Heading>
-                    <Text size="lg" class="text-gray-600">
-                        Receive instant approval decision
-                    </Text>
+                <Heading level={4} class="text-xl font-bold mb-3">Apply Online</Heading>
+                <Text size="sm" class="text-gray-600 leading-relaxed">
+                    Complete our simple application in minutes from any device.
+                </Text>
+            </Card>
+
+            <Card
+                padding="lg"
+                class="border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 group"
+            >
+                <div class="w-12 h-12 flex items-center justify-center bg-accent/10 border border-accent/20 mb-6 group-hover:bg-accent transition-all duration-300">
+                    <span class="text-accent group-hover:text-white font-black text-xl transition-colors">2</span>
                 </div>
-                <div class="text-center">
-                    <div
-                        class="w-12 h-12 bg-accent/10 flex items-center justify-center mx-auto mb-3"
-                    >
-                        <span class="text-accent font-bold text-lg">3</span>
-                    </div>
-                    <Heading level={4} class="mb-2">Schedule Service</Heading>
-                    <Text size="lg" class="text-gray-600">
-                        Book your electrical project
-                    </Text>
+                <Heading level={4} class="text-xl font-bold mb-3">Get Approved</Heading>
+                <Text size="sm" class="text-gray-600 leading-relaxed">
+                    Receive an instant approval decision and see your options.
+                </Text>
+            </Card>
+
+            <Card
+                padding="lg"
+                class="border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 group"
+            >
+                <div class="w-12 h-12 flex items-center justify-center bg-accent/10 border border-accent/20 mb-6 group-hover:bg-accent transition-all duration-300">
+                    <span class="text-accent group-hover:text-white font-black text-xl transition-colors">3</span>
                 </div>
-                <div class="text-center">
-                    <div
-                        class="w-12 h-12 bg-accent/10 flex items-center justify-center mx-auto mb-3"
-                    >
-                        <span class="text-accent font-bold text-lg">4</span>
-                    </div>
-                    <Heading level={4} class="mb-2">Start Paying</Heading>
-                    <Text size="lg" class="text-gray-600">
-                        Make easy monthly payments
-                    </Text>
+                <Heading level={4} class="text-xl font-bold mb-3">Schedule Service</Heading>
+                <Text size="sm" class="text-gray-600 leading-relaxed">
+                    Book your electrical project and we'll get started right away.
+                </Text>
+            </Card>
+
+            <Card
+                padding="lg"
+                class="border border-gray-200 hover:border-accent hover:shadow-lg hover:shadow-accent/10 transition-all duration-300 group"
+            >
+                <div class="w-12 h-12 flex items-center justify-center bg-accent/10 border border-accent/20 mb-6 group-hover:bg-accent transition-all duration-300">
+                    <span class="text-accent group-hover:text-white font-black text-xl transition-colors">4</span>
                 </div>
-            </div>
+                <Heading level={4} class="text-xl font-bold mb-3">Start Paying</Heading>
+                <Text size="sm" class="text-gray-600 leading-relaxed">
+                    Make easy monthly payments over time with zero hidden fees.
+                </Text>
+            </Card>
         </div>
     </Container>
 </section>
