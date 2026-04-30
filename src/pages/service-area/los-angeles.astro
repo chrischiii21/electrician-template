@@ -1,4 +1,4 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/sections/Hero2.astro";
 import ServiceAreaTrust from "../../components/sections/ServiceAreaTrust.astro";
@@ -131,7 +131,7 @@ const laFeatures = [
         eyebrow="Worry No More"
         title="Experience worry-free electrical solutions across <span class='text-accent'>Los Angeles</span>."
         description="Our licensed electricians, based in Los Angeles, provide comprehensive electrical services tailored to your needs. With meticulous design and expert craftsmanship, we bring reliable power solutions to homes and businesses across LA County."
-        mainImage="https://images.unsplash.com/photo-1621905251918-48416bd8575a?w=800&h=600&fit=crop"
+        mainImage="https://images.unsplash.com/photo-1460472178825-e5240623afd5?w=800&h=600&fit=crop"
         secondaryImage="/images/hero-1.avif"
         features={laFeatures}
     />
@@ -142,17 +142,17 @@ const laFeatures = [
     <!-- Services -->
     <Services />
 
-    <!-- CTA Banner -->
-    <CTARibbon />
-
     <!-- Featured Works -->
     <FeaturedWorks />
 
     <!-- Testimonials -->
     <Testimonials />
 
-    <!-- FAQs - Unique -->
-    <FAQ pageType="los-angeles" />
+    <!-- FAQs - Global -->
+    <FAQ pageType="home" city="Los Angeles" />
+
+    <!-- CTA Banner -->
+    <CTARibbon />
 
     <!-- Service Area Map -->
     <ServiceAreaMap

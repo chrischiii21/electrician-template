@@ -12,21 +12,11 @@ interface FAQItem {
 }
 
 interface Props {
-    pageType?:
-        | "home"
-        | "commercial"
-        | "residential"
-        | "emergency"
-        | "commercial-construction"
-        | "commercial-hvac"
-        | "commercial-panels"
-        | "los-angeles"
-        | "san-diego"
-        | "san-francisco"
-        | "sacramento";
+    pageType?: string;
+    city?: string;
 }
 
-const { pageType = "home" } = Astro.props;
+const { pageType = "home", city } = Astro.props;
 
 // FAQ sets organized by page type with conversational, problem-focused questions
 const faqSets: Record<string, { faqs: FAQItem[]; categories: string[] }> = {
@@ -620,7 +610,16 @@ const faqSets: Record<string, { faqs: FAQItem[]; categories: string[] }> = {
 };
 
 // Get the appropriate FAQ set based on page type
-const { faqs, categories } = faqSets[pageType] || faqSets.home;
+let { faqs, categories } = faqSets[pageType] || faqSets.home;
+
+if (city && pageType === 'home') {
+    faqs = faqs.map(faq => ({
+        ...faq,
+        question: faq.question.includes('?') 
+            ? faq.question.replace('?', ` in ${city}?`) 
+            : `${faq.question} in ${city}`,
+    }));
+}
 ---
 
 <section class="bg-background py-20" id="faq">
@@ -632,11 +631,11 @@ const { faqs, categories } = faqSets[pageType] || faqSets.home;
                     >Fill Every Call with Joy</Badge
                 >
                 <Heading level={2} class="!text-text text-4xl md:text-5xl mb-4">
-                    Frequently <span class="text-accent">Asked Questions</span>
+                    Frequently <span class="text-accent">Asked Questions</span>{city ? ` in ${city}` : ''}
                 </Heading>
                 <Text size="xl" class="!text-gray-600 max-w-5xl mx-auto">
                     Find answers to common questions about our electrical
-                    services and how we can benefit your business.
+                    services{city ? ` in ${city}` : ''}.
                 </Text>
             </div>
 

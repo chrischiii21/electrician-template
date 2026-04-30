@@ -1,11 +1,10 @@
-﻿---
+---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Hero2 from "../../components/sections/Hero2.astro";
 import ServiceAreaMap from "../../components/sections/ServiceAreaMap.astro";
 import ServiceAreaTrust from "../../components/sections/ServiceAreaTrust.astro";
 import Services from "../../components/sections/Services.astro";
 import Testimonials from "../../components/sections/Testimonials.astro";
-import FinalCTA from "../../components/sections/FinalCTA.astro";
 import FAQ from "../../components/sections/FAQ.astro";
 import PricingTiers from "../../components/sections/PricingTiers.astro";
 import CTARibbon from "../../components/sections/CTARibbon.astro";
@@ -104,18 +103,17 @@ const sdFeatures = [
         secondaryImage="/images/hero-2.avif"
         features={sdFeatures}
     />
-    <Services />
-    <CTARibbon />
     <PricingTiers />
+    <Services />
     <FeaturedWorks />
     <Testimonials />
-    <FAQ pageType="san-diego" />
+    <FAQ pageType="home" city="San Diego" />
+    <CTARibbon />
     <ServiceAreaMap
         city="San Diego"
         neighborhoods={sdNeighborhoods}
         totalElectricians={7}
     />
-    <FinalCTA />
     <CouponModal
         discount="100"
         discountType="amount"
